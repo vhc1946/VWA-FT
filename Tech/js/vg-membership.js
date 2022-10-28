@@ -1,8 +1,10 @@
 
 import {cntrctform,fbdom} from './ticket-dom.js';
 
+
 export class RewardsMembership{
   constructor(form=null){
+
     this.pricing = {
         CLASSIC: {
             pl: 'CLA',
@@ -159,5 +161,4 @@ export var SETUPmembers = ()=>{
       SETcntrctform();
       GETcntrctprice();
   });
-
 }
