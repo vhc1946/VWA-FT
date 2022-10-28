@@ -1,0 +1,18 @@
+/*  Local Store
+    Will hold the websites
+*/
+
+
+
+/*SERVICE TICKET /////////////////////////////////////////////////////////
+*/
+var wolstore = {
+  currentwo:'CURwo', //holds the current wo
+  techwo:'TECHwo' //holds all the techs wo
+}
+//////////////////////////////////////////////////////////////////////////
+
+
+export{
+  wolstore
+}
