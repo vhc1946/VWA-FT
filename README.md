@@ -21,3 +21,14 @@ There is currently testing on the JONAS API, and it looks possible to gather the
 The checklist is one thing that (on the residential side) is not implemented in the JONAS ticket. This puts the burden on the FT to manage and match checklists. It is good that there are not as many checklists as the commercial side, and should give us a chance to test some different methods using with a shorter list. The methods tested will be scaled and used for the commercial side.
 
 Emailing the customer requires a server to prepare and administer the emails. We do have an application that achieves this, and can be taken and tested in an API on an ec2 instance to see if it still works. The success of this means we can further the idea and create an VAPI as a service. This would then work along side the VAPI store.
+
+TODO:
+- Import our newer repo tools in to upgrade current utilities
+- Reorganize file structures to prepare for application seperation
+- Import our Titlebar to work on each page
+- Set up quick actions to take over for some of the buttons on the page (Save, Delete, etc.)
+- Seperate Systems/Repairs, Membership Options, Presentation using Viewcontroller
+    - Attempt a few different layouts as time allows
+- Create all forms (HTML?)
+    - Rewards Membership Agreement
+    - Leak Search Notification
