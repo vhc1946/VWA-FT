@@ -1,3 +1,4 @@
+import { devNull } from 'node:os';
 import {writePart} from './vg-partials.js';
 
 //  Setup Module ///////////////////////////////////////////////////////////////
@@ -61,6 +62,120 @@ var tbdom={ //menubar
     }
   }
 }
+
+tdom ={
+  "#titlebar-cont.div":{
+    attributes:{},
+    children:{
+      "#titlebar-cont-left.div":{
+        attributes:{},
+        children:{
+          "#titlebar-moretools.img":{
+            attributes:{
+              class: "titlebar-button-action",
+              src: "../bin/repo/assets/icons/menu-burger.png",
+              alt: "MORE",
+              title: "More"
+            },
+            children: null
+          },
+          "#titlebar-moretools-quick.div":{
+            attributes:{
+              style: "display:none"
+            },
+            children:{
+              "#titlebar-page-print.div":{
+                attributes:{
+                  class: "titlebar-button-action",
+                  src: "../bin/repo/assets/icons/print.png",
+                  alt: "PRINT",
+                  title: "Print"
+                },
+                children: null
+              },
+              "#titlebar-page-settings.div":{
+                attributes:{
+                  class: "titlebar-button-action",
+                  src: "../bin/repo/assets/icons/settings.png",
+                  alt: "SETTINGS",
+                  title: "Settings"
+                },
+                children: null
+              }
+            }
+          },
+          "#titlebar-page-user-cont.span":{
+            attributes:{},
+            children:{
+              "#titlebar-page-user.img":{
+                attributes:{
+                  class: "titlebar-button-action",
+                  src: "../bin/repo/assets/icons/user.png",
+                  alt: "USER",
+                  title: "Log Out" 
+                },
+                children: null
+              },
+              "#titlebar-username.span":{
+                attributes:{},
+                children:null
+              }
+            }
+          }
+        }
+      },
+      "#titlebar-title.div":{
+        attributes:{
+          innerText: "VOGEL APP"
+        },
+        children:{}
+      },
+      "#titlebar-cont-right.div":{
+        attributes:{},
+        children:{
+          "#titlebar-win-mini.img":{
+            attributes:{
+              class: "titlebar-button-action",
+              src: "../bin/repo/assets/icons/minus.png",
+              alt: "MINI",
+              title: "Minimize"
+            },
+            children: null
+          },
+          "#titlebar-win-maxi.img":{
+            attributes:{
+              class: "titlebar-button-action",
+              src: "../bin/repo/assets/icons/square.png",
+              alt: "MAX",
+              title: "Maximize"
+            },
+            children: null
+          },
+          "#titlebar-win-close.img":{
+            attributes:{
+              class: "titlebar-button-action",
+              src: "../bin/repo/assets/icons/cross.png",
+              alt: "CLOSE",
+              title: "Close"
+            },
+            children: null
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
 var lastwinsize={
   x:window.innerWidth,
   y:window.innerHeight
