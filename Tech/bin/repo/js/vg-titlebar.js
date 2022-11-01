@@ -3,60 +3,9 @@ import {CreateComponent} from '../tools/vhc-components.js';
 
 //  PATHS //
 var stylesheets = ['vg-titlebar.css'];
-var assets={
-}
-
 
 var pubfolder = ''
 
-var SETUPtitlebar=(pfolder,qacts,macts)=>{
-  pubfolder=pfolder;
-
-  document.body.prepend(CreateComponent(tdom));
-
-  for(let x=0,l=stylesheets.length;x<l;x++){
-    let viewstyles = document.createElement('link');
-    viewstyles.setAttribute('rel','stylesheet');
-    viewstyles.setAttribute('href',`${pubfolder}css/${stylesheets[x]}`);
-    document.getElementsByTagName('head')[0].prepend(viewstyles);
-
-  }
-
-  document.getElementById(tbdom.window.close).addEventListener('click',(ele)=>{  // Close window
-    window.close();
-  });
-  document.getElementById(tbdom.window.mini).addEventListener('click',(ele)=>{  // Minimize window
-    ipcRenderer.send('view-minimize',document.getElementById(tbdom.title).innerText);
-  });
-
-  document.getElementById(tbdom.window.maxi).addEventListener('click',(ele)=>{  // Maximize window
-    if(screen.availWidth == window.innerWidth && screen.availHeight == window.innerHeight){
-      window.resizeTo(lastwinsize.x,lastwinsize.y);
-    }else{
-      lastwinsize.x = window.innerWidth;
-      lastwinsize.y = window.innerHeight;
-      window.resizeTo(screen.availWidth,screen.availHeight);
-    }
-  });
-
-  document.getElementById(tbdom.page.print).addEventListener('dblclick',(ele)=>{  // Print screen
-    ipcRenderer.send('print-screen',{file:document.getElementById(tbdom.title).innerText});
-  });
-
-  document.getElementById(tbdom.more.cont).addEventListener('click',(ele)=>{  // Toggle More Options menu
-      let moreele = document.getElementById(tbdom.more.actions);
-        if($(moreele).is(":visible")){
-          $(moreele).hide();
-        }else{$(moreele).show();}
-
-    });
-
-
-}
-
-//////////////////////////////////////////////////////////////////////
-
-// Menu Actions //////////////////////////////////
 var tbdom={ //menubar
   cont:'titlebar-cont',
   title:'titlebar-title',
@@ -155,37 +104,18 @@ var tdom ={
       },
       "#titlebar-title.div":{
         attributes:{
-          innerText: "VOGEL APP"
         },
-        children:{}
+        children:null
       },
       "#titlebar-cont-right.div":{
         attributes:{},
         children:{
-          "#titlebar-win-mini.img":{
+          "#titlebar-help.img":{
             attributes:{
               class: "titlebar-button-action",
-              src: "../bin/repo/assets/icons/minus.png",
-              alt: "MINI",
-              title: "Minimize"
-            },
-            children: null
-          },
-          "#titlebar-win-maxi.img":{
-            attributes:{
-              class: "titlebar-button-action",
-              src: "../bin/repo/assets/icons/square.png",
-              alt: "MAX",
-              title: "Maximize"
-            },
-            children: null
-          },
-          "#titlebar-win-close.img":{
-            attributes:{
-              class: "titlebar-button-action",
-              src: "../bin/repo/assets/icons/cross.png",
-              alt: "CLOSE",
-              title: "Close"
+              src: pubfolder+"assets/icons/minus.png",
+              alt: "HELP",
+              title: "help"
             },
             children: null
           }
@@ -193,11 +123,6 @@ var tdom ={
       }
     }
   }
-}
-
-var lastwinsize={
-  x:window.innerWidth,
-  y:window.innerHeight
 }
 
 
@@ -230,6 +155,27 @@ var CREATEactionbuttons=(acts)=>{
     }
   }
   return alist;
+}
+
+var SETUPtitlebar=(pfolder,qacts,macts)=>{
+  pubfolder=pfolder;
+
+  document.body.prepend(CreateComponent(tdom)); //add titlebar to the body
+
+  for(let x=0,l=stylesheets.length;x<l;x++){
+    let viewstyles = document.createElement('link');
+    viewstyles.setAttribute('rel','stylesheet');
+    viewstyles.setAttribute('href',`${pubfolder}css/${stylesheets[x]}`);
+    document.getElementsByTagName('head')[0].prepend(viewstyles);
+
+  }
+  document.getElementById(tbdom.more.cont).addEventListener('click',(ele)=>{  // Toggle More Options menu
+      let moreele = document.getElementById(tbdom.more.actions);
+        if($(moreele).is(":visible")){
+          $(moreele).hide();
+        }else{$(moreele).show();}
+
+    });
 }
 
 
