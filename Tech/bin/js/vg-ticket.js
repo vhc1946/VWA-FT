@@ -2,7 +2,6 @@ import {wolstore} from '../../js/lstore.js';
 import{dashdom,wodom} from './ticket-dom.js';
 import {ServiceWO} from './sticket-build.js';
 import {SETupdownside} from '../../js/vg-util-updownside.js';
-import {DropNote} from '../../js/vg-poppers.js';
 import {CreateComponent} from '../bin/repo/tools/vhc-components.js';
 
 
