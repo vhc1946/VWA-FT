@@ -1,6 +1,5 @@
 
-import {wolstore} from '../../js/lstore.js';
-import {vudom} from'../../js/vg-util-updownside.js'
+import {wolstore} from '../../../js/lstore.js';
 import {RewardsMembership} from './vg-membership.js';
 import {FlatRateBook} from './flbook.js';
 import {sysdom,prsdom,wodom,fbdom,dashdom} from './ticket-dom.js';
@@ -106,7 +105,7 @@ export class ServiceWO extends FlatRateBook{
           sys.appendChild(document.createElement('input')).value = system.id; //tag id input
           sys.children[sys.children.length - 1].classList.add(sysdom.list.system.tagid);
 
-          sys.appendChild(document.createElement('img')).src = '../images/icons/trash.png';
+          sys.appendChild(document.createElement('img')).src = '../bin/assets/icons/trash.png';
           sys.children[sys.children.length-1].classList.add(sysdom.buttons.delete);
           sys.children[sys.children.length-1].addEventListener('dblclick',(ele)=>{
             ele.target.parentNode.parentNode.removeChild(ele.target.parentNode);
@@ -246,23 +245,6 @@ export class ServiceWO extends FlatRateBook{
           let rprice=0; //temp for reg book price
           let mprice=0; //temp for mem book price
           slist.innerHTML = '';
-
-          //handle the DIAGNOSTIC
-          /*
-          if(document.getElementById(fbdom.special.diagnostic).checked){
-            let diagrow = document.getElementById(prsdom.system.specials.diagnostic);
-            $(diagrow).show();
-
-
-            rprice = this.GETbookprice('DIAG',this.wo.reg);
-            diagrow.children[1].innerText = rprice;
-            mprice = this.wo.hascntrct ?  this.GETbookprice('DIAG',this.wo.cntrct) : this.GETbookprice('DIAG',this.wo.reg);
-            diagrow.children[2].innerText = mprice;
-            diagrow.children[3].innerText = rprice - mprice;
-
-          }else{$(document.getElementById(prsdom.system.specials.diagnostic)).hide();}
-          */
-
 
           for (let x = 0; x < this.wo.systems.length; x++) {
               let s = slist.appendChild(document.createElement('div'));

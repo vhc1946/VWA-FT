@@ -1,5 +1,3 @@
-
-
 import {wolstore} from '../../js/lstore.js';
 import{dashdom,wodom} from './ticket-dom.js';
 import {ServiceWO} from './sticket-build.js';
@@ -22,37 +20,11 @@ document.getElementsByTagName('head')[0].prepend(viewstyles);
 
 var curwo = new ServiceWO(JSON.parse(localStorage.getItem(wolstore.currentwo))); //set the current WO to null
 
-var LOADwolist = ()=>{
-  let wolist = JSON.parse(localStorage.getItem(wolstore.techwo));
-  let dlist = document.getElementById(dashdom.list.cont);
-  dlist.innerHTML = '';
-  if(wolist){
-    for(let x=0;x<wolist.length;x++){
-      let item = document.createElement('div');
-      item.classList.add(dashdom.list.item.cont);
-      item.addEventListener('click',(ele)=>{
-        let wlist = JSON.parse(localStorage.getItem(wolstore.techwo));
-        for(let y=0;y<wlist.length;y++){
-          if(wlist[y].num == ele.target.parentNode.getElementsByClassName(dashdom.list.item.num)[0].innerText){
-            curwo.LOADwo(wlist[y]);
-            DropNote('tr',`WO # - ${wlist[y].num} Loaded..`,'green');
-          }
-        }
-      });
+import {DropNote} from '../bin/repo/js/vg-poppers.js';
 
-      item.appendChild(document.createElement('div')).innerText = wolist[x].num;
-      item.children[item.children.length-1].classList.add(dashdom.list.item.num);
 
-      item.appendChild(document.createElement('div')).innerText = wolist[x].name;
-      item.children[item.children.length-1].classList.add(dashdom.list.item.name);
+//var curwo = new ServiceWO(JSON.parse(localStorage.getItem(wolstore.currentwo))); //set the current WO to null
 
-      item.appendChild(document.createElement('div')).innerText = wolist[x].address;
-      item.children[item.children.length-1].classList.add(dashdom.list.item.address);
-
-      dlist.appendChild(item);
-    }
-  }
-}
 var DELETEwo = (wonum=null)=>{
   if(wonum){
     let wolist = JSON.parse(localStorage.getItem(wolstore.techwo));
@@ -81,13 +53,6 @@ document.getElementById(wodom.info.num).addEventListener('change', (ele) => { //
 document.getElementById('wo-save').addEventListener('click', (ele) => {
     window.print();
 });
-document.getElementById(dashdom.buttons.editToggle).addEventListener('click',(ele)=>{
-  var dcont = document.getElementById(dashdom.cont);
-  if($(dcont).is(':Visible')){
-    $(dcont).hide();
-  }else{$(dcont).show();}
-});
-
 
 document.getElementById(wodom.action.save).addEventListener('click',(ele)=>{
   curwo.SAVEwo();
@@ -107,10 +72,15 @@ document.getElementById(wodom.action.delete).addEventListener('click',(ele)=>{
   DropNote('tr','WO Deleted..','red');
 });
 
-SETupdownside(true,true,false,false);
-//SETUPbuild(curwo);
-//SETUPfbblock();
-//SETUPmembers();
 
-LOADwolist();
-//LOADwo(JSON.parse(localStorage.getItem(wolstore.currentwo)));
+/* Navbar Testing */
+var prevScrollpos = window.pageYOffset; // Set initial screen position
+window.onscroll = function() {
+  var currentScrollPos = window.pageYOffset;
+  if (prevScrollpos > currentScrollPos) { //  Checks if the user has scolled UP
+    document.getElementsByClassName("header-bar")[0].style.top = "0";
+  } else {
+    document.getElementsByClassName("header-bar")[0].style.top = "-50px";
+  }
+  prevScrollpos = currentScrollPos;
+}
