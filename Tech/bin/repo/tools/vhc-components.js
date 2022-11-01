@@ -4,8 +4,8 @@
 //add element
 
 
-var CreateComponent=(comtree={})=>{
+export var CreateComponent=(comtree={})=>{
   for(let ct in comtree){
-
+    console.log(ct[0])
   }
 }
