@@ -1,6 +1,23 @@
 import {wolstore} from '../../js/lstore.js';
-import {dashdom,wodom} from '../bin/back/ticket-dom.js';
+import{dashdom,wodom} from './ticket-dom.js';
+import {ServiceWO} from './sticket-build.js';
+import {SETupdownside} from '../../js/vg-util-updownside.js';
+import {CreateComponent} from '../bin/repo/tools/vhc-components.js';
 
+
+var publicfolder = '/Tech/bin/css'
+
+
+/* Titlebar example
+
+let viewstyles = document.createElement('link');
+viewstyles.setAttribute('rel','stylesheet');
+viewstyles.setAttribute('href','test.css');
+document.getElementsByTagName('head')[0].prepend(viewstyles);
+
+*/
+
+var curwo = new ServiceWO(JSON.parse(localStorage.getItem(wolstore.currentwo))); //set the current WO to null
 
 import {DropNote} from '../bin/repo/js/vg-poppers.js';
 

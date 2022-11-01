@@ -6,10 +6,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Service Presentation</title>
-    <link rel="stylesheet" href="../bin/css/serticket-styles.css" />
-    <link rel="stylesheet" href="../bin/css/serticket-ticket.css" />
-    <link rel="stylesheet" href="../bin/repo/css/vg-utility.css" />
-    <link rel="stylesheet" href="../bin/repo/css/vg-notifiers.css" />
+    <link rel="stylesheet" href="./bin/css/serticket-styles.css" />
+    <link rel="stylesheet" href="./bin/css/serticket-ticket.css" />
+    <link rel="stylesheet" href="../css/vg-edge-util.css" />
+    <link rel="stylesheet" href="../css/vg-inputs.css" />
+    <link rel="stylesheet" href="../css/vg-popper-style.css" />
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -37,17 +38,55 @@
              - Any System Information
              - Flat Rate Items (none approved)
         -->
+    <!--NAVIGATION
+        TODO: want to add titles OR images to the side toggle buttons
+          current
+      -->
+    <div id="vg-utilcont-top" class="vg-utilcont">
+        <div class="vg-utilcont-top-info vg-utilcont-info">
+            <a href='../index.html'><img src="../images/icons/angle-double-left.png" class="wo-nav-icon" alt="RETURN"></a>
+            <img id="tech-wo-selector" src="../images/icons/layers.png" class="wo-nav-icon" alt="QUOTES">
+            <img id="wo-selector-info" src="../images/icons/info.png" class="wo-nav-icon" alt="INFO"> <!-- Quote List Guide -->
+
+            <!-- POPUP -->
+            <div id="vg-info-popup-box">
+
+                <div id="wo-info-guide-quotes">  <!-- Quote List Guide -->
+                    <img src="../images/icons/angle-double-left.png" class="wo-nav-icon" alt="RETURN"><div> - Click to Go Back</div>
+                    <img src="../images/icons/layers.png" class="wo-nav-icon" alt="QUOTES"><div> - Click to open or close your list of Work orders.</div>
+                    <div></div><div>Click on a Work Order in the list to select it to work on.</div>
+                </div>
+            </div>
+
+
+            <!--  WO Editor
+                  here the tech will be able to
+            -->
+            <div id='vg-wo-dash' style="display:none">
+                <div id='vg-wo-dash-header'>
+                    <div>WO Number</div>
+                    <div>Client Name</div>
+                    <div>Address</div>
+                </div>
+              <div id='vg-wo-list'>
+              </div>
+            </div>
+
+        </div>
+        <img src="../images/icons/menu-burger.png" alt="NAV" class="vg-utilcont-toggle" id="vg-top-toggle">
+    </div>
+
+
     <!--Ticket Header & Client Info------------------------->
     <div id="wo-header-cont" class="twelve-col-grid">
-        <div class="header-bar">This is a test element!</div>
-        <img src="../bin/assets/images/Vogel Logo.png" id="header-logo" alt="VOGEL">
+        <img src="../images/Vogel Logo.png" id="header-logo" alt="VOGEL">
         <div class="client-label">WO Num:</div><input id="wo-info-num" type="text" />
         <div class="client-label">Client:</div><input id="wo-info-customer" class="client-input" type="text" />
         <div class="client-label">Address:</div><input id="wo-info-address" class="client-input" type="text" />
         <div id="wo-action-buttons">
-          <image id="wo-action-save" class="wo-ctrl-icon" src="../bin/assets/icons/disk.png"/>
-          <image id="wo-action-close"  class="wo-ctrl-icon" src="../bin/assets/icons/cross.png"/></image>
-          <image id="wo-action-delete"  class="wo-ctrl-icon" src="../bin/assets/icons/trash.png"/></image>
+          <image id="wo-action-save" class="wo-ctrl-icon" src="../images/icons/disk.png"/>
+          <image id="wo-action-close"  class="wo-ctrl-icon" src="../images/icons/cross.png"/></image>
+          <image id="wo-action-delete"  class="wo-ctrl-icon" src="../images/icons/trash.png"/></image>
         </div>
         <div id="wo-ticket-header">Two Paths to Home Comfort!</div>
         <div id="wo-present-contract-cont">
@@ -113,6 +152,12 @@
                 <div id="flatrate-repair-furn-cleancheck" class="flatrate-special-repair-buttons">Furn Clean and Check</div>
                 <div id="flatrate-repair-ac-cleancheck" class="flatrate-special-repair-buttons">AC Clean and Check</div>
                 <div id="flatrate-repair-diagnostic" class="flatrate-special-repair-buttons">Diagnostic Fee</div>
+                <!--
+                <div style="display:flex;">
+                    <input id="flatrate-repair-diagnostic" type="checkbox" />
+                    <div>Diagnostic Fee</div>
+                </div>
+              -->
             </div>
         </div>
             <!-- WO System Table-----------
@@ -167,10 +212,10 @@
         </div>
         <!---------------------------->
     </div>
-    <img id="button-open-presentation" class="vg-utilcont-toggle wo-nav-icon" src="../bin/assets/icons/document-signed.png" alt="Toggle">
+    <img id="button-open-presentation" class="vg-utilcont-toggle wo-nav-icon" src="../images/icons/document-signed.png" alt="Toggle">
     <div class="vg-utilcont-bottom-info vg-utilcont-info">
       <div id="wo-presentation-cont"><!--PRESENTATION CONTAINER-->
-          <img src="../bin/assets/icons/print.png" class="wo-nav-icon" id="wo-save" alt="PRINT">
+          <img src="../images/icons/print.png" class="wo-nav-icon" id="wo-save" alt="PRINT">
           <div id="wo-present-repair-cont">
               <div class="wo-present-repair"><!--Extra Headers-->
                 <div id="wo-present-membership"><!--Membership Name Presenting >> Placed grid-columns 3 -->
@@ -248,6 +293,6 @@
     </div>
 </body>
 
-<script type="module" src="../bin/js/vg-ticket.js"></script>
+<script type="module" src="./js/vg-ticket.js"></script>
 
 </html>
