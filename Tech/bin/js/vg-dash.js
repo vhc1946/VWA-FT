@@ -7,36 +7,25 @@ import {ServiceWO} from '../back/sticket-build.js';
 import {DropNote} from '../repo/js/vg-poppers.js';
 import {FINDparentele} from '../repo/js/vg-displaytools.js';
 
-//import {ADDmactions,ADDqactions} from '../repo/js/vg-titlebar.js';
-
-import {CreateComponent} from '../repo/tools/vhc-components.js';
-
-var tdom = {
-  '#firstid.div':{
-    attributes:{
-      class:'some class'
-    },
-    children:{
-      '.firstclass.div':{
-        attributes:{
-          class:'someclass andanother'
-        }
-      }
-    }
-  }
-}
-
-document.body.appendChild(CreateComponent(tdom));
+import {SETUPtitlebar} from '../repo/js/vg-titlebar.js';
 
 
-var RROOT='../bin/repo/';
+// SETUP title bar for dash /////////////////////////////
 
+var qactions = {};
+var mactions = {
+
+};
+
+SETUPtitlebar('/Tech/bin/repo/',qactions,mactions);
+//////////////////////////////////////////////////////////
 
 
 var LOADwolist = ()=>{   //Loads WO list into display table
     let wolist = JSON.parse(localStorage.getItem(wolstore.techwo));
     let dlist = document.getElementById(dashdom.list.cont);
     dlist.innerHTML = '';
+
     if(wolist){
         for(let x=0;x<wolist.length;x++){
             let item = document.createElement('div');

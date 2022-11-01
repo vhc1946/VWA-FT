@@ -4,9 +4,8 @@
 //add element
 
 
-export var CreateComponent=(comtree={},parent=null)=>{
-  console.log(comtree);
-  let newele;
+export var CreateComponent=(comtree={})=>{
+  let newele=null;
   for(let ct in comtree){
     newele = document.createElement(ct.split('.')[ct.split('.').length-1]);
     switch(ct[0]){
@@ -19,10 +18,9 @@ export var CreateComponent=(comtree={},parent=null)=>{
         else{newele.setAttribute(ca,comtree[ct].attributes[ca]);}
       }
     }
-    if(!parent){parent = newele}
     if(comtree[ct].children){
       for(let childs in comtree[ct].children){
-        parent.appendChild(CreateComponent({[childs]:comtree[ct].children[childs]},newele));
+        newele.appendChild(CreateComponent({[childs]:comtree[ct].children[childs]}));
       }
     }
     return newele;

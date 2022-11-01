@@ -1,31 +1,60 @@
-import { devNull } from 'node:os';
-import {writePart} from './vg-partials.js';
 
-//  Setup Module ///////////////////////////////////////////////////////////////
-var SETUPmodule=(root)=>{
-  console.log('Controller Root HAS been declared for vg-titlebar.js');
-  ROOT=root;
-  for(let x=0;x<stylesheets.length;x++){
-    let viewstyles = document.createElement('link');
-    viewstyles.setAttribute('rel','stylesheet');
-    viewstyles.setAttribute('href',ROOT+stylesheets[x]);
-    document.getElementsByTagName('head')[0].prepend(viewstyles);
-  }
-  writePart(__dirname + '../views/vg-titlebar.txt',document.body,'titlebar-cont', true);
-}
+import {CreateComponent} from '../tools/vhc-components.js';
 
 //  PATHS //
-var stylesheets = ['css/vg-titlebar.css'];
+var stylesheets = ['vg-titlebar.css'];
 var assets={
 }
 
-// REPO ROOT //
-var ROOT=null;
-try{
-  SETUPmodule(RROOT);
-}catch{console.log('Repo root is not declared')}
 
-////////////////////////////////////////////////////////////////////////////////
+var pubfolder = ''
+
+var SETUPtitlebar=(pfolder,qacts,macts)=>{
+  pubfolder=pfolder;
+
+  document.body.prepend(CreateComponent(tdom));
+
+  for(let x=0,l=stylesheets.length;x<l;x++){
+    let viewstyles = document.createElement('link');
+    viewstyles.setAttribute('rel','stylesheet');
+    viewstyles.setAttribute('href',`${pubfolder}css/${stylesheets[x]}`);
+    document.getElementsByTagName('head')[0].prepend(viewstyles);
+
+  }
+
+  document.getElementById(tbdom.window.close).addEventListener('click',(ele)=>{  // Close window
+    window.close();
+  });
+  document.getElementById(tbdom.window.mini).addEventListener('click',(ele)=>{  // Minimize window
+    ipcRenderer.send('view-minimize',document.getElementById(tbdom.title).innerText);
+  });
+
+  document.getElementById(tbdom.window.maxi).addEventListener('click',(ele)=>{  // Maximize window
+    if(screen.availWidth == window.innerWidth && screen.availHeight == window.innerHeight){
+      window.resizeTo(lastwinsize.x,lastwinsize.y);
+    }else{
+      lastwinsize.x = window.innerWidth;
+      lastwinsize.y = window.innerHeight;
+      window.resizeTo(screen.availWidth,screen.availHeight);
+    }
+  });
+
+  document.getElementById(tbdom.page.print).addEventListener('dblclick',(ele)=>{  // Print screen
+    ipcRenderer.send('print-screen',{file:document.getElementById(tbdom.title).innerText});
+  });
+
+  document.getElementById(tbdom.more.cont).addEventListener('click',(ele)=>{  // Toggle More Options menu
+      let moreele = document.getElementById(tbdom.more.actions);
+        if($(moreele).is(":visible")){
+          $(moreele).hide();
+        }else{$(moreele).show();}
+
+    });
+
+
+}
+
+//////////////////////////////////////////////////////////////////////
 
 // Menu Actions //////////////////////////////////
 var tbdom={ //menubar
@@ -63,7 +92,7 @@ var tbdom={ //menubar
   }
 }
 
-tdom ={
+var tdom ={
   "#titlebar-cont.div":{
     attributes:{},
     children:{
@@ -73,7 +102,7 @@ tdom ={
           "#titlebar-moretools.img":{
             attributes:{
               class: "titlebar-button-action",
-              src: "../bin/repo/assets/icons/menu-burger.png",
+              src: pubfolder +"assets/icons/menu-burger.png",
               alt: "MORE",
               title: "More"
             },
@@ -87,7 +116,7 @@ tdom ={
               "#titlebar-page-print.div":{
                 attributes:{
                   class: "titlebar-button-action",
-                  src: "../bin/repo/assets/icons/print.png",
+                  src: pubfolder + "assets/icons/print.png",
                   alt: "PRINT",
                   title: "Print"
                 },
@@ -96,7 +125,7 @@ tdom ={
               "#titlebar-page-settings.div":{
                 attributes:{
                   class: "titlebar-button-action",
-                  src: "../bin/repo/assets/icons/settings.png",
+                  src: pubfolder + "assets/icons/settings.png",
                   alt: "SETTINGS",
                   title: "Settings"
                 },
@@ -110,9 +139,9 @@ tdom ={
               "#titlebar-page-user.img":{
                 attributes:{
                   class: "titlebar-button-action",
-                  src: "../bin/repo/assets/icons/user.png",
+                  src: pubfolder + "assets/icons/user.png",
                   alt: "USER",
-                  title: "Log Out" 
+                  title: "Log Out"
                 },
                 children: null
               },
@@ -166,68 +195,32 @@ tdom ={
   }
 }
 
-
-
-
-
-
-
-
-
-
-
 var lastwinsize={
   x:window.innerWidth,
   y:window.innerHeight
 }
-
-document.getElementById(tbdom.window.close).addEventListener('click',(ele)=>{  // Close window
-  window.close(); 
-});
-document.getElementById(tbdom.window.mini).addEventListener('click',(ele)=>{  // Minimize window
-  ipcRenderer.send('view-minimize',document.getElementById(tbdom.title).innerText);
-});
-
-document.getElementById(tbdom.window.maxi).addEventListener('click',(ele)=>{  // Maximize window
-  if(screen.availWidth == window.innerWidth && screen.availHeight == window.innerHeight){
-    window.resizeTo(lastwinsize.x,lastwinsize.y);
-  }else{
-    lastwinsize.x = window.innerWidth;
-    lastwinsize.y = window.innerHeight;
-    window.resizeTo(screen.availWidth,screen.availHeight);
-  }
-});
-
-document.getElementById(tbdom.page.print).addEventListener('dblclick',(ele)=>{  // Print screen
-  ipcRenderer.send('print-screen',{file:document.getElementById(tbdom.title).innerText});
-});
-
-document.getElementById(tbdom.more.cont).addEventListener('click',(ele)=>{  // Toggle More Options menu
-    let moreele = document.getElementById(tbdom.more.actions);
-      if($(moreele).is(":visible")){
-        $(moreele).hide();
-      }else{$(moreele).show();}
-
-  });
 
 
 /* ADD actions to title bar
     Function to add an array of elements to the more actions portion
     of the title bar.
 */
-var ADDmactions=(acts=[])=>{
+var ADDmactions=(acts)=>{
+  acts=CREATEactionbuttons(acts);
   for(let x=0;x<acts.length;x++){
     acts[x].classList.add(tbdom.utils.buttons.action);
     document.getElementById(tbdom.more.actions).appendChild(acts[x]);
   }
 }
 
-var ADDqactions=(acts=[])=>{
+var ADDqactions=(acts)=>{
+  acts=CREATEactionbuttons(acts);
   for(let x=0;x<acts.length;x++){
     acts[x].classList.add(tbdom.utils.buttons.action);
     document.getElementById(tbdom.utils.groups.left).insertBefore(acts[x],document.getElementById(tbdom.info.cont)); //refresh button
   }
 }
+
 var CREATEactionbuttons=(acts)=>{
   let alist = [];
   for(let ma in acts){
@@ -239,16 +232,5 @@ var CREATEactionbuttons=(acts)=>{
   return alist;
 }
 
-var INITtitlebarONmain=(ipcMain)=>{
-  ipcMain.on('view-minimize',(eve,data)=>{//
-    BrowserWindow.getFocusedWindow().minimize();
-  });
-}
 
-export {
-  tbdom,
-  INITtitlebarONmain,
-  ADDmactions,
-  ADDqactions,
-  CREATEactionbuttons
-}
+export {SETUPtitlebar}
