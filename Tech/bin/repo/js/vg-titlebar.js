@@ -32,7 +32,8 @@ var tbdom={ //menubar
     buttons:{
       view:'titlbar-button-view',
       action:'titlebar-button-action',
-      moretools:'titlebar-button-more'
+      moretools:'titlebar-button-more',
+      help:'titlebar-button-help'
     },
     groups:{
       right:'titlebar-cont-right',
@@ -41,14 +42,14 @@ var tbdom={ //menubar
   }
 }
 
-var tdom ={
-  "#titlebar-cont.div":{
+var tdom = {
+  [`#${tbdom.cont}.div`]:{
     attributes:{},
     children:{
-      "#titlebar-cont-left.div":{
+      [`#${tbdom.utils.groups.left}.div`]:{
         attributes:{},
         children:{
-          "#titlebar-moretools.img":{
+          [`#${tbdom.more.cont}.img`]:{
             attributes:{
               class: "titlebar-button-action",
               src: pubfolder +"assets/icons/menu-burger.png",
@@ -57,7 +58,7 @@ var tdom ={
             },
             children: null
           },
-          "#titlebar-moretools-quick.div":{
+          [`#${tbdom.more.actions}.div`]:{
             attributes:{
               style: "display:none"
             },
@@ -82,10 +83,10 @@ var tdom ={
               }
             }
           },
-          "#titlebar-page-user-cont.span":{
+          [`#${tbdom.info.cont}.span`]:{
             attributes:{},
             children:{
-              "#titlebar-page-user.img":{
+              [`#${tbdom.page.user}.img`]:{
                 attributes:{
                   class: "titlebar-button-action",
                   src: pubfolder + "assets/icons/user.png",
@@ -94,7 +95,7 @@ var tdom ={
                 },
                 children: null
               },
-              "#titlebar-username.span":{
+              [`#${tbdom.info.username}.span`]:{
                 attributes:{},
                 children:null
               }
@@ -102,15 +103,15 @@ var tdom ={
           }
         }
       },
-      "#titlebar-title.div":{
+      [`#${tbdom.title}.div`]:{
         attributes:{
         },
         children:null
       },
-      "#titlebar-cont-right.div":{
+      [`#${tbdom.utils.groups.right}.div`]:{
         attributes:{},
         children:{
-          "#titlebar-help.img":{
+          [`#${tbdom.utils.buttons.help}.img`]:{
             attributes:{
               class: "titlebar-button-action",
               src: pubfolder+"assets/icons/minus.png",
