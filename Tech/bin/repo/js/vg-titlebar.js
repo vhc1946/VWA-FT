@@ -3,60 +3,9 @@ import {CreateComponent} from '../tools/vhc-components.js';
 
 //  PATHS //
 var stylesheets = ['vg-titlebar.css'];
-var assets={
-}
-
 
 var pubfolder = ''
 
-var SETUPtitlebar=(pfolder,qacts,macts)=>{
-  pubfolder=pfolder;
-
-  document.body.prepend(CreateComponent(tdom));
-
-  for(let x=0,l=stylesheets.length;x<l;x++){
-    let viewstyles = document.createElement('link');
-    viewstyles.setAttribute('rel','stylesheet');
-    viewstyles.setAttribute('href',`${pubfolder}css/${stylesheets[x]}`);
-    document.getElementsByTagName('head')[0].prepend(viewstyles);
-
-  }
-
-  document.getElementById(tbdom.window.close).addEventListener('click',(ele)=>{  // Close window
-    window.close();
-  });
-  document.getElementById(tbdom.window.mini).addEventListener('click',(ele)=>{  // Minimize window
-    ipcRenderer.send('view-minimize',document.getElementById(tbdom.title).innerText);
-  });
-
-  document.getElementById(tbdom.window.maxi).addEventListener('click',(ele)=>{  // Maximize window
-    if(screen.availWidth == window.innerWidth && screen.availHeight == window.innerHeight){
-      window.resizeTo(lastwinsize.x,lastwinsize.y);
-    }else{
-      lastwinsize.x = window.innerWidth;
-      lastwinsize.y = window.innerHeight;
-      window.resizeTo(screen.availWidth,screen.availHeight);
-    }
-  });
-
-  document.getElementById(tbdom.page.print).addEventListener('dblclick',(ele)=>{  // Print screen
-    ipcRenderer.send('print-screen',{file:document.getElementById(tbdom.title).innerText});
-  });
-
-  document.getElementById(tbdom.more.cont).addEventListener('click',(ele)=>{  // Toggle More Options menu
-      let moreele = document.getElementById(tbdom.more.actions);
-        if($(moreele).is(":visible")){
-          $(moreele).hide();
-        }else{$(moreele).show();}
-
-    });
-
-
-}
-
-//////////////////////////////////////////////////////////////////////
-
-// Menu Actions //////////////////////////////////
 var tbdom={ //menubar
   cont:'titlebar-cont',
   title:'titlebar-title',
@@ -83,7 +32,8 @@ var tbdom={ //menubar
     buttons:{
       view:'titlbar-button-view',
       action:'titlebar-button-action',
-      moretools:'titlebar-button-more'
+      moretools:'titlebar-button-more',
+      help:'titlebar-button-help'
     },
     groups:{
       right:'titlebar-cont-right',
@@ -92,14 +42,14 @@ var tbdom={ //menubar
   }
 }
 
-var tdom ={
-  "#titlebar-cont.div":{
+var tdom = {
+  [`#${tbdom.cont}.div`]:{
     attributes:{},
     children:{
-      "#titlebar-cont-left.div":{
+      [`#${tbdom.utils.groups.left}.div`]:{
         attributes:{},
         children:{
-          "#titlebar-moretools.img":{
+          [`#${tbdom.more.cont}.img`]:{
             attributes:{
               class: "titlebar-button-action",
               src: pubfolder +"bin/assets/icons/menu-burger.png",
@@ -108,7 +58,7 @@ var tdom ={
             },
             children: null
           },
-          "#titlebar-moretools-quick.div":{
+          [`#${tbdom.more.actions}.div`]:{
             attributes:{
               style: "display:none"
             },
@@ -133,10 +83,10 @@ var tdom ={
               }
             }
           },
-          "#titlebar-page-user-cont.span":{
+          [`#${tbdom.info.cont}.span`]:{
             attributes:{},
             children:{
-              "#titlebar-page-user.img":{
+              [`#${tbdom.page.user}.img`]:{
                 attributes:{
                   class: "titlebar-button-action",
                   src: pubfolder + "bin/assets/icons/user.png",
@@ -145,7 +95,7 @@ var tdom ={
                 },
                 children: null
               },
-              "#titlebar-username.span":{
+              [`#${tbdom.info.username}.span`]:{
                 attributes:{},
                 children:null
               }
@@ -153,37 +103,20 @@ var tdom ={
           }
         }
       },
-      "#titlebar-title.div":{
-        attributes:{},
-        children:{}
+      [`#${tbdom.title}.div`]:{
+        attributes:{
+        },
+        children:null
       },
-      "#titlebar-cont-right.div":{
+      [`#${tbdom.utils.groups.right}.div`]:{
         attributes:{},
         children:{
-          "#titlebar-win-mini.img":{
+          [`#${tbdom.utils.buttons.help}.img`]:{
             attributes:{
               class: "titlebar-button-action",
-              src: pubfolder + "bin/assets/icons/minus.png",
-              alt: "MINI",
-              title: "Minimize"
-            },
-            children: null
-          },
-          "#titlebar-win-maxi.img":{
-            attributes:{
-              class: "titlebar-button-action",
-              src: pubfolder + "bin/assets/icons/square.png",
-              alt: "MAX",
-              title: "Maximize"
-            },
-            children: null
-          },
-          "#titlebar-win-close.img":{
-            attributes:{
-              class: "titlebar-button-action",
-              src: pubfolder + "bin/assets/icons/cross.png",
-              alt: "CLOSE",
-              title: "Close"
+              src: pubfolder+"assets/icons/minus.png",
+              alt: "HELP",
+              title: "help"
             },
             children: null
           }
@@ -191,11 +124,6 @@ var tdom ={
       }
     }
   }
-}
-
-var lastwinsize={
-  x:window.innerWidth,
-  y:window.innerHeight
 }
 
 
@@ -228,6 +156,27 @@ var CREATEactionbuttons=(acts)=>{
     }
   }
   return alist;
+}
+
+var SETUPtitlebar=(pfolder,qacts,macts)=>{
+  pubfolder=pfolder;
+
+  document.body.prepend(CreateComponent(tdom)); //add titlebar to the body
+
+  for(let x=0,l=stylesheets.length;x<l;x++){
+    let viewstyles = document.createElement('link');
+    viewstyles.setAttribute('rel','stylesheet');
+    viewstyles.setAttribute('href',`${pubfolder}css/${stylesheets[x]}`);
+    document.getElementsByTagName('head')[0].prepend(viewstyles);
+
+  }
+  document.getElementById(tbdom.more.cont).addEventListener('click',(ele)=>{  // Toggle More Options menu
+      let moreele = document.getElementById(tbdom.more.actions);
+        if($(moreele).is(":visible")){
+          $(moreele).hide();
+        }else{$(moreele).show();}
+
+    });
 }
 
 
