@@ -102,7 +102,7 @@ var tdom ={
           "#titlebar-moretools.img":{
             attributes:{
               class: "titlebar-button-action",
-              src: pubfolder +"assets/icons/menu-burger.png",
+              src: pubfolder +"bin/assets/icons/menu-burger.png",
               alt: "MORE",
               title: "More"
             },
@@ -116,7 +116,7 @@ var tdom ={
               "#titlebar-page-print.div":{
                 attributes:{
                   class: "titlebar-button-action",
-                  src: pubfolder + "assets/icons/print.png",
+                  src: pubfolder + "bin/assets/icons/print.png",
                   alt: "PRINT",
                   title: "Print"
                 },
@@ -125,7 +125,7 @@ var tdom ={
               "#titlebar-page-settings.div":{
                 attributes:{
                   class: "titlebar-button-action",
-                  src: pubfolder + "assets/icons/settings.png",
+                  src: pubfolder + "bin/assets/icons/settings.png",
                   alt: "SETTINGS",
                   title: "Settings"
                 },
@@ -139,7 +139,7 @@ var tdom ={
               "#titlebar-page-user.img":{
                 attributes:{
                   class: "titlebar-button-action",
-                  src: pubfolder + "assets/icons/user.png",
+                  src: pubfolder + "bin/assets/icons/user.png",
                   alt: "USER",
                   title: "Log Out"
                 },
@@ -154,9 +154,7 @@ var tdom ={
         }
       },
       "#titlebar-title.div":{
-        attributes:{
-          innerText: "VOGEL APP"
-        },
+        attributes:{},
         children:{}
       },
       "#titlebar-cont-right.div":{
@@ -165,7 +163,7 @@ var tdom ={
           "#titlebar-win-mini.img":{
             attributes:{
               class: "titlebar-button-action",
-              src: "../bin/repo/assets/icons/minus.png",
+              src: pubfolder + "bin/assets/icons/minus.png",
               alt: "MINI",
               title: "Minimize"
             },
@@ -174,7 +172,7 @@ var tdom ={
           "#titlebar-win-maxi.img":{
             attributes:{
               class: "titlebar-button-action",
-              src: "../bin/repo/assets/icons/square.png",
+              src: pubfolder + "bin/assets/icons/square.png",
               alt: "MAX",
               title: "Maximize"
             },
@@ -183,7 +181,7 @@ var tdom ={
           "#titlebar-win-close.img":{
             attributes:{
               class: "titlebar-button-action",
-              src: "../bin/repo/assets/icons/cross.png",
+              src: pubfolder + "bin/assets/icons/cross.png",
               alt: "CLOSE",
               title: "Close"
             },
