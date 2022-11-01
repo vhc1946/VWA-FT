@@ -113,8 +113,8 @@ export var sysdom = { //System DOM
         },
         selected: 'wo-sys-selected',
         buttonimg:{
-          selected:'../images/icons/angle-down.png',
-          nonselected:'../images/icons/angle-right.png'
+          selected:'../bin/assets/icons/angle-down.png',
+          nonselected:'../bin/assets/icons/angle-right.png'
         }
     }
 };

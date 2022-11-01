@@ -1,5 +1,3 @@
-
-
 var notedom = {
   conts:{ //list of note containers around screen
     tr:'vg-toast-tr', //TopRight
@@ -12,17 +10,17 @@ var notedom = {
     levels:{
       red:'vg-toast-red',
       yellow:'vg-toast-yellow',
-      green:'vg-toast-green'
+      green:'vg-toast-green',
+      white:'vg-toast-white'
     }
-  }
+  },
+  button:'toast-close'
 }
 
 /* PLACE A NOTE IN NOTIFIER
-
    cont = tr,tl,br,bl
 */
-export var DropNote = (cont,message='',level='green')=>{
-  console.log(notedom.conts[cont])
+export var DropNote = (cont,message='',level='green',timeout=true)=>{
   let ncont;
   let nlist;
   try{ncont = document.getElementById(notedom.conts[cont]);}
@@ -32,11 +30,18 @@ export var DropNote = (cont,message='',level='green')=>{
 
   let note = document.createElement('div');
   note.classList.add(notedom.list.levels[level] || '');
-  note.innerText = message;
+  note.appendChild(document.createElement('div')).innerText = 'X';
+  note.lastChild.setAttribute('id',notedom.button);
+  note.lastChild.addEventListener('click',(ele)=>{nlist.removeChild(note)});
+  note.appendChild(document.createElement('div')).innerText = message;
 
   nlist.appendChild(note);
 
-  setTimeout(()=>{
-    nlist.removeChild(note);
-  },2000);
+  if(timeout){
+    setTimeout(()=>{
+      try{
+        nlist.removeChild(note);
+      }catch{}
+    },2000);
+  }
 }
