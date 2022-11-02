@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Service Presentation</title>
+    <title>Work Order Editing</title>
     <link rel="stylesheet" href="../bin/repo/css/vg-general.css" />
     <link rel="stylesheet" href="../bin/css/serticket-styles.css" />
     <link rel="stylesheet" href="../bin/css/serticket-ticket.css" />
@@ -24,33 +24,11 @@
 </head>
 
 <body>
-      <!-- TOAST BOX ------>
-      <div id="vg-toast-tr">
-        <div class="vg-note-list">
-        </div>
-      </div>
-    <!--WO SETUP-----------------------
-            Tech will begin here
-
-            Inputs:
-             - Any WO Info
-             - Any Customer Info
-             - Any System Information
-             - Flat Rate Items (none approved)
-        -->
-    <!--Ticket Header & Client Info------------------------->
-    <div id="wo-header-cont" class="twelve-col-grid">
-        <img src="../bin/assets/images/Vogel Logo.png" id="header-logo" alt="VOGEL">
-        <div class="client-label">WO Num:</div><input id="wo-info-num" type="text" />
-        <div class="client-label">Client:</div><input id="wo-info-customer" class="client-input" type="text" />
-        <div class="client-label">Address:</div><input id="wo-info-address" class="client-input" type="text" />
-        <div id="wo-action-buttons">
-          <image id="wo-action-save" class="wo-ctrl-icon" src="../bin/assets/icons/disk.png"/>
-          <image id="wo-action-close"  class="wo-ctrl-icon" src="../bin/assets/icons/cross.png"/></image>
-          <image id="wo-action-delete"  class="wo-ctrl-icon" src="../bin/assets/icons/trash.png"/></image>
-        </div>
-        <hr>         
+    <!-- TOAST BOX ------>
+    <div id="vg-toast-tr">
+        <div class="vg-note-list"></div>
     </div>
+    <!------------------->
     <div id="viewcontainer">
         <div class="viewcontrol-menu">
             <div>
@@ -60,6 +38,14 @@
             </div>
         </div>
         <div class="viewcontrol-port">
+            <div class="viewcontrol-port-item" title="INFO">
+                <div id="wo-header-cont" class="twelve-col-grid">
+                    <img src="../bin/assets/images/Vogel Logo.png" id="header-logo" alt="VOGEL">
+                    <div class="client-label">WO Num:</div><input id="wo-info-num" type="text" />
+                    <div class="client-label">Client:</div><input id="wo-info-customer" class="client-input" type="text" />
+                    <div class="client-label">Address:</div><input id="wo-info-address" class="client-input" type="text" />
+                </div>
+            </div>
             <div class="viewcontrol-port-item" title="REPAIRS">
                 <div id="wo-setup-cont">
                     <!--Setup Systems--------------
@@ -132,104 +118,111 @@
                     <!---------------------------->
                 </div>
             </div>
-            <div class="viewcontrol-port-item" title="MEMBERSHIP">
-                <div id="wo-present-contract-cont">
-                    <input id="present-contract-name" type="search" list="contract-name-list" />
-                    <div id="present-contract-opts">
-                        <div class="present-contract-opt">
-                            <div class="present-contract-opt-desc" id="monthly-tag">Monthly Plan</div>
-                            <input id="wo-contract-appr" type="checkbox" />
-                            <div id="present-contract-monthly">24</div>
-                        </div>
-    
-                        <div class="present-contract-opt">
-                            <div class="present-contract-opt-desc">Additional System(s)</div><input
-                                class="present-contract-opt-quantity" type="number" />
-                            <div id="present-contract-addsys">21</div>
-                        </div>
-                        <div class="present-contract-opt">
-                            <div class="present-contract-opt-desc">Additional Component(s)</div><input
-                                class="present-contract-opt-quantity" type="number" />
-                            <div id="present-contract-addcomp">12</div>
-                        </div>
-    
-                        <div id="enhance-tag">Enhancements</div>
-    
-                        <div class="present-contract-opt">
-                            <div class="present-contract-opt-desc">Standard Filters</div><input
-                                class="present-contract-opt-quantity" type="number" />
-                            <div id="present-contract-addstdflt">5</div>
-                        </div>
-                        <div class="present-contract-opt">
-                            <div class="present-contract-opt-desc">Humidifier Service/Pad</div><input
-                                class="present-contract-opt-quantity" type="number" />
-                            <div id="present-contract-addhumpad">5</div>
-                        </div>
-                        <div class="present-contract-opt">
-                            <div class="present-contract-opt-desc">Specialty Filters</div><input
-                                class="present-contract-opt-quantity" type="number" />
-                            <div id="present-contract-addspcflt">12</div>
-                        </div>
-                        <div class="present-contract-opt">
-                            <div class="present-contract-opt-desc">Time Saver Disc.</div><input
-                                class="present-contract-opt-quantity" type="number" />
-                            <div id="present-contract-addtimesave">-4</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="viewcontrol-port-item" title="PRESENTATION">
-                <div id="wo-presentation-cont"><!--PRESENTATION CONTAINER-->
-                    <img src="../bin/assets/icons/print.png" class="wo-nav-icon" id="wo-save" alt="PRINT">
-                    <div id="wo-present-repair-cont">
-                        <div class="wo-present-repair"><!--Extra Headers-->
-                            <div id="wo-present-membership"><!--Membership Name Presenting >> Placed grid-columns 3 -->
-                            Premium
-                            </div>
-                            <a href="https://www.vogelheating.com/rewards-subscription.html" target="_blank" id="membership-link">Sign Up for Your Membership!</a>
-                        </div>
-                        <div id="wo-present-headers"><!--Main Headers-->
-                            <div>Services & Repairs</div>
-                            <div>Regular</div>
-                            <div>Member</div>
-                            <div>Savings</div>
-                            <div>Approval</div>
-                        </div>
-                        <!--ALL OF THE REPAIRS BELOW-->
-    
-                        <div id="wo-present-repair-diagnostic" class="wo-present-repair" style="display:none">
-                            <!--DIAGNOSTIC FEE-->
-                            <div class="present-repair-desc">Diagnostic</div>
-                            <div class="present-repair-price"></div>
-                            <div></div>
-                            <div class="present-repair-savings"></div>
-                            <div>YES</div>
-                        </div>
-    
-                        <div id="wo-present-systems">
-                        </div>
-                    <!--INVESTMENT SECTION-->
-                    <div class="wo-present-repair"><!--SAVINGS ROW-->
-                        <div>Savings Today</div><!--TITLE-->
-                        <div>0</div>
-                        <div id="wo-present-savings-today"></div>
-                    </div>
-                    <div class="wo-present-repair">
-                        <div>Monthly Membership</div>
-                        <div id="wo-present-contract-monthly"></div><!-- grid-column: -->
-                    </div>
-                    <div class="wo-present-repair">
-                        <div>Due Today</div>
-                        <div id="wo-present-regprice-today"></div>
-                        <div id="wo-present-memprice-today"></div>
-                    </div>
-                    </div>
-    
-                </div>
+            <div class="viewcontrol-port-item" title="MAINT">
+                
             </div>
         </div>
     </div>
+    <div class="present-cont">
+        <div id="wo-header-cont" class="twelve-col-grid">
+            <img src="../bin/assets/images/Vogel Logo.png" id="header-logo" alt="VOGEL">
+            <div class="client-label">WO Num:</div><input id="wo-info-num" type="text" />
+            <div class="client-label">Client:</div><input id="wo-info-customer" class="client-input" type="text" />
+            <div class="client-label">Address:</div><input id="wo-info-address" class="client-input" type="text" />
+            <div id="wo-present-contract-cont">
+                <input id="present-contract-name" type="search" list="contract-name-list" />
+                <div id="present-contract-opts">
+                    <div class="present-contract-opt">
+                        <div class="present-contract-opt-desc" id="monthly-tag">Monthly Plan</div>
+                        <input id="wo-contract-appr" type="checkbox" />
+                        <div id="present-contract-monthly">24</div>
+                    </div>
 
+                    <div class="present-contract-opt">
+                        <div class="present-contract-opt-desc">Additional System(s)</div><input
+                            class="present-contract-opt-quantity" type="number" />
+                        <div id="present-contract-addsys">21</div>
+                    </div>
+                    <div class="present-contract-opt">
+                        <div class="present-contract-opt-desc">Additional Component(s)</div><input
+                            class="present-contract-opt-quantity" type="number" />
+                        <div id="present-contract-addcomp">12</div>
+                    </div>
+
+                    <div id="enhance-tag">Enhancements</div>
+
+                    <div class="present-contract-opt">
+                        <div class="present-contract-opt-desc">Standard Filters</div><input
+                            class="present-contract-opt-quantity" type="number" />
+                        <div id="present-contract-addstdflt">5</div>
+                    </div>
+                    <div class="present-contract-opt">
+                        <div class="present-contract-opt-desc">Humidifier Service/Pad</div><input
+                            class="present-contract-opt-quantity" type="number" />
+                        <div id="present-contract-addhumpad">5</div>
+                    </div>
+                    <div class="present-contract-opt">
+                        <div class="present-contract-opt-desc">Specialty Filters</div><input
+                            class="present-contract-opt-quantity" type="number" />
+                        <div id="present-contract-addspcflt">12</div>
+                    </div>
+                    <div class="present-contract-opt">
+                        <div class="present-contract-opt-desc">Time Saver Disc.</div><input
+                            class="present-contract-opt-quantity" type="number" />
+                        <div id="present-contract-addtimesave">-4</div>
+                    </div>
+                </div>
+            </div>        
+        </div>
+        
+        <div id="wo-presentation-cont"><!--PRESENTATION CONTAINER-->
+            <img src="../bin/assets/icons/print.png" class="wo-nav-icon" id="wo-save" alt="PRINT">
+            <div id="wo-present-repair-cont">
+                <div class="wo-present-repair"><!--Extra Headers-->
+                    <div id="wo-present-membership"><!--Membership Name Presenting >> Placed grid-columns 3 -->
+                    Premium
+                    </div>
+                    <a href="https://www.vogelhvac.co/" target="_blank" id="membership-link">Sign Up for Your Membership!</a>
+                </div>
+                <div id="wo-present-headers"><!--Main Headers-->
+                    <div>Services & Repairs</div>
+                    <div>Regular</div>
+                    <div>Member</div>
+                    <div>Savings</div>
+                    <div>Approval</div>
+                </div>
+                <!--ALL OF THE REPAIRS BELOW-->
+
+                <div id="wo-present-repair-diagnostic" class="wo-present-repair" style="display:none">
+                    <!--DIAGNOSTIC FEE-->
+                    <div class="present-repair-desc">Diagnostic</div>
+                    <div class="present-repair-price"></div>
+                    <div></div>
+                    <div class="present-repair-savings"></div>
+                    <div>YES</div>
+                </div>
+
+                <div id="wo-present-systems">
+                </div>
+            <!--INVESTMENT SECTION-->
+            <div class="wo-present-repair"><!--SAVINGS ROW-->
+                <div>Savings Today</div><!--TITLE-->
+                <div>0</div>
+                <div id="wo-present-savings-today"></div>
+            </div>
+            <div class="wo-present-repair">
+                <div>Monthly Membership</div>
+                <div id="wo-present-contract-monthly"></div><!-- grid-column: -->
+            </div>
+            <div class="wo-present-repair">
+                <div>Due Today</div>
+                <div id="wo-present-regprice-today"></div>
+                <div id="wo-present-memprice-today"></div>
+            </div>
+            </div>
+
+        </div>
+    </div>
     <!--BLOCK TO HOLD DATALIST-->
     <div>
         <datalist id="flatrate-book-search-list">
