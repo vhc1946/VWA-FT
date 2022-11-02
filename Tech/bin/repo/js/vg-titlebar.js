@@ -126,7 +126,6 @@ var tdom = {
   }
 }
 
-
 /* ADD actions to title bar
     Function to add an array of elements to the more actions portion
     of the title bar.
