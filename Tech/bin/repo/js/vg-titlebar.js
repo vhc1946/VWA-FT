@@ -102,7 +102,6 @@ var tdom = (rroot='')=>{
             }
           }
         },
-<<<<<<< HEAD
         [`#${tbdom.title}.div`]:{
           attributes:{
           },
@@ -120,30 +119,6 @@ var tdom = (rroot='')=>{
               },
               children: null
             }
-=======
-        children:null
-      },
-      [`#${tbdom.utils.groups.right}.div`]:{
-        attributes:{},
-        children:{
-          [`#${tbdom.utils.buttons.help}.img`]:{
-            attributes:{
-              class: "titlebar-button-action",
-              src: pubfolder + "bin/assets/icons/info.png",
-              alt: "HELP",
-              title: "Help"
-            },
-            children: null
-          },
-          [`#${tbdom.window.close}.img`]:{
-            attributes:{
-              class: "titlebar-button-action",
-              src: pubfolder + "bin/assets/icons/cross.png",
-              alt: "CLOSE",
-              title: "Close"
-            },
-            children: null
->>>>>>> 6688e76052787f46a64b531416db1cc8595554b8
           }
         }
       }
