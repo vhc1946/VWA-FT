@@ -2,9 +2,7 @@
 import {CreateComponent} from '../tools/vhc-components.js';
 
 //  PATHS //
-var stylesheets = ['vg-titlebar.css'];
-
-var pubfolder = ''
+var stylesheets = ['css/vg-titlebar.css'];
 
 var tbdom={ // Titlebar
   cont:'titlebar-cont',
@@ -42,83 +40,85 @@ var tbdom={ // Titlebar
   }
 }
 
-var tdom = {
-  [`#${tbdom.cont}.div`]:{
-    attributes:{},
-    children:{
-      [`#${tbdom.utils.groups.left}.div`]:{
-        attributes:{},
-        children:{
-          [`#${tbdom.more.cont}.img`]:{
-            attributes:{
-              class: "titlebar-button-action",
-              src: pubfolder +"bin/assets/icons/menu-burger.png",
-              alt: "MORE",
-              title: "More"
-            },
-            children: null
-          },
-          [`#${tbdom.more.actions}.div`]:{
-            attributes:{
-              style: "display:none"
-            },
-            children:{
-              "#titlebar-page-print.div":{
-                attributes:{
-                  class: "titlebar-button-action",
-                  src: pubfolder + "bin/assets/icons/print.png",
-                  alt: "PRINT",
-                  title: "Print"
-                },
-                children: null
+var tdom = (rroot='')=>{
+  return{
+    [`#${tbdom.cont}.div`]:{
+      attributes:{},
+      children:{
+        [`#${tbdom.utils.groups.left}.div`]:{
+          attributes:{},
+          children:{
+            [`#${tbdom.more.cont}.img`]:{
+              attributes:{
+                class: "titlebar-button-action",
+                src: rroot +"assets/icons/menu-burger.png",
+                alt: "MORE",
+                title: "More"
               },
-              "#titlebar-page-settings.div":{
-                attributes:{
-                  class: "titlebar-button-action",
-                  src: pubfolder + "bin/assets/icons/settings.png",
-                  alt: "SETTINGS",
-                  title: "Settings"
+              children: null
+            },
+            [`#${tbdom.more.actions}.div`]:{
+              attributes:{
+                style: "display:none"
+              },
+              children:{
+                "#titlebar-page-print.div":{
+                  attributes:{
+                    class: "titlebar-button-action",
+                    src: rroot + "assets/icons/print.png",
+                    alt: "PRINT",
+                    title: "Print"
+                  },
+                  children: null
                 },
-                children: null
+                "#titlebar-page-settings.div":{
+                  attributes:{
+                    class: "titlebar-button-action",
+                    src: rroot + "assets/icons/settings.png",
+                    alt: "SETTINGS",
+                    title: "Settings"
+                  },
+                  children: null
+                }
               }
-            }
-          },
-          [`#${tbdom.info.cont}.span`]:{
-            attributes:{},
-            children:{
-              [`#${tbdom.page.user}.img`]:{
-                attributes:{
-                  class: "titlebar-button-action",
-                  src: pubfolder + "bin/assets/icons/user.png",
-                  alt: "USER",
-                  title: "Log Out"
+            },
+            [`#${tbdom.info.cont}.span`]:{
+              attributes:{},
+              children:{
+                [`#${tbdom.page.user}.img`]:{
+                  attributes:{
+                    class: "titlebar-button-action",
+                    src: rroot + "assets/icons/user.png",
+                    alt: "USER",
+                    title: "Log Out"
+                  },
+                  children: null
                 },
-                children: null
-              },
-              [`#${tbdom.info.username}.span`]:{
-                attributes:{},
-                children:null
+                [`#${tbdom.info.username}.span`]:{
+                  attributes:{},
+                  children:null
+                }
               }
             }
           }
-        }
-      },
-      [`#${tbdom.title}.div`]:{
-        attributes:{
         },
-        children:null
-      },
-      [`#${tbdom.utils.groups.right}.div`]:{
-        attributes:{},
-        children:{
-          [`#${tbdom.utils.buttons.help}.img`]:{
-            attributes:{
-              class: "titlebar-button-action",
-              src: pubfolder + "bin/assets/icons/info.png",
-              alt: "HELP",
-              title: "help"
-            },
-            children: null
+        [`#${tbdom.title}.div`]:{
+          attributes:{
+          },
+          children:null
+        },
+        [`#${tbdom.utils.groups.right}.div`]:{
+          attributes:{},
+          children:{
+            [`#${tbdom.utils.buttons.help}.img`]:{
+              attributes:{
+                class: "titlebar-button-action",
+                src: rroot + "assets/icons/info.png",
+                alt: "HELP",
+                title: "help"
+              },
+              children: null
+            }
           }
         }
       }
@@ -157,21 +157,19 @@ var CREATEactionbuttons=(acts)=>{
   return alist;
 }
 
-var SETUPtitlebar=(pfolder,qacts,macts)=>{
-  pubfolder=pfolder;
-
-  document.body.prepend(CreateComponent(tdom)); //add titlebar to the body
+var SETUPtitlebar=(RROOT='',qacts,macts)=>{
+  document.body.prepend(CreateComponent(tdom(RROOT))); //add titlebar to the body
 
   for(let x=0,l=stylesheets.length;x<l;x++){
     let viewstyles = document.createElement('link');
     viewstyles.setAttribute('rel','stylesheet');
-    viewstyles.setAttribute('href',`${pubfolder}css/${stylesheets[x]}`);
+    viewstyles.setAttribute('href',RROOT+stylesheets[x]);
     document.getElementsByTagName('head')[0].prepend(viewstyles);
 
   }
   document.getElementById(tbdom.more.cont).addEventListener('click',(ele)=>{  // Toggle More Options menu
-      let moreele = document.getElementById(tbdom.more.actions);
-        $(moreele).toggle();
+    let moreele = document.getElementById(tbdom.more.actions);
+    $(moreele).toggle();
   });
 }
 
