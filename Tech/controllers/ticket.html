@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Service Presentation</title>
+    <link rel="stylesheet" href="../bin/repo/css/vg-general.css" />
     <link rel="stylesheet" href="../bin/css/serticket-styles.css" />
     <link rel="stylesheet" href="../bin/css/serticket-ticket.css" />
     <link rel="stylesheet" href="../bin/repo/css/vg-utility.css" />
@@ -39,7 +40,6 @@
         -->
     <!--Ticket Header & Client Info------------------------->
     <div id="wo-header-cont" class="twelve-col-grid">
-        <div class="header-bar">This is a test element!</div>
         <img src="../bin/assets/images/Vogel Logo.png" id="header-logo" alt="VOGEL">
         <div class="client-label">WO Num:</div><input id="wo-info-num" type="text" />
         <div class="client-label">Client:</div><input id="wo-info-customer" class="client-input" type="text" />
@@ -49,177 +49,186 @@
           <image id="wo-action-close"  class="wo-ctrl-icon" src="../bin/assets/icons/cross.png"/></image>
           <image id="wo-action-delete"  class="wo-ctrl-icon" src="../bin/assets/icons/trash.png"/></image>
         </div>
-        <div id="wo-ticket-header">Two Paths to Home Comfort!</div>
-        <div id="wo-present-contract-cont">
-          <input id="present-contract-name" type="search" list="contract-name-list" />
-          <div id="present-contract-opts">
-                <div class="present-contract-opt">
-                    <div class="present-contract-opt-desc" id="monthly-tag">Monthly Plan</div>
-                    <input id="wo-contract-appr" type="checkbox" />
-                    <div id="present-contract-monthly">24</div>
-                </div>
-
-                <div class="present-contract-opt">
-                    <div class="present-contract-opt-desc">Additional System(s)</div><input
-                        class="present-contract-opt-quantity" type="number" />
-                    <div id="present-contract-addsys">21</div>
-                </div>
-                <div class="present-contract-opt">
-                    <div class="present-contract-opt-desc">Additional Component(s)</div><input
-                        class="present-contract-opt-quantity" type="number" />
-                    <div id="present-contract-addcomp">12</div>
-                </div>
-
-                <div id="enhance-tag">Enhancements</div>
-
-                <div class="present-contract-opt">
-                    <div class="present-contract-opt-desc">Standard Filters</div><input
-                        class="present-contract-opt-quantity" type="number" />
-                    <div id="present-contract-addstdflt">5</div>
-                </div>
-                <div class="present-contract-opt">
-                    <div class="present-contract-opt-desc">Humidifier Service/Pad</div><input
-                        class="present-contract-opt-quantity" type="number" />
-                    <div id="present-contract-addhumpad">5</div>
-                </div>
-                <div class="present-contract-opt">
-                    <div class="present-contract-opt-desc">Specialty Filters</div><input
-                        class="present-contract-opt-quantity" type="number" />
-                    <div id="present-contract-addspcflt">12</div>
-                </div>
-                <div class="present-contract-opt">
-                    <div class="present-contract-opt-desc">Time Saver Disc.</div><input
-                        class="present-contract-opt-quantity" type="number" />
-                    <div id="present-contract-addtimesave">-4</div>
-                </div>
-            </div>
-        </div>
+        <hr>         
     </div>
-<!--PRESENTATION SECTION--------------------------------------------------->
-<div id="vg-utilcont-bottom" class="vg-utilcont">
-    <div id="wo-setup-cont">
-        <!--Setup Systems--------------
-                Filter options on top of a
-                table with the systesms.
-
-                Most of the editing is done
-                in the table
-            -->
-
-            <div class="twelve-col-grid">
-                <label for="tagid">Add Tag ID: </label>
-                <input id="wo-setup-sys-tagid" name="tagid" />
-            <div id="flatrate-special-repairs">
-                <div id="flatrate-repair-furn-cleancheck" class="flatrate-special-repair-buttons">Furn Clean and Check</div>
-                <div id="flatrate-repair-ac-cleancheck" class="flatrate-special-repair-buttons">AC Clean and Check</div>
-                <div id="flatrate-repair-diagnostic" class="flatrate-special-repair-buttons">Diagnostic Fee</div>
+    <div id="viewcontainer">
+        <div class="viewcontrol-menu">
+            <div>
+                <div class="viewcontrol-menu-item" title="INFO">Information</div>
+                <div class="viewcontrol-menu-item" title="REPAIRS">Repairs</div>
+                <div class="viewcontrol-menu-item" title="MAINT">Maintenance</div>
             </div>
         </div>
-            <!-- WO System Table-----------
-                    Holds all of the customers
-                    service items.
-
-                    ADD: Empty row at end
-
-                    UPDATE: Can type in some
-                    table cells.
-
-                    DELETE: Maybe should only
-                    be able to disable, setting
-                    a flag back at the office.
-                -->
-            <div id="wo-sys-list"></div>
-            <!---------------------------->
-
-
-        <!--Setup Repair List----------
-                Holds an area to search and
-                selected different task items
-                from the loaded flat rate
-                book.
-            -->
-        <div id="wo-setup-repair">
-
-
-            <div style="height:100%; display:flex; flex-direction: column;">
-                <div>
-                <!--FLATBOOK------------>
-                <input id="wo-repair-search-book" placeholder="Select Price Book" type="search"
-                    list="flatrate-book-list" />
-                <!--List of all available flat rate books-->
-                <input id="wo-repair-search-pl" placeholder="Select Price Level" type="search"
-                    list="flatrate-book-pl-list" />
-                <!--List of all available price level in selected book-->
-                <input id="wo-repair-search-column" placeholder="Select Filter Type" type="search"
-                    list="flatrate-book-search-list" />
-                <!--List of the first-->
-                <input id="wo-repair-search-value" placeholder="Search Repair" type="text" />
-                <!--Type to find-->
+        <div class="viewcontrol-port">
+            <div class="viewcontrol-port-item" title="REPAIRS">
+                <div id="wo-setup-cont">
+                    <!--Setup Systems--------------
+                            Filter options on top of a
+                            table with the systesms.
+        
+                            Most of the editing is done
+                            in the table
+                        -->
+        
+                        <div class="twelve-col-grid">
+                            <label for="tagid">Add Tag ID: </label>
+                            <input id="wo-setup-sys-tagid" name="tagid" />
+                        <div id="flatrate-special-repairs">
+                            <div id="flatrate-repair-furn-cleancheck" class="flatrate-special-repair-buttons">Furn Clean and Check</div>
+                            <div id="flatrate-repair-ac-cleancheck" class="flatrate-special-repair-buttons">AC Clean and Check</div>
+                            <div id="flatrate-repair-diagnostic" class="flatrate-special-repair-buttons">Diagnostic Fee</div>
+                        </div>
+                    </div>
+                        <!-- WO System Table-----------
+                                Holds all of the customers
+                                service items.
+        
+                                ADD: Empty row at end
+        
+                                UPDATE: Can type in some
+                                table cells.
+        
+                                DELETE: Maybe should only
+                                be able to disable, setting
+                                a flag back at the office.
+                            -->
+                        <div id="wo-sys-list"></div>
+                        <!---------------------------->
+        
+        
+                    <!--Setup Repair List----------
+                            Holds an area to search and
+                            selected different task items
+                            from the loaded flat rate
+                            book.
+                        -->
+                    <div id="wo-setup-repair">
+        
+        
+                        <div style="height:100%; display:flex; flex-direction: column;">
+                            <div>
+                            <!--FLATBOOK------------>
+                            <input id="wo-repair-search-book" placeholder="Select Price Book" type="search"
+                                list="flatrate-book-list" />
+                            <!--List of all available flat rate books-->
+                            <input id="wo-repair-search-pl" placeholder="Select Price Level" type="search"
+                                list="flatrate-book-pl-list" />
+                            <!--List of all available price level in selected book-->
+                            <input id="wo-repair-search-column" placeholder="Select Filter Type" type="search"
+                                list="flatrate-book-search-list" />
+                            <!--List of the first-->
+                            <input id="wo-repair-search-value" placeholder="Search Repair" type="text" />
+                            <!--Type to find-->
+                            </div>
+                            <div id="wo-flatrate-cont">
+                                <div id="flatrate-search-table-cont">
+                                    <table id="flatrate-search-table">
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!---------------------------->
+                    </div>
+                    <!---------------------------->
                 </div>
-                <div id="wo-flatrate-cont">
-                    <div id="flatrate-search-table-cont">
-                        <table id="flatrate-search-table">
-                        </table>
+            </div>
+            <div class="viewcontrol-port-item" title="MEMBERSHIP">
+                <div id="wo-present-contract-cont">
+                    <input id="present-contract-name" type="search" list="contract-name-list" />
+                    <div id="present-contract-opts">
+                        <div class="present-contract-opt">
+                            <div class="present-contract-opt-desc" id="monthly-tag">Monthly Plan</div>
+                            <input id="wo-contract-appr" type="checkbox" />
+                            <div id="present-contract-monthly">24</div>
+                        </div>
+    
+                        <div class="present-contract-opt">
+                            <div class="present-contract-opt-desc">Additional System(s)</div><input
+                                class="present-contract-opt-quantity" type="number" />
+                            <div id="present-contract-addsys">21</div>
+                        </div>
+                        <div class="present-contract-opt">
+                            <div class="present-contract-opt-desc">Additional Component(s)</div><input
+                                class="present-contract-opt-quantity" type="number" />
+                            <div id="present-contract-addcomp">12</div>
+                        </div>
+    
+                        <div id="enhance-tag">Enhancements</div>
+    
+                        <div class="present-contract-opt">
+                            <div class="present-contract-opt-desc">Standard Filters</div><input
+                                class="present-contract-opt-quantity" type="number" />
+                            <div id="present-contract-addstdflt">5</div>
+                        </div>
+                        <div class="present-contract-opt">
+                            <div class="present-contract-opt-desc">Humidifier Service/Pad</div><input
+                                class="present-contract-opt-quantity" type="number" />
+                            <div id="present-contract-addhumpad">5</div>
+                        </div>
+                        <div class="present-contract-opt">
+                            <div class="present-contract-opt-desc">Specialty Filters</div><input
+                                class="present-contract-opt-quantity" type="number" />
+                            <div id="present-contract-addspcflt">12</div>
+                        </div>
+                        <div class="present-contract-opt">
+                            <div class="present-contract-opt-desc">Time Saver Disc.</div><input
+                                class="present-contract-opt-quantity" type="number" />
+                            <div id="present-contract-addtimesave">-4</div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!---------------------------->
-        </div>
-        <!---------------------------->
-    </div>
-    <img id="button-open-presentation" class="vg-utilcont-toggle wo-nav-icon" src="../bin/assets/icons/document-signed.png" alt="Toggle">
-    <div class="vg-utilcont-bottom-info vg-utilcont-info">
-      <div id="wo-presentation-cont"><!--PRESENTATION CONTAINER-->
-          <img src="../bin/assets/icons/print.png" class="wo-nav-icon" id="wo-save" alt="PRINT">
-          <div id="wo-present-repair-cont">
-              <div class="wo-present-repair"><!--Extra Headers-->
-                <div id="wo-present-membership"><!--Membership Name Presenting >> Placed grid-columns 3 -->
-                  Premium
+            <div class="viewcontrol-port-item" title="PRESENTATION">
+                <div id="wo-presentation-cont"><!--PRESENTATION CONTAINER-->
+                    <img src="../bin/assets/icons/print.png" class="wo-nav-icon" id="wo-save" alt="PRINT">
+                    <div id="wo-present-repair-cont">
+                        <div class="wo-present-repair"><!--Extra Headers-->
+                            <div id="wo-present-membership"><!--Membership Name Presenting >> Placed grid-columns 3 -->
+                            Premium
+                            </div>
+                            <a href="https://www.vogelheating.com/rewards-subscription.html" target="_blank" id="membership-link">Sign Up for Your Membership!</a>
+                        </div>
+                        <div id="wo-present-headers"><!--Main Headers-->
+                            <div>Services & Repairs</div>
+                            <div>Regular</div>
+                            <div>Member</div>
+                            <div>Savings</div>
+                            <div>Approval</div>
+                        </div>
+                        <!--ALL OF THE REPAIRS BELOW-->
+    
+                        <div id="wo-present-repair-diagnostic" class="wo-present-repair" style="display:none">
+                            <!--DIAGNOSTIC FEE-->
+                            <div class="present-repair-desc">Diagnostic</div>
+                            <div class="present-repair-price"></div>
+                            <div></div>
+                            <div class="present-repair-savings"></div>
+                            <div>YES</div>
+                        </div>
+    
+                        <div id="wo-present-systems">
+                        </div>
+                    <!--INVESTMENT SECTION-->
+                    <div class="wo-present-repair"><!--SAVINGS ROW-->
+                        <div>Savings Today</div><!--TITLE-->
+                        <div>0</div>
+                        <div id="wo-present-savings-today"></div>
+                    </div>
+                    <div class="wo-present-repair">
+                        <div>Monthly Membership</div>
+                        <div id="wo-present-contract-monthly"></div><!-- grid-column: -->
+                    </div>
+                    <div class="wo-present-repair">
+                        <div>Due Today</div>
+                        <div id="wo-present-regprice-today"></div>
+                        <div id="wo-present-memprice-today"></div>
+                    </div>
+                    </div>
+    
                 </div>
-                <a href="https://www.vogelheating.com/rewards-subscription.html" target="_blank" id="membership-link">Sign Up for Your Membership!</a>
-              </div>
-              <div id="wo-present-headers"><!--Main Headers-->
-                  <div>Services & Repairs</div>
-                  <div>Regular</div>
-                  <div>Member</div>
-                  <div>Savings</div>
-                  <div>Approval</div>
-              </div>
-              <!--ALL OF THE REPAIRS BELOW-->
-
-            <div id="wo-present-repair-diagnostic" class="wo-present-repair" style="display:none">
-                <!--DIAGNOSTIC FEE-->
-                <div class="present-repair-desc">Diagnostic</div>
-                <div class="present-repair-price"></div>
-                <div></div>
-                <div class="present-repair-savings"></div>
-                <div>YES</div>
             </div>
-
-            <div id="wo-present-systems">
-            </div>
-          <!--INVESTMENT SECTION-->
-          <div class="wo-present-repair"><!--SAVINGS ROW-->
-              <div>Savings Today</div><!--TITLE-->
-              <div>0</div>
-              <div id="wo-present-savings-today"></div>
-          </div>
-          <div class="wo-present-repair">
-            <div>Monthly Membership</div>
-            <div id="wo-present-contract-monthly"></div><!-- grid-column: -->
-          </div>
-          <div class="wo-present-repair">
-            <div>Due Today</div>
-            <div id="wo-present-regprice-today"></div>
-            <div id="wo-present-memprice-today"></div>
-          </div>
-          </div>
-
-      </div>
+        </div>
     </div>
-  </div>
-    <!--Repair Selection----------------------->
-
 
     <!--BLOCK TO HOLD DATALIST-->
     <div>
@@ -238,13 +247,11 @@
           <option>PRE</option>
           <option>ULT</option>
         </datalist>
-
         <datalist id="contract-name-list">
             <option>CLASSIC</option>
             <option>PREMIUM</option>
             <option>ULTIMATE</option>
         </datalist>
-
     </div>
 </body>
 

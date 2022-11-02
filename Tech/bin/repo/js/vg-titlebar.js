@@ -6,7 +6,7 @@ var stylesheets = ['vg-titlebar.css'];
 
 var pubfolder = ''
 
-var tbdom={ //menubar
+var tbdom={ // Titlebar
   cont:'titlebar-cont',
   title:'titlebar-title',
   window:{
@@ -52,7 +52,7 @@ var tdom = {
           [`#${tbdom.more.cont}.img`]:{
             attributes:{
               class: "titlebar-button-action",
-              src: pubfolder +"assets/icons/menu-burger.png",
+              src: pubfolder +"bin/assets/icons/menu-burger.png",
               alt: "MORE",
               title: "More"
             },
@@ -66,7 +66,7 @@ var tdom = {
               "#titlebar-page-print.div":{
                 attributes:{
                   class: "titlebar-button-action",
-                  src: pubfolder + "assets/icons/print.png",
+                  src: pubfolder + "bin/assets/icons/print.png",
                   alt: "PRINT",
                   title: "Print"
                 },
@@ -75,7 +75,7 @@ var tdom = {
               "#titlebar-page-settings.div":{
                 attributes:{
                   class: "titlebar-button-action",
-                  src: pubfolder + "assets/icons/settings.png",
+                  src: pubfolder + "bin/assets/icons/settings.png",
                   alt: "SETTINGS",
                   title: "Settings"
                 },
@@ -89,7 +89,7 @@ var tdom = {
               [`#${tbdom.page.user}.img`]:{
                 attributes:{
                   class: "titlebar-button-action",
-                  src: pubfolder + "assets/icons/user.png",
+                  src: pubfolder + "bin/assets/icons/user.png",
                   alt: "USER",
                   title: "Log Out"
                 },
@@ -114,7 +114,7 @@ var tdom = {
           [`#${tbdom.utils.buttons.help}.img`]:{
             attributes:{
               class: "titlebar-button-action",
-              src: pubfolder+"assets/icons/minus.png",
+              src: pubfolder + "bin/assets/icons/info.png",
               alt: "HELP",
               title: "help"
             },
@@ -171,11 +171,8 @@ var SETUPtitlebar=(pfolder,qacts,macts)=>{
   }
   document.getElementById(tbdom.more.cont).addEventListener('click',(ele)=>{  // Toggle More Options menu
       let moreele = document.getElementById(tbdom.more.actions);
-        if($(moreele).is(":visible")){
-          $(moreele).hide();
-        }else{$(moreele).show();}
-
-    });
+        $(moreele).toggle();
+  });
 }
 
 

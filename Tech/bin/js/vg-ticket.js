@@ -1,28 +1,29 @@
-import {wolstore} from '../../js/lstore.js';
-import{dashdom,wodom} from './ticket-dom.js';
-import {ServiceWO} from './sticket-build.js';
-import {SETupdownside} from '../../js/vg-util-updownside.js';
-import {CreateComponent} from '../bin/repo/tools/vhc-components.js';
+import {wolstore} from './lstore.js';
+import{dashdom,wodom} from '../back/ticket-dom.js';
+import {ServiceWO} from '../back/sticket-build.js';
 
+import {DropNote} from '../repo/js/vg-poppers.js';
+import {SETUPtitlebar} from '../repo/js/vg-titlebar.js';
+import * as vcontrol from '../repo/js/view-controller.js';
 
 var publicfolder = '/Tech/bin/css'
 
 
-/* Titlebar example
-
-let viewstyles = document.createElement('link');
-viewstyles.setAttribute('rel','stylesheet');
-viewstyles.setAttribute('href','test.css');
-document.getElementsByTagName('head')[0].prepend(viewstyles);
-
-*/
-
-var curwo = new ServiceWO(JSON.parse(localStorage.getItem(wolstore.currentwo))); //set the current WO to null
-
-import {DropNote} from '../bin/repo/js/vg-poppers.js';
-
-
 //var curwo = new ServiceWO(JSON.parse(localStorage.getItem(wolstore.currentwo))); //set the current WO to null
+
+
+// SETUP title bar ///////////////////////////////////////
+
+var qactions = {};
+var mactions = {};
+
+SETUPtitlebar('/Tech/bin/repo/',qactions,mactions);
+//////////////////////////////////////////////////////////
+vcontrol.SETUPviewcontroller('/Tech/bin/repo/');
+vcontrol.SETUPviews(document.getElementById('viewcontainer'),'mbe');
+
+
+
 
 var DELETEwo = (wonum=null)=>{
   if(wonum){
@@ -77,9 +78,11 @@ var prevScrollpos = window.pageYOffset; // Set initial screen position
 window.onscroll = function() {
   var currentScrollPos = window.pageYOffset;
   if (prevScrollpos > currentScrollPos) { //  Checks if the user has scolled UP
-    document.getElementsByClassName("header-bar")[0].style.top = "0";
+    document.getElementById("titlebar-cont").style.top = "0";
+    document.getElementsByClassName("viewcontrol-menu")[0].style.bottom = "-50px";
   } else {
-    document.getElementsByClassName("header-bar")[0].style.top = "-50px";
+    document.getElementById("titlebar-cont").style.top = "-50px";
+    document.getElementsByClassName("viewcontrol-menu")[0].style.bottom = "0px";
   }
   prevScrollpos = currentScrollPos;
 }
