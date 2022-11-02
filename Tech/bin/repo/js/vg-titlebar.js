@@ -170,9 +170,13 @@ var SETUPtitlebar=(pfolder,qacts,macts)=>{
     document.getElementsByTagName('head')[0].prepend(viewstyles);
 
   }
+
+  ADDqactions(qacts);
+  ADDmactions(macts);
+
   document.getElementById(tbdom.more.cont).addEventListener('click',(ele)=>{  // Toggle More Options menu
-      let moreele = document.getElementById(tbdom.more.actions);
-        $(moreele).toggle();
+    let moreele = document.getElementById(tbdom.more.actions);
+    $(moreele).toggle();
   });
 }
 

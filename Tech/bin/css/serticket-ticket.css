@@ -312,6 +312,13 @@ place-self: center center;
 /* Testing */
 .viewcontrol-menu{
     position: fixed; /* Make it stick/fixed */
-    bottom: 0; /* Stay on top */
-    transition: top 0.3s; /* Transition effect when sliding down (and up) */
+    bottom: 0;    
+    transition: bottom 0.3s;
+}
+.present-cont{
+    position: fixed;
+    top: 25px;
+    left: -5000px;
+    width: 100vw;
+    transition: left 0.5s;
 }

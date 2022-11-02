@@ -156,11 +156,6 @@ var CREATEviewport=(cont,type='',actions=null,style=null)=>{
   ele.appendChild(document.createElement('div'));
   ele.lastChild.classList.add(vcdom.menu.qactions);
   cont.appendChild(ele);
-
-
-  //add button container
-  // if(actions){}
-
   ele=document.createElement('div');
   ele.classList.add(vcdom.port.cont);
   cont.appendChild(ele);

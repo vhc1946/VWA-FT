@@ -14,7 +14,13 @@ var publicfolder = '/Tech/bin/css'
 
 // SETUP title bar ///////////////////////////////////////
 
-var qactions = {};
+var qactions = {
+  present:{
+    id:'presentation-open',
+    src:'../bin/repo/assets/icons/document-signed.png',
+    title:'Presentation'
+  }
+};
 var mactions = {};
 
 SETUPtitlebar('/Tech/bin/repo/',qactions,mactions);
@@ -49,7 +55,7 @@ document.getElementById(wodom.info.num).addEventListener('change', (ele) => { //
     }
 });
 
-//PRINT Button
+// Buttons ///////////////////////////////////////////////////////////
 document.getElementById('wo-save').addEventListener('click', (ele) => {
     window.print();
 });
@@ -71,7 +77,14 @@ document.getElementById(wodom.action.delete).addEventListener('click',(ele)=>{
   curwo.LOADwo();
   DropNote('tr','WO Deleted..','red');
 });
-
+document.getElementById('presentation-open').addEventListener('click',(ele)=>{
+  let box = document.getElementsByClassName('present-cont')[0];
+  if(box.style.left == "0px"){
+    box.style.left = "-5000px";
+  }else{
+    box.style.left = "0px";
+  }
+});
 
 /* Navbar Testing */
 var prevScrollpos = window.pageYOffset; // Set initial screen position
