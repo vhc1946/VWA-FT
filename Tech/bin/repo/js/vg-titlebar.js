@@ -116,7 +116,16 @@ var tdom = {
               class: "titlebar-button-action",
               src: pubfolder + "bin/assets/icons/info.png",
               alt: "HELP",
-              title: "help"
+              title: "Help"
+            },
+            children: null
+          },
+          [`#${tbdom.window.close}.img`]:{
+            attributes:{
+              class: "titlebar-button-action",
+              src: pubfolder + "bin/assets/icons/cross.png",
+              alt: "CLOSE",
+              title: "Close"
             },
             children: null
           }
@@ -180,4 +189,7 @@ var SETUPtitlebar=(pfolder,qacts,macts)=>{
 }
 
 
-export {SETUPtitlebar}
+export {
+  tbdom,
+  SETUPtitlebar
+}

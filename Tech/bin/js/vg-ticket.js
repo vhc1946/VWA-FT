@@ -3,7 +3,7 @@ import{dashdom,wodom} from '../back/ticket-dom.js';
 import {ServiceWO} from '../back/sticket-build.js';
 
 import {DropNote} from '../repo/js/vg-poppers.js';
-import {SETUPtitlebar} from '../repo/js/vg-titlebar.js';
+import * as titlebar from '../repo/js/vg-titlebar.js';
 import * as vcontrol from '../repo/js/view-controller.js';
 
 var publicfolder = '/Tech/bin/css'
@@ -21,9 +21,20 @@ var qactions = {
     title:'Presentation'
   }
 };
-var mactions = {};
+var mactions = {
+  save:{
+    id:wodom.action.save,
+    src:'../bin/repo/assets/icons/disk.png',
+    title:'Save WO'
+  },
+  delete:{
+    id:wodom.action.delete,
+    src:'../bin/repo/assets/icons/trash.png',
+    title:'Delete WO'
+  }
+};
 
-SETUPtitlebar('/Tech/bin/repo/',qactions,mactions);
+titlebar.SETUPtitlebar('/Tech/bin/repo/',qactions,mactions);
 //////////////////////////////////////////////////////////
 vcontrol.SETUPviewcontroller('/Tech/bin/repo/');
 vcontrol.SETUPviews(document.getElementById('viewcontainer'),'mbe');
@@ -66,7 +77,7 @@ document.getElementById(wodom.action.save).addEventListener('click',(ele)=>{
   console.log('WO saved...',curwo.wo);
   DropNote('tr','WO Saved!','green');
 });
-document.getElementById(wodom.action.close).addEventListener('click',(ele)=>{
+document.getElementById(titlebar.tbdom.window.close).addEventListener('click',(ele)=>{
   curwo.SAVEwo();
   curwo.LOADwo();
   DropNote('tr','WO Saved!','green');
