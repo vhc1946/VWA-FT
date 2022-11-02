@@ -6,7 +6,7 @@ var stylesheets = ['vg-titlebar.css'];
 
 var pubfolder = ''
 
-var tbdom={ //menubar
+var tbdom={ // Titlebar
   cont:'titlebar-cont',
   title:'titlebar-title',
   window:{
@@ -114,7 +114,7 @@ var tdom = {
           [`#${tbdom.utils.buttons.help}.img`]:{
             attributes:{
               class: "titlebar-button-action",
-              src: pubfolder+"assets/icons/minus.png",
+              src: pubfolder + "bin/assets/icons/info.png",
               alt: "HELP",
               title: "help"
             },
@@ -172,11 +172,8 @@ var SETUPtitlebar=(pfolder,qacts,macts)=>{
   }
   document.getElementById(tbdom.more.cont).addEventListener('click',(ele)=>{  // Toggle More Options menu
       let moreele = document.getElementById(tbdom.more.actions);
-        if($(moreele).is(":visible")){
-          $(moreele).hide();
-        }else{$(moreele).show();}
-
-    });
+        $(moreele).toggle();
+  });
 }
 
 

@@ -310,10 +310,8 @@ place-self: center center;
 
 
 /* Testing */
-.header-bar{
-    background-color: grey;
+.viewcontrol-menu{
     position: fixed; /* Make it stick/fixed */
-    top: 0; /* Stay on top */
-    width: 100%; /* Full width */
+    bottom: 0; /* Stay on top */
     transition: top 0.3s; /* Transition effect when sliding down (and up) */
 }
