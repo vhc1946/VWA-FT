@@ -2,7 +2,6 @@
 var SENDrequest = (url,app,pack)=>{
   return new Promise((res,rej)=>{
     var options={
-      url:url+`ping`,
       method:'GET',
       headers:{
         'Accept':'application/json',
@@ -18,7 +17,7 @@ var SENDrequest = (url,app,pack)=>{
         pack:pack
       })
     }
-    fetch(options,(err,resp,body)=>{
+    fetch(url+'ping',options,(err,resp,body)=>{
       console.log(body);
       if(!err){return res({err:err,data:JSON.parse(body)});}
       else{
