@@ -38,17 +38,14 @@ $(document.getElementById(titlebar.tbdom.page.settings)).hide();
 $(document.getElementById(titlebar.tbdom.page.user)).hide();
 //////////////////////////////////////////////////////////
 
-var vurl = 'http://18.191.134.244:5000/store'//'http://localhost:5000/store';
+var vurl = 'http://18.191.134.244:5000/japi'//'http://localhost:5000/japi'//';
 var vapp = 'VMT';
 
 var GETwolist=()=>{
     return new Promise((res,rej)=>{
         var wopull = {
-            db: 'wos',
-            method: 'query',
-            options:{
-                query:{}
-            }
+            table:'wonumber',
+            wonum:'00024530'
         };
         return res(SENDrequest(vurl,vapp,wopull));
     })
