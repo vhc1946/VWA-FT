@@ -118,6 +118,15 @@ var tdom = (rroot='')=>{
                 title: "help"
               },
               children: null
+            },
+            [`#${tbdom.window.close}.img`]:{
+              attributes:{
+                class: "titlebar-button-action",
+                src: rroot + "assets/icons/cross.png",
+                alt: "CLOSE",
+                title: "Close"
+              },
+              children: null
             }
           }
         }

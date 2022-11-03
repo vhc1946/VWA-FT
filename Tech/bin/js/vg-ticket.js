@@ -78,10 +78,10 @@ document.getElementById(wodom.action.save).addEventListener('click',(ele)=>{
   DropNote('tr','WO Saved!','green');
 });
 document.getElementById(titlebar.tbdom.window.close).addEventListener('click',(ele)=>{
-  curwo.SAVEwo();
-  curwo.LOADwo();
+  //curwo.SAVEwo();
+  //curwo.LOADwo();
   DropNote('tr','WO Saved!','green');
-  DropNote('tr','WO Closed..','yellow');
+  window.close();
 });
 document.getElementById(wodom.action.delete).addEventListener('click',(ele)=>{
   DELETEwo(curwo.wo.num);

@@ -1,3 +1,4 @@
+import { CreateComponent } from "../tools/vhc-components.js";
 
 /* FIND parentNode
     Usually used in events to ensure the event belongs to the correct element
@@ -52,6 +53,34 @@ var vcdom={   //  DOM names
     close:'viewcontrol-port-close'
   }
 }
+
+var vdom = (rroot='')=>{
+  return{
+    [`.${vcdom.cont}.div`]:{
+      attributes:{},
+      children:{
+        [`.${vcdom.menu.cont}.div`]:{
+          attributes:{},
+          children:{
+            '.div':{
+              attributes:{},
+              children: null
+            },
+            [`.${vcdom.menu.qactions}.div`]:{
+              attributes:{},
+              children: null
+            }
+          }
+        },
+        [`.${vcdom.port.cont}.div`]:{
+          attributes:{},
+          children: null
+        }
+      }
+    }
+  }
+}
+
 
 var vcgroup={//STYLE GROUPS
   mtr:{ //menu top right
@@ -148,7 +177,13 @@ var SETUPviews=(cont,type='',style=null)=>{
   }
 }
 
-var CREATEviewport=(cont,type='',actions=null,style=null)=>{
+var CREATEviewport=(cont,type='',actions=null,style=null)=>{  // Creates new Viewport setup
+  let RROOT = '';
+  let ele = CreateComponent(vdom(RROOT));
+  console.log(ele);
+}
+
+var CREATEvp=(cont,type='',actions=null,style=null)=>{  // OLD creation function
   cont.classList.add(vcdom.cont);
   let ele = document.createElement('div');
   ele.classList.add(vcdom.menu.cont);

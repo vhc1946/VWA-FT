@@ -2,14 +2,23 @@ import {wolstore} from './lstore.js';
 import {dashdom,wodom} from '../back/ticket-dom.js';
 import {DropNote} from '../repo/js/vg-poppers.js';
 import {FINDparentele} from '../repo/js/vg-displaytools.js';
-import {SETUPtitlebar} from '../repo/js/vg-titlebar.js';
+import * as titlebar from '../repo/js/vg-titlebar.js';
+import { CREATEviewport } from '../repo/js/view-controller.js';
 
 // SETUP title bar for dash /////////////////////////////
 
-var qactions = {};
+var qactions = {
+    new:{
+        id:'new-wo',
+        src:'./bin/repo/assets/icons/file.png',
+        title:'New WO'
+    }
+};
 var mactions = {};
 
-SETUPtitlebar('/Tech/bin/repo/',qactions,mactions);
+titlebar.SETUPtitlebar('/Tech/bin/repo/',qactions,mactions);
+$(document.getElementById(titlebar.tbdom.window.close)).hide();
+
 //////////////////////////////////////////////////////////
 
 
@@ -37,12 +46,17 @@ var LOADwolist = ()=>{   //Loads WO list into display table
         dlist.addEventListener('click', (ele)=>{
             var row = FINDparentele(ele.target,dashdom.list.item.cont);
             if(row){
-                window.location.href='controllers/ticket.html';
+                window.open('controllers/ticket.html');
                 DropNote('tr',`WO # ${row.children[0].innerText} Loaded..`,'green');
             }
 
         });
     }
 }
+document.getElementById('new-wo').addEventListener('click', (ele)=>{
+    window.open('controllers/ticket.html');
+});
 
 LOADwolist();
+
+CREATEviewport();
