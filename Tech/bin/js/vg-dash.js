@@ -32,14 +32,41 @@ $(document.getElementById(titlebar.tbdom.window.close)).hide();
 var vurl = 'http://18.191.134.244:5000/japi'//'http://localhost:5000/japi'//';
 var vapp = 'VMT';
 
-var GETwolist=()=>{
+var GETwo=(wonum)=>{
     return new Promise((res,rej)=>{
         var wopull = {
             table:'wonumber',
-            wonum:'00024530'
+            wonum:wonum,//'00024530'
         };
         return res(SENDrequest(vurl,vapp,wopull));
     })
+}
+var GETcustomer=(custcode)=>{
+  return new Promise((res,rej)=>{
+      var wopull = {
+          table:'customertable',
+          custcode:custcode
+      };
+      return res(SENDrequest(vurl,vapp,wopull));
+  })
+}
+var GETcontract=(custcode)=>{
+  return new Promise((res,rej)=>{
+      var wopull = {
+          table:'wonumber',
+          custcode:custcode
+      };
+      return res(SENDrequest(vurl,vapp,wopull));
+  })
+}
+var GETserviceitems=(custcode)=>{
+  return new Promise((res,rej)=>{
+      var wopull = {
+          table:'custserviceitems',
+          custcode:custcode
+      };
+      return res(SENDrequest(vurl,vapp,wopull));
+  })
 }
 
 var LOADwolist = ()=>{   //Loads WO list into display table
@@ -79,9 +106,26 @@ document.getElementById('new-wo').addEventListener('click', (ele)=>{
 document.getElementById('back-to-index').addEventListener('click', (ele)=>{
     window.location.href='../index.html';
 });
-GETwolist().then(
+
+
+GETwo('00024530').then(
     result=>{
-      console.log(result);
+      if(result.success){
+        let wo = result.body.table[0];
+        console.log('WORKORDER>',wo);
+        GETcustomer(wo.CustomerCode).then(
+          result=>{
+            let customer = result.body.table[0];
+            console.log('CUSTOMER>',customer)
+          }
+        )
+        GETserviceitems(wo.CustomerCode).then(
+          result=>{
+            let sitems = result.body.table;
+            console.log('SERVICE ITEMS>',sitems)
+          }
+        )
+      }else{'WO request fail'}
     }
 )
 

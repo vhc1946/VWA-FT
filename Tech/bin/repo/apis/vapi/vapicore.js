@@ -1,7 +1,6 @@
 
 var SENDrequest = (url,app,pack)=>{
   return new Promise((res,rej)=>{
-    console.log(33);
     var options={
       method:'POST',
       headers:{
