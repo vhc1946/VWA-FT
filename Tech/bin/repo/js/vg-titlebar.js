@@ -169,14 +169,15 @@ var CREATEactionbuttons=(acts)=>{
 var SETUPtitlebar=(RROOT='',qacts,macts)=>{
   document.body.prepend(CreateComponent(tdom(RROOT))); //add titlebar to the body
 
+  console.log(RROOT);
+  /*
   for(let x=0,l=stylesheets.length;x<l;x++){
     let viewstyles = document.createElement('link');
     viewstyles.setAttribute('rel','stylesheet');
     viewstyles.setAttribute('href',RROOT+stylesheets[x]);
     document.getElementsByTagName('head')[0].prepend(viewstyles);
-
   }
-
+  */
   ADDqactions(qacts);
   ADDmactions(macts);
 
