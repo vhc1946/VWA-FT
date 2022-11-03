@@ -67,10 +67,6 @@ document.getElementById(wodom.info.num).addEventListener('change', (ele) => { //
 });
 
 // Buttons ///////////////////////////////////////////////////////////
-document.getElementById('wo-save').addEventListener('click', (ele) => {
-    window.print();
-});
-
 document.getElementById(wodom.action.save).addEventListener('click',(ele)=>{
   curwo.SAVEwo();
   LOADwolist();
