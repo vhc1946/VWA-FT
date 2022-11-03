@@ -62,7 +62,7 @@ var tdom = (rroot='')=>{
                 style: "display:none"
               },
               children:{
-                "#titlebar-page-print.div":{
+                [`#${tbdom.page.print}.img`]:{
                   attributes:{
                     class: "titlebar-button-action",
                     src: rroot + "assets/icons/print.png",
@@ -71,7 +71,7 @@ var tdom = (rroot='')=>{
                   },
                   children: null
                 },
-                "#titlebar-page-settings.div":{
+                [`#${tbdom.page.settings}.img`]:{
                   attributes:{
                     class: "titlebar-button-action",
                     src: rroot + "assets/icons/settings.png",
