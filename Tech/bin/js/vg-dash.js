@@ -1,9 +1,8 @@
 import {wolstore} from './lstore.js';
 import {dashdom,wodom} from '../back/ticket-dom.js';
 import {DropNote} from '../repo/js/vg-poppers.js';
-import {FINDparentele} from '../repo/js/vg-displaytools.js';
 import * as titlebar from '../repo/js/vg-titlebar.js';
-import { CREATEviewport } from '../repo/js/view-controller.js';
+import * as viewcontrol from '../repo/js/view-controller.js';
 import { SENDrequest } from '../repo/apis/vapi/vapicore.js';
 
 // SETUP title bar for dash /////////////////////////////
@@ -12,10 +11,18 @@ var qactions = {
     new:{
         id:'new-wo',
         src:'./bin/repo/assets/icons/file.png',
+        alt:'NEW',
         title:'New WO'
     }
 };
-var mactions = {};
+var mactions = {
+    back:{
+        id:'back-to-index',
+        src:'./bin/repo/assets/icons/angle-double-left.png',
+        alt:'RETURN',
+        title:'Return to Index'
+    }
+};
 
 titlebar.SETUPtitlebar('./bin/repo/',qactions,mactions);
 $(document.getElementById(titlebar.tbdom.window.close)).hide();
@@ -57,7 +64,7 @@ var LOADwolist = ()=>{   //Loads WO list into display table
             dlist.appendChild(item);
         }
         dlist.addEventListener('click', (ele)=>{
-            var row = FINDparentele(ele.target,dashdom.list.item.cont);
+            var row = viewcontrol.FINDparentele(ele.target,dashdom.list.item.cont);
             if(row){
                 window.open('controllers/ticket.html');
                 DropNote('tr',`WO # ${row.children[0].innerText} Loaded..`,'green');
@@ -69,7 +76,9 @@ var LOADwolist = ()=>{   //Loads WO list into display table
 document.getElementById('new-wo').addEventListener('click', (ele)=>{
     window.open('controllers/ticket.html');
 });
-
+document.getElementById('back-to-index').addEventListener('click', (ele)=>{
+    window.location.href='../index.html';
+});
 GETwolist().then(
     result=>{
       console.log(result);
@@ -78,4 +87,4 @@ GETwolist().then(
 
 //LOADwolist();
 
-CREATEviewport();
+viewcontrol.CREATEviewport();

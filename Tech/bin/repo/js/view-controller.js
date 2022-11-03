@@ -329,5 +329,6 @@ export {
   REMOVEview,
   SWITCHview,
   CLEARview,
-  SETUPviewcontroller
+  SETUPviewcontroller,
+  FINDparentele
 };

@@ -1,9 +1,4 @@
 /* Root styling file that will hold the layout structure */
-*{
-    font-family: Oswald, Arial, Helvetica, sans-serif;
-    user-select:none;
-    box-sizing: border-box;
-}
 a{
     text-decoration: none;
     color: black;
