@@ -4,6 +4,7 @@ import {DropNote} from '../repo/js/vg-poppers.js';
 import {FINDparentele} from '../repo/js/vg-displaytools.js';
 import * as titlebar from '../repo/js/vg-titlebar.js';
 import { CREATEviewport } from '../repo/js/view-controller.js';
+import { SENDrequest } from '../repo/js/vapistore.js';
 
 // SETUP title bar for dash /////////////////////////////
 
@@ -21,6 +22,25 @@ $(document.getElementById(titlebar.tbdom.window.close)).hide();
 
 //////////////////////////////////////////////////////////
 
+var vurl = 'http://localhost:8080/';
+var vapp = 'VMT';
+
+var GETwolist=()=>{
+    return new Promise((res,rej)=>{
+        var wopull = {
+            db: 'wos',
+            method: 'query',
+            options:{
+                query:{}
+            }
+        };
+        SENDrequest(vurl,vapp,wopull).then(
+            result=>{
+                return res(result);
+            }
+        )
+    })
+}
 
 var LOADwolist = ()=>{   //Loads WO list into display table
     let wolist = JSON.parse(localStorage.getItem(wolstore.techwo));
@@ -57,6 +77,16 @@ document.getElementById('new-wo').addEventListener('click', (ele)=>{
     window.open('controllers/ticket.html');
 });
 
-LOADwolist();
+GETwolist().then(
+    result=>{
+        if(result.data.success){
+            console.log(result.data.body.result);
+        }else{
+            console.log(result);
+        }
+    }
+)
+
+//LOADwolist();
 
 CREATEviewport();

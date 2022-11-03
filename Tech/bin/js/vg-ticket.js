@@ -1,5 +1,5 @@
 import {wolstore} from './lstore.js';
-import{dashdom,wodom} from '../back/ticket-dom.js';
+import {wodom} from '../back/ticket-dom.js';
 import {ServiceWO} from '../back/sticket-build.js';
 
 import {DropNote} from '../repo/js/vg-poppers.js';
