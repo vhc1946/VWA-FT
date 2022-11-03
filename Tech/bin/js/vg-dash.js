@@ -16,17 +16,26 @@ var qactions = {
     }
 };
 var mactions = {
+    spacer1:{},
     back:{
         id:'back-to-index',
         src:'./bin/repo/assets/icons/angle-double-left.png',
         alt:'RETURN',
         title:'Return to Index'
+    },
+    spacer2:{},
+    test:{
+        id:'test-button',
+        src:'./bin/repo/assets/icons/facebook.png'
     }
+
+
 };
 
 titlebar.SETUPtitlebar('./bin/repo/',qactions,mactions);
 $(document.getElementById(titlebar.tbdom.window.close)).hide();
-
+$(document.getElementById(titlebar.tbdom.page.settings)).hide();
+$(document.getElementById(titlebar.tbdom.page.user)).hide();
 //////////////////////////////////////////////////////////
 
 var vurl = 'http://18.191.134.244:5000/store'//'http://localhost:5000/store';
@@ -78,6 +87,9 @@ var LOADwolist = ()=>{   //Loads WO list into display table
 }
 document.getElementById('new-wo').addEventListener('click', (ele)=>{
     window.open('controllers/ticket.html');
+});
+document.getElementById(titlebar.tbdom.page.print).addEventListener('click', (ele)=>{
+    window.print();
 });
 document.getElementById('back-to-index').addEventListener('click', (ele)=>{
     window.location.href='../index.html';
