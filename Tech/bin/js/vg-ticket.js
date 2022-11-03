@@ -34,9 +34,9 @@ var mactions = {
   }
 };
 
-titlebar.SETUPtitlebar('/Tech/bin/repo/',qactions,mactions);
+titlebar.SETUPtitlebar('../bin/repo/',qactions,mactions);
 //////////////////////////////////////////////////////////
-vcontrol.SETUPviewcontroller('/Tech/bin/repo/');
+vcontrol.SETUPviewcontroller('../bin/repo/');
 vcontrol.SETUPviews(document.getElementById('viewcontainer'),'mbe');
 
 
