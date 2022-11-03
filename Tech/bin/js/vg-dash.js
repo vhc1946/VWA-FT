@@ -16,7 +16,7 @@ var qactions = {
 };
 var mactions = {};
 
-titlebar.SETUPtitlebar('../bin/repo/',qactions,mactions);
+titlebar.SETUPtitlebar('./bin/repo/',qactions,mactions);
 $(document.getElementById(titlebar.tbdom.window.close)).hide();
 
 //////////////////////////////////////////////////////////
