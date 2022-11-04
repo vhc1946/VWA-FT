@@ -1,5 +1,5 @@
 import {wolstore} from './lstore.js';
-import {dashdom,wodom} from '../back/ticket-dom.js';
+import * as dom from '../back/ticket-dom.js';
 import {DropNote} from '../repo/js/vg-poppers.js';
 import * as titlebar from '../repo/js/vg-titlebar.js';
 import * as viewcontrol from '../repo/js/view-controller.js';
@@ -20,9 +20,11 @@ var mactions = {};
 titlebar.SETUPtitlebar('./bin/repo/',qactions,mactions);
 $(document.getElementById(titlebar.tbdom.window.close)).hide();
 $(document.getElementById(titlebar.tbdom.page.settings)).hide();
+try{document.getElementById(Titlebar.tbdom.info.username).innerText = JSON.parse(localStorage.getItem(usersls.curruser)).uname;
+}catch{console.log("Could not pick up UserName")}
 //////////////////////////////////////////////////////////
 
-var vurl = 'http://18.191.134.244:5000/api'//'http://localhost:5000/api'//';
+var vurl = 'https://18.191.134.244:5000/api'//'http://localhost:5000/api'//';
 var vapp = 'VMT';
 
 var GETwo=(wonum)=>{
@@ -63,15 +65,6 @@ var GETserviceitems=(custcode)=>{
 }
 
 var LOADwolist = ()=>{   //Loads WO list into display table
-    let wolist=[];
-    GETwo('*').then(
-        result=>{
-            if(result.body.success){
-                let wolist = result.body;
-                console.log(wolist);
-            }else{console.log('WO request fail')}
-        }
-    )
     let dlist = document.getElementById(dashdom.list.cont);
     dlist.innerHTML = '';
 
@@ -117,10 +110,12 @@ GETwo('00024530').then(
       if(result.body.success){
         let wo = result.body.table[0];
         console.log('WORKORDER>',wo);
+        console.log('WOConverted>',dom.convert(dom.wotabdom,wo));
         GETcustomer(wo.CustomerCode).then(
           result=>{
             let customer = result.body.table[0];
-            console.log('CUSTOMER>',customer)
+            console.log('CUSTOMER>',customer);
+            console.log('CustConverted>',dom.convert(dom.custtabdom,customer));
           }
         )
         GETserviceitems(wo.CustomerCode).then(
@@ -133,6 +128,4 @@ GETwo('00024530').then(
     }
 )
 
-LOADwolist();
-
-viewcontrol.CREATEviewport();
+//LOADwolist();
