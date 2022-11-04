@@ -48,7 +48,10 @@
     cursor: pointer;
     filter: none;
 }
-
+.moretools-spacer:hover{
+    cursor: unset;
+    filter: invert();
+}
 .titlebar-button-view{
     height: 100%;
 }
