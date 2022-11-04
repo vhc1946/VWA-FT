@@ -15,9 +15,7 @@ var qactions = {
         title:'New WO'
     }
 };
-var mactions = {
-    spacer1:{}
-};
+var mactions = {};
 
 titlebar.SETUPtitlebar('./bin/repo/',qactions,mactions);
 $(document.getElementById(titlebar.tbdom.window.close)).hide();
@@ -65,7 +63,15 @@ var GETserviceitems=(custcode)=>{
 }
 
 var LOADwolist = ()=>{   //Loads WO list into display table
-    let wolist = JSON.parse(localStorage.getItem(wolstore.techwo));
+    let wolist=[];
+    GETwo('*').then(
+        result=>{
+            if(result.body.success){
+                let wolist = result.body;
+                console.log(wolist);
+            }else{console.log('WO request fail')}
+        }
+    )
     let dlist = document.getElementById(dashdom.list.cont);
     dlist.innerHTML = '';
 
@@ -108,7 +114,7 @@ document.getElementById(titlebar.tbdom.page.user).addEventListener('click', (ele
 
 GETwo('00024530').then(
     result=>{
-      if(result.success){
+      if(result.body.success){
         let wo = result.body.table[0];
         console.log('WORKORDER>',wo);
         GETcustomer(wo.CustomerCode).then(
@@ -123,10 +129,10 @@ GETwo('00024530').then(
             console.log('SERVICE ITEMS>',sitems)
           }
         )
-      }else{'WO request fail'}
+      }else{console.log('WO request fail')}
     }
 )
 
-//LOADwolist();
+LOADwolist();
 
 viewcontrol.CREATEviewport();

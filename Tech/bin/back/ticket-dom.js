@@ -145,3 +145,98 @@ export var fbdom = { //Flate Rate DOM
         pls: 'flatrate-book-pl-list'
     }
 }
+
+/*
+export var wotabdom = {
+  ARSubledgerCode:ARCode,              //"AR",
+  ApprovedForBillingDate:ApprBillDate, //"null"
+  ArrivalDate:ArrDate,                 //"2022-10-11T00:00:00Z"
+  ArrivalTime:ArrTime,                 //"1031"
+  BillEquipment:bEquip,                //"D"
+  BillLabour:bLabor,                   //"D"
+  BillMaterial:bMats,                  //"D"
+  BillOther:bOther,                    //"D"
+  BillTravel:bTravel,                  //"D"
+  BillType:bType,                      //"F"
+  CertifiedPayrollRequired:CertPay,    //"N"
+  CompletelyBilled:CompBill,           //"N"
+  ContactName:ContactName,             //"TESTING"
+  CustomerCode:CustCode,               //"*VOGMISC"
+  DispatchDate:dispDate,               //"2022-10-11T00:00:00Z"
+  DispatchEstimatedHours:dispEstHours, //2
+  DispatchPriority:dispPri,            //"10"
+  DispatchTime:dispTime,               //"1031"
+  EquipmentRateTable:EquipRateTab,     //"MASTER"
+  FederalTaxApplicable:FedTax,         //"N"
+  FinalCertifiedPayroll:FinalCertPay,  //"N"
+  FlatRateBook:FRBook,                 //"RES"
+  IncludeBillTo:IncludeBT,             //"N"
+  JobAddressLine1:JobAddy1,            //"*123 VOGEL"
+  LabourRateTable:LabRateTab,          //"MASTER"
+  MergeQuoteIntoPrepbill:MergeQintoP,  //"N"
+  MobileWorkOrder:mobWO,               //"M"
+  OrderDate:OrderDate,                 //"2022-10-11T00:00:00Z"
+  PriceLevel:PriceLvl,                 //"CLA"
+  PrintedYetDaily:PrintYet,            //"N"
+  ProvinceStateCode:State,             //"MO"
+  SalesCategoryCode:saleCat,           //"       350"
+  SalesTaxApplicable:SalesTax,         //"E"
+  SalesTaxGroup:SalesTaxGrp,           //"MOMONTX"
+  ScheduleTime:schTime,                //"1031"
+  ScheduledCompletionDate:schCompDate, //"2022-10-11T00:00:00Z"
+  ScheduledCompletionTime:schCompTime, //"1032"
+  ScheduledDate:schDate,               //"2022-10-11T00:00:00Z"
+  ScheduledForTechnician:sch4Tech,     //"20221011@1031"
+  TakenBy:TakenBy,                     //"  132"
+  TechnicianID:TecchID,                //"132"
+  TerritorySalespersonCode:EstCode,    //"HSE"
+  TimeArrived:TimeArrived,             //"1031"
+  TravelMUTable:TravMUTab,             //"MASTER"
+  UpdateToCarrier:UpdCarrier,          //"N"
+  WOStatusCode:WOStatus,               //"O"
+  WasMobileBilled:MobBilled,           //"N"
+  WorkOrderCategory:WOCat,             //"1"
+  WorkOrderNumber:WONum,               //"00024530"
+  WorkOrderTicketPrinted:WOTickm       //"N"
+}
+
+var custtabdom ={
+  ARSubledgerCode:ARCode,              //"AR"
+  AddressLine1:Addy1,                  //"*123 VOGEL"
+  AmtTotalToDateSales:TotalSales,      //250
+  CreatedDate:CreateDate,              //"2020-12-30T00:00:00Z"
+  CreatedTime:CreateTime,              //"1159"
+  CustomerCode:CustCode,               //"*VOGMISC"
+  CustomerName:CustName,               //"MISC VOGEL"
+  CustomerQuote:CustQuote,             //"A"
+  DateLastTransaction:LastTrans,       //"2022-11-04T00:00:00Z"
+  FinanceChargeCode:FinCode,           //"    0"
+  FiscalYearBackTwoYears:FisBackTwo,   //"2019"
+  FiscalYearCurrent:FisCurrent,        //"2021"
+  FiscalYearPrevious:FisPrev,          //"2020"
+  PrintDelinquencyLetter:PrnLetter,    //"Y"
+  PrintStatement:PrnState,             //"Y"
+  ProvinceStateCode:State,             //"MO"
+  SalesPersonCode:EstCode,             //"HSE"
+  SalesTaxApplicable:SalesTax,         //"E"
+  SalesTaxGroup:SalesTaxGrp,           //"MOMONTX"
+  UserID:UserID,                       //"VOGCH"
+  YTDSalesCurrentYear:SalesCurrYr,     //250
+  YearOpened:Opened                    //"2020-12-30T00:00:00Z"
+}
+
+var sitabdom = {
+  ARSubledgerCode:ARCode,              //"AR"
+  CustomerCode:CustCode,               //"*VOGMISC"
+  EquipmentModelNumber:Model,          //"58sbo"
+  LineNumber:LnNum,                    //"00008"
+  LineNumberUnique:LnNumU,             //"00008"
+  Manufacturer:Manf,                   //"Carrier"
+  Quantity:Qty,                        //1
+  SerialNumber:Serial,                 //"1111111"
+  Status:Status,                       //"A"
+  TagDescription:TagDesc,              //"Furance"
+  TagID:TagID                          //"1"
+}
+
+*/
