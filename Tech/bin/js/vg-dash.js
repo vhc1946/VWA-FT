@@ -29,7 +29,7 @@ $(document.getElementById(titlebar.tbdom.window.close)).hide();
 
 //////////////////////////////////////////////////////////
 
-var vurl = 'http://18.191.134.244:5000/japi'//'http://localhost:5000/japi'//';
+var vurl = 'http://18.191.134.244:5000/api'//'http://localhost:5000/api'//';
 var vapp = 'VMT';
 
 var GETwo=(wonum)=>{

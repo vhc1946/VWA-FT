@@ -1,4 +1,6 @@
 
+
+
 var SENDrequest = (url,app,pack)=>{
   return new Promise((res,rej)=>{
     var options={
@@ -8,19 +10,18 @@ var SENDrequest = (url,app,pack)=>{
       },
       body:JSON.stringify({
         access:{
-          coid:'01',
-          app:app,
           user:'VOGCH',
-          pswrd:'vogel321'
+          pswrd:'vogel321',
+          coid:'01',
+          request:'japi',
+          app:app
         },
         pack:pack
       })
     }
     fetch(url,options)
     .then(response=>{return response.json()})
-    .then(
-      data=>{return res(data);}
-    )
+    .then(data=>{return res(data);})
     .catch(err=>{console.log(err);})
   });
 }
