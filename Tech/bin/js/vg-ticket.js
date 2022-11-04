@@ -35,6 +35,8 @@ var mactions = {
 };
 
 titlebar.SETUPtitlebar('../bin/repo/',qactions,mactions);
+$(document.getElementById(titlebar.tbdom.page.settings)).hide();
+$(document.getElementById(titlebar.tbdom.page.user)).hide();
 //////////////////////////////////////////////////////////
 vcontrol.SETUPviewcontroller('../bin/repo/');
 vcontrol.SETUPviews(document.getElementById('viewcontainer'),'mbe');

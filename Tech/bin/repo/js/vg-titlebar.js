@@ -142,7 +142,6 @@ var tdom = (rroot='')=>{
 var ADDmactions=(acts)=>{
   acts=CREATEactionbuttons(acts);
   for(let x=0;x<acts.length;x++){
-    acts[x].classList.add(tbdom.utils.buttons.action);
     document.getElementById(tbdom.more.actions).appendChild(acts[x]);
   }
 }
@@ -150,7 +149,6 @@ var ADDmactions=(acts)=>{
 var ADDqactions=(acts)=>{
   acts=CREATEactionbuttons(acts);
   for(let x=0;x<acts.length;x++){
-    acts[x].classList.add(tbdom.utils.buttons.action);
     document.getElementById(tbdom.utils.groups.left).insertBefore(acts[x],document.getElementById(tbdom.info.cont)); //refresh button
   }
 }
@@ -159,6 +157,11 @@ var CREATEactionbuttons=(acts)=>{
   let alist = [];
   for(let ma in acts){
     alist.push(document.createElement('img'));
+    if(ma.includes('spacer')){
+      acts[ma]={src:'./bin/repo/assets/icons/minus.png',title: ''}
+      alist[alist.length-1].classList.add('moretools-spacer');
+    }
+    alist[alist.length-1].classList.add(tbdom.utils.buttons.action);
     for(let as in acts[ma]){
       alist[alist.length-1][as]=acts[ma][as];
     }

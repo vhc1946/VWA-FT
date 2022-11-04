@@ -15,18 +15,11 @@ var qactions = {
         title:'New WO'
     }
 };
-var mactions = {
-    back:{
-        id:'back-to-index',
-        src:'./bin/repo/assets/icons/angle-double-left.png',
-        alt:'RETURN',
-        title:'Return to Index'
-    }
-};
+var mactions = {};
 
 titlebar.SETUPtitlebar('./bin/repo/',qactions,mactions);
 $(document.getElementById(titlebar.tbdom.window.close)).hide();
-
+$(document.getElementById(titlebar.tbdom.page.settings)).hide();
 //////////////////////////////////////////////////////////
 
 var vurl = 'https://18.191.134.244:5000/api'//'https://localhost:5000/api'//';
@@ -70,7 +63,15 @@ var GETserviceitems=(custcode)=>{
 }
 
 var LOADwolist = ()=>{   //Loads WO list into display table
-    let wolist = JSON.parse(localStorage.getItem(wolstore.techwo));
+    let wolist=[];
+    GETwo('*').then(
+        result=>{
+            if(result.body.success){
+                let wolist = result.body;
+                console.log(wolist);
+            }else{console.log('WO request fail')}
+        }
+    )
     let dlist = document.getElementById(dashdom.list.cont);
     dlist.innerHTML = '';
 
@@ -103,14 +104,17 @@ var LOADwolist = ()=>{   //Loads WO list into display table
 document.getElementById('new-wo').addEventListener('click', (ele)=>{
     window.open('controllers/ticket.html');
 });
-document.getElementById('back-to-index').addEventListener('click', (ele)=>{
+document.getElementById(titlebar.tbdom.page.print).addEventListener('click', (ele)=>{
+    window.print();
+});
+document.getElementById(titlebar.tbdom.page.user).addEventListener('click', (ele)=>{
     window.location.href='../index.html';
 });
 
 
 GETwo('00024530').then(
     result=>{
-      if(result.success){
+      if(result.body.success){
         let wo = result.body.table[0];
         console.log('WORKORDER> ',wo);
         GETscontract(wo.CustomerCode).then(
@@ -125,10 +129,10 @@ GETwo('00024530').then(
             console.log('SERVICE ITEMS> ',sitems)
           }
         )
-      }else{'WO request fail'}
+      }else{console.log('WO request fail')}
     }
 )
 
-//LOADwolist();
+LOADwolist();
 
 viewcontrol.CREATEviewport();
