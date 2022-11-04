@@ -24,9 +24,18 @@ try{document.getElementById(Titlebar.tbdom.info.username).innerText = JSON.parse
 }catch{console.log("Could not pick up UserName")}
 //////////////////////////////////////////////////////////
 
-var vurl = 'https://18.191.134.244:5000/api'//'http://localhost:5000/api'//';
+var vurl = 'https://18.191.134.244:5000/api'//'https://localhost:5000/api'//';
 var vapp = 'VMT';
 
+var GETscontract=(custcode)=>{
+  return new Promise((res,rej)=>{
+      var wopull = {
+          table:'contracttable',
+          custcode:custcode
+      };
+      return res(SENDrequest(vurl,vapp,wopull));
+  })
+}
 var GETwo=(wonum)=>{
     return new Promise((res,rej)=>{
         var wopull = {
@@ -40,15 +49,6 @@ var GETcustomer=(custcode)=>{
   return new Promise((res,rej)=>{
       var wopull = {
           table:'customertable',
-          custcode:custcode
-      };
-      return res(SENDrequest(vurl,vapp,wopull));
-  })
-}
-var GETcontract=(custcode)=>{
-  return new Promise((res,rej)=>{
-      var wopull = {
-          table:'wonumber',
           custcode:custcode
       };
       return res(SENDrequest(vurl,vapp,wopull));
@@ -105,23 +105,22 @@ document.getElementById(titlebar.tbdom.page.user).addEventListener('click', (ele
 });
 
 
-GETwo('00024530').then(
+GETwo('00025796').then(
     result=>{
       if(result.body.success){
         let wo = result.body.table[0];
-        console.log('WORKORDER>',wo);
-        console.log('WOConverted>',dom.convert(dom.wotabdom,wo));
-        GETcustomer(wo.CustomerCode).then(
+        console.log('WORKORDER> ',wo);
+        GETscontract(wo.CustomerCode).then(
           result=>{
-            let customer = result.body.table[0];
-            console.log('CUSTOMER>',customer);
-            console.log('CustConverted>',dom.convert(dom.custtabdom,customer));
+            let contract = result.body.table;
+            console.log(result.body)
+            console.log('CONTRACT> ',contract)
           }
         )
         GETserviceitems(wo.CustomerCode).then(
           result=>{
             let sitems = result.body.table;
-            console.log('SERVICE ITEMS>',sitems)
+            console.log('SERVICE ITEMS> ',sitems)
           }
         )
       }else{console.log('WO request fail')}
