@@ -28,7 +28,7 @@ var vapp = 'VMT';
 var GETscontract=(custcode)=>{
   return new Promise((res,rej)=>{
       var wopull = {
-          table:'contarcttable',
+          table:'contracttable',
           custcode:custcode
       };
       return res(SENDrequest(vurl,vapp,wopull));
@@ -112,7 +112,7 @@ document.getElementById(titlebar.tbdom.page.user).addEventListener('click', (ele
 });
 
 
-GETwo('00024530').then(
+GETwo('00025796').then(
     result=>{
       if(result.body.success){
         let wo = result.body.table[0];
@@ -120,6 +120,7 @@ GETwo('00024530').then(
         GETscontract(wo.CustomerCode).then(
           result=>{
             let contract = result.body.table;
+            console.log(result.body)
             console.log('CONTRACT> ',contract)
           }
         )
