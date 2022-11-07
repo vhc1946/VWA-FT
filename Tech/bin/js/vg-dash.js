@@ -25,6 +25,15 @@ $(document.getElementById(titlebar.tbdom.page.settings)).hide();
 var vurl = 'https://18.191.134.244:5000/api'//'https://localhost:5000/api'//';
 var vapp = 'VMT';
 
+var GETresflbook=(wonum)=>{
+    return new Promise((res,rej)=>{
+        var wopull = {
+            table:'flatratebook',
+            bookcode:'RES'
+        };
+        return res(SENDrequest(vurl,vapp,wopull));
+    })
+}
 var GETscontract=(custcode)=>{
   return new Promise((res,rej)=>{
       var wopull = {
@@ -111,7 +120,12 @@ document.getElementById(titlebar.tbdom.page.user).addEventListener('click', (ele
     window.location.href='../index.html';
 });
 
-
+GETresflbook().then(
+  result=>{
+    console.log(result);
+  }
+)
+/*
 GETwo('00025796').then(
     result=>{
       if(result.body.success){
@@ -133,7 +147,7 @@ GETwo('00025796').then(
       }else{console.log('WO request fail')}
     }
 )
-
+*/
 LOADwolist();
 
 viewcontrol.CREATEviewport();
