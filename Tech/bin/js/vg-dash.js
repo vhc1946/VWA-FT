@@ -1,5 +1,5 @@
 import {wolstore} from './lstore.js';
-import {dashdom,wodom} from '../back/ticket-dom.js';
+import * as dom from '../back/ticket-dom.js';
 import {DropNote} from '../repo/js/vg-poppers.js';
 import * as titlebar from '../repo/js/vg-titlebar.js';
 import * as viewcontrol from '../repo/js/view-controller.js';
@@ -20,6 +20,8 @@ var mactions = {};
 titlebar.SETUPtitlebar('./bin/repo/',qactions,mactions);
 $(document.getElementById(titlebar.tbdom.window.close)).hide();
 $(document.getElementById(titlebar.tbdom.page.settings)).hide();
+try{document.getElementById(Titlebar.tbdom.info.username).innerText = JSON.parse(localStorage.getItem(usersls.curruser)).uname;
+}catch{console.log("Could not pick up UserName")}
 //////////////////////////////////////////////////////////
 
 var vurl = 'https://18.191.134.244:5000/api'//'https://localhost:5000/api'//';
@@ -72,15 +74,6 @@ var GETserviceitems=(custcode)=>{
 }
 
 var LOADwolist = ()=>{   //Loads WO list into display table
-    let wolist=[];
-    GETwo('*').then(
-        result=>{
-            if(result.body.success){
-                let wolist = result.body;
-                console.log(wolist);
-            }else{console.log('WO request fail')}
-        }
-    )
     let dlist = document.getElementById(dashdom.list.cont);
     dlist.innerHTML = '';
 
@@ -147,7 +140,12 @@ GETwo('00025796').then(
       }else{console.log('WO request fail')}
     }
 )
+<<<<<<< HEAD
 */
 LOADwolist();
 
 viewcontrol.CREATEviewport();
+=======
+
+//LOADwolist();
+>>>>>>> 6b34f3903e682c5a1c47a48e069e845b228f0148
