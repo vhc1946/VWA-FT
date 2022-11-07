@@ -39,5 +39,4 @@ RRQstructure={
     subdate: null
     unit: ""
     zip: "62552"
-    _id: "0OwzLt4zzu4KmE09"
 }
