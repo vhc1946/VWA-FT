@@ -118,11 +118,12 @@ GETresflbook().then(
     console.log(result);
   }
 )
-/*var GETticket=(wonum)=>{
+var GETticket=(wonum)=>{
     GETwo(wonum).then(
         result=>{
             if(result.body.success){
                 let ticket = {};
+                ticket.history = {};
                 ticket.wo = dom.convert(dom.wotabdom, result.body.table[0]);
                 GETscontract(ticket.wo.CustCode).then(
                     result=>{
@@ -135,34 +136,33 @@ GETresflbook().then(
                                     others.push(dom.convert(dom.contdom,result.body.table[i]));
                                 }
                             }
-                            ticket.contract.others = others;
-                        }else{console.log('Contracts request fail');}
+                            ticket.history.contracts = others;
+                        }else{
+                            ticket.contract = {};
+                            console.log('Contracts request fail');
+                        }
                     }
                 )
                 GETserviceitems(ticket.wo.CustCode).then(
                     result=>{
+                        ticket.sitems = [];
                         if(result.body.success){
-                            ticket.sitems = [];
                             for(let i=0;i<result.body.table.length;i++){
                                 ticket.sitems[i] = dom.convert(dom.sitabdom, result.body.table[i]);
                             }
-                        }else{console.log('Service Items request fail')}
+                        }else{
+                            console.log('Service Items request fail')}
                     }
                 )
-                console.log('TICKET>',ticket);
+                console.log(`TICKET ${wonum}>`,ticket);
             }else{console.log('WO request fail')}
         }
     )
-<<<<<<< HEAD
-*/
-LOADwolist();
-
-viewcontrol.CREATEviewport();
-=======
 }
 
-GETticket('00025796');
-
-
 //LOADwolist();
->>>>>>> 6b34f3903e682c5a1c47a48e069e845b228f0148
+
+GETticket('00025796');  //Everything exists
+GETticket('00024530');  //No contracts to pull
+GETticket('00123450');  //WO does not exist
+GETticket();
