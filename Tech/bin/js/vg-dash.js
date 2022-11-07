@@ -104,27 +104,44 @@ document.getElementById(titlebar.tbdom.page.user).addEventListener('click', (ele
     window.location.href='../index.html';
 });
 
+var GETticket=(wonum)=>{
+    GETwo(wonum).then(
+        result=>{
+            if(result.body.success){
+                let ticket = {};
+                ticket.wo = dom.convert(dom.wotabdom, result.body.table[0]);
+                GETscontract(ticket.wo.CustCode).then(
+                    result=>{
+                        if(result.body.success){
+                            let others=[];
+                            for(let i=result.body.table.length-1;i>=0;i--){  //Finds first Active Contract by searching from the bottom up
+                                if(result.body.table[i].ContractStatus == 'A'){
+                                    ticket.contract = dom.convert(dom.contdom,result.body.table[i]);
+                                }else{
+                                    others.push(dom.convert(dom.contdom,result.body.table[i]));
+                                }
+                            }
+                            ticket.contract.others = others;
+                        }else{console.log('Contracts request fail');}
+                    }
+                )
+                GETserviceitems(ticket.wo.CustCode).then(
+                    result=>{
+                        if(result.body.success){
+                            ticket.sitems = [];
+                            for(let i=0;i<result.body.table.length;i++){
+                                ticket.sitems[i] = dom.convert(dom.sitabdom, result.body.table[i]);
+                            }
+                        }else{console.log('Service Items request fail')}
+                    }
+                )
+                console.log('TICKET>',ticket);
+            }else{console.log('WO request fail')}
+        }
+    )
+}
 
-GETwo('00025796').then(
-    result=>{
-      if(result.body.success){
-        let wo = result.body.table[0];
-        console.log('WORKORDER> ',wo);
-        GETscontract(wo.CustomerCode).then(
-          result=>{
-            let contract = result.body.table;
-            console.log(result.body)
-            console.log('CONTRACT> ',contract)
-          }
-        )
-        GETserviceitems(wo.CustomerCode).then(
-          result=>{
-            let sitems = result.body.table;
-            console.log('SERVICE ITEMS> ',sitems)
-          }
-        )
-      }else{console.log('WO request fail')}
-    }
-)
+GETticket('00025796');
+
 
 //LOADwolist();
