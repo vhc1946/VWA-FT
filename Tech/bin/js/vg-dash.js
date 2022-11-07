@@ -27,6 +27,15 @@ try{document.getElementById(Titlebar.tbdom.info.username).innerText = JSON.parse
 var vurl = 'https://18.191.134.244:5000/api'//'https://localhost:5000/api'//';
 var vapp = 'VMT';
 
+var GETresflbook=(wonum)=>{
+    return new Promise((res,rej)=>{
+        var wopull = {
+            table:'flatratebook',
+            bookcode:'RES'
+        };
+        return res(SENDrequest(vurl,vapp,wopull));
+    })
+}
 var GETscontract=(custcode)=>{
   return new Promise((res,rej)=>{
       var wopull = {
@@ -104,7 +113,12 @@ document.getElementById(titlebar.tbdom.page.user).addEventListener('click', (ele
     window.location.href='../index.html';
 });
 
-var GETticket=(wonum)=>{
+GETresflbook().then(
+  result=>{
+    console.log(result);
+  }
+)
+/*var GETticket=(wonum)=>{
     GETwo(wonum).then(
         result=>{
             if(result.body.success){
@@ -139,9 +153,16 @@ var GETticket=(wonum)=>{
             }else{console.log('WO request fail')}
         }
     )
+<<<<<<< HEAD
+*/
+LOADwolist();
+
+viewcontrol.CREATEviewport();
+=======
 }
 
 GETticket('00025796');
 
 
 //LOADwolist();
+>>>>>>> 6b34f3903e682c5a1c47a48e069e845b228f0148
