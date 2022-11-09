@@ -24,7 +24,7 @@ try{document.getElementById(Titlebar.tbdom.info.username).innerText = JSON.parse
 }catch{console.log("Could not pick up UserName")}
 //////////////////////////////////////////////////////////
 
-var vurl = 'https://18.191.134.244:5000/api'//'https://localhost:5000/api'//';
+var vurl = 'https://18.191.134.244:5000/api'//'https://localhost:5000/api'//;
 var vapp = 'VMT';
 
 var GETresflbook=(wonum)=>{
@@ -113,11 +113,13 @@ document.getElementById(titlebar.tbdom.page.user).addEventListener('click', (ele
     window.location.href='../index.html';
 });
 
+/*
 GETresflbook().then(
   result=>{
     console.log(result);
   }
 )
+*/
 var GETticket=(wonum)=>{
     GETwo(wonum).then(
         result=>{
