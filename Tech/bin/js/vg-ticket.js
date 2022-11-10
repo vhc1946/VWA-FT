@@ -56,13 +56,19 @@ var mactions = {
 titlebar.SETUPtitlebar('../bin/repo/',qactions,mactions);
 
 $(document.getElementById(titlebar.tbdom.page.settings)).hide();
-$(document.getElementById(titlebar.tbdom.page.user)).hide(); //hide the user section of title bar
+//$(document.getElementById(titlebar.tbdom.page.user)).hide(); //hide the user section of title bar
 
 //////////////////////////////////////////////////////////
 
-vcontrol.SETUPviewcontroller('../bin/repo/');
-vcontrol.SETUPviews(document.getElementById('viewcontainer'),'mbe');
+// SETUP ticket view group /////////////////////////////////////////////////////
 
+vcontrol.SETUPviewcontroller('../bin/repo/');
+var ticketviews = new vcontrol.ViewGroup({
+  cont:document.getElementById('viewcontainer'),
+  type:'mbe'
+});
+
+////////////////////////////////////////////////////////////////////////////////
 var DELETEwo = (wonum=null)=>{
   if(wonum){
     let wolist = JSON.parse(localStorage.getItem(wolstore.techwo));
@@ -95,12 +101,14 @@ document.getElementById(wodom.action.save).addEventListener('click',(ele)=>{
   console.log('WO saved...',curwo.wo);
   DropNote('tr','WO Saved!','green');
 });
+/*
 document.getElementById(titlebar.tbdom.window.close).addEventListener('click',(ele)=>{
   //curwo.SAVEwo();
   //curwo.LOADwo();
   DropNote('tr','WO Saved!','green');
   window.close();
 });
+*/
 document.getElementById(wodom.action.delete).addEventListener('click',(ele)=>{
   DELETEwo(curwo.wo.num);
   curwo.LOADwo();

@@ -103,7 +103,7 @@ var STARTticket=(wonum)=>{
   });
 }
 
-var SYNCticket=(wonum)=>{
+var SYNCticket=(wonum,ticket)=>{
   return new Promise((resolve,reject)=>{
     GETwo(wonum).then(
         result=>{
@@ -112,6 +112,7 @@ var SYNCticket=(wonum)=>{
                 ticket.history = {};
                 ticket.wo = dom.convert(dom.wotabdom, result.body.table[0]);
                 console.log(ticket);
+                return resolve(ticket);
             }else{console.log('WO request fail');return resolve(null);}
         }
     )

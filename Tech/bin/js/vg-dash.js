@@ -19,12 +19,16 @@ var mactions = {};
 
 titlebar.SETUPtitlebar('./bin/repo/',qactions,mactions);
 
-$(document.getElementById(titlebar.tbdom.window.close)).hide();
+//$(document.getElementById(titlebar.tbdom.window.close)).hide();
 $(document.getElementById(titlebar.tbdom.page.settings)).hide();
 
 try{document.getElementById(Titlebar.tbdom.info.username).innerText = JSON.parse(localStorage.getItem(usersls.curruser)).uname;
 }catch{console.log("Could not pick up UserName")}
 //////////////////////////////////////////////////////////
+
+var appdock=document.createElement('div');
+appdock.id="vhc-app-dock";
+
 
 var wolist = JSON.parse(localStorage.getItem(wolstore.localwos));
 var LOADwolist = ()=>{   //Loads WO list into display table
@@ -60,6 +64,11 @@ var LOADwolist = ()=>{   //Loads WO list into display table
 
 document.getElementById('new-wo').addEventListener('click', (ele)=>{
     DropNote('tr','Wo is being Retrieved','green');
+    /* check for in local storage
+       ^(if) then load the WO from local storage and run SYNCticket to refresh it
+       current data
+    */
+
     STARTticket('00025796').then(
       ticket=>{
         console.log('TICKET >',ticket);
@@ -71,9 +80,11 @@ document.getElementById('new-wo').addEventListener('click', (ele)=>{
       }
     );
 });
+/*
 document.getElementById(titlebar.tbdom.page.print).addEventListener('click', (ele)=>{
     window.print();
 });
+*/
 document.getElementById(titlebar.tbdom.page.user).addEventListener('click', (ele)=>{
     window.location.href='../index.html';
 });
