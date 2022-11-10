@@ -7,11 +7,11 @@
 /*SERVICE TICKET /////////////////////////////////////////////////////////
 */
 var wolstore = {
-  currentwo:'CURwo', //holds the current wo
-  techwo:'TECHwo' //holds all the techs wo
+  toloadwo:'FT-toloadwo',
+  lastwo:'FT-lastwo',
+  localwos:'FT-localwos'
 }
 //////////////////////////////////////////////////////////////////////////
-
 
 export{
   wolstore

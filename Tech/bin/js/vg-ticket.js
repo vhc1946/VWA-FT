@@ -1,6 +1,7 @@
 import {wolstore} from './lstore.js';
 import {wodom} from '../back/ticket-dom.js';
 import {ServiceWO} from '../back/sticket-build.js';
+import {SYNCticket} from './vapi-FTrequest.js';
 
 import {DropNote} from '../repo/js/vg-poppers.js';
 import * as titlebar from '../repo/js/vg-titlebar.js';
@@ -9,11 +10,24 @@ import * as vcontrol from '../repo/js/view-controller.js';
 var publicfolder = '/Tech/bin/css'
 
 
-//var curwo = new ServiceWO(JSON.parse(localStorage.getItem(wolstore.currentwo))); //set the current WO to null
+// LOAD Ticket /////////////////////////////////////////////////////////////////
+var currwo = JSON.parse(localStorage.getItem(wolstore.toloadwo));
 
+console.log(currwo);
+
+if(currwo){
+  localStorage.setItem(wolstore.toloadwo,null);
+  localStorage.setItem(wolstore.lastwo,JSON.stringify(currwo));
+  DropNote('tr','WO found','green');
+}else{DropNote('tr','WO not found','red');}
+
+window.addEventListener('beforeunload',(ele)=>{ //here for page refresh
+  localStorage.setItem(wolstore.toloadwo,JSON.stringify(currwo));
+});
+
+////////////////////////////////////////////////////////////////////////////////
 
 // SETUP title bar ///////////////////////////////////////
-
 var qactions = {
   present:{
     id:'presentation-open',
@@ -31,18 +45,23 @@ var mactions = {
     id:wodom.action.delete,
     src:'../bin/repo/assets/icons/trash.png',
     title:'Delete WO'
+  },
+  refresh:{
+    id:'refresh-wo',
+    src:'../bin/repo/assets/icons/refresh.png',
+    title:'Refresh WO'
   }
 };
 
 titlebar.SETUPtitlebar('../bin/repo/',qactions,mactions);
+
 $(document.getElementById(titlebar.tbdom.page.settings)).hide();
-$(document.getElementById(titlebar.tbdom.page.user)).hide();
+$(document.getElementById(titlebar.tbdom.page.user)).hide(); //hide the user section of title bar
+
 //////////////////////////////////////////////////////////
+
 vcontrol.SETUPviewcontroller('../bin/repo/');
 vcontrol.SETUPviews(document.getElementById('viewcontainer'),'mbe');
-
-
-
 
 var DELETEwo = (wonum=null)=>{
   if(wonum){
@@ -57,6 +76,7 @@ var DELETEwo = (wonum=null)=>{
     LOADwolist();
   }
 }
+
 //WO Number CHANGE
 document.getElementById(wodom.info.num).addEventListener('change', (ele) => { //WO number input change
     if (ele.target.value != '') {
@@ -88,11 +108,11 @@ document.getElementById(wodom.action.delete).addEventListener('click',(ele)=>{
 });
 document.getElementById('presentation-open').addEventListener('click',(ele)=>{
   let box = document.getElementsByClassName('present-cont')[0];
-  if(box.style.left == "0px"){
-    box.style.left = "-5000px";
-  }else{
-    box.style.left = "0px";
-  }
+  if(box.style.left == "0px"){box.style.left = "-5000px";}
+  else{box.style.left = "0px";}
+});
+document.getElementById('refresh-wo').addEventListener('click',(ele)=>{
+  SYNCticket(currwo.wo.WONum).then(ticket=>{console.log(ticket);})
 });
 
 /* Navbar Testing */
