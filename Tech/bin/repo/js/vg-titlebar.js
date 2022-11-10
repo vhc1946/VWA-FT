@@ -1,6 +1,136 @@
 
 import {CreateComponent} from '../tools/vhc-components.js';
 
+var ldom={
+  cont:'login-box',
+  info:'login-info',
+  inputs:{
+    user:'login-username',
+    pswrd:'login-password'
+  },
+  actions:{
+    submit:'login-submit'
+  }
+}
+
+class VHCform{
+  constructor(cont){
+    this.cont=cont;
+    this.inputs={};
+  }
+
+  set form(input){
+    for(let i in this.inputs){
+      this.inputs[i].value = input[i]?input[i]:'';
+    }
+  }
+  get form(){
+    let fi ={}
+    for(let i in this.inputs){
+      fi[i]=this.inputs[i].value;
+    }
+    return fi;
+  }
+
+
+  switch(){}
+  validate(){}
+  submit(){}
+}
+
+class LoginForm extends VHCform{
+  constructor(cont){
+    super(cont);
+    this.cont.innerHTML=
+    `
+    <div id=${ldom.cont}>
+      <div id=${ldom.info}>
+          <label>User</label><input id=${ldom.inputs.user} type="text"/>
+          <label>Password</label><input id=${ldom.inputs.pswrd} type="password"/>
+          <div id=${ldom.actions.submit} class="flat-action-button">SUBMIT</div>
+      </div>
+    </div>
+    `
+
+    this.inputs.user=document.getElementById(ldom.inputs.user);
+    this.inputs.pswrd=document.getElementById(ldom.inputs.pswrd);
+    console.log(this.inputs)
+
+    this.permission=false;
+
+    let creds=this.storecreds;
+    console.log(creds);
+    if(creds && creds.user!=''||creds.pswrd!=''){
+      this.form=creds;
+      this.submit().then(
+        result=>{
+          if(result.success){
+            this.permission=true;
+            $(this.cont).hide();
+          }
+          else{this.form=undefined;}//reset form
+          this.storecreds=this.form;//store result
+        }
+      )
+    }else{this.storecreds=undefined}
+
+    document.getElementById(ldom.actions.submit).addEventListener("click",(ele)=>{
+      this.submit().then(
+        result=>{
+          if(result.success){
+            //DropNote('tr','Logged in','green');
+            this.permission=true;
+            $(this.cont).hide();
+          }else{//login failed
+            //DropNote('tr','User or Password Failed','yellow');
+            this.permission=false;
+            this.form={user:"",pswrd:""};//reset form
+          }
+          this.storecreds=this.form;//reset store
+        }
+      )
+    });
+    for(let i in this.inputs){
+      this.inputs[i].addEventListener('keypress',(eve)=>{
+        if(eve.key == 'Enter'){document.getElementById(ldom.actions.submit).click();};
+      });
+    }
+  }
+
+  get storecreds(){
+    try{
+      let creds=JSON.parse(localStorage.getItem('vapi-user'));
+      if(creds){return creds;}
+      else{return {user:'',pswrd:''};}
+    }catch{return {user:'',pswrd:''};}
+  }
+  set storecreds(creds={user:'',pswrd:''}){localStorage.setItem('vapi-user',JSON.stringify(creds))}
+
+  validate(){
+    let frm = this.form;
+    if(frm.user!=''||frm.pswrd!=''){return true;}
+    else{return false;}
+  }
+  submit(){
+    return new Promise((resolve,reject)=>{
+      let {user,pswrd} = this.form;
+      if(user!=''||pswrd!=''){
+        var options={
+          method:'POST',
+          headers:{
+            'Accept':'application/json'
+          },
+          body:JSON.stringify({access:{user:user,pswrd:pswrd}})
+        }
+        fetch('https:18.191.134.244:5000/login',options)
+          .then(response=>{return response.json()})
+          .then(data=>{return resolve(data);})
+          .catch(err=>{console.log(err);})
+      }else{return resolve({success:false});}
+    });
+  }
+}
+
 //  PATHS //
 var stylesheets = ['css/vg-titlebar.css'];
 
@@ -19,6 +149,14 @@ var tbdom={ // Titlebar
   info:{
     cont:'titlebar-page-user-cont',
     username:'titlebar-username'
+  },
+  login:{
+    cont:'loginout-block',
+    form:'loginout-form',
+    uname:'loginout-uname',
+    pswrd:'loginout-pswrd',
+    submit:'loginout-submit',
+    help:'loginout-help'
   },
   page:{
     save:'titlebar-page-save',
@@ -51,7 +189,7 @@ var tdom = (rroot='')=>{
             [`#${tbdom.more.cont}.img`]:{
               attributes:{
                 class: "titlebar-button-action",
-                src: rroot +"assets/icons/menu-burger.png",
+                src: rroot + "assets/icons/menu-burger.png",
                 alt: "MORE",
                 title: "More"
               },
@@ -61,44 +199,7 @@ var tdom = (rroot='')=>{
               attributes:{
                 style: "display:none"
               },
-              children:{
-                [`#${tbdom.page.print}.img`]:{
-                  attributes:{
-                    class: "titlebar-button-action",
-                    src: rroot + "assets/icons/print.png",
-                    alt: "PRINT",
-                    title: "Print"
-                  },
-                  children: null
-                },
-                [`#${tbdom.page.settings}.img`]:{
-                  attributes:{
-                    class: "titlebar-button-action",
-                    src: rroot + "assets/icons/settings.png",
-                    alt: "SETTINGS",
-                    title: "Settings"
-                  },
-                  children: null
-                }
-              }
-            },
-            [`#${tbdom.info.cont}.span`]:{
-              attributes:{},
-              children:{
-                [`#${tbdom.page.user}.img`]:{
-                  attributes:{
-                    class: "titlebar-button-action",
-                    src: rroot + "assets/icons/user.png",
-                    alt: "USER",
-                    title: "Log Out"
-                  },
-                  children: null
-                },
-                [`#${tbdom.info.username}.span`]:{
-                  attributes:{},
-                  children:null
-                }
-              }
+              children:null
             }
           }
         },
@@ -110,21 +211,34 @@ var tdom = (rroot='')=>{
         [`#${tbdom.utils.groups.right}.div`]:{
           attributes:{},
           children:{
+          [`#${tbdom.info.cont}.span`]:{
+            attributes:{},
+            children:{
+              [`#${tbdom.page.user}.img`]:{
+                attributes:{
+                  class: "titlebar-button-action",
+                  src: rroot + "assets/icons/user.png",
+                  alt: "USER",
+                  title: "Log Out"
+                },
+                children: null
+              },
+              [`#${tbdom.info.username}.span`]:{
+                attributes:{},
+                children:null
+              }
+            }
+          },
+          [`#${tbdom.login.cont}.div`]:{
+            attributes:{},
+            children:null
+          },
             [`#${tbdom.utils.buttons.help}.img`]:{
               attributes:{
                 class: "titlebar-button-action",
                 src: rroot + "assets/icons/info.png",
                 alt: "HELP",
                 title: "help"
-              },
-              children: null
-            },
-            [`#${tbdom.window.close}.img`]:{
-              attributes:{
-                class: "titlebar-button-action",
-                src: rroot + "assets/icons/cross.png",
-                alt: "CLOSE",
-                title: "Close"
               },
               children: null
             }
@@ -149,7 +263,7 @@ var ADDmactions=(acts)=>{
 var ADDqactions=(acts)=>{
   acts=CREATEactionbuttons(acts);
   for(let x=0;x<acts.length;x++){
-    document.getElementById(tbdom.utils.groups.left).insertBefore(acts[x],document.getElementById(tbdom.info.cont)); //refresh button
+    document.getElementById(tbdom.utils.groups.left).appendChild(acts[x]); //refresh button
   }
 }
 
@@ -169,7 +283,7 @@ var CREATEactionbuttons=(acts)=>{
   return alist;
 }
 
-var SETUPtitlebar=(RROOT='',qacts,macts)=>{
+var SETUPtitlebar=(RROOT='',qacts={},macts={},login=true)=>{
   document.body.prepend(CreateComponent(tdom(RROOT))); //add titlebar to the body
   for(let x=0,l=stylesheets.length;x<l;x++){
     let viewstyles = document.createElement('link');
@@ -177,6 +291,7 @@ var SETUPtitlebar=(RROOT='',qacts,macts)=>{
     viewstyles.setAttribute('href',RROOT+stylesheets[x]);
     document.getElementsByTagName('head')[0].prepend(viewstyles);
   }
+
   ADDqactions(qacts);
   ADDmactions(macts);
 
@@ -184,8 +299,16 @@ var SETUPtitlebar=(RROOT='',qacts,macts)=>{
     let moreele = document.getElementById(tbdom.more.actions);
     $(moreele).toggle();
   });
-}
 
+  if(login){
+    document.getElementById(tbdom.page.user).addEventListener('click',(ele)=>{
+      if($(document.getElementById(tbdom.login.cont)).is(":visible")){
+        $(document.getElementById(tbdom.login.cont)).hide();
+      }else{$(document.getElementById(tbdom.login.cont)).show()}
+    });
+    return new LoginForm(document.getElementById(tbdom.login.cont));}
+  else{return null;}
+}
 
 export {
   tbdom,
