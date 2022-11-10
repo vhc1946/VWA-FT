@@ -53,7 +53,7 @@ var mactions = {
   }
 };
 
-titlebar.SETUPtitlebar('../bin/repo/',qactions,mactions);
+titlebar.SETUPtitlebar('../bin/repo/',qactions,mactions,false); //login disabled
 
 $(document.getElementById(titlebar.tbdom.page.settings)).hide();
 //$(document.getElementById(titlebar.tbdom.page.user)).hide(); //hide the user section of title bar
