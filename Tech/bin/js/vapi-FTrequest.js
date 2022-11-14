@@ -1,6 +1,12 @@
 
+<<<<<<< HEAD
 import * as dom from '../back/ticket-dom.js';
 import {awo} from '../repo/ds/wos/vogel-wos.js';
+=======
+import {awo} from '../repo/ds/wos/vogel-wos.js';
+import {aservicecontract} from '../repo/ds/contracts/vogel-servicecontracts.js';
+import {aserviceitem} from '../repo/ds/customers/vogel-serviceitems.js';
+>>>>>>> 76528ad6cbbd4120835acae21bd64d29504300af
 import { SENDrequest } from '../repo/apis/vapi/vapicore.js';
 
 
@@ -106,9 +112,9 @@ var STARTticket=(wonum)=>{
                             let others=[];
                             for(let i=result.body.table.length-1;i>=0;i--){  //Finds first Active Contract by searching from the bottom up
                                 if(result.body.table[i].ContractStatus == 'A'){
-                                    ticket.contract = dom.convert(dom.contdom,result.body.table[i]);
+                                    ticket.contract = aservicecontract(result.body.table[i]);
                                 }else{
-                                    others.push(dom.convert(dom.contdom,result.body.table[i])); //aservicecontract()
+                                    others.push(aservicecontract(result.body.table[i])); //aservicecontract()
                                 }
                             }
                             ticket.history.contracts = others;
@@ -125,7 +131,7 @@ var STARTticket=(wonum)=>{
                         ticket.sitems = [];
                         if(result.body.success){
                             for(let i=0;i<result.body.table.length;i++){
-                                ticket.sitems[i] = dom.convert(dom.sitabdom, result.body.table[i]); //aserviceitems()
+                                ticket.sitems[i] = aserviceitem(result.body.table[i]); //aserviceitems()
                             }
                         }else{console.log('Service Items request fail');}
 
