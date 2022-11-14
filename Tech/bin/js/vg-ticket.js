@@ -137,17 +137,17 @@ var qactions = {
 };
 var mactions = {
   save:{
-    id:'wo-save',
+    id:'wo-save-button',
     src:'../bin/repo/assets/icons/disk.png',
     title:'Save WO'
   },
   delete:{
-    id:'wo-delete',
+    id:'wo-delete-button',
     src:'../bin/repo/assets/icons/trash.png',
     title:'Delete WO'
   },
   refresh:{
-    id:'refresh-wo',
+    id:'wo-refresh-button',
     src:'../bin/repo/assets/icons/refresh.png',
     title:'Refresh WO'
   }
@@ -164,15 +164,22 @@ $(document.getElementById(titlebar.tbdom.page.settings)).hide();
 
 vcontrol.SETUPviewcontroller('../bin/repo/');
 var ticketviews = new vcontrol.ViewGroup({
-  cont:document.getElementById('viewcontainer'),
+  cont:document.getElementById('ticket-build-container'),
   type:'mbe'
 });
+
+
 var woform = new WOform(document.createElement('div'));
+
+// Adding forms to build views
+
+ticketviews.ADDview('Information',woform.cont);
+//add service item section
+//add checklist section
+
 woform.cont.id = 'wo-form';
 document.body.appendChild(woform.cont);
 $(document.getElementById('viewcontainer')).hide();
-
-document.getElementsByClassName('viewcontrol-port-item')[0].innerHTML = woform.cont;
 
 
 

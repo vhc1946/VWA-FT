@@ -156,11 +156,12 @@ var vcgroup={//STYLE GROUPS
 */
 class ViewGroup{
   constructor({cont=document.ElementCreate('div'),type='',style=null,delEve=()=>{},swtchEve=()=>{}}){
-    this.cont=CreateComponent(vdom());
-    cont.appendChild(this.cont);
+    this.cont=cont;
+    this.group=CreateComponent(vdom());
+    this.cont.appendChild(this.group);
 
-    this.port=this.cont.getElementsByClassName(vcdom.port.cont)[0];
-    this.menu=this.cont.getElementsByClassName(vcdom.menu.cont)[0];
+    this.port=this.group.getElementsByClassName(vcdom.port.cont)[0];
+    this.menu=this.group.getElementsByClassName(vcdom.menu.cont)[0];
     this.buttons=this.menu.children[0]; //to get navigation menu
 
     if(vcgroup[type]!=undefined){this.SETUPviewgroup(type);}
@@ -178,7 +179,7 @@ class ViewGroup{
   ADDview(name,view,del=false){
     try{this.RESETviews();}
     catch{
-      console.log('Container id:',this.cont.id,' May NOT Exist...');
+      console.log('Container id:',this.group.id,' May NOT Exist...');
       return null;
     }
     view.title=name;
@@ -222,7 +223,7 @@ class ViewGroup{
     var reset = false;
     if(button.classList.contains(vcdom.menu.selected)){reset=true}
 
-    this.port.removeChild(this.FINDview(this.cont,button.title));
+    this.port.removeChild(this.FINDview(this.group,button.title));
     this.menu.removeChild(button);
     if(reset){
       try{this.port.children[this.port.children.length-1].classList.add(vcdom.port.selected);}catch{}
@@ -271,7 +272,7 @@ class ViewGroup{
   }
 
   SETUPviewgroup(grp){
-    this.cont.classList.add(vcgroup[grp].cont);
+    this.group.classList.add(vcgroup[grp].cont);
     this.menu.classList.add(vcgroup[grp].menu.cont);
   }
 
