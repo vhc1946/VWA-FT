@@ -1,6 +1,4 @@
 
-
-
 var SENDrequest = (url,app,pack)=>{
   return new Promise((res,rej)=>{
     var options={
@@ -11,7 +9,7 @@ var SENDrequest = (url,app,pack)=>{
       body:JSON.stringify({
         access:{
           user:'VOGCH',
-          pswrd:'vogel321',
+          pswrd:'vogel123',
           coid:'01',
           request:'japi',
           app:app

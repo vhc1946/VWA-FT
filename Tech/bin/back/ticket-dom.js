@@ -14,6 +14,7 @@ export var dashdom = {
   }
 }
 
+
 export var wodom = {
     cont: '',
     action:{
@@ -27,6 +28,72 @@ export var wodom = {
         address: 'wo-info-address'
     }
 }
+
+
+export var sysdom = { //System DOM
+    cont:'wo-setup-cont',
+    input: {
+        tagid: "wo-setup-sys-tagid"
+    },
+    buttons:{
+      approver:{
+        toggle:'vg-checkbox',
+        approved:'vg-checkbox-checked'
+      },
+      delete:'vg-deleter'
+    },
+
+    list: {
+        cont: 'wo-sys-list',
+        system: {
+            cont: 'wo-sys',
+            button: 'wo-sys-button',
+            tagid: 'wo-sys-tagid',
+            area: 'wo-sys-area',
+            repairs: 'wo-sys-repairs',
+            repair: {
+                cont: 'wo-sys-repair',
+                id: 'wo-sys-repair-id',
+                desc: 'wo-sys-repair-desc',
+            }
+        },
+        selected: 'wo-sys-selected',
+        buttonimg:{
+          selected:'../bin/assets/icons/angle-down.png',
+          nonselected:'../bin/assets/icons/angle-right.png'
+        }
+    }
+};
+
+
+export var fbdom = { //Flate Rate DOM
+    cont: 'wo-setup-repair',
+    special:{
+      diagnostic:'flatrate-repair-diagnostic',
+      furncleancheck:'flatrate-repair-furn-cleancheck',
+      accleancheck:'flatrate-repair-ac-cleancheck'
+    },
+    search: {
+        book: 'wo-repair-search-book',
+        value: 'wo-repair-search-value',
+        pl: 'wo-repair-search-pl',
+        fltr: 'wo-repair-search-column'
+    },
+    table: {
+        cont: 'flatrate-search-table',
+        row: {
+            cont: '',
+            task: 'flatrate-taskid',
+            desc: 'flatrate-desc',
+            value: 'flatrate-value'
+        }
+    },
+    lists: {
+        pls: 'flatrate-book-pl-list'
+    }
+}
+
+
 
 export var cntrctform = {
     cont: 'wo-present-contract-cont',
@@ -81,68 +148,6 @@ export var prsdom = {
         regprice: 'wo-present-regprice-today',
         memprice: 'wo-present-memprice-today',
         conmonth: 'wo-present-contract-monthly'
-    }
-}
-
-export var sysdom = { //System DOM
-    cont:'wo-setup-cont',
-    input: {
-        tagid: "wo-setup-sys-tagid"
-    },
-    buttons:{
-      approver:{
-        toggle:'vg-checkbox',
-        approved:'vg-checkbox-checked'
-      },
-      delete:'vg-deleter'
-    },
-
-    list: {
-        cont: 'wo-sys-list',
-        system: {
-            cont: 'wo-sys',
-            button: 'wo-sys-button',
-            tagid: 'wo-sys-tagid',
-            area: 'wo-sys-area',
-            repairs: 'wo-sys-repairs',
-            repair: {
-                cont: 'wo-sys-repair',
-                id: 'wo-sys-repair-id',
-                desc: 'wo-sys-repair-desc',
-            }
-        },
-        selected: 'wo-sys-selected',
-        buttonimg:{
-          selected:'../bin/assets/icons/angle-down.png',
-          nonselected:'../bin/assets/icons/angle-right.png'
-        }
-    }
-};
-
-export var fbdom = { //Flate Rate DOM
-    cont: 'wo-setup-repair',
-    special:{
-      diagnostic:'flatrate-repair-diagnostic',
-      furncleancheck:'flatrate-repair-furn-cleancheck',
-      accleancheck:'flatrate-repair-ac-cleancheck'
-    },
-    search: {
-        book: 'wo-repair-search-book',
-        value: 'wo-repair-search-value',
-        pl: 'wo-repair-search-pl',
-        fltr: 'wo-repair-search-column'
-    },
-    table: {
-        cont: 'flatrate-search-table',
-        row: {
-            cont: '',
-            task: 'flatrate-taskid',
-            desc: 'flatrate-desc',
-            value: 'flatrate-value'
-        }
-    },
-    lists: {
-        pls: 'flatrate-book-pl-list'
     }
 }
 
@@ -274,14 +279,4 @@ export var sitabdom = {    //Service Items data from JONAS
   Status:'Status',                         //"A"
   TagDescription:'TagDesc',                //"Furance"
   TagID:'TagID'                            //"1"
-}
-
-export var convert=(map,obj={})=>{
-  let tobj={};
-  for(let o in obj){
-    if(map[o]){
-      tobj[map[o]]=obj[o];
-    }
-  }
-  return tobj;
 }

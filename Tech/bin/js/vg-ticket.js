@@ -11,7 +11,30 @@ var publicfolder = '/Tech/bin/css'
 
 
 // LOAD Ticket /////////////////////////////////////////////////////////////////
+
 var currwo = JSON.parse(localStorage.getItem(wolstore.toloadwo));
+
+var wodom = {
+
+}
+class WOform extends VHCform{
+  constructor(){
+
+    this.cont.innerHTML=`
+    `
+    //this.fltr = awo;
+  }
+  dom={
+
+  }
+  
+  submit(){
+    currwo
+  }
+
+}
+
+var WF = new WOform();
 
 console.log(currwo);
 

@@ -1,10 +1,50 @@
 
 import * as dom from '../back/ticket-dom.js';
+import {awos} from '../repo/ds/wos/';
 import { SENDrequest } from '../repo/apis/vapi/vapicore.js';
 
 
 var vurl = 'https://18.191.134.244:5000/api'//'https://localhost:5000/api'//;
 var vapp = 'VMT';
+
+
+
+// HEADERS /////////////////////////////////////////////
+
+////////////////////////////////////////////////////////
+
+var GETjapitest=()=>{
+  return new Promise((res,rej)=>{
+      var wopull = {
+          table:'test',
+          option:'template',
+          template:'WO_Headers_tbl'
+      };
+      return res(SENDrequest(vurl,vapp,wopull));
+  });
+}
+/*
+GETjapitest().then(
+  res=>{
+    let arr=[]
+    for(let x in res.body.table[0]){
+      arr.push(x);
+    }
+        var wopull = {
+            table:'test',
+            option:'download',
+            template:'WO_Headers_tbl',
+            select:arr,
+            where:[{OP:'=',WorkOrderNumber:'00025796'}]
+        };
+        SENDrequest(vurl,vapp,wopull).then(
+            res=>{console.log(res);}
+        );
+    console.log(arr);
+  }).then(res2=>{console.log(res2)});
+*/
+
+
 
 var GETresflbook=(wonum)=>{
     return new Promise((res,rej)=>{
@@ -27,7 +67,7 @@ var GETscontract=(custcode)=>{
 var GETwo=(wonum)=>{
     return new Promise((res,rej)=>{
         var wopull = {
-            table:'wonumber',
+            table:'test',
             wonum:wonum,//'00024530'
         };
         return res(SENDrequest(vurl,vapp,wopull));
@@ -60,7 +100,7 @@ var STARTticket=(wonum)=>{
             if(result.body.success){
                 let ticket = {};
                 ticket.history = {};
-                ticket.wo = dom.convert(dom.wotabdom, result.body.table[0]);
+                ticket.wo = awo(result.body.table[0]);
                 let havesc = false;
                 let havesi = false;
 
@@ -72,7 +112,7 @@ var STARTticket=(wonum)=>{
                                 if(result.body.table[i].ContractStatus == 'A'){
                                     ticket.contract = dom.convert(dom.contdom,result.body.table[i]);
                                 }else{
-                                    others.push(dom.convert(dom.contdom,result.body.table[i]));
+                                    others.push(dom.convert(dom.contdom,result.body.table[i])); //aservicecontract()
                                 }
                             }
                             ticket.history.contracts = others;
@@ -89,7 +129,7 @@ var STARTticket=(wonum)=>{
                         ticket.sitems = [];
                         if(result.body.success){
                             for(let i=0;i<result.body.table.length;i++){
-                                ticket.sitems[i] = dom.convert(dom.sitabdom, result.body.table[i]);
+                                ticket.sitems[i] = dom.convert(dom.sitabdom, result.body.table[i]); //aserviceitems()
                             }
                         }else{console.log('Service Items request fail');}
 
@@ -110,7 +150,7 @@ var SYNCticket=(wonum,ticket)=>{
             if(result.body.success){
                 let ticket = {};
                 ticket.history = {};
-                ticket.wo = dom.convert(dom.wotabdom, result.body.table[0]);
+                ticket.wo = awo(result.body.table[0]);
                 console.log(ticket);
                 return resolve(ticket);
             }else{console.log('WO request fail');return resolve(null);}
