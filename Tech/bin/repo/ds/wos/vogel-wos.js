@@ -1,5 +1,5 @@
 
-var {ExcelDateToJSDate} = require('../../tools/box/xltools.js')
+// /var {ExcelDateToJSDate} = require('../../tools/box/xltools.js')
 /* Service Item File ////////////////////////////////////////////////////////
 
 *////////////////////////////////////////////////////////////////////////////
@@ -58,7 +58,7 @@ var awo = (w)=>{
         timecomplete:w.timecomplete||'',
 
         datecompletesched:w.datecompletesched||'',
-        timecompletesched:w.timecompletesched||'',
+        timecompletesched:w.timecompletesched||''
     }
 }
 
@@ -94,12 +94,13 @@ var vjwomap = (vjwo = null) => {
         woDescr:vjwo['woDescr                                                     ']||''
     }
 }
-
 export{
     awo,
     vjwomap
 }
-/*
+
+
+/* CONVERSION REFERNCES
 WorkOrderNumber: '',
       OrderDate: '1970-01-01T00:00:00Z',
       TakenBy: '',
@@ -253,9 +254,7 @@ WorkOrderNumber: '',
       LastInvoiceNumber: '',
       ARTermsCode: '',
       XOIURL: ''
-*/
 
-​​​​/*
 ARSubledgerCode: "AR"
 ApprovedForBillingDate: "null"
 ArrivalDate: "2022-11-04T00:00:00Z"
