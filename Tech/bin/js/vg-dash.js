@@ -1,8 +1,8 @@
 import {wolstore} from './lstore.js';
-import {DropNote} from '../repo/js/vg-poppers.js';
+import {DropNote} from '../repo/modules/vg-poppers.js';
 import {dashdom} from '../back/ticket-dom.js';
-import * as titlebar from '../repo/js/vg-titlebar.js';
-import * as viewcontrol from '../repo/js/view-controller.js';
+import * as titlebar from '../repo/modules/vg-titlebar.js';
+import * as viewcontrol from '../repo/layouts/view-controller.js';
 import { STARTticket } from './vapi-FTrequest.js';
 
 // SETUP title bar for dash /////////////////////////////

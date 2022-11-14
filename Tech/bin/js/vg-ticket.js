@@ -2,9 +2,9 @@ import {wolstore} from './lstore.js';
 import {ServiceWO} from '../back/sticket-build.js';
 import {SYNCticket} from './vapi-FTrequest.js';
 
-import {DropNote} from '../repo/js/vg-poppers.js';
-import * as titlebar from '../repo/js/vg-titlebar.js';
-import * as vcontrol from '../repo/js/view-controller.js';
+import {DropNote} from '../repo/modules/vg-poppers.js';
+import * as titlebar from '../repo/modules/vg-titlebar.js';
+import * as vcontrol from '../repo/layouts/view-controller.js';
 import {VHCform} from '../repo/tools/vhc-forms.js';
 
 var publicfolder = '/Tech/bin/css';
