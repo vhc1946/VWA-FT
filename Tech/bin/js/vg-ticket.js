@@ -14,6 +14,7 @@ var publicfolder = '/Tech/bin/css';
 
 var currticket = JSON.parse(localStorage.getItem(wolstore.toloadwo));
 
+console.log(currticket);
 class WOform extends VHCform{
   constructor(cont){
     super(cont);

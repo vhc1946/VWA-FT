@@ -8,7 +8,7 @@ var awo = (w)=>{
     return {
         id: w.id || '', //WorkOrderNumber
 
-        custCode:w.custCode||'', //CustomerCode
+        custcode:w.custcode||'', //CustomerCode
         contactname:w.contactname||'',
         contactphone:w.contactphone||'',
 
