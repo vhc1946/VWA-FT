@@ -42,7 +42,6 @@ GETjapitest().then(
   }).then(res2=>{console.log(res2)});
 
 
-
 var GETresflbook=(wonum)=>{
     return new Promise((res,rej)=>{
         var wopull = {

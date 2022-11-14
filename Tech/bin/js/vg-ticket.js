@@ -84,10 +84,40 @@ class Contform extends VHCform{
               </div>
           </div>
       </div>
-            `;
+      <div id=${this.dom.cont}>
+          <div class="contract-opt">
+              <div>Contract ID</div><input placeholder="id">
+          </div>
+          <div class="contract-opt">
+              <div>Renewal ID</div><input placeholder="renewid">
+          </div>
+          <div class="contract-opt">
+              <div>Date From</div><input placeholder="datefrom">
+          </div>
+          <div class="contract-opt">
+              <div>Date To</div><input placeholder="dateto">
+          </div>
+          <div class="contract-opt">
+              <div>Member Since</div><input placeholder="datesign">
+          </div>
+
+          <div class="contract-opt">
+              <div>Contact Type</div><input placeholder="type">
+          </div>
+          <div class="contract-opt">
+              <div>Contract Status</div><input placeholder="status">
+          </div>
+          <div class="contract-opt">
+              <div>Num of Billings</div><input placeholder="billings">
+          </div>
+          <div class="contract-opt">
+              <div>Num of Visits</div><input placeholder="visits">
+          </div>
+      </div>      
+      `;
   }
   dom={  // was cntrctform
-    cont: 'wo-present-contract-cont',
+    cont: 'contract-cont',
     form: {
         cont: 'present-contract-opts',
         memappr: 'wo-contract-appr',
@@ -110,6 +140,7 @@ class Contform extends VHCform{
   submit(){}
 }
 
+console.log(currticket);
 
 if(currticket){
   localStorage.setItem(wolstore.toloadwo,null);
@@ -166,15 +197,15 @@ var ticketviews = new vcontrol.ViewGroup({
 
 
 var woform = new WOform(document.createElement('div'));
-
+var contform = new Contform(document.createElement('div'));
 // Adding forms to build views
 
 ticketviews.ADDview('Information',woform.cont);
+ticketviews.ADDview('Contract',contform.cont);
 //add service item section
 //add checklist section
 
-woform.cont.id = 'wo-form';
-document.body.appendChild(woform.cont);
+
 $(document.getElementById('viewcontainer')).hide();
 
 
