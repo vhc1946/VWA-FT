@@ -1,7 +1,7 @@
-
 import {awo} from '../repo/ds/wos/vogel-wos.js';
 import {aservicecontract} from '../repo/ds/contracts/vogel-servicecontracts.js';
 import {aserviceitem} from '../repo/ds/customers/vogel-serviceitems.js';
+
 import { SENDrequest } from '../repo/apis/vapi/vapicore.js';
 
 
@@ -19,31 +19,27 @@ var GETjapitest=()=>{
       var wopull = {
           table:'test',
           option:'template',
-          template:'WO_Headers_tbl'
+          template:'WO_SC_ServiceContractMaster_tbl'
       };
       return res(SENDrequest(vurl,vapp,wopull));
   });
 }
-/*
 GETjapitest().then(
   res=>{
     let arr=[]
     for(let x in res.body.table[0]){
       arr.push(x);
     }
-        var wopull = {
-            table:'test',
-            option:'download',
-            template:'WO_Headers_tbl',
-            select:arr,
-            where:[{OP:'=',WorkOrderNumber:'00025796'}]
-        };
-        SENDrequest(vurl,vapp,wopull).then(
+    var wopull = {
+        table:'test',
+        option:'download',
+        template:'WO_SC_ServiceContractMaster_tbl',
+        where:[{OP:'=',CustomerCode:'VOJO05'}]
+    };
+    SENDrequest(vurl,vapp,wopull).then(
             res=>{console.log(res);}
         );
-    console.log(arr);
   }).then(res2=>{console.log(res2)});
-*/
 
 
 

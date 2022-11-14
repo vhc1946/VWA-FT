@@ -1,5 +1,5 @@
 
-import {ExcelDateToJSDate} from '../../tools/xltools.js';
+// /var {ExcelDateToJSDate} = require('../../tools/box/xltools.js')
 
 var awo = (w)=>{
     if(!w || w==undefined){
@@ -55,7 +55,7 @@ var awo = (w)=>{
         timecomplete:w.timecomplete||'',
 
         datecompletesched:w.datecompletesched||'',
-        timecompletesched:w.timecompletesched||'',
+        timecompletesched:w.timecompletesched||''
     }
 }
 
@@ -91,6 +91,168 @@ var vjwomap = (vjwo = null) => {
         woDescr:vjwo['woDescr                                                     ']||''
     }
 }
+
+export{
+    awo,
+    vjwomap
+}
+
+
+/* CONVERSION REFERNCES
+WorkOrderNumber: '',
+      OrderDate: '1970-01-01T00:00:00Z',
+      TakenBy: '',
+      CustomerCode: '',
+      PurchaseOrderNumber: '',
+      WorkOrderCategory: '1',
+      ReferenceNumber: '',
+      BillType: 'B',
+      JobAddressLine1: '',
+      JobAddressLine2: '',
+      JobAddressLine3: '',
+      ContactName: '',
+      PhoneNumber: '',
+      TerritoryMap: '',
+      TechnicianID: '',
+      SalesCategoryCode: '',
+      Estimator: '',
+      Supervisor: '',
+      WOStatusCode: '',
+      ScheduledForTechnician: '',
+      IncludeBillTo: 'N',
+      CompletelyBilled: 'N',
+      QuotedPrice: 0,
+      LabourRateTable: '',
+      EquipmentRateTable: '',
+      TravelMUTable: '',
+      SalesTaxApplicable: 'E',
+      FederalTaxApplicable: 'N',
+      BillLabour: 'D',
+      BillMaterial: 'D',
+      ScheduleTime: '',
+      DMSNumber: '',
+      BillToCode: '',
+      DateQuoted: '1970-01-01T00:00:00Z',
+      ScheduledDate: '1970-01-01T00:00:00Z',
+      DateCompleted: '1970-01-01T00:00:00Z',
+      DateBillPrepared: '1970-01-01T00:00:00Z',
+      ApprovedForBillingDate: '1970-01-01T00:00:00Z',
+      BillingDate: '1970-01-01T00:00:00Z',
+      InvoiceNumber: '',
+      TimeOfCall: '',
+      ApprovedBy: '',
+      JobNumber: '',
+      CostItem: '',
+      EquipmentNumber: '',
+      PrintedYetDaily: 'N',
+      WorkOrderTicketPrinted: 'N',
+      ServiceContractNumber: '',
+      LineNumber: '',
+      VehicleIdentificationNumber: '',
+      SourceOfCallCode: '',
+      DispatchPriority: '',
+      DispatchEstimatedHours: 0,
+      DispatchNumber: '',
+      ARSubledgerCode: '',
+      Filler2: '',
+      PlymouthQFlag: '',
+      PaymentTerms: '',
+      TimeArrived: '',
+      OrderTime: '',
+      MainTechnicianID: '',
+      MainOccupation: '',
+      MainEstimatedHours: 0,
+      AlternateTechnicianID1: '',
+      AlternateOccupation1: '',
+      AlternateEstimatedHours1: 0,
+      AlternateTechnicianID2: '',
+      AlternateOccupation2: '',
+      AlternateEstimatedHours2: 0,
+      AlternateTechnicianID3: '',
+      AlternateOccupation3: '',
+      AlternateEstimatedHours3: 0,
+      AlternateTechnicianID4: '',
+      AlternateOccupation4: '',
+      AlternateEstimatedHours4: 0,
+      SubTerritory: '',
+      DispatchDate: '1970-01-01T00:00:00Z',
+      DispatchTime: '',
+      ArrivalDate: '1970-01-01T00:00:00Z',
+      ArrivalTime: '',
+      ScheduledCompletionDate: '1970-01-01T00:00:00Z',
+      ScheduledCompletionTime: '',
+      CompletedTime: '',
+      ClosedDate: '1970-01-01T00:00:00Z',
+      PagedDate: '1970-01-01T00:00:00Z',
+      TimePaged: '',
+      Margin: '',
+      Filler3: '',
+      FlatRateBook: '',
+      PriceLevel: '',
+      TerritorySalespersonCode: '',
+      ProvinceStateCode: '',
+      SpareNewCentury: '',
+      CityCountyCode: '',
+      WCBCode: '',
+      TaxExemptionNumber: '',
+      SalesTaxGroup: '',
+      WorkInProgressMarkup: 0,
+      EquipmentMarkupTable: '',
+      DateRevised: '1970-01-01T00:00:00Z',
+      TimeRevised: '',
+      RevisedBy: '',
+      Spare1: '',
+      Spare2: '',
+      Spare3: '',
+      Spare4: '',
+      Spare5: '',
+      Spare6: '',
+      Spare7: '',
+      Spare8: '',
+      Spare9: '',
+      Spare10: '',
+      TestResult: '',
+      PurchaseAgreement: '',
+      PurchaseAgreementItemNumber: '',
+      APSubledgerCode: '',
+      Filler5: '',
+      MobileSignatureFileName: '',
+      MobileBoardRecordPrimaryKey: '',
+      MobileWorkOrder: '',
+      MobileQuote: '',
+      MobileAdjustmentHours: 0,
+      LocationRequestDate: '1970-01-01T00:00:00Z',
+      UpdateToCarrier: 'N',
+      MobileSignatureName: '',
+      SalesForceCode: '',
+      QuoteStatus: '',
+      NewPurchaseOrderNumber: '',
+      MasterOrSlave: '',
+      MasterWorkOrder: '',
+      Division: '',
+      BillEquipment: 'D',
+      BillTravel: 'D',
+      BillOther: 'D',
+      CertifiedPayrollRequired: 'N',
+      LastCertifiedPayrollNumber: '',
+      ContactNumber: '',
+      WageDescriptionNumber: '',
+      FinalCertifiedPayroll: 'N',
+      MobileBilling: '',
+      MobileApprovedBilling: '1970-01-01T00:00:00Z',
+      InvoiceDMSNumber: '',
+      CertificationType: '',
+      ComponentCode: '',
+      WhContractAgency: '',
+      MergeQuoteIntoPrepbill: 'N',
+      CRMQuotationNumber: '',
+      RevisionNumber: '',
+      ShipToCode: '',
+      WasMobileBilled: 'N',
+      LastInvoiceNumber: '',
+      ARTermsCode: '',
+      XOIURL: ''
+=======
 /*
 WorkOrderNumber: '',
 OrderDate: '1970-01-01T00:00:00Z',
@@ -245,6 +407,7 @@ WasMobileBilled: 'N',
 LastInvoiceNumber: '',
 ARTermsCode: '',
 XOIURL: ''
+>>>>>>> 76528ad6cbbd4120835acae21bd64d29504300af
 
 ARSubledgerCode: "AR"
 ApprovedForBillingDate: "null"
@@ -298,9 +461,3 @@ WasMobileBilled: "N"
 WorkOrderCategory: "6"
 WorkOrderNumber: "00025796"
 */
-
-export{
-    awo,
-    vjwomap
-}
-

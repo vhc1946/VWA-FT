@@ -2,12 +2,12 @@ import {wolstore} from './lstore.js';
 import {ServiceWO} from '../back/sticket-build.js';
 import {SYNCticket} from './vapi-FTrequest.js';
 
-import {DropNote} from '../repo/js/vg-poppers.js';
-import * as titlebar from '../repo/js/vg-titlebar.js';
-import * as vcontrol from '../repo/js/view-controller.js';
+import {DropNote} from '../repo/modules/vg-poppers.js';
+import * as titlebar from '../repo/modules/vg-titlebar.js';
+import * as vcontrol from '../repo/layouts/view-controller.js';
 import {VHCform} from '../repo/tools/vhc-forms.js';
 
-var publicfolder = '/Tech/bin/css'
+var publicfolder = '/Tech/bin/css';
 
 
 // LOAD Ticket /////////////////////////////////////////////////////////////////
@@ -83,7 +83,7 @@ class Contform extends VHCform{
                   <div id="present-contract-addtimesave">-4</div>
               </div>
           </div>
-      </div>       
+      </div>
             `;
   }
   dom={  // was cntrctform
@@ -133,17 +133,17 @@ var qactions = {
 };
 var mactions = {
   save:{
-    id:'wo-save',
+    id:'wo-save-button',
     src:'../bin/repo/assets/icons/disk.png',
     title:'Save WO'
   },
   delete:{
-    id:'wo-delete',
+    id:'wo-delete-button',
     src:'../bin/repo/assets/icons/trash.png',
     title:'Delete WO'
   },
   refresh:{
-    id:'refresh-wo',
+    id:'wo-refresh-button',
     src:'../bin/repo/assets/icons/refresh.png',
     title:'Refresh WO'
   }
@@ -160,14 +160,27 @@ $(document.getElementById(titlebar.tbdom.page.settings)).hide();
 
 vcontrol.SETUPviewcontroller('../bin/repo/');
 var ticketviews = new vcontrol.ViewGroup({
-  cont:document.getElementById('viewcontainer'),
+  cont:document.getElementById('ticket-build-container'),
   type:'mbe'
 });
-var form = new Contform(document.createElement('div'));
-form.cont.id = 'wo-form';
-document.body.appendChild(form.cont);
+
+
+var woform = new WOform(document.createElement('div'));
+
+// Adding forms to build views
+
+ticketviews.ADDview('Information',woform.cont);
+//add service item section
+//add checklist section
+
+woform.cont.id = 'wo-form';
+document.body.appendChild(woform.cont);
 $(document.getElementById('viewcontainer')).hide();
 
+
+
+
+/*
 ////////////////////////////////////////////////////////////////////////////////
 var DELETEwo = (wonum=null)=>{
   if(wonum){
@@ -208,7 +221,6 @@ document.getElementById(titlebar.tbdom.window.close).addEventListener('click',(e
   DropNote('tr','WO Saved!','green');
   window.close();
 });
-*/
 document.getElementById('wo-delete').addEventListener('click',(ele)=>{
   DELETEwo(curwo.wo.num);
   curwo.LOADwo();
@@ -223,7 +235,8 @@ document.getElementById('refresh-wo').addEventListener('click',(ele)=>{
   SYNCticket(currwo.wo.WONum).then(ticket=>{console.log(ticket);})
 });
 
-/* Navbar Testing */
+*/
+/* Navbar Testing
 var prevScrollpos = window.pageYOffset; // Set initial screen position
 window.onscroll = function() {
   var currentScrollPos = window.pageYOffset;
@@ -236,3 +249,4 @@ window.onscroll = function() {
   }
   prevScrollpos = currentScrollPos;
 }
+ */
