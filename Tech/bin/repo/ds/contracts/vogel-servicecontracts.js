@@ -1,9 +1,4 @@
-var {ExcelDateToJSDate}=require('../../tools/box/xltools.js');
-
-/* Service Contract File ////////////////////////////////////////////////////
-
-*////////////////////////////////////////////////////////////////////////////
-
+import {ExcelDateToJSDate} from '../../tools/xltools.js';
 
 var aservicecontract = (sc=null)=>{
     if(!sc||sc==undefined){
@@ -60,7 +55,7 @@ var vjservicecontractmap=(vjsc)=>{
     }
 }
 
-module.exports = {
+export {
     aservicecontract,
     vjservicecontractmap
 }

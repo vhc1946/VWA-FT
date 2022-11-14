@@ -1,10 +1,4 @@
-
-var {ExcelDateToJSDate} = require('../../tools/box/xltools.js')
-/* Service Item File ////////////////////////////////////////////////////////
-
-*////////////////////////////////////////////////////////////////////////////
-
-
+import {ExcelDateToJSDate} from '../../tools/xltools.js';
 
 var aserviceitem = (si)=>{
     if(!si || si==undefined){
@@ -69,7 +63,7 @@ var vjserviceitemmap = (vjsi = null) => {
     }
 }
 
-module.exports = {
+export {
     aserviceitem,
     vjserviceitemmap
 }

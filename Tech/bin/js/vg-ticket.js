@@ -1,5 +1,4 @@
 import {wolstore} from './lstore.js';
-import {wodom} from '../back/ticket-dom.js';
 import {ServiceWO} from '../back/sticket-build.js';
 import {SYNCticket} from './vapi-FTrequest.js';
 
@@ -15,27 +14,106 @@ var publicfolder = '/Tech/bin/css'
 
 var currticket = JSON.parse(localStorage.getItem(wolstore.toloadwo));
 
-var wodom = {
-
-}
 class WOform extends VHCform{
-  constructor(){
-
+  constructor(cont){
+    super(cont);
     this.cont.innerHTML=`
-    `
-    //this.fltr = awo;
+    <div id=${this.dom.cont} class="twelve-col-grid">
+      <img src="../bin/repo/assets/images/VogelLogo.png" id="header-logo" alt="VOGEL">
+      <div class="client-label">WO Num:</div><input id=${this.dom.info.num} type="text" />
+      <div class="client-label">Client:</div><input id=${this.dom.info.name} class="client-input" type="text" />
+      <div class="client-label">Address:</div><input id=${this.dom.info.address} class="client-input" type="text" />
+    </div>
+    `;
   }
-  dom={
-
+  dom={  // was wodom
+    cont: 'wo-cont',
+    action:{
+      save:'wo-action-save',
+      close:'wo-action-close',
+      delete:'wo-action-delete'
+    },
+    info: {
+        num: 'wo-info-num',
+        name: 'wo-info-customer',
+        address: 'wo-info-address'
+    }
   }
+  submit(){}
+}
+class Contform extends VHCform{
+  constructor(){
+    this.cont.innerHTML=`
+      <div id="wo-present-contract-cont">
+          <input id="present-contract-name" type="search" list="contract-name-list" />
+          <div id="present-contract-opts">
+              <div class="present-contract-opt">
+                  <div class="present-contract-opt-desc" id="monthly-tag">Monthly Plan</div>
+                  <input id="wo-contract-appr" type="checkbox" />
+                  <div id="present-contract-monthly">24</div>
+              </div>
 
-  submit(){
-    currwo
+              <div class="present-contract-opt">
+                  <div class="present-contract-opt-desc">Additional System(s)</div><input
+                      class="present-contract-opt-quantity" type="number" />
+                  <div id="present-contract-addsys">21</div>
+              </div>
+              <div class="present-contract-opt">
+                  <div class="present-contract-opt-desc">Additional Component(s)</div><input
+                      class="present-contract-opt-quantity" type="number" />
+                  <div id="present-contract-addcomp">12</div>
+              </div>
+
+              <div id="enhance-tag">Enhancements</div>
+
+              <div class="present-contract-opt">
+                  <div class="present-contract-opt-desc">Standard Filters</div><input
+                      class="present-contract-opt-quantity" type="number" />
+                  <div id="present-contract-addstdflt">5</div>
+              </div>
+              <div class="present-contract-opt">
+                  <div class="present-contract-opt-desc">Humidifier Service/Pad</div><input
+                      class="present-contract-opt-quantity" type="number" />
+                  <div id="present-contract-addhumpad">5</div>
+              </div>
+              <div class="present-contract-opt">
+                  <div class="present-contract-opt-desc">Specialty Filters</div><input
+                      class="present-contract-opt-quantity" type="number" />
+                  <div id="present-contract-addspcflt">12</div>
+              </div>
+              <div class="present-contract-opt">
+                  <div class="present-contract-opt-desc">Time Saver Disc.</div><input
+                      class="present-contract-opt-quantity" type="number" />
+                  <div id="present-contract-addtimesave">-4</div>
+              </div>
+          </div>
+      </div>       
+            `;
   }
+  dom={  // was cntrctform
+    cont: 'wo-present-contract-cont',
+    form: {
+        cont: 'present-contract-opts',
+        memappr: 'wo-contract-appr',
+        desc: 'present-contract-opt-desc',
+        quantity: 'present-contract-opt-quantity',
+        appr: 'present-contract-opt-appr',
+        name: 'present-contract-name',
+        month: 'present-contract-monthly',
 
+        inputs: {
+            sys: 'present-contract-addsys',
+            comp: 'present-contract-addcomp',
+            stdfltr: 'present-contract-addstdflt',
+            spcfltr: 'present-contract-addspcflt',
+            humpad: 'present-contract-addhumpad',
+            timesave: 'present-contract-addtimesave'
+        }
+    }
+  }
+  submit(){}
 }
 
-console.log(currticket);
 
 if(currticket){
   localStorage.setItem(wolstore.toloadwo,null);
@@ -59,12 +137,12 @@ var qactions = {
 };
 var mactions = {
   save:{
-    id:wodom.action.save,
+    id:'wo-save',
     src:'../bin/repo/assets/icons/disk.png',
     title:'Save WO'
   },
   delete:{
-    id:wodom.action.delete,
+    id:'wo-delete',
     src:'../bin/repo/assets/icons/trash.png',
     title:'Delete WO'
   },
@@ -89,6 +167,12 @@ var ticketviews = new vcontrol.ViewGroup({
   cont:document.getElementById('viewcontainer'),
   type:'mbe'
 });
+var woform = new WOform(document.createElement('div'));
+woform.cont.id = 'wo-form';
+document.body.appendChild(woform.cont);
+$(document.getElementById('viewcontainer')).hide();
+
+document.getElementsByClassName('viewcontrol-port-item')[0].innerHTML = woform.cont;
 
 ////////////////////////////////////////////////////////////////////////////////
 var DELETEwo = (wonum=null)=>{
@@ -106,7 +190,7 @@ var DELETEwo = (wonum=null)=>{
 }
 
 //WO Number CHANGE
-document.getElementById(wodom.info.num).addEventListener('change', (ele) => { //WO number input change
+document.getElementById('wo-info-num').addEventListener('change', (ele) => { //WO number input change
     if (ele.target.value != '') {
         document.getElementsByTagName('title')[0].innerText = ele.target.value;
         $(document.getElementById('wo-setup-sys')).show();
@@ -117,7 +201,7 @@ document.getElementById(wodom.info.num).addEventListener('change', (ele) => { //
 });
 
 // Buttons ///////////////////////////////////////////////////////////
-document.getElementById(wodom.action.save).addEventListener('click',(ele)=>{
+document.getElementById('wo-save').addEventListener('click',(ele)=>{
   curwo.SAVEwo();
   LOADwolist();
   console.log('WO saved...',curwo.wo);
@@ -131,7 +215,7 @@ document.getElementById(titlebar.tbdom.window.close).addEventListener('click',(e
   window.close();
 });
 */
-document.getElementById(wodom.action.delete).addEventListener('click',(ele)=>{
+document.getElementById('wo-delete').addEventListener('click',(ele)=>{
   DELETEwo(curwo.wo.num);
   curwo.LOADwo();
   DropNote('tr','WO Deleted..','red');
