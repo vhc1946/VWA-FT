@@ -1,12 +1,7 @@
-
-<<<<<<< HEAD
-import * as dom from '../back/ticket-dom.js';
-import {awo} from '../repo/ds/wos/vogel-wos.js';
-=======
 import {awo} from '../repo/ds/wos/vogel-wos.js';
 import {aservicecontract} from '../repo/ds/contracts/vogel-servicecontracts.js';
 import {aserviceitem} from '../repo/ds/customers/vogel-serviceitems.js';
->>>>>>> 76528ad6cbbd4120835acae21bd64d29504300af
+
 import { SENDrequest } from '../repo/apis/vapi/vapicore.js';
 
 

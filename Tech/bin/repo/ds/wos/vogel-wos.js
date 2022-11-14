@@ -1,12 +1,5 @@
 
-<<<<<<< HEAD
 // /var {ExcelDateToJSDate} = require('../../tools/box/xltools.js')
-/* Service Item File ////////////////////////////////////////////////////////
-
-*////////////////////////////////////////////////////////////////////////////
-=======
-import {ExcelDateToJSDate} from '../../tools/xltools.js';
->>>>>>> 76528ad6cbbd4120835acae21bd64d29504300af
 
 var awo = (w)=>{
     if(!w || w==undefined){
@@ -98,7 +91,7 @@ var vjwomap = (vjwo = null) => {
         woDescr:vjwo['woDescr                                                     ']||''
     }
 }
-<<<<<<< HEAD
+
 export{
     awo,
     vjwomap
@@ -468,9 +461,3 @@ WasMobileBilled: "N"
 WorkOrderCategory: "6"
 WorkOrderNumber: "00025796"
 */
-
-export{
-    awo,
-    vjwomap
-}
-

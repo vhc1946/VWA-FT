@@ -1,8 +1,4 @@
 import {wolstore} from './lstore.js';
-<<<<<<< HEAD
-//import {wodom} from '../back/ticket-dom.js';
-=======
->>>>>>> 76528ad6cbbd4120835acae21bd64d29504300af
 import {ServiceWO} from '../back/sticket-build.js';
 import {SYNCticket} from './vapi-FTrequest.js';
 
@@ -11,7 +7,7 @@ import * as titlebar from '../repo/js/vg-titlebar.js';
 import * as vcontrol from '../repo/js/view-controller.js';
 import {VHCform} from '../repo/tools/vhc-forms.js';
 
-var publicfolder = '/Tech/bin/css'
+var publicfolder = '/Tech/bin/css';
 
 
 // LOAD Ticket /////////////////////////////////////////////////////////////////
@@ -91,7 +87,7 @@ class Contform extends VHCform{
                   <div id="present-contract-addtimesave">-4</div>
               </div>
           </div>
-      </div>       
+      </div>
             `;
   }
   dom={  // was cntrctform
@@ -178,6 +174,10 @@ $(document.getElementById('viewcontainer')).hide();
 
 document.getElementsByClassName('viewcontrol-port-item')[0].innerHTML = woform.cont;
 
+
+
+
+/*
 ////////////////////////////////////////////////////////////////////////////////
 var DELETEwo = (wonum=null)=>{
   if(wonum){
@@ -218,7 +218,6 @@ document.getElementById(titlebar.tbdom.window.close).addEventListener('click',(e
   DropNote('tr','WO Saved!','green');
   window.close();
 });
-*/
 document.getElementById('wo-delete').addEventListener('click',(ele)=>{
   DELETEwo(curwo.wo.num);
   curwo.LOADwo();
@@ -233,7 +232,8 @@ document.getElementById('refresh-wo').addEventListener('click',(ele)=>{
   SYNCticket(currwo.wo.WONum).then(ticket=>{console.log(ticket);})
 });
 
-/* Navbar Testing */
+*/
+/* Navbar Testing
 var prevScrollpos = window.pageYOffset; // Set initial screen position
 window.onscroll = function() {
   var currentScrollPos = window.pageYOffset;
@@ -246,3 +246,4 @@ window.onscroll = function() {
   }
   prevScrollpos = currentScrollPos;
 }
+ */
