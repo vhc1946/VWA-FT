@@ -28,11 +28,6 @@ class WOform extends VHCform{
   }
   dom={  // was wodom
     cont: 'wo-cont',
-    action:{
-      save:'wo-action-save',
-      close:'wo-action-close',
-      delete:'wo-action-delete'
-    },
     info: {
         num: 'wo-info-num',
         name: 'wo-info-customer',
@@ -42,7 +37,8 @@ class WOform extends VHCform{
   submit(){}
 }
 class Contform extends VHCform{
-  constructor(){
+  constructor(cont){
+    super(cont);
     this.cont.innerHTML=`
       <div id="wo-present-contract-cont">
           <input id="present-contract-name" type="search" list="contract-name-list" />
@@ -167,12 +163,10 @@ var ticketviews = new vcontrol.ViewGroup({
   cont:document.getElementById('viewcontainer'),
   type:'mbe'
 });
-var woform = new WOform(document.createElement('div'));
-woform.cont.id = 'wo-form';
-document.body.appendChild(woform.cont);
+var form = new Contform(document.createElement('div'));
+form.cont.id = 'wo-form';
+document.body.appendChild(form.cont);
 $(document.getElementById('viewcontainer')).hide();
-
-document.getElementsByClassName('viewcontrol-port-item')[0].innerHTML = woform.cont;
 
 ////////////////////////////////////////////////////////////////////////////////
 var DELETEwo = (wonum=null)=>{
