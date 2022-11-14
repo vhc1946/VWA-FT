@@ -84,9 +84,9 @@ document.getElementById('new-wo').addEventListener('click', (ele)=>{
 document.getElementById(titlebar.tbdom.page.print).addEventListener('click', (ele)=>{
     window.print();
 });
-*/
+
 document.getElementById(titlebar.tbdom.page.user).addEventListener('click', (ele)=>{
     window.location.href='../index.html';
 });
-
+*/
 LOADwolist();
