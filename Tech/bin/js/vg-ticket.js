@@ -14,7 +14,6 @@ var publicfolder = '/Tech/bin/css';
 
 var currticket = JSON.parse(localStorage.getItem(wolstore.toloadwo));
 
-console.log(currticket);
 class WOform extends VHCform{
   constructor(cont){
     super(cont);
@@ -114,7 +113,7 @@ class Contform extends VHCform{
           <div class="contract-opt">
               <div>Num of Visits</div><input placeholder="visits">
           </div>
-      </div>      
+      </div>
       `;
   }
   dom={  // was cntrctform

@@ -8,40 +8,35 @@ import { SENDrequest } from '../repo/apis/vapi/vapicore.js';
 var vurl = 'https://18.191.134.244:5000/api'//'https://localhost:5000/api'//;
 var vapp = 'VMT';
 
-
-
-// HEADERS /////////////////////////////////////////////
-
-////////////////////////////////////////////////////////
-
 var GETjapitest=()=>{
   return new Promise((res,rej)=>{
       var wopull = {
           table:'test',
           option:'template',
-          template:'WO_SC_ServiceContractMaster_tbl'
+          template:'AR_CustomerServiceItems_tbl'
       };
       return res(SENDrequest(vurl,vapp,wopull));
   });
 }
+/*
 GETjapitest().then(
   res=>{
     let arr=[]
     for(let x in res.body.table[0]){
       arr.push(x);
     }
+    console.log(arr);
     var wopull = {
         table:'test',
         option:'download',
-        template:'WO_SC_ServiceContractMaster_tbl',
+        template:'AR_CustomerServiceItems_tbl',
         where:[{OP:'=',CustomerCode:'VOJO05'}]
     };
     SENDrequest(vurl,vapp,wopull).then(
             res=>{console.log(res);}
         );
   });
-
-
+*/
 var GETresflbook=(wonum)=>{
     return new Promise((res,rej)=>{
         var wopull = {
@@ -102,7 +97,6 @@ var STARTticket=(wonum)=>{
 
                 let havesc = false;
                 let havesi = false;
-                console.log(ticket)
                 GETscontract(ticket.wo.custcode).then(
                     result=>{
                         if(result.body.success){
