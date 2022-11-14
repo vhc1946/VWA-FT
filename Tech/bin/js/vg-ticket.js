@@ -6,13 +6,14 @@ import {SYNCticket} from './vapi-FTrequest.js';
 import {DropNote} from '../repo/js/vg-poppers.js';
 import * as titlebar from '../repo/js/vg-titlebar.js';
 import * as vcontrol from '../repo/js/view-controller.js';
+import {VHCform} from '../repo/tools/vhc-forms.js';
 
 var publicfolder = '/Tech/bin/css'
 
 
 // LOAD Ticket /////////////////////////////////////////////////////////////////
 
-var currwo = JSON.parse(localStorage.getItem(wolstore.toloadwo));
+var currticket = JSON.parse(localStorage.getItem(wolstore.toloadwo));
 
 var wodom = {
 
@@ -27,25 +28,23 @@ class WOform extends VHCform{
   dom={
 
   }
-  
+
   submit(){
     currwo
   }
 
 }
 
-var WF = new WOform();
+console.log(currticket);
 
-console.log(currwo);
-
-if(currwo){
+if(currticket){
   localStorage.setItem(wolstore.toloadwo,null);
-  localStorage.setItem(wolstore.lastwo,JSON.stringify(currwo));
+  localStorage.setItem(wolstore.lastwo,JSON.stringify(currticket));
   DropNote('tr','WO found','green');
 }else{DropNote('tr','WO not found','red');}
 
 window.addEventListener('beforeunload',(ele)=>{ //here for page refresh
-  localStorage.setItem(wolstore.toloadwo,JSON.stringify(currwo));
+  localStorage.setItem(wolstore.toloadwo,JSON.stringify(currticket));
 });
 
 ////////////////////////////////////////////////////////////////////////////////
