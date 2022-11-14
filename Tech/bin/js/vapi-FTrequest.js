@@ -39,7 +39,7 @@ GETjapitest().then(
     SENDrequest(vurl,vapp,wopull).then(
             res=>{console.log(res);}
         );
-  }).then(res2=>{console.log(res2)});
+  });
 
 
 
@@ -64,7 +64,7 @@ var GETscontract=(custcode)=>{
 var GETwo=(wonum)=>{
     return new Promise((res,rej)=>{
         var wopull = {
-            table:'test',
+            table:'wonumber',
             wonum:wonum,//'00024530'
         };
         return res(SENDrequest(vurl,vapp,wopull));
@@ -97,16 +97,19 @@ var STARTticket=(wonum)=>{
             if(result.body.success){
                 let ticket = {};
                 ticket.history = {};
-                ticket.wo = awo(result.body.table[0]);
+
+                if(result.body.table.length==1){ticket.wo = awo(result.body.table[0]);}
+                else{ticket.wo=null;}
+
                 let havesc = false;
                 let havesi = false;
-
-                GETscontract(ticket.wo.CustCode).then(
+                console.log(ticket)
+                GETscontract(ticket.wo.custcode).then(
                     result=>{
                         if(result.body.success){
                             let others=[];
                             for(let i=result.body.table.length-1;i>=0;i--){  //Finds first Active Contract by searching from the bottom up
-                                if(result.body.table[i].ContractStatus == 'A'){
+                                if(result.body.table[i].status == 'A'){
                                     ticket.contract = aservicecontract(result.body.table[i]);
                                 }else{
                                     others.push(aservicecontract(result.body.table[i])); //aservicecontract()
@@ -121,7 +124,7 @@ var STARTticket=(wonum)=>{
                         if(havesi){return resolve(ticket);}
                     }
                 )
-                GETserviceitems(ticket.wo.CustCode).then(
+                GETserviceitems(ticket.wo.custcode).then(
                     result=>{
                         ticket.sitems = [];
                         if(result.body.success){
