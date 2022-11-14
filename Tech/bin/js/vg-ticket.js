@@ -29,11 +29,6 @@ class WOform extends VHCform{
   }
   dom={  // was wodom
     cont: 'wo-cont',
-    action:{
-      save:'wo-action-save',
-      close:'wo-action-close',
-      delete:'wo-action-delete'
-    },
     info: {
         num: 'wo-info-num',
         name: 'wo-info-customer',
@@ -43,7 +38,8 @@ class WOform extends VHCform{
   submit(){}
 }
 class Contform extends VHCform{
-  constructor(){
+  constructor(cont){
+    super(cont);
     this.cont.innerHTML=`
       <div id="wo-present-contract-cont">
           <input id="present-contract-name" type="search" list="contract-name-list" />
