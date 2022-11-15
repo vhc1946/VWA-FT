@@ -21,9 +21,13 @@ class WOform extends VHCform{
     <div id=${this.dom.cont} class="twelve-col-grid">
       <img src="../bin/repo/assets/images/VogelLogo.png" id="header-logo" alt="VOGEL">
       <div class="client-label">WO Num:</div><input id=${this.dom.info.id} type="text" />
-      <div class="client-label">Client:</div><input id=${this.dom.info.contactname} class="client-input" type="text" />
+      <div class="client-label">Contact:</div><input id=${this.dom.info.contactname} class="client-input" type="text" />
       <div class="client-label">Street:</div><input id=${this.dom.info.street} class="client-input" type="text" />
       <div class="client-label">City/Zip:</div><input id=${this.dom.info.cityzip} class="client-input" type="text" />
+      <div class="client-label">Phone:</div><input id=${this.dom.info.contactphone} class="client-input" type="text" />
+      <div class="client-label">Cust Code:</div><input id=${this.dom.info.custcode} class="client-input" type="text" />
+      <div class="client-label">Department:</div><input id=${this.dom.info.dept} class="client-input" type="text" />
+      <div class="client-label">Price Book:</div><input id=${this.dom.info.pricebook} class="client-input" type="text" />
     </div>
     `;
   }
@@ -33,7 +37,11 @@ class WOform extends VHCform{
         id: 'wo-info-id',
         contactname: 'wo-info-contactname',
         street: 'wo-info-street',
-        cityzip: 'wo-info-cityzip'
+        cityzip: 'wo-info-cityzip',
+        contactphone: 'wo-info-contactphone',
+        custcode: 'wo-info-custcode',
+        dept: 'wo-info-dept',
+        pricebook: 'wo-info-pricebook'
     }
   }
   submit(){}
@@ -164,6 +172,39 @@ class Contform extends VHCform{
   }
   submit(){}
 }
+class SIform extends VHCform{
+  constructor(cont){
+    super(cont);
+    this.cont.innerHTML=``;
+  }
+  dom={ 
+    cont: 'si-cont',
+    info: {
+      area: 'si-area',
+      beltsize: 'si-beltsize',
+      controls: 'si-controls',
+      desc: 'si-desc',
+      elec: 'si-elec',
+      filt1: 'si-filt1',
+      filt1q: 'si-filt1q',
+      filt2: 'si-filt2',
+      filt2q: 'si-filt2q',
+      id: 'si-id',
+      location: 'si-location',
+      manf: 'si-manf',
+      model: 'si-model',
+      refri: 'si-refri',
+      serial: 'si-serial',
+      status: 'si-status',
+      tagnum: 'si-tagnum',
+      type: 'si-type',
+      warr1: 'si-warr1',
+      warr2: 'si-warr2',
+      warr3: 'si-warr3'
+    }
+  }
+  submit(){}
+}
 
 console.log(currticket);
 
@@ -229,17 +270,8 @@ ticketviews.ADDview('Information',woform.cont);
 ticketviews.ADDview('Contract',contform.cont);
 ticketviews.ADDview('Service Items',document.createElement('div'));
 ticketviews.ADDview('Checklists',document.createElement('div'));
+
 $(document.getElementsByClassName('viewcontrol-menu-item')[0]).click();  //Sets first tab as selected
-
-
-$(document.getElementById('viewcontainer')).hide();
-
-document.getElementById('presentation-open').addEventListener('click',(ele)=>{
-  let box = document.getElementsByClassName('present-cont')[0];
-  if(box.style.left == "0px"){box.style.left = "-5000px";}
-  else{box.style.left = "0px";}
-});
-
 
 var LOADinfo=()=>{
   for(let i in currticket.wo){
@@ -255,6 +287,17 @@ var LOADinfo=()=>{
 }
 
 LOADinfo();
+
+
+document.getElementById('wo-refresh-button').addEventListener('click',(ele)=>{
+  SYNCticket(currticket.wo.id).then(ticket=>{console.log(ticket);})
+});
+document.getElementById('presentation-open').addEventListener('click',(ele)=>{
+  let box = document.getElementsByClassName('present-cont')[0];
+  if(box.style.left == "0px"){box.style.left = "-5000px";}
+  else{box.style.left = "0px";}
+});
+
 
 /*
 ////////////////////////////////////////////////////////////////////////////////
@@ -303,9 +346,7 @@ document.getElementById('wo-delete').addEventListener('click',(ele)=>{
   DropNote('tr','WO Deleted..','red');
 });
 
-document.getElementById('refresh-wo').addEventListener('click',(ele)=>{
-  SYNCticket(currwo.wo.WONum).then(ticket=>{console.log(ticket);})
-});
+
 
 */
 /* Navbar Testing
