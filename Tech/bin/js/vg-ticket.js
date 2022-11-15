@@ -10,6 +10,39 @@ import {VHCform} from '../repo/tools/vhc-forms.js';
 var publicfolder = '/Tech/bin/css';
 
 
+// SETUP title bar ////////////////////////////////////////
+var qactions = {
+  present:{
+    id:'presentation-open',
+    src:'../bin/repo/assets/icons/document-signed.png',
+    title:'Presentation'
+  }
+};
+var mactions = {
+  save:{
+    id:'wo-save-button',
+    src:'../bin/repo/assets/icons/disk.png',
+    title:'Save WO'
+  },
+  delete:{
+    id:'wo-delete-button',
+    src:'../bin/repo/assets/icons/trash.png',
+    title:'Delete WO'
+  },
+  refresh:{
+    id:'wo-refresh-button',
+    src:'../bin/repo/assets/icons/refresh.png',
+    title:'Refresh WO'
+  }
+};
+
+titlebar.SETUPtitlebar('../bin/repo/',qactions,mactions,false); //login disabled
+
+$(document.getElementById(titlebar.tbdom.page.settings)).hide();
+//$(document.getElementById(titlebar.tbdom.page.user)).hide(); //hide the user section of title bar
+
+////////////////////////////////////////////////////////////////////////////////
+
 // LOAD Ticket /////////////////////////////////////////////////////////////////
 
 var currticket = JSON.parse(localStorage.getItem(wolstore.toloadwo));
@@ -179,7 +212,7 @@ class SIform extends VHCform{
   constructor(cont){
     super(cont);
     this.cont.innerHTML=`
-      <div id=${this.dom.cont}>
+      <div class=${this.dom.cont}>
         <div class="si-item">
           <div>Item ID</div><input class=${this.dom.info.id} placeholder="id">
         </div>
@@ -216,12 +249,13 @@ class SIform extends VHCform{
         </div>
         <div class="si-item">
           <div>Belt Size</div><input class=${this.dom.info.beltsize} placeholder="beltsize">
-        </div>       
+        </div>
       </div>
     `;
+    this.setinputs(this.dom.info);
   }
   dom={
-    cont: 'si-cont',
+    cont: 'si-form',
     info: {
       area: 'si-area', //
       beltsize: 'si-beltsize',//
@@ -263,39 +297,6 @@ window.addEventListener('beforeunload',(ele)=>{ //here for page refresh
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// SETUP title bar ///////////////////////////////////////
-var qactions = {
-  present:{
-    id:'presentation-open',
-    src:'../bin/repo/assets/icons/document-signed.png',
-    title:'Presentation'
-  }
-};
-var mactions = {
-  save:{
-    id:'wo-save-button',
-    src:'../bin/repo/assets/icons/disk.png',
-    title:'Save WO'
-  },
-  delete:{
-    id:'wo-delete-button',
-    src:'../bin/repo/assets/icons/trash.png',
-    title:'Delete WO'
-  },
-  refresh:{
-    id:'wo-refresh-button',
-    src:'../bin/repo/assets/icons/refresh.png',
-    title:'Refresh WO'
-  }
-};
-
-titlebar.SETUPtitlebar('../bin/repo/',qactions,mactions,false); //login disabled
-
-$(document.getElementById(titlebar.tbdom.page.settings)).hide();
-//$(document.getElementById(titlebar.tbdom.page.user)).hide(); //hide the user section of title bar
-
-//////////////////////////////////////////////////////////
-
 // SETUP ticket view group /////////////////////////////////////////////////////
 
 vcontrol.SETUPviewcontroller('../bin/repo/');
@@ -304,26 +305,12 @@ var ticketviews = new vcontrol.ViewGroup({
   type:'mbe'
 });
 
-
-var woform = new WOform(document.createElement('div'));
-var contform = new Contform(document.createElement('div'));
-var siform = new SIform(document.createElement('div'));
-
-ticketviews.ADDview('Information',woform.cont);
-ticketviews.ADDview('Contract',contform.cont);
-ticketviews.ADDview('Service Items',siform.cont);
-ticketviews.ADDview('Checklists',document.createElement('div'));
-
-$(document.getElementsByClassName('viewcontrol-menu-item')[0]).click();  //Sets first tab as selected
-
-var syschange=(view,button)=>{
-  console.log(view);
+var syschange=(cont,view,button)=>{
   document.getElementById('currsi').innerText = view.title;
   $(document.getElementById('currsi')).click();
 }
 
 var serviceitems = new vcontrol.ViewGroup({
-  cont:document.getElementById('si-cont'),
   type:'mlt',
   swtchEve:syschange,
   qactions:{
@@ -335,24 +322,46 @@ var serviceitems = new vcontrol.ViewGroup({
     }
   }
 });
+serviceitems.cont.id='si-cont';
 
-for(let i=0;i<currticket.sitems.length;i++){
-  serviceitems.ADDview(currticket.sitems[i].id,document.createElement('div'));
+var woform = new WOform(document.createElement('div'));
+var contform = new Contform(document.createElement('div'));
+
+ticketviews.ADDview('Information',woform.cont);
+ticketviews.ADDview('Contract',contform.cont);
+ticketviews.ADDview('Service Items',serviceitems.cont);
+ticketviews.ADDview('Checklists',document.createElement('div'));
+
+$(document.getElementsByClassName('viewcontrol-menu-item')[0]).click();  //Sets first tab as selected
+
+var LOADticket=()=>{
+  if(currticket){
+    woform.form = currticket.wo;
+    contform.form = currticket.contract;
+    for(let i=0;i<currticket.sitems.length;i++){
+      let siteinfo = new SIform(document.createElement('div'));
+      let sitemvc = new vcontrol.ViewGroup({
+        type:'mtr'
+      });
+      //add/init service info form
+      sitemvc.ADDview('Info',siteinfo.cont);
+      siteinfo.form = currticket.sitems[i];
+
+      if(currticket.repairs[currticket.sitems[i].tagid]==undefined){currticket.repairs[currticket.sitems[i].tagid]=[]}
+      // add/init service repairs
+      sitemvc.ADDview('Repairs',document.createElement('div'))
+
+      serviceitems.ADDview(currticket.sitems[i].tagid,sitemvc.cont);
+    }
+  }
 }
 
-var LOADinfo=()=>{
-  woform.form = currticket.wo;
-  contform.form = currticket.contract;
-  
-}
-
-LOADinfo();
-
+LOADticket();
+console.log(currticket);
 document.getElementById('currsi').addEventListener('click',(ele)=>{
-  let box = document.getElementById('si-cont').getElementsByClassName('viewcontrol-menubox')[0];
+  let box = serviceitems.cont.getElementsByClassName('viewcontrol-menubox')[0];
   if(box.style.left=='-250px'){box.style.left='0px';}
   else{box.style.left='-250px';}
-
 });
 document.getElementById('wo-refresh-button').addEventListener('click',(ele)=>{
   SYNCticket(currticket.wo.id).then(ticket=>{console.log(ticket);})

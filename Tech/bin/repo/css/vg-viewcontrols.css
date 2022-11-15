@@ -69,7 +69,7 @@ Must select proper classes for the menu and container. Select based on the orien
 .viewcontrol-cont-vb{
   flex-direction:column-reverse;
   flex-grow: 1;
-  
+
 }
 .viewcontrol-cont-vb>.viewcontrol-menu{
   position: fixed;
@@ -126,11 +126,11 @@ Must select proper classes for the menu and container. Select based on the orien
 
 .viewcontrol-menu-hml,
 .viewcontrol-menu-hmr{
-  border-bottom: 2px solid var(--BEE-blue);
+  /*border-bottom: 2px solid var(--BEE-blue);*/
 }
 .viewcontrol-menu-hml>div>.viewcontrol-menu-item,
 .viewcontrol-menu-hmr>div>.viewcontrol-menu-item{
-  border-radius: 10px 10px 0px 0px;
+  /*border-radius: 10px 10px 0px 0px;*/
 }
 /*////////////////////////*/
 

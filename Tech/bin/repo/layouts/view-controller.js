@@ -15,7 +15,6 @@ var FINDparentele=(ele,stop)=>{
 //  Setup Module ///////////////////////////////////////////////////////////////
 var SETUPviewcontroller=(pfolder)=>{
   pubfolder=pfolder;
-
   for(let x=0,l=stylesheets.length;x<l;x++){
     let viewstyles = document.createElement('link');
     viewstyles.setAttribute('rel','stylesheet');
@@ -155,10 +154,11 @@ var vcgroup={//STYLE GROUPS
     views will not be setup
 */
 class ViewGroup{
-  constructor({cont=document.ElementCreate('div'),type='',style=null,delEve=()=>{},swtchEve=()=>{},qactions={}}){
+  constructor({cont=document.createElement('div'),type='',style=null,delEve=()=>{},swtchEve=()=>{},qactions={}}){
     this.cont=cont;
+    console.log(this.cont);
     this.group=CreateComponent(vdom());
-    this.cont.prepend(this.group);
+    this.cont.appendChild(this.group);
 
     this.port=this.group.getElementsByClassName(vcdom.port.cont)[0];
     this.menu=this.group.getElementsByClassName(vcdom.menu.cont)[0];
@@ -184,9 +184,8 @@ class ViewGroup{
     }
     view.title=name;
     view.classList.add(vcdom.port.view,vcdom.port.selected);
-    view.prepend(document.createElement('div'));
     this.port.appendChild(view);
-
+    console.log()
     var button = document.createElement('div');//create tab button and add
     button.innerText = name
     button.title = name; //change to .title
@@ -274,7 +273,7 @@ class ViewGroup{
     this.RESETviews();
     button.classList.add(vcdom.menu.selected);
     view.classList.add(vcdom.port.selected);
-    this.swtchEve(view,button);//optional switch function
+    this.swtchEve(this.cont,view,button);//optional switch function
   }
 
   SETUPviewgroup(grp){

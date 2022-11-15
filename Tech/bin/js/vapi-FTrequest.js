@@ -154,6 +154,7 @@ var STARTticket=(wonum)=>{
                 GETserviceitems(ticket.wo.custcode).then(
                     result=>{
                         ticket.sitems = [];
+                        ticket.repairs={};
                         if(result.body.success){
                             for(let i=0;i<result.body.table.length;i++){
                                 ticket.sitems[i] = aserviceitem(result.body.table[i]); //aserviceitems()
