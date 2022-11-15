@@ -258,7 +258,14 @@ $(document.getElementById(titlebar.tbdom.page.settings)).hide();
 vcontrol.SETUPviewcontroller('../bin/repo/');
 var ticketviews = new vcontrol.ViewGroup({
   cont:document.getElementById('ticket-build-container'),
-  type:'mbe'
+  type:'mbe',
+  qactions:{
+    '.test.div':{
+      attributes:{
+      },
+      value:'test button'
+    }
+  }
 });
 
 
