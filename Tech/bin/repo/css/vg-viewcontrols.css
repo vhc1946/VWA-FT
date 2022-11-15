@@ -101,6 +101,7 @@ Must select proper classes for the menu and container. Select based on the orien
 }
 .viewcontrol-menu-hmr{
   justify-content:flex-end;
+  flex-direction: row-reverse;
 }
 .viewcontrol-menu-hmr>div{
   justify-content:flex-end;
@@ -108,18 +109,23 @@ Must select proper classes for the menu and container. Select based on the orien
 .viewcontrol-menu-hml>div:nth-child(1){
   justify-content:flex-start;
 }
+.viewcontrol-menu-vmt{
+  flex-direction: column-reverse;
+}
 .viewcontrol-menu-vmt>div:nth-child(1){
   justify-content:flex-start;
 }
 .viewcontrol-menu-vmb>div{
   justify-content:flex-end;
 }
-.viewcontrol-menu-vmb>div>.viewcontrol-menu-item,.viewcontrol-menu-vmt>div>.viewcontrol-menu-item{
+.viewcontrol-menu-vmb>div>.viewcontrol-menu-item,
+.viewcontrol-menu-vmt>div>.viewcontrol-menu-item{
   flex-grow:unset;
   min-width: 100px;
 }
 
-.viewcontrol-menu-hml,.viewcontrol-menu-hmr{
+.viewcontrol-menu-hml,
+.viewcontrol-menu-hmr{
   border-bottom: 2px solid var(--BEE-blue);
 }
 .viewcontrol-menu-hml>div>.viewcontrol-menu-item,

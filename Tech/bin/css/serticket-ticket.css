@@ -303,6 +303,14 @@ place-self: center center;
     border-right: 0 !important;
 }
 
+#si-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox{
+    position: relative;
+    left: 0px;
+    transition: left 0.25s;
+}
+#si-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-selected{
+    display: none;
+}
 
 /* Testing */
 .viewcontrol-menu{
