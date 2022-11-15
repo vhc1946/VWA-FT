@@ -22,8 +22,10 @@ var GETjapitest=()=>{
 //WO_DetailHistory_tbl
 //WO_DescOfWorkPerformed_tbl
 //WO_DescriptionOfWork_tbl
-//WO_Profile_tbl //to get the WO categories
-
+//WO_DescriptOfWorkPerformedForBill_tbl
+//WO_Profile_tbl *to get the WO categories
+//WO_FlatRate_tbl *
+/*
 GETjapitest().then(
   res=>{
     let arr=[]
@@ -34,13 +36,14 @@ GETjapitest().then(
     var wopull = {
         table:'test',
         option:'download',
-        template:'WO_DescriptionOfWork_tbl',
-        where:[{OP:'=',WorkOrderNumber:'00026024'}]
+        template:'WO_MobileFlatRate_tbl',
+        where:[{OP:'=',WorkOrderNumber:'00024530'}]
     };
     SENDrequest(vurl,vapp,wopull).then(
             res=>{console.log(res);}
         );
   });
+*/
 
 var GETresflbook=(wonum)=>{
     return new Promise((res,rej)=>{
@@ -68,6 +71,18 @@ var GETwo=(wonum)=>{
         };
         return res(SENDrequest(vurl,vapp,wopull));
     })
+}
+var GETwodescr=(wonum='')=>{
+    return new Promise((res,rej)=>{
+        var wopull = {
+            table:'test',
+            option:'download',
+            template:'WO_DescriptionOfWork_tbl',
+            where:[{OP:'=',WorkOrderNumber:wonum}]
+        };
+        return res(SENDrequest(vurl,vapp,wopull));
+    })
+
 }
 var GETcustomer=(custcode)=>{
   return new Promise((res,rej)=>{
@@ -100,8 +115,22 @@ var STARTticket=(wonum)=>{
                 if(result.body.table.length==1){ticket.wo = awo(result.body.table[0]);}
                 else{ticket.wo=null;}
 
+                let havedesc=false;
                 let havesc = false;
                 let havesi = false;
+                GETwodescr(ticket.wo.id).then(
+                  result=>{
+                    if(result.body.success){
+                      console.log('Descr',result.body.table);
+                      ticket.wo.descr=''
+                      for(let x=0,l=result.body.table.length;x<l;x++){
+                        ticket.wo.descr+=result.body.table[x].WorkDescription+'\n';
+                      }
+                    }
+                    havedesc=true;
+                    if(havesi&&havesc){return resolve(ticket);}
+                  }
+                )
                 GETscontract(ticket.wo.custcode).then(
                     result=>{
                         if(result.body.success){
@@ -119,7 +148,7 @@ var STARTticket=(wonum)=>{
                             console.log('Contracts request fail');
                         }
                         havesc=true;
-                        if(havesi){return resolve(ticket);}
+                        if(havesi&&havedesc){return resolve(ticket);}
                     }
                 )
                 GETserviceitems(ticket.wo.custcode).then(
@@ -132,7 +161,7 @@ var STARTticket=(wonum)=>{
                         }else{console.log('Service Items request fail');}
 
                         havesi=true;
-                        if(havesc){return resolve(ticket);}
+                        if(havesc&&havedesc){return resolve(ticket);}
                     }
                 )
 

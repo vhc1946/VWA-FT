@@ -8,7 +8,8 @@ class VHCform{
 
   set form(input){
     for(let i in this.inputs){
-      this.inputs[i].value = input[i]?input[i]:'';
+      try{this.inputs[i].value = input[i]?input[i]:'';}
+      catch{console.log(i)}
     }
   }
   get form(){
@@ -28,7 +29,6 @@ class VHCform{
       try{this.inputs[i]=this.cont.getElementsByClassName(inputs[i])[0];}
       catch{console.log(`Class ${i} is not declared in Form ${this.cont} it has been left out of this.inputs`)}
     }
-    console.log(this.inputs)
   }
 }
 

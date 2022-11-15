@@ -20,12 +20,14 @@ class WOform extends VHCform{
     this.cont.innerHTML=`
     <div id=${this.dom.cont} class="twelve-col-grid">
       <img src="../bin/repo/assets/images/VogelLogo.png" id="header-logo" alt="VOGEL">
-      <div class="client-label">WO Num:</div><input id=${this.dom.info.id} type="text" />
-      <div class="client-label">Client:</div><input id=${this.dom.info.contactname} class="client-input" type="text" />
-      <div class="client-label">Street:</div><input id=${this.dom.info.street} class="client-input" type="text" />
-      <div class="client-label">City/Zip:</div><input id=${this.dom.info.cityzip} class="client-input" type="text" />
+      <div class="client-label">WO Num:</div><input class=${this.dom.info.id} type="text" />
+      <div class="client-label">Client:</div><input class=${this.dom.info.contactname} class="client-input" type="text" />
+      <div class="client-label">Street:</div><input class=${this.dom.info.street} class="client-input" type="text" />
+      <div class="client-label">City/Zip:</div><input class=${this.dom.info.cityzip} class="client-input" type="text" />
+      <div class="client-label">Description:</div><textarea class=${this.dom.info.descr}></textarea>
     </div>
     `;
+    this.setinputs(this.dom.info);
   }
   dom={  // was wodom
     cont: 'wo-cont',
@@ -33,7 +35,8 @@ class WOform extends VHCform{
         id: 'wo-info-id',
         contactname: 'wo-info-contactname',
         street: 'wo-info-street',
-        cityzip: 'wo-info-cityzip'
+        cityzip: 'wo-info-cityzip',
+        descr:'wo-description'
     }
   }
   submit(){}
@@ -88,44 +91,45 @@ class Contform extends VHCform{
       </div>
       <div id=${this.dom.cont}>
           <div class="contract-opt">
-              <div>Contract ID</div><input id=${this.dom.disp.id} placeholder="id">
+              <div>Contract ID</div><input class=${this.dom.disp.id} placeholder="id">
           </div>
           <div class="contract-opt">
-              <div>Original ID</div><input id=${this.dom.disp.origid} placeholder="origid">
+              <div>Original ID</div><input class=${this.dom.disp.origid} placeholder="origid">
           </div>
           <div class="contract-opt">
-              <div>Renewal ID</div><input id=${this.dom.disp.renewid} placeholder="renewid">
+              <div>Renewal ID</div><input class=${this.dom.disp.renewid} placeholder="renewid">
           </div>
           <div class="contract-opt">
-              <div>Date From</div><input id=${this.dom.disp.datefrom} placeholder="datefrom">
+              <div>Date From</div><input class=${this.dom.disp.datefrom} placeholder="datefrom">
           </div>
           <div class="contract-opt">
-              <div>Date To</div><input id=${this.dom.disp.dateto} placeholder="dateto">
+              <div>Date To</div><input class=${this.dom.disp.dateto} placeholder="dateto">
           </div>
           <div class="contract-opt">
-              <div>Date Signed</div><input id=${this.dom.disp.datesign} placeholder="datesign">
+              <div>Date Signed</div><input class=${this.dom.disp.datesign} placeholder="datesign">
           </div>
           <div class="contract-opt">
-              <div>Member Since</div><input id=${this.dom.disp.datestart} placeholder="datestart">
+              <div>Member Since</div><input class=${this.dom.disp.datestart} placeholder="datestart">
           </div>
 
           <div class="contract-opt">
-              <div>Contact Type</div><input id=${this.dom.disp.type} placeholder="type">
+              <div>Contact Type</div><input class=${this.dom.disp.type} placeholder="type">
           </div>
           <div class="contract-opt">
-              <div>Contract Status</div><input id=${this.dom.disp.status} placeholder="status">
+              <div>Contract Status</div><input class=${this.dom.disp.status} placeholder="status">
           </div>
           <div class="contract-opt">
-              <div>Num of Billings</div><input id=${this.dom.disp.billings} placeholder="billings">
+              <div>Num of Billings</div><input class=${this.dom.disp.billings} placeholder="billings">
           </div>
           <div class="contract-opt">
-              <div>Num of Visits</div><input id=${this.dom.disp.visits} placeholder="visits">
+              <div>Num of Visits</div><input class=${this.dom.disp.visits} placeholder="visits">
           </div>
           <div class="contract-opt">
-              <div>Contract Value</div><input id=${this.dom.disp.value} placeholder="value">
+              <div>Contract Value</div><input class=${this.dom.disp.value} placeholder="value">
           </div>
       </div>
       `;
+    this.setinputs(this.dom.disp);
   }
   dom={  // was cntrctform
     cont: 'contract-cont',
@@ -249,16 +253,8 @@ document.getElementById('presentation-open').addEventListener('click',(ele)=>{
 
 
 var LOADinfo=()=>{
-  for(let i in currticket.wo){
-    if(woform.dom.info[i]){
-      document.getElementById(woform.dom.info[i]).value = currticket.wo[i];
-    }
-  }
-  for(let i in currticket.contract){
-    if(contform.dom.disp[i]){
-      document.getElementById(contform.dom.disp[i]).value = currticket.contract[i];
-    }
-  }
+  woform.form = currticket.wo;
+  contform.form = currticket.contract;
 }
 
 LOADinfo();
