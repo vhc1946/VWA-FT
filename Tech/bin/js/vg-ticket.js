@@ -20,18 +20,20 @@ class WOform extends VHCform{
     this.cont.innerHTML=`
     <div id=${this.dom.cont} class="twelve-col-grid">
       <img src="../bin/repo/assets/images/VogelLogo.png" id="header-logo" alt="VOGEL">
-      <div class="client-label">WO Num:</div><input id=${this.dom.info.num} type="text" />
-      <div class="client-label">Client:</div><input id=${this.dom.info.name} class="client-input" type="text" />
-      <div class="client-label">Address:</div><input id=${this.dom.info.address} class="client-input" type="text" />
+      <div class="client-label">WO Num:</div><input id=${this.dom.info.id} type="text" />
+      <div class="client-label">Client:</div><input id=${this.dom.info.contactname} class="client-input" type="text" />
+      <div class="client-label">Street:</div><input id=${this.dom.info.street} class="client-input" type="text" />
+      <div class="client-label">City/Zip:</div><input id=${this.dom.info.cityzip} class="client-input" type="text" />
     </div>
     `;
   }
   dom={  // was wodom
     cont: 'wo-cont',
     info: {
-        num: 'wo-info-num',
-        name: 'wo-info-customer',
-        address: 'wo-info-address'
+        id: 'wo-info-id',
+        contactname: 'wo-info-contactname',
+        street: 'wo-info-street',
+        cityzip: 'wo-info-cityzip'
     }
   }
   submit(){}
@@ -134,9 +136,10 @@ class Contform extends VHCform{
       datefrom: 'contract-datefrom',
       dateto: 'contract-dateto',
       datesign: 'contract-datesign',
+      datestart: 'contract-datestart',
       type: 'contract-type',
       status: 'contract-status',
-      billings: 'contract-status',
+      billings: 'contract-billings',
       visits: 'contract-visits',
       value: 'contract-value'
     },
@@ -161,6 +164,8 @@ class Contform extends VHCform{
   }
   submit(){}
 }
+
+console.log(currticket);
 
 if(currticket){
   localStorage.setItem(wolstore.toloadwo,null);
@@ -234,6 +239,22 @@ document.getElementById('presentation-open').addEventListener('click',(ele)=>{
   if(box.style.left == "0px"){box.style.left = "-5000px";}
   else{box.style.left = "0px";}
 });
+
+
+var LOADinfo=()=>{
+  for(let i in currticket.wo){
+    if(woform.dom.info[i]){
+      document.getElementById(woform.dom.info[i]).value = currticket.wo[i];
+    }
+  }
+  for(let i in currticket.contract){
+    if(contform.dom.disp[i]){
+      document.getElementById(contform.dom.disp[i]).value = currticket.contract[i];
+    }
+  }
+}
+
+LOADinfo();
 
 /*
 ////////////////////////////////////////////////////////////////////////////////
