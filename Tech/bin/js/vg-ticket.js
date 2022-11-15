@@ -15,6 +15,7 @@ var publicfolder = '/Tech/bin/css';
 var currticket = JSON.parse(localStorage.getItem(wolstore.toloadwo));
 
 console.log(currticket);
+
 class WOform extends VHCform{
   constructor(cont){
     super(cont);
@@ -87,38 +88,60 @@ class Contform extends VHCform{
       </div>
       <div id=${this.dom.cont}>
           <div class="contract-opt">
-              <div>Contract ID</div><input placeholder="id">
+              <div>Contract ID</div><input id=${this.dom.disp.id} placeholder="id">
           </div>
           <div class="contract-opt">
-              <div>Renewal ID</div><input placeholder="renewid">
+              <div>Original ID</div><input id=${this.dom.disp.origid} placeholder="origid">
           </div>
           <div class="contract-opt">
-              <div>Date From</div><input placeholder="datefrom">
+              <div>Renewal ID</div><input id=${this.dom.disp.renewid} placeholder="renewid">
           </div>
           <div class="contract-opt">
-              <div>Date To</div><input placeholder="dateto">
+              <div>Date From</div><input id=${this.dom.disp.datefrom} placeholder="datefrom">
           </div>
           <div class="contract-opt">
-              <div>Member Since</div><input placeholder="datesign">
+              <div>Date To</div><input id=${this.dom.disp.dateto} placeholder="dateto">
+          </div>
+          <div class="contract-opt">
+              <div>Date Signed</div><input id=${this.dom.disp.datesign} placeholder="datesign">
+          </div>
+          <div class="contract-opt">
+              <div>Member Since</div><input id=${this.dom.disp.datestart} placeholder="datestart">
           </div>
 
           <div class="contract-opt">
-              <div>Contact Type</div><input placeholder="type">
+              <div>Contact Type</div><input id=${this.dom.disp.type} placeholder="type">
           </div>
           <div class="contract-opt">
-              <div>Contract Status</div><input placeholder="status">
+              <div>Contract Status</div><input id=${this.dom.disp.status} placeholder="status">
           </div>
           <div class="contract-opt">
-              <div>Num of Billings</div><input placeholder="billings">
+              <div>Num of Billings</div><input id=${this.dom.disp.billings} placeholder="billings">
           </div>
           <div class="contract-opt">
-              <div>Num of Visits</div><input placeholder="visits">
+              <div>Num of Visits</div><input id=${this.dom.disp.visits} placeholder="visits">
+          </div>
+          <div class="contract-opt">
+              <div>Contract Value</div><input id=${this.dom.disp.value} placeholder="value">
           </div>
       </div>      
       `;
   }
   dom={  // was cntrctform
     cont: 'contract-cont',
+    disp:{
+      id: 'contract-id',
+      origid: 'contract-origid',
+      renewid: 'contract-renewid',
+      datefrom: 'contract-datefrom',
+      dateto: 'contract-dateto',
+      datesign: 'contract-datesign',
+      type: 'contract-type',
+      status: 'contract-status',
+      billings: 'contract-status',
+      visits: 'contract-visits',
+      value: 'contract-value'
+    },
     form: {
         cont: 'present-contract-opts',
         memappr: 'wo-contract-appr',
@@ -140,8 +163,6 @@ class Contform extends VHCform{
   }
   submit(){}
 }
-
-console.log(currticket);
 
 if(currticket){
   localStorage.setItem(wolstore.toloadwo,null);
@@ -203,14 +224,18 @@ var contform = new Contform(document.createElement('div'));
 
 ticketviews.ADDview('Information',woform.cont);
 ticketviews.ADDview('Contract',contform.cont);
-//add service item section
-//add checklist section
+ticketviews.ADDview('Service Items',document.createElement('div'));
+ticketviews.ADDview('Checklists',document.createElement('div'));
+$(document.getElementsByClassName('viewcontrol-menu-item')[0]).click();  //Sets first tab as selected
 
 
 $(document.getElementById('viewcontainer')).hide();
 
-
-
+document.getElementById('presentation-open').addEventListener('click',(ele)=>{
+  let box = document.getElementsByClassName('present-cont')[0];
+  if(box.style.left == "0px"){box.style.left = "-5000px";}
+  else{box.style.left = "0px";}
+});
 
 /*
 ////////////////////////////////////////////////////////////////////////////////
@@ -258,11 +283,7 @@ document.getElementById('wo-delete').addEventListener('click',(ele)=>{
   curwo.LOADwo();
   DropNote('tr','WO Deleted..','red');
 });
-document.getElementById('presentation-open').addEventListener('click',(ele)=>{
-  let box = document.getElementsByClassName('present-cont')[0];
-  if(box.style.left == "0px"){box.style.left = "-5000px";}
-  else{box.style.left = "0px";}
-});
+
 document.getElementById('refresh-wo').addEventListener('click',(ele)=>{
   SYNCticket(currwo.wo.WONum).then(ticket=>{console.log(ticket);})
 });
