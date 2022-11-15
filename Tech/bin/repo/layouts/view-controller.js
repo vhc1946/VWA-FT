@@ -155,7 +155,7 @@ var vcgroup={//STYLE GROUPS
     views will not be setup
 */
 class ViewGroup{
-  constructor({cont=document.ElementCreate('div'),type='',style=null,delEve=()=>{},swtchEve=()=>{}}){
+  constructor({cont=document.ElementCreate('div'),type='',style=null,delEve=()=>{},swtchEve=()=>{},qactions={}}){
     this.cont=cont;
     this.group=CreateComponent(vdom());
     this.cont.appendChild(this.group);
@@ -163,7 +163,7 @@ class ViewGroup{
     this.port=this.group.getElementsByClassName(vcdom.port.cont)[0];
     this.menu=this.group.getElementsByClassName(vcdom.menu.cont)[0];
     this.buttons=this.menu.children[0]; //to get navigation menu
-
+    this.ADDqactions(qactions);
     if(vcgroup[type]!=undefined){this.SETUPviewgroup(type);}
 
     this.swtchEve=swtchEve;
@@ -211,6 +211,12 @@ class ViewGroup{
     }
     this.buttons.appendChild(button);
     return view;
+  }
+
+  ADDqactions(qacts){
+    try{
+      this.group.getElementsByClassName(vcdom.menu.qactions)[0].appendChild(CreateComponent(qacts));
+    }catch{console.log('Could not add quick actions')}
   }
 
   /* Remove the Selected tab
@@ -265,10 +271,10 @@ class ViewGroup{
   }
 
   SWITCHview(view,button){
-    this.swtchEve(view.title);//optional switch function
     this.RESETviews();
     button.classList.add(vcdom.menu.selected);
     view.classList.add(vcdom.port.selected);
+    this.swtchEve(view,button);//optional switch function
   }
 
   SETUPviewgroup(grp){

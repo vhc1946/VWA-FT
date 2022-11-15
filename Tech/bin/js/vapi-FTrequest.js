@@ -13,12 +13,17 @@ var GETjapitest=()=>{
       var wopull = {
           table:'test',
           option:'template',
-          template:'AR_CustomerServiceItems_tbl'
+          template:'WO_CrewTechIds_tbl'
       };
       return res(SENDrequest(vurl,vapp,wopull));
   });
 }
-/*
+
+//WO_DetailHistory_tbl
+//WO_DescOfWorkPerformed_tbl
+//WO_DescriptionOfWork_tbl
+//WO_Profile_tbl //to get the WO categories
+
 GETjapitest().then(
   res=>{
     let arr=[]
@@ -29,14 +34,14 @@ GETjapitest().then(
     var wopull = {
         table:'test',
         option:'download',
-        template:'AR_CustomerServiceItems_tbl',
-        where:[{OP:'=',CustomerCode:'VOJO05'}]
+        template:'WO_DescriptionOfWork_tbl',
+        where:[{OP:'=',WorkOrderNumber:'00026024'}]
     };
     SENDrequest(vurl,vapp,wopull).then(
             res=>{console.log(res);}
         );
   });
-*/
+
 var GETresflbook=(wonum)=>{
     return new Promise((res,rej)=>{
         var wopull = {
@@ -130,6 +135,7 @@ var STARTticket=(wonum)=>{
                         if(havesc){return resolve(ticket);}
                     }
                 )
+
             }else{console.log('WO request fail');return resolve(null);}
         }
     )

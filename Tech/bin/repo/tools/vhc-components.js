@@ -23,6 +23,10 @@ export var CreateComponent=(comtree={})=>{
         newele.appendChild(CreateComponent({[childs]:comtree[ct].children[childs]}));
       }
     }
+    if(comtree[ct].value){
+      if(newele.tagName=='INPUT'){newele.value=comtree[ct].value}
+      else{newele.innerText=comtree[ct].value}
+    }
     return newele;
   }
 }
