@@ -4,15 +4,16 @@ import {dashdom} from '../back/ticket-dom.js';
 import * as titlebar from '../repo/modules/vg-titlebar.js';
 import * as viewcontrol from '../repo/layouts/view-controller.js';
 import { STARTticket } from './vapi-FTrequest.js';
+import { SELECTview } from '../repo/modules/vg-floatviews.js';
 
 // SETUP title bar for dash /////////////////////////////
 
 var qactions = {
     new:{
-        id:'new-wo',
+        id:'search-wo',
         src:'./bin/repo/assets/icons/file.png',
-        alt:'NEW',
-        title:'New WO'
+        alt:'SEARCH',
+        title:'Search WO'
     }
 };
 var mactions = {};
@@ -62,24 +63,37 @@ var LOADwolist = ()=>{   //Loads WO list into display table
     }
 }
 
-document.getElementById('new-wo').addEventListener('click', (ele)=>{
+document.getElementById('search-wo').addEventListener('click', (ele)=>{
+    SELECTview(document.getElementById('wo-center'),'Open WO');
+});
+document.getElementById('openwo-number').addEventListener('keypress',(eve)=>{
+    if(eve.key == 'Enter'){document.getElementById('submit-search').click();};
+  });
+document.getElementById('submit-search').addEventListener('click', (ele)=>{
+    let wonum = document.getElementById('openwo-number').value;
+    while(wonum.length < 8){
+        wonum = '0' + wonum;
+    }
     DropNote('tr','Wo is being Retrieved','green');
     /* check for in local storage
        ^(if) then load the WO from local storage and run SYNCticket to refresh it
        current data
     */
-
-    STARTticket('00025796').then(
-      ticket=>{
+    STARTticket(wonum).then(  //'00025796'
+        ticket=>{
         console.log('TICKET >',ticket);
         if(ticket){
-          DropNote('tr','Wo is Loading...','green');
-          localStorage.setItem(wolstore.toloadwo,JSON.stringify(ticket));
-          window.open('controllers/ticket.html');
+            DropNote('tr','Wo is Loading...','green');
+            localStorage.setItem(wolstore.toloadwo,JSON.stringify(ticket));
+            window.open('controllers/ticket.html');
         }else{DropNote('tr','Wo Not Found','red');}
-      }
+        }
     );
+    $(document.getElementById('vg-float-frame-close')).click();
 });
+
+
+
 /*
 document.getElementById(titlebar.tbdom.page.print).addEventListener('click', (ele)=>{
     window.print();

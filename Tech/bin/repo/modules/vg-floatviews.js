@@ -30,7 +30,7 @@ try{
   });
 }catch{}
 
-module.exports={
+export {
   ffdom,
   SELECTview,
   RESETframe

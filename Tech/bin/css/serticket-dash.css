@@ -21,3 +21,22 @@
     display: grid;
     grid-template-columns: 150px repeat(2, 1fr);
 }
+
+/* WO PopUp */
+.openwo-header{
+    background-color: var(--BEE-blue);
+    color: var(--text-light);
+    width:100%;
+    text-align: center;
+}
+[class*='openwo-area-']{
+    display: grid;
+    grid-template-columns: repeat(2, 100px);
+    row-gap: 5px;
+    padding: 5px;
+}
+.openwo-buttons{
+    padding: 5px;
+    display: flex;
+    justify-content: flex-end;
+}
