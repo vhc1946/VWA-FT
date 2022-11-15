@@ -20,23 +20,15 @@ class WOform extends VHCform{
     this.cont.innerHTML=`
     <div id=${this.dom.cont} class="twelve-col-grid">
       <img src="../bin/repo/assets/images/VogelLogo.png" id="header-logo" alt="VOGEL">
-<<<<<<< HEAD
       <div class="client-label">WO Num:</div><input class=${this.dom.info.id} type="text" />
       <div class="client-label">Client:</div><input class=${this.dom.info.contactname} class="client-input" type="text" />
       <div class="client-label">Street:</div><input class=${this.dom.info.street} class="client-input" type="text" />
       <div class="client-label">City/Zip:</div><input class=${this.dom.info.cityzip} class="client-input" type="text" />
       <div class="client-label">Description:</div><textarea class=${this.dom.info.descr}></textarea>
-=======
-      <div class="client-label">WO Num:</div><input id=${this.dom.info.id} type="text" />
-      <div class="client-label">Contact:</div><input id=${this.dom.info.contactname} class="client-input" type="text" />
-      <div class="client-label">Street:</div><input id=${this.dom.info.street} class="client-input" type="text" />
-      <div class="client-label">City/Zip:</div><input id=${this.dom.info.cityzip} class="client-input" type="text" />
-      <div class="client-label">Phone:</div><input id=${this.dom.info.contactphone} class="client-input" type="text" />
-      <div class="client-label">Cust Code:</div><input id=${this.dom.info.custcode} class="client-input" type="text" />
-      <div class="client-label">Department:</div><input id=${this.dom.info.dept} class="client-input" type="text" />
-      <div class="client-label">Price Book:</div><input id=${this.dom.info.pricebook} class="client-input" type="text" />
->>>>>>> b83a6b934469efdb6ca5b65aff44217c2c854654
-    </div>
+      <div class="client-label">Phone:</div><input class=${this.dom.info.contactphone} class="client-input" type="text" />
+      <div class="client-label">Cust Code:</div><input class=${this.dom.info.custcode} class="client-input" type="text" />
+      <div class="client-label">Department:</div><input class=${this.dom.info.dept} class="client-input" type="text" />
+      <div class="client-label">Price Book:</div><input class=${this.dom.info.pricebook} class="client-input" type="text" />
     `;
     this.setinputs(this.dom.info);
   }
@@ -47,14 +39,11 @@ class WOform extends VHCform{
         contactname: 'wo-info-contactname',
         street: 'wo-info-street',
         cityzip: 'wo-info-cityzip',
-<<<<<<< HEAD
-        descr:'wo-description'
-=======
+        descr:'wo-description',
         contactphone: 'wo-info-contactphone',
         custcode: 'wo-info-custcode',
         dept: 'wo-info-dept',
         pricebook: 'wo-info-pricebook'
->>>>>>> b83a6b934469efdb6ca5b65aff44217c2c854654
     }
   }
   submit(){}
@@ -191,7 +180,7 @@ class SIform extends VHCform{
     super(cont);
     this.cont.innerHTML=``;
   }
-  dom={ 
+  dom={
     cont: 'si-cont',
     info: {
       area: 'si-area',
