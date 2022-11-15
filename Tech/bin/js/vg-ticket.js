@@ -175,7 +175,10 @@ class Contform extends VHCform{
 class SIform extends VHCform{
   constructor(cont){
     super(cont);
-    this.cont.innerHTML=``;
+    this.cont.innerHTML=`
+    <div id=${this.dom.cont}>
+    </div>
+    `;
   }
   dom={ 
     cont: 'si-cont',
@@ -258,27 +261,34 @@ $(document.getElementById(titlebar.tbdom.page.settings)).hide();
 vcontrol.SETUPviewcontroller('../bin/repo/');
 var ticketviews = new vcontrol.ViewGroup({
   cont:document.getElementById('ticket-build-container'),
-  type:'mbe',
+  type:'mbe'
+});
+
+
+var woform = new WOform(document.createElement('div'));
+var contform = new Contform(document.createElement('div'));
+var siform = new SIform(document.createElement('div'));
+
+ticketviews.ADDview('Information',woform.cont);
+ticketviews.ADDview('Contract',contform.cont);
+ticketviews.ADDview('Service Items',siform.cont);
+ticketviews.ADDview('Checklists',document.createElement('div'));
+
+$(document.getElementsByClassName('viewcontrol-menu-item')[0]).click();  //Sets first tab as selected
+
+
+var serviceitems = new vcontrol.ViewGroup({
+  cont:document.getElementById('si-cont'),
+  type:'mlt',
   qactions:{
     '.test.div':{
       attributes:{
       },
       value:'test button'
     }
-  }
+  },
+  qaside:'left'
 });
-
-
-var woform = new WOform(document.createElement('div'));
-var contform = new Contform(document.createElement('div'));
-// Adding forms to build views
-
-ticketviews.ADDview('Information',woform.cont);
-ticketviews.ADDview('Contract',contform.cont);
-ticketviews.ADDview('Service Items',document.createElement('div'));
-ticketviews.ADDview('Checklists',document.createElement('div'));
-
-$(document.getElementsByClassName('viewcontrol-menu-item')[0]).click();  //Sets first tab as selected
 
 var LOADinfo=()=>{
   for(let i in currticket.wo){
@@ -290,6 +300,9 @@ var LOADinfo=()=>{
     if(contform.dom.disp[i]){
       document.getElementById(contform.dom.disp[i]).value = currticket.contract[i];
     }
+  }
+  for(let i=0;i<currticket.sitems.length;i++){
+    serviceitems.ADDview(currticket.sitems[i].id,document.createElement('div'));
   }
 }
 

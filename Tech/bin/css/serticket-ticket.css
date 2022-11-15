@@ -306,8 +306,6 @@ place-self: center center;
 
 /* Testing */
 .viewcontrol-menu{
-    position: fixed; /* Make it stick/fixed */
-    bottom: 0;    
     transition: bottom 0.3s;
 }
 .present-cont{

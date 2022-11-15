@@ -52,7 +52,7 @@ var vcdom={   //  DOM names
   }
 }
 
-var vdom = (rroot='')=>{
+var rvdom = (rroot='')=>{  //Quick actions right side
   return{
     [`.${vcdom.cont}.div`]:{
       attributes:{},
@@ -78,7 +78,32 @@ var vdom = (rroot='')=>{
     }
   }
 }
-
+var lvdom = (rroot='')=>{  //Quick actions left side
+  return{
+    [`.${vcdom.cont}.div`]:{
+      attributes:{},
+      children:{
+        [`.${vcdom.menu.cont}.div`]:{
+          attributes:{},
+          children:{
+            [`.${vcdom.menu.qactions}.div`]:{
+              attributes:{},
+              children: null
+            },
+            '.div':{
+              attributes:{},
+              children: null
+            }
+          }
+        },
+        [`.${vcdom.port.cont}.div`]:{
+          attributes:{},
+          children: null
+        }
+      }
+    }
+  }
+}
 
 var vcgroup={//STYLE GROUPS
   mtr:{ //menu top right
@@ -155,9 +180,13 @@ var vcgroup={//STYLE GROUPS
     views will not be setup
 */
 class ViewGroup{
-  constructor({cont=document.ElementCreate('div'),type='',style=null,delEve=()=>{},swtchEve=()=>{},qactions={}}){
+  constructor({cont=document.ElementCreate('div'),type='',style=null,delEve=()=>{},swtchEve=()=>{},qactions={},qaside='right'}){
     this.cont=cont;
-    this.group=CreateComponent(vdom());
+    if(qaside == 'right'){
+      this.group=CreateComponent(rvdom());
+    }else if(qaside == 'left'){
+      this.group=CreateComponent(lvdom());
+    }
     this.cont.appendChild(this.group);
 
     this.port=this.group.getElementsByClassName(vcdom.port.cont)[0];
