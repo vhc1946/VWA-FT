@@ -158,7 +158,7 @@ class ViewGroup{
   constructor({cont=document.ElementCreate('div'),type='',style=null,delEve=()=>{},swtchEve=()=>{},qactions={}}){
     this.cont=cont;
     this.group=CreateComponent(vdom());
-    this.cont.appendChild(this.group);
+    this.cont.prepend(this.group);
 
     this.port=this.group.getElementsByClassName(vcdom.port.cont)[0];
     this.menu=this.group.getElementsByClassName(vcdom.menu.cont)[0];
