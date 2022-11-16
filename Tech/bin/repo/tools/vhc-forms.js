@@ -4,18 +4,26 @@ class VHCform{
     this.cont=cont;
     this.inputs={}
   }
-
-
-  set form(input){
+  set form(input={}){
     for(let i in this.inputs){
-      try{this.inputs[i].value = input[i]?input[i]:'';}
-      catch{console.log(i)}
+      try{
+        switch(this.inputs[i].tagName){
+          case 'INPUT' || 'TEXTAREA':{this.inputs[i].value=input[i]?input[i]:'';break;}
+          default:{this.inputs[i].innerText = input[i]?input[i]:'';}
+        }
+      }catch{console.log(`${i} is not setup in the form`)}
     }
   }
   get form(){
     let fi ={}
     for(let i in this.inputs){
-      fi[i]=this.inputs[i].value;
+      try{
+        switch(this.inputs[i].tagName){
+          case 'INPUT' || 'TEXTAREA':{fi[i]=this.inputs[i].value;break;}
+          case 'DIV':{fi[i]=this.inputs[i].innerText;break;}
+          default:{console.log(`${i} failed to get from form`);}
+        }
+      }catch{console.log(`${i} failed to get from form`);}
     }
     return fi;
   }
