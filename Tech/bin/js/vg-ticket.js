@@ -118,12 +118,15 @@ var LOADticket=()=>{
       sitemvc.ADDview('Repairs',document.createElement('div'))
 
       serviceitems.ADDview(currticket.sitems[i].tagid,sitemvc.cont);
+      
     }
   }
 }
 
 LOADticket();
+
 console.log(currticket);
+
 document.getElementById('currsi').addEventListener('click',(ele)=>{
   let box = serviceitems.cont.getElementsByClassName('viewcontrol-menubox')[0];
   if(box.style.left=='-250px'){box.style.left='0px';}

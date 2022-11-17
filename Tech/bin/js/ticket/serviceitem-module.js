@@ -11,7 +11,7 @@ export class SIform extends VHCform{
       area: 'si-area', //
       beltsize: 'si-beltsize',//
       controls: 'si-controls',
-      desc: 'si-desc',
+      desc: 'si-desc',//
       elec: 'si-elec',
       filt1: 'si-filt1',//
       filt1q: 'si-filt1q',//
@@ -19,22 +19,25 @@ export class SIform extends VHCform{
       filt2q: 'si-filt2q',//
       id: 'si-id',//
       location: 'si-location',//
-      manf: 'si-manf',
+      manf: 'si-manf',//
       model: 'si-model',//
-      refri: 'si-refri',
+      refri: 'si-refri',//
       serial: 'si-serial',//
       status: 'si-status',
-      tagnum: 'si-tagnum',
+      tagnum: 'si-tagnum',//
       type: 'si-type',
-      warr1: 'si-warr1',
-      warr2: 'si-warr2',
-      warr3: 'si-warr3'
+      warr1: 'si-warr1',//
+      warr2: 'si-warr2',//
+      warr3: 'si-warr3'//
     }
   }
   content=`
     <div class=${this.dom.cont}>
       <div class="si-item">
         <div>Item ID</div><input class=${this.dom.info.id} placeholder="id">
+      </div>
+      <div class="si-item">
+        <div>Tag Num</div><input class=${this.dom.info.tagnum} placeholder="tagnum">
       </div>
       <div class="si-item">
         <div>Description</div><input class=${this.dom.info.desc} placeholder="desc">
@@ -69,6 +72,18 @@ export class SIform extends VHCform{
       </div>
       <div class="si-item">
         <div>Belt Size</div><input class=${this.dom.info.beltsize} placeholder="beltsize">
+      </div>
+      <div class="si-item">
+        <div>Refrigerant</div><input class=${this.dom.info.refri} placeholder="refri">
+      </div>
+      <div class="si-item">
+        <div>Parts Warranty</div><input class=${this.dom.info.warr1} placeholder="warr1">
+      </div>
+      <div class="si-item">
+        <div>Labor Warranty</div><input class=${this.dom.info.warr2} placeholder="warr2">
+      </div>
+      <div class="si-item">
+        <div>Addl Warranty</div><input class=${this.dom.info.warr3} placeholder="warr3">
       </div>
     </div>
   `
