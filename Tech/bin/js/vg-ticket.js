@@ -139,7 +139,11 @@ document.getElementById('currsi').addEventListener('click',(ele)=>{
   else{box.style.left='-250px';}
 });
 document.getElementById('wo-refresh-button').addEventListener('click',(ele)=>{
-  SYNCticket(currticket.wo.id).then(ticket=>{console.log(ticket);})
+  SYNCticket(currticket.wo.id).then(
+    ticket=>{
+      console.log(ticket);
+      if(ticket.wo){currticket.wo=ticket.wo;woform.form=currticket.wo;}
+    });
 });
 document.getElementById('presentation-open').addEventListener('click',(ele)=>{
   let box = document.getElementsByClassName('present-cont')[0];

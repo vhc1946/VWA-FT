@@ -207,15 +207,12 @@ var STARTticket=(wonum)=>{
 
 var SYNCticket=(wonum,ticket)=>{
   return new Promise((resolve,reject)=>{
+    let ticket = {};
     GETwo(wonum).then(
-        result=>{
-            if(result.body.success){
-                let ticket = {};
-                ticket.history = {};
-                ticket.wo = awo(result.body.table[0]);
-                console.log(ticket);
-                return resolve(ticket);
-            }else{console.log('WO request fail');return resolve(null);}
+        wo=>{
+            ticket.wo=wo;
+            if(!wo){console.log('WO request fail');}
+            return resolve(ticket);
         }
     )
   });
