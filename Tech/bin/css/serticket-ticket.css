@@ -9,9 +9,7 @@
     grid-column:1;
     min-width: 84px;
 }
-.client-input{
-    grid-column:2;
-}
+
 #flatrate-special-repairs{
     grid-column: 3 / span all;
     display: flex;
@@ -282,7 +280,10 @@ place-self: center center;
 #si-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-selected{
     display: none;
 }
-
+.si-item,.contract-opt{
+    display: grid;
+    grid-template-columns: 150px 250px;
+}
 
 .viewcontrol-menu{
     transition: bottom 0.3s;

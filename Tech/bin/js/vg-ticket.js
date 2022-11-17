@@ -109,16 +109,19 @@ var LOADticket=()=>{
       let sitemvc = new vcontrol.ViewGroup({
         type:'mtr'
       });
-      //add/init service info form
-      sitemvc.ADDview('Info',siteinfo.cont);
-      siteinfo.form = currticket.sitems[i];
 
       if(currticket.repairs[currticket.sitems[i].tagid]==undefined){currticket.repairs[currticket.sitems[i].tagid]=[]}
       // add/init service repairs
       sitemvc.ADDview('Repairs',document.createElement('div'))
 
+      //add/init service info form
+      sitemvc.ADDview('Info',siteinfo.cont);
+      siteinfo.form = currticket.sitems[i];
+
       serviceitems.ADDview(currticket.sitems[i].tagid,sitemvc.cont);
-      
+
+      $(document.getElementsByClassName('viewcontrol-menu-item')[4]).click(); //selects first SI menu item
+      $(document.getElementById('currsi')).click();
     }
   }
 }

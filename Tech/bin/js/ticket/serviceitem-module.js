@@ -28,7 +28,10 @@ export class SIform extends VHCform{
       type: 'si-type',
       warr1: 'si-warr1',//
       warr2: 'si-warr2',//
-      warr3: 'si-warr3'//
+      warr3: 'si-warr3',//
+      expry1: 'si-expry1',//
+      expry2: 'si-expry2',//
+      expry3: 'si-expry3'//
     }
   }
   content=`
@@ -58,6 +61,7 @@ export class SIform extends VHCform{
         <div>Area Served</div><input class=${this.dom.info.area} placeholder="area">
       </div>
 
+      
       <div class="si-item">
         <div>Filter Type 1</div><input class=${this.dom.info.filt1} placeholder="filt1">
       </div>
@@ -76,6 +80,8 @@ export class SIform extends VHCform{
       <div class="si-item">
         <div>Refrigerant</div><input class=${this.dom.info.refri} placeholder="refri">
       </div>
+
+
       <div class="si-item">
         <div>Parts Warranty</div><input class=${this.dom.info.warr1} placeholder="warr1">
       </div>
@@ -84,6 +90,15 @@ export class SIform extends VHCform{
       </div>
       <div class="si-item">
         <div>Addl Warranty</div><input class=${this.dom.info.warr3} placeholder="warr3">
+      </div>
+      <div class="si-item">
+        <div>Parts Expires</div><input class=${this.dom.info.expry1} placeholder="expry1">
+      </div>
+      <div class="si-item">
+        <div>Labor Expires</div><input class=${this.dom.info.expry2} placeholder="expry2">
+      </div>
+      <div class="si-item">
+        <div>Addl Expires</div><input class=${this.dom.info.expry3} placeholder="expry3">
       </div>
     </div>
   `
