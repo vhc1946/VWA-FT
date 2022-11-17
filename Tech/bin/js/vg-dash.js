@@ -25,12 +25,8 @@ $(document.getElementById(titlebar.tbdom.page.settings)).hide();
 
 try{document.getElementById(Titlebar.tbdom.info.username).innerText = JSON.parse(localStorage.getItem(usersls.curruser)).uname;
 }catch{console.log("Could not pick up UserName")}
-//////////////////////////////////////////////////////////
 
-var appdock=document.createElement('div');
-appdock.id="vhc-app-dock";
-
-
+// Work Order List Setup ////////////////////////////////////////////////////////
 var wolist = JSON.parse(localStorage.getItem(wolstore.localwos));
 var LOADwolist = ()=>{   //Loads WO list into display table
     let dlist = document.getElementById(dashdom.list.cont);
@@ -63,12 +59,44 @@ var LOADwolist = ()=>{   //Loads WO list into display table
     }
 }
 
+// App Dock Setup ///////////////////////////////////////////////////////////////
+var appdock = document.createElement('div');
+appdock.id="vhc-app-dock";
+var apps = ['SPIFFs','Work Orders','Performance','Resources'];
+
+for(let app in apps){
+    let appbox = document.createElement('div');
+    appbox.classList.add('vhc-app');
+    appbox.id = 'app-' + apps[app];
+    appbox.appendChild(document.createElement('img'));
+    appbox.lastChild.src = './bin/repo/assets/icons/' + `${apps[app]}` + '.png';
+    appbox.appendChild(document.createElement('div'));
+    appbox.lastChild.innerText = apps[app];
+    appdock.appendChild(appbox);
+}
+
+document.body.appendChild(appdock);
+
+document.getElementById('app-SPIFFs').addEventListener('click',(ele)=>{
+    console.log(ele.target);
+});
+document.getElementById('app-Work Orders').addEventListener('click',(ele)=>{
+    console.log(ele.target);
+});
+document.getElementById('app-Performance').addEventListener('click',(ele)=>{
+    console.log(ele.target);
+});
+document.getElementById('app-Resources').addEventListener('click',(ele)=>{
+    console.log(ele.target);
+});
+
+// Buttons //////////////////////////////////////////////////////////////////////
 document.getElementById('search-wo').addEventListener('click', (ele)=>{
     SELECTview(document.getElementById('wo-center'),'Open WO');
 });
 document.getElementById('openwo-number').addEventListener('keypress',(eve)=>{
     if(eve.key == 'Enter'){document.getElementById('submit-search').click();};
-  });
+});
 document.getElementById('submit-search').addEventListener('click', (ele)=>{
     let wonum = document.getElementById('openwo-number').value;
     while(wonum.length < 8){
