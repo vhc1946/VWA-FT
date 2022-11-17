@@ -171,13 +171,14 @@ var SETUPtitlebar=(RROOT='',qacts={},macts={},login=true)=>{
   });
 
   if(login){
+
     document.getElementById(tbdom.page.user).addEventListener('click',(ele)=>{
       if($(document.getElementById(tbdom.login.cont)).is(":visible")){
         $(document.getElementById(tbdom.login.cont)).hide();
       }else{$(document.getElementById(tbdom.login.cont)).show()}
     });
     return new LoginForm(document.getElementById(tbdom.login.cont));}
-  else{return null;}
+  else{$(document.getElementById(tbdom.login.cont)).hide();return null;}
 }
 
 export {
