@@ -107,10 +107,13 @@ var LOADticket=()=>{
     for(let i=0;i<currticket.sitems.length;i++){
       let siteinfo = new SIform(document.createElement('div'));
       let sitemvc = new vcontrol.ViewGroup({
-        type:'mtr'
+        type:'mtr',
+        qactions:{['.div']:{value:currticket.sitems[i].descr}}
       });
 
       if(currticket.repairs[currticket.sitems[i].tagid]==undefined){currticket.repairs[currticket.sitems[i].tagid]=[]}
+
+
       // add/init service repairs
       sitemvc.ADDview('Repairs',document.createElement('div'))
 
