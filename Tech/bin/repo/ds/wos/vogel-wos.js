@@ -24,12 +24,12 @@ var awo = (w)=>{
         leadsource:w.leadsource||'',
         status:w.status||'', //WOStatusCode
 
-        jobRef:w.jobRef||'',
-        conRef:w.conRef||'',
+        jobref:w.jobref||'',
+        conref:w.conref||'',
         ref:w.ref||'',
 
         pricebook:w.pricebook||'', //FlatRateBook
-        priceLevel:w.priceLevel||'', //PriceLevel
+        pricelevel:w.pricelevel||'', //PriceLevel
 
         salesrep:w.salesrep||'', //TerritorySalespersonCode
         tech:w.tech||'', //TechnicianID
