@@ -69,12 +69,21 @@
     background-color: cyan;
     filter: invert();
 }
+
 /* Login Box */
 #loginout-block{
-    position: absolute;
-    right: 0;
+    position: fixed;
+    left:0;
+    top:0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,.5);
+    z-index: 25;
 }
 #login-box{
+    position: absolute;
+    top:25px;
+    right:0px;
     background-color: var(--background-base);
     border: 2px solid black;
 }
@@ -86,6 +95,7 @@
 #login-submit{
     grid-column: 2;
 }
+
 /* User Name */
 #titlebar-page-user-cont{
     position: relative;
