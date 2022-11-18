@@ -13,7 +13,7 @@ var GETjapitest=()=>{
       var wopull = {
           table:'test',
           option:'template',
-          template:'WO_CrewTechIds_tbl'
+          template:'AR_ServiceItemCustomInfo_tbl'
       };
       return res(SENDrequest(vurl,vapp,wopull));
   });
@@ -25,25 +25,30 @@ var GETjapitest=()=>{
 //WO_DescriptOfWorkPerformedForBill_tbl
 //WO_Profile_tbl *to get the WO categories
 //WO_FlatRate_tbl *
+//WO_ServiceItemComments_tbl
+
+//AR_ServiceItemCustomTables_tbl
+//AR_ServiceItemCustomInfo_tbl * use for custom service items
+//AR_ServiceItemCustomInfoLog_tbl
+
+
 /*
 GETjapitest().then(
   res=>{
     let arr=[]
-    for(let x in res.body.table[0]){
-      arr.push(x);
-    }
+    for(let x in res.body.table[0]){arr.push(x);}
     console.log(arr);
     var wopull = {
         table:'test',
         option:'download',
-        template:'WO_MobileFlatRate_tbl',
-        where:[{OP:'=',WorkOrderNumber:'00024530'}]
+        template:'AR_ServiceItemCustomInfo_tbl',
+        where:[{OP:'=',CustomerCode:'801C01'}]
     };
     SENDrequest(vurl,vapp,wopull).then(
             res=>{console.log(res);}
         );
   });
-*/
+//*/
 
 var GETresflbook=(wonum)=>{
     return new Promise((res,rej)=>{
@@ -69,21 +74,34 @@ var GETwo=(wonum)=>{
             table:'wonumber',
             wonum:wonum,//'00024530'
         };
-        return res(SENDrequest(vurl,vapp,wopull));
+        let wo = null;
+        SENDrequest(vurl,vapp,wopull).then(
+          answr=>{
+            if(answr.body.success&&answr.body.table.length==1){
+              wo = awo(answr.body.table[0]);
+              var wodpull = {
+                  table:'test',
+                  option:'download',
+                  template:'WO_DescriptionOfWork_tbl',
+                  where:[{OP:'=',WorkOrderNumber:wonum}]
+              };
+              SENDrequest(vurl,vapp,wodpull).then( //bring in descriptions
+                answr=>{
+                  if(answr.body.success){
+                    wo.descr=''
+                    for(let x=0,l=answr.body.table.length;x<l;x++){
+                      wo.descr+=answr.body.table[x].WorkDescription+'\n';
+                    }
+                  }
+                  return res(wo);
+                }
+              );
+            }else{return res(wo);}
+          }
+        );
     })
 }
-var GETwodescr=(wonum='')=>{
-    return new Promise((res,rej)=>{
-        var wopull = {
-            table:'test',
-            option:'download',
-            template:'WO_DescriptionOfWork_tbl',
-            where:[{OP:'=',WorkOrderNumber:wonum}]
-        };
-        return res(SENDrequest(vurl,vapp,wopull));
-    })
 
-}
 var GETcustomer=(custcode)=>{
   return new Promise((res,rej)=>{
       var wopull = {
@@ -93,44 +111,65 @@ var GETcustomer=(custcode)=>{
       return res(SENDrequest(vurl,vapp,wopull));
   })
 }
+
 var GETserviceitems=(custcode)=>{
   return new Promise((res,rej)=>{
       var wopull = {
           table:'custserviceitems',
           custcode:custcode
       };
-      return res(SENDrequest(vurl,vapp,wopull));
+      let sitems=[];
+      SENDrequest(vurl,vapp,wopull).then(
+        result=>{
+          if(result.body.success){
+            for(let i=0;i<result.body.table.length;i++){
+                sitems.push(aserviceitem(result.body.table[i])); //aserviceitems()
+            }
+            let sicustpull = {
+                table:'test',
+                option:'download',
+                template:'AR_ServiceItemCustomInfo_tbl',
+                where:[{OP:'=',CustomerCode:custcode}]
+            };
+            SENDrequest(vurl,vapp,sicustpull).then(
+              answr=>{
+                if(answr.body.success){
+                  for(let x=0,l=answr.body.table.length;x<l;x++){
+                    for(let y=0,ll=sitems.length;y<ll;y++){
+                      if(sitems[y].id===answr.body.table[x].LineNumber){
+                        switch(answr.body.table[x].FieldNumber){
+                          case "01":{sitems[y].filt1=answr.body.table[x].Information || '';}
+                          case "02":{sitems[y].filt1q=answr.body.table[x].Information || '';}
+                          case "03":{sitems[y].filt2=answr.body.table[x].Information || '';}
+                          case "04":{sitems[y].filt2q=answr.body.table[x].Information || '';}
+                          case "05":{sitems[y].beltsize=answr.body.table[x].Information || '';}
+                          case "06":{sitems[y].controls=answr.body.table[x].Information || '';}
+                          case "07":{sitems[y].refri=answr.body.table[x].Information || '';}
+                          case "08":{sitems[y].elec=answr.body.table[x].Information || '';}
+                        }
+                      }
+                    }
+                  }
+                }
+                return res(sitems);
+              }
+            );
+          }else{console.log('Service Items request fail');return res(sitems);}
+        }
+      );
   })
 }
-
 
 var STARTticket=(wonum)=>{
   return new Promise((resolve,reject)=>{
     GETwo(wonum).then(
-        result=>{
-            if(result.body.success){
+        wo=>{
+            if(wo){
                 let ticket = {};
                 ticket.history = {};
-
-                if(result.body.table.length==1){ticket.wo = awo(result.body.table[0]);}
-                else{ticket.wo=null;}
-
-                let havedesc=false;
+                ticket.wo = wo;
                 let havesc = false;
                 let havesi = false;
-                GETwodescr(ticket.wo.id).then(
-                  result=>{
-                    if(result.body.success){
-                      console.log('Descr',result.body.table);
-                      ticket.wo.descr=''
-                      for(let x=0,l=result.body.table.length;x<l;x++){
-                        ticket.wo.descr+=result.body.table[x].WorkDescription+'\n';
-                      }
-                    }
-                    havedesc=true;
-                    if(havesi&&havesc){return resolve(ticket);}
-                  }
-                )
                 GETscontract(ticket.wo.custcode).then(
                     result=>{
                         if(result.body.success){
@@ -148,21 +187,15 @@ var STARTticket=(wonum)=>{
                             console.log('Contracts request fail');
                         }
                         havesc=true;
-                        if(havesi&&havedesc){return resolve(ticket);}
+                        if(havesi){return resolve(ticket);}
                     }
                 )
                 GETserviceitems(ticket.wo.custcode).then(
                     result=>{
-                        ticket.sitems = [];
-                        ticket.repairs={};
-                        if(result.body.success){
-                            for(let i=0;i<result.body.table.length;i++){
-                                ticket.sitems[i] = aserviceitem(result.body.table[i]); //aserviceitems()
-                            }
-                        }else{console.log('Service Items request fail');}
-
+                        ticket.sitems = result;
+                        ticket.repairs={}; //init repair list
                         havesi=true;
-                        if(havesc&&havedesc){return resolve(ticket);}
+                        if(havesc){return resolve(ticket);}
                     }
                 )
 
@@ -174,15 +207,12 @@ var STARTticket=(wonum)=>{
 
 var SYNCticket=(wonum,ticket)=>{
   return new Promise((resolve,reject)=>{
+    let ticket = {};
     GETwo(wonum).then(
-        result=>{
-            if(result.body.success){
-                let ticket = {};
-                ticket.history = {};
-                ticket.wo = awo(result.body.table[0]);
-                console.log(ticket);
-                return resolve(ticket);
-            }else{console.log('WO request fail');return resolve(null);}
+        wo=>{
+            ticket.wo=wo;
+            if(!wo){console.log('WO request fail');}
+            return resolve(ticket);
         }
     )
   });
