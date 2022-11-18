@@ -141,7 +141,6 @@ document.getElementById('currsi').addEventListener('click',(ele)=>{
 document.getElementById('wo-refresh-button').addEventListener('click',(ele)=>{
   SYNCticket(currticket.wo.id).then(
     ticket=>{
-      console.log(ticket);
       if(ticket.wo){currticket.wo=ticket.wo;woform.form=currticket.wo;}
     });
 });
