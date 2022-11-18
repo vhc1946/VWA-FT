@@ -61,44 +61,45 @@ export class SIform extends VHCform{
         <div>Area Served</div><input class=${this.dom.info.area} placeholder="area">
       </div>
 
-      
-      <div class="si-item">
-        <div>Filter Type 1</div><input class=${this.dom.info.filt1} placeholder="filt1">
+      <div class="si-materials">
+        <div class="si-item">
+          <div>Filter Type 1</div><input class=${this.dom.info.filt1} placeholder="filt1">
+        </div>
+        <div class="si-item">
+          <div>Filter Qty 1</div><input class=${this.dom.info.filt1q} placeholder="filt1q">
+        </div>
+        <div class="si-item">
+          <div>Filter Type 2</div><input class=${this.dom.info.filt2} placeholder="filt2">
+        </div>
+        <div class="si-item">
+          <div>Filter Qty 2</div><input class=${this.dom.info.filt2q} placeholder="filt2q">
+        </div>
+        <div class="si-item">
+          <div>Belt Size</div><input class=${this.dom.info.beltsize} placeholder="beltsize">
+        </div>
+        <div class="si-item">
+          <div>Refrigerant</div><input class=${this.dom.info.refri} placeholder="refri">
+        </div>
       </div>
-      <div class="si-item">
-        <div>Filter Qty 1</div><input class=${this.dom.info.filt1q} placeholder="filt1q">
-      </div>
-      <div class="si-item">
-        <div>Filter Type 2</div><input class=${this.dom.info.filt2} placeholder="filt2">
-      </div>
-      <div class="si-item">
-        <div>Filter Qty 2</div><input class=${this.dom.info.filt2q} placeholder="filt2q">
-      </div>
-      <div class="si-item">
-        <div>Belt Size</div><input class=${this.dom.info.beltsize} placeholder="beltsize">
-      </div>
-      <div class="si-item">
-        <div>Refrigerant</div><input class=${this.dom.info.refri} placeholder="refri">
-      </div>
-
-
-      <div class="si-item">
-        <div>Parts Warranty</div><input class=${this.dom.info.warr1} placeholder="warr1">
-      </div>
-      <div class="si-item">
-        <div>Labor Warranty</div><input class=${this.dom.info.warr2} placeholder="warr2">
-      </div>
-      <div class="si-item">
-        <div>Addl Warranty</div><input class=${this.dom.info.warr3} placeholder="warr3">
-      </div>
-      <div class="si-item">
-        <div>Parts Expires</div><input class=${this.dom.info.expry1} placeholder="expry1">
-      </div>
-      <div class="si-item">
-        <div>Labor Expires</div><input class=${this.dom.info.expry2} placeholder="expry2">
-      </div>
-      <div class="si-item">
-        <div>Addl Expires</div><input class=${this.dom.info.expry3} placeholder="expry3">
+      <div class="si-warranties">
+        <div class="si-item">
+          <div>Parts Warranty</div><input class=${this.dom.info.warr1} placeholder="warr1">
+        </div>
+        <div class="si-item">
+          <div>Labor Warranty</div><input class=${this.dom.info.warr2} placeholder="warr2">
+        </div>
+        <div class="si-item">
+          <div>Addl Warranty</div><input class=${this.dom.info.warr3} placeholder="warr3">
+        </div>
+        <div class="si-item">
+          <div>Parts Expires</div><input class=${this.dom.info.expry1} placeholder="expry1">
+        </div>
+        <div class="si-item">
+          <div>Labor Expires</div><input class=${this.dom.info.expry2} placeholder="expry2">
+        </div>
+        <div class="si-item">
+          <div>Addl Expires</div><input class=${this.dom.info.expry3} placeholder="expry3">
+        </div>
       </div>
     </div>
   `

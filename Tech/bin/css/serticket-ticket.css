@@ -1,4 +1,4 @@
-/* Setup Side Styling */
+/* Setup Side Styling
 #wo-setup-cont{
     display:flex;
     height: 100%;
@@ -97,7 +97,7 @@
     vertical-align: super;
     font-size: .5em;
 }
-
+/*
 
 /* Presentation Styling */
 #wo-presentation-cont{
@@ -266,7 +266,7 @@ place-self: center center;
 }
 
 
-/* NEW */
+/* Service Items */
 #si-cont>.viewcontrol-cont>.viewcontrol-menu{
     position: fixed;
     left: 0px;

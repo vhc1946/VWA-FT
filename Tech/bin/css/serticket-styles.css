@@ -1,4 +1,8 @@
 /* Root styling file that will hold the layout structure */
+body, input, textarea{
+    font-size: 1.1em;
+}
+
 a{
     text-decoration: none;
     color: black;
