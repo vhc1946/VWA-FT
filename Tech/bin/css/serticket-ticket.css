@@ -280,9 +280,23 @@ place-self: center center;
 #si-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-selected{
     display: none;
 }
+#currsi{
+    margin: 0;
+}
+.viewcontrol-menu-vmt>div>.viewcontrol-menu-item{
+    min-width: unset;
+}
+
 .si-item,.contract-opt{
     display: grid;
     grid-template-columns: 150px 250px;
+}
+.item-header{
+    font-weight: bold;
+    font-size: 1.2em;
+    flex-grow: 1;
+    text-align: center;
+
 }
 
 .viewcontrol-menu{

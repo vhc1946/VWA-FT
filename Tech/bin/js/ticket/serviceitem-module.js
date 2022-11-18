@@ -11,7 +11,7 @@ export class SIform extends VHCform{
       area: 'si-area', //
       beltsize: 'si-beltsize',//
       controls: 'si-controls',
-      desc: 'si-desc',//
+      descr: 'si-descr',//
       elec: 'si-elec',
       filt1: 'si-filt1',//
       filt1q: 'si-filt1q',//
@@ -43,7 +43,7 @@ export class SIform extends VHCform{
         <div>Tag Num</div><input class=${this.dom.info.tagnum} placeholder="tagnum">
       </div>
       <div class="si-item">
-        <div>Description</div><input class=${this.dom.info.desc} placeholder="desc">
+        <div>Description</div><input class=${this.dom.info.descr} placeholder="descr">
       </div>
       <div class="si-item">
         <div>Model Num</div><input class=${this.dom.info.model} placeholder="model">
