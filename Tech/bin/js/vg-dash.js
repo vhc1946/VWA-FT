@@ -81,7 +81,9 @@ document.getElementById('app-SPIFFs').addEventListener('click',(ele)=>{
     DropNote('tr','Module not ready.','yellow');
 });
 document.getElementById('app-Work Orders').addEventListener('click',(ele)=>{
-    DropNote('tr','Module not ready.','yellow');
+    $(document.getElementById(appdock.id)).hide();
+    $(document.getElementById('vg-wo-dash')).show();
+    $(document.getElementById(titlebar.tbdom.utils.buttons.home)).show();
 });
 document.getElementById('app-Performance').addEventListener('click',(ele)=>{
     DropNote('tr','Module not ready.','yellow');
@@ -92,7 +94,9 @@ document.getElementById('app-Resources').addEventListener('click',(ele)=>{
 
 // Buttons //////////////////////////////////////////////////////////////////////
 document.getElementById(titlebar.tbdom.utils.buttons.home).addEventListener('click', (ele)=>{
-    DropNote('tr','Going home','yellow');
+    $(document.getElementById(appdock.id)).show();
+    $(document.getElementById('vg-wo-dash')).hide();
+    $(document.getElementById(titlebar.tbdom.utils.buttons.home)).hide();
 });
 
 document.getElementById('search-wo').addEventListener('click', (ele)=>{
