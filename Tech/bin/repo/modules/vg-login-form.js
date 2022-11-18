@@ -4,15 +4,13 @@ class LoginForm extends VHCform{
     constructor(cont){
         super(cont);
         this.cont.innerHTML=this.content;
-        
+
         this.inputs.user=document.getElementById(this.dom.inputs.user);
         this.inputs.pswrd=document.getElementById(this.dom.inputs.pswrd);
-        console.log(this.inputs)
 
         this.permission=false;
 
         let creds=this.storecreds;
-        console.log(creds);
         if(creds && creds.user!=''||creds.pswrd!=''){
         this.form=creds;
         this.submit().then(

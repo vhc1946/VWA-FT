@@ -11,7 +11,7 @@ import {Contform} from './ticket/contractforms.js';
 import {SIform} from './ticket/serviceitem-module.js';
 var publicfolder = '/Tech/bin/css';
 
-
+window.opener.ticketdata('ticket has opened');
 // SETUP title bar ////////////////////////////////////////
 var qactions = {
   present:{
@@ -152,6 +152,7 @@ document.getElementById('presentation-open').addEventListener('click',(ele)=>{  
   if(box.style.left == "0px"){box.style.left = "-5000px";}
   else{box.style.left = "0px";}
 });
+
 
 
 /*
