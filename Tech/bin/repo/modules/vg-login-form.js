@@ -89,13 +89,13 @@ class LoginForm extends VHCform{
         let {user,pswrd} = this.form;
         if(user!=''||pswrd!=''){
             var options={
-            method:'POST',
+            method:'GET',
             headers:{
                 'Accept':'application/json'
             },
             body:JSON.stringify({access:{user:user,pswrd:pswrd}})
             }
-            fetch('https://18.191.134.244:5000/login',options)
+            fetch('https://18.191.134.244:5000/login/',options)
             .then(response=>{return response.json()})
             .then(data=>{return resolve(data);})
             .catch(err=>{console.log(err);})
