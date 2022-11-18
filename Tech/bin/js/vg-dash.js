@@ -18,15 +18,17 @@ var qactions = {
 };
 var mactions = {};
 
-titlebar.SETUPtitlebar('./bin/repo/',qactions,mactions);
-
-//$(document.getElementById(titlebar.tbdom.window.close)).hide();
-$(document.getElementById(titlebar.tbdom.page.settings)).hide();
-
-try{document.getElementById(titlebar.tbdom.info.username).innerText = JSON.parse(localStorage.getItem(usersls.curruser)).uname;
-}catch{console.log("Could not pick up UserName")}
+var login =titlebar.SETUPtitlebar('./bin/repo/',qactions,mactions);//returns login Form
+console.log(login.storecreds,'Has Permission: ',login.permission);
 
 // Work Order List Setup ////////////////////////////////////////////////////////
+/* This section needs to be thought through for how to better store a list
+   locally and keep it updated with the master list held on server.
+
+   IndexDB
+   localStorage
+   Hold on server and retrieve tickets marked mobile *not the move now*
+*/
 var wolist = JSON.parse(localStorage.getItem(wolstore.localwos));
 var LOADwolist = ()=>{   //Loads WO list into display table
     let dlist = document.getElementById(dashdom.list.cont);
@@ -59,6 +61,7 @@ var LOADwolist = ()=>{   //Loads WO list into display table
     }
 }
 
+
 // App Dock Setup ///////////////////////////////////////////////////////////////
 var appdock = document.createElement('div');
 appdock.id="vhc-app-dock";
@@ -77,6 +80,37 @@ for(let app in apps){
 
 document.body.appendChild(appdock);
 
+//Function to create Dock
+//Function to add buttons
+
+//Function to program buttons
+/*
+  var dockapps={
+    ['SPIFFs']:launchSpiffs,
+    ['Work Orders']:launchWOs,
+    ['Performance']:launchPerf,
+    ['Resources']:launchReso,
+  }
+
+  var launchSpiffs=(ele)=>{
+    DropNote('tr','Module not ready.','yellow');
+  }
+  var launchWOs=(ele)=>{
+    $(document.getElementById(appdock.id)).hide();
+    $(document.getElementById('vg-wo-dash')).show();
+  }
+  var launchPerf=(ele)=>{
+    DropNote('tr','Module not ready.','yellow');
+  }
+  var launchReso=(ele)=>{
+    DropNote('tr','Module not ready.','yellow');
+  }
+*/
+
+////////////////////////////////////////////////////////////////////////////////
+
+
+// Tech Dash Navigation ////////////////////////////////////////////////////////
 document.getElementById('app-SPIFFs').addEventListener('click',(ele)=>{
     DropNote('tr','Module not ready.','yellow');
 });
@@ -92,13 +126,19 @@ document.getElementById('app-Resources').addEventListener('click',(ele)=>{
     DropNote('tr','Module not ready.','yellow');
 });
 
-// Buttons //////////////////////////////////////////////////////////////////////
 document.getElementById(titlebar.tbdom.utils.buttons.home).addEventListener('click', (ele)=>{
     $(document.getElementById(appdock.id)).show();
     $(document.getElementById('vg-wo-dash')).hide();
     $(document.getElementById(titlebar.tbdom.utils.buttons.home)).hide();
 });
 
+////////////////////////////////////////////////////////////////////////////////
+
+window.ticketdata=(data)=>{
+  console.log(data);
+}
+
+// WO Dash /////////////////////////////////////////////////////////////////////
 document.getElementById('search-wo').addEventListener('click', (ele)=>{
     SELECTview(document.getElementById('wo-center'),'Open WO');
 });
@@ -128,7 +168,7 @@ document.getElementById('submit-search').addEventListener('click', (ele)=>{
     $(document.getElementById('vg-float-frame-close')).click();
 });
 
-
+////////////////////////////////////////////////////////////////////////////////
 
 /*
 document.getElementById(titlebar.tbdom.page.print).addEventListener('click', (ele)=>{
