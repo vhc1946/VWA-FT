@@ -20,8 +20,8 @@ var qactions = {
 };
 var mactions = {};
 
-var login =titlebar.SETUPtitlebar('./bin/repo/',qactions,mactions,false);//returns login Form
-console.log(login.storecreds,'Has Permission: ',login.permission);
+titlebar.SETUPtitlebar('./bin/repo/',qactions,mactions,false);//returns login Form
+//console.log(login.storecreds,'Has Permission: ',login.permission);
 
 // Work Order List Setup ////////////////////////////////////////////////////////
 /* This section needs to be thought through for how to better store a list
