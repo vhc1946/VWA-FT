@@ -108,7 +108,7 @@ var LOADticket=()=>{
       let siteinfo = new SIform(document.createElement('div'));
       let sitemvc = new vcontrol.ViewGroup({
         type:'mtr',
-        qactions:{['.div']:{value:currticket.sitems[i].descr}}
+        qactions:{['.item-header.div']:{value:currticket.sitems[i].descr}}
       });
 
       if(currticket.repairs[currticket.sitems[i].tagid]==undefined){currticket.repairs[currticket.sitems[i].tagid]=[]}

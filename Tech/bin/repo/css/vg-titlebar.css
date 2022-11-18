@@ -19,7 +19,7 @@
 #titlebar-moretools-quick{
     position: absolute;
     left:0px;
-    top:25px;
+    top:40px;
     background-color: darkgray;
 }
 #titlebar-title{
@@ -34,7 +34,7 @@
 }
 #titlebar-moretools-quick>.titlebar-button-action{
   height:unset;
-  width:15px;
+  width:30px;
   display: flex;
   flex-direction:column;
   margin: 10px;

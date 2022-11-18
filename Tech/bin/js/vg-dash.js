@@ -5,6 +5,8 @@ import * as titlebar from '../repo/modules/vg-titlebar.js';
 import * as viewcontrol from '../repo/layouts/view-controller.js';
 import { STARTticket } from './vapi-FTrequest.js';
 import { SELECTview } from '../repo/modules/vg-floatviews.js';
+import { AppDock } from './appdock.js';
+
 
 // SETUP title bar for dash /////////////////////////////
 
@@ -63,73 +65,34 @@ var LOADwolist = ()=>{   //Loads WO list into display table
 
 
 // App Dock Setup ///////////////////////////////////////////////////////////////
-var appdock = document.createElement('div');
-appdock.id="vhc-app-dock";
-var apps = ['SPIFFs','Work Orders','Performance','Resources'];
-
-for(let app in apps){
-    let appbox = document.createElement('div');
-    appbox.classList.add('vhc-app');
-    appbox.id = 'app-' + apps[app];
-    appbox.appendChild(document.createElement('img'));
-    appbox.lastChild.src = './bin/repo/assets/icons/' + `${apps[app]}` + '.png';
-    appbox.appendChild(document.createElement('div'));
-    appbox.lastChild.innerText = apps[app];
-    appdock.appendChild(appbox);
+var launchSpiffs=(ele)=>{
+    DropNote('tr','Module not ready.','yellow');
 }
-
-document.body.appendChild(appdock);
-
-//Function to create Dock
-//Function to add buttons
-
-//Function to program buttons
-/*
-  var dockapps={
+var launchWOs=(ele)=>{
+    $(document.getElementById('vhc-app-dock')).hide();
+    $(document.getElementById('vg-wo-dash')).show();
+}
+var launchPerf=(ele)=>{
+    DropNote('tr','Module not ready.','yellow');
+}
+var launchReso=(ele)=>{
+    DropNote('tr','Module not ready.','yellow');
+}
+var dockapps={
     ['SPIFFs']:launchSpiffs,
     ['Work Orders']:launchWOs,
     ['Performance']:launchPerf,
     ['Resources']:launchReso,
-  }
-
-  var launchSpiffs=(ele)=>{
-    DropNote('tr','Module not ready.','yellow');
-  }
-  var launchWOs=(ele)=>{
-    $(document.getElementById(appdock.id)).hide();
-    $(document.getElementById('vg-wo-dash')).show();
-  }
-  var launchPerf=(ele)=>{
-    DropNote('tr','Module not ready.','yellow');
-  }
-  var launchReso=(ele)=>{
-    DropNote('tr','Module not ready.','yellow');
-  }
-*/
-
+}
+var appdock = new AppDock(document.createElement('div'),dockapps); 
+document.body.appendChild(appdock.cont);
 ////////////////////////////////////////////////////////////////////////////////
 
 
 // Tech Dash Navigation ////////////////////////////////////////////////////////
-document.getElementById('app-SPIFFs').addEventListener('click',(ele)=>{
-    DropNote('tr','Module not ready.','yellow');
-});
-document.getElementById('app-Work Orders').addEventListener('click',(ele)=>{
-    $(document.getElementById(appdock.id)).hide();
-    $(document.getElementById('vg-wo-dash')).show();
-    $(document.getElementById(titlebar.tbdom.utils.buttons.home)).show();
-});
-document.getElementById('app-Performance').addEventListener('click',(ele)=>{
-    DropNote('tr','Module not ready.','yellow');
-});
-document.getElementById('app-Resources').addEventListener('click',(ele)=>{
-    DropNote('tr','Module not ready.','yellow');
-});
-
 document.getElementById(titlebar.tbdom.utils.buttons.home).addEventListener('click', (ele)=>{
-    $(document.getElementById(appdock.id)).show();
+    $(document.getElementById('vhc-app-dock')).show();
     $(document.getElementById('vg-wo-dash')).hide();
-    $(document.getElementById(titlebar.tbdom.utils.buttons.home)).hide();
 });
 
 ////////////////////////////////////////////////////////////////////////////////

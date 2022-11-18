@@ -69,9 +69,6 @@
     display: flex;
     justify-content: flex-end;
 }
-#titlebar-button-home{
-    display: none;
-}
 
 @media only screen and (min-width: 768px) {
     #vhc-app-dock{
