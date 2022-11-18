@@ -78,16 +78,16 @@ for(let app in apps){
 document.body.appendChild(appdock);
 
 document.getElementById('app-SPIFFs').addEventListener('click',(ele)=>{
-    console.log(ele.target);
+    DropNote('tr','Module not ready.','yellow');
 });
 document.getElementById('app-Work Orders').addEventListener('click',(ele)=>{
-    console.log(ele.target);
+    DropNote('tr','Module not ready.','yellow');
 });
 document.getElementById('app-Performance').addEventListener('click',(ele)=>{
-    console.log(ele.target);
+    DropNote('tr','Module not ready.','yellow');
 });
 document.getElementById('app-Resources').addEventListener('click',(ele)=>{
-    console.log(ele.target);
+    DropNote('tr','Module not ready.','yellow');
 });
 
 // Buttons //////////////////////////////////////////////////////////////////////
