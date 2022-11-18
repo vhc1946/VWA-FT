@@ -23,7 +23,7 @@ titlebar.SETUPtitlebar('./bin/repo/',qactions,mactions);
 //$(document.getElementById(titlebar.tbdom.window.close)).hide();
 $(document.getElementById(titlebar.tbdom.page.settings)).hide();
 
-try{document.getElementById(Titlebar.tbdom.info.username).innerText = JSON.parse(localStorage.getItem(usersls.curruser)).uname;
+try{document.getElementById(titlebar.tbdom.info.username).innerText = JSON.parse(localStorage.getItem(usersls.curruser)).uname;
 }catch{console.log("Could not pick up UserName")}
 
 // Work Order List Setup ////////////////////////////////////////////////////////
@@ -78,19 +78,27 @@ for(let app in apps){
 document.body.appendChild(appdock);
 
 document.getElementById('app-SPIFFs').addEventListener('click',(ele)=>{
-    console.log(ele.target);
+    DropNote('tr','Module not ready.','yellow');
 });
 document.getElementById('app-Work Orders').addEventListener('click',(ele)=>{
-    console.log(ele.target);
+    $(document.getElementById(appdock.id)).hide();
+    $(document.getElementById('vg-wo-dash')).show();
+    $(document.getElementById(titlebar.tbdom.utils.buttons.home)).show();
 });
 document.getElementById('app-Performance').addEventListener('click',(ele)=>{
-    console.log(ele.target);
+    DropNote('tr','Module not ready.','yellow');
 });
 document.getElementById('app-Resources').addEventListener('click',(ele)=>{
-    console.log(ele.target);
+    DropNote('tr','Module not ready.','yellow');
 });
 
 // Buttons //////////////////////////////////////////////////////////////////////
+document.getElementById(titlebar.tbdom.utils.buttons.home).addEventListener('click', (ele)=>{
+    $(document.getElementById(appdock.id)).show();
+    $(document.getElementById('vg-wo-dash')).hide();
+    $(document.getElementById(titlebar.tbdom.utils.buttons.home)).hide();
+});
+
 document.getElementById('search-wo').addEventListener('click', (ele)=>{
     SELECTview(document.getElementById('wo-center'),'Open WO');
 });

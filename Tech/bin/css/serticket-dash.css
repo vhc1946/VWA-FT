@@ -1,6 +1,6 @@
 /* WO List */
 #vg-wo-dash{
-    border-top: 1px solid black;
+    display: none;
 }
 #vg-wo-dash-header{
     background-color: black;
@@ -24,25 +24,27 @@
 
 /* App Dock */
 #vhc-app-dock{
-    position: relative;
-    margin: auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
     width: 80%;
+    height: 80%;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
 }
 .vhc-app{
     background-color: var(--background-base);
     border: 2px solid black;
     text-align: center;
     font-weight: bold;
-    min-width: 150px;
-    height: 150px;
+    min-width: 125px;
+    height: 125px;
     margin: auto;
     border-radius: 10px;
     filter: drop-shadow(3px 3px 5px black);
 }
 .vhc-app>img{
-    width: 80%;
+    width: 70%;
     padding: 5px;
 }
 .vhc-app:hover{
@@ -66,4 +68,23 @@
     padding: 5px;
     display: flex;
     justify-content: flex-end;
+}
+#titlebar-button-home{
+    display: none;
+}
+
+@media only screen and (min-width: 768px) {
+    #vhc-app-dock{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media only screen and (min-width: 1024px) {
+    #vhc-app-dock{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+@media only screen and (min-width: 1440px) {
+    #vhc-app-dock{
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
