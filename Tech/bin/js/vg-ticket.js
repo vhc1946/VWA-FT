@@ -133,19 +133,22 @@ LOADticket();
 
 console.log(currticket);
 
-document.getElementById('currsi').addEventListener('click',(ele)=>{
+document.getElementById('currsi').addEventListener('click',(ele)=>{   // Service Items menu toggle
   let box = serviceitems.cont.getElementsByClassName('viewcontrol-menubox')[0];
   if(box.style.left=='-250px'){box.style.left='0px';}
   else{box.style.left='-250px';}
 });
-document.getElementById('wo-refresh-button').addEventListener('click',(ele)=>{
+document.getElementById('wo-refresh-button').addEventListener('click',(ele)=>{   // Refresh info
   SYNCticket(currticket.wo.id).then(
     ticket=>{
       console.log(ticket);
       if(ticket.wo){currticket.wo=ticket.wo;woform.form=currticket.wo;}
     });
 });
-document.getElementById('presentation-open').addEventListener('click',(ele)=>{
+document.getElementById(titlebar.tbdom.utils.buttons.home).addEventListener('click', (ele)=>{   // Home Button
+  DropNote('tr','Going home','yellow');
+});
+document.getElementById('presentation-open').addEventListener('click',(ele)=>{  // Presentation show/hide
   let box = document.getElementsByClassName('present-cont')[0];
   if(box.style.left == "0px"){box.style.left = "-5000px";}
   else{box.style.left = "0px";}

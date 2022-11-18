@@ -39,7 +39,8 @@ var tbdom={ // Titlebar
       view:'titlbar-button-view',
       action:'titlebar-button-action',
       moretools:'titlebar-button-more',
-      help:'titlebar-button-help'
+      help:'titlebar-button-help',
+      home:'titlebar-button-home'
     },
     groups:{
       right:'titlebar-cont-right',
@@ -70,6 +71,15 @@ var tdom = (rroot='')=>{
                 style: "display:none"
               },
               children:null
+            },
+            [`#${tbdom.utils.buttons.home}.img`]:{
+              attributes:{
+                class: "titlebar-button-action",
+                src: rroot + "assets/icons/home.png",
+                alt: "HOME",
+                title: "Home"
+              },
+              children: null
             }
           }
         },

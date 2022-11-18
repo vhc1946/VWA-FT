@@ -23,7 +23,7 @@ titlebar.SETUPtitlebar('./bin/repo/',qactions,mactions);
 //$(document.getElementById(titlebar.tbdom.window.close)).hide();
 $(document.getElementById(titlebar.tbdom.page.settings)).hide();
 
-try{document.getElementById(Titlebar.tbdom.info.username).innerText = JSON.parse(localStorage.getItem(usersls.curruser)).uname;
+try{document.getElementById(titlebar.tbdom.info.username).innerText = JSON.parse(localStorage.getItem(usersls.curruser)).uname;
 }catch{console.log("Could not pick up UserName")}
 
 // Work Order List Setup ////////////////////////////////////////////////////////
@@ -91,6 +91,10 @@ document.getElementById('app-Resources').addEventListener('click',(ele)=>{
 });
 
 // Buttons //////////////////////////////////////////////////////////////////////
+document.getElementById(titlebar.tbdom.utils.buttons.home).addEventListener('click', (ele)=>{
+    DropNote('tr','Going home','yellow');
+});
+
 document.getElementById('search-wo').addEventListener('click', (ele)=>{
     SELECTview(document.getElementById('wo-center'),'Open WO');
 });
