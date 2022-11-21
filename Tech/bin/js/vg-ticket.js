@@ -112,13 +112,13 @@ var LOADticket=()=>{
     woform.form = currticket.wo;
     contform.form = currticket.contract;
     
-    let newbox = serviceitems.cont.getElementsByClassName('viewcontrol-menubox')[0];  // Inserts Add and Delete buttons into Items Menu
-    newbox.appendChild(document.createElement('div'));
-    newbox.classList.add('si-menu-buttons');
-    newbox.appendChild(document.createElement('img')).src = '../bin/repo/assets/icons/trash.png';
-    newbox.lastChild.id = 'si-delete';
-    newbox.appendChild(document.createElement('img')).src = '../bin/repo/assets/icons/add.png';
-    newbox.lastChild.id = 'si-add';
+    // Inserts Add and Delete buttons into Items Menu
+    let qckbox = serviceitems.cont.getElementsByClassName('viewcontrol-menubox')[0].appendChild(document.createElement('div'));  
+    qckbox.classList.add('si-menu-buttons');
+    qckbox.appendChild(document.createElement('img')).src = '../bin/repo/assets/icons/trash.png';
+    qckbox.lastChild.id = 'si-delete';
+    qckbox.appendChild(document.createElement('img')).src = '../bin/repo/assets/icons/add.png';
+    qckbox.lastChild.id = 'si-add';
 
     for(let i=0;i<currticket.sitems.length;i++){
       let siteinfo = new SIform(document.createElement('div'));

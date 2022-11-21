@@ -30,7 +30,6 @@ Must select proper classes for the menu and container. Select based on the orien
 }
 .viewcontrol-menubox{
   display: flex;
-  /*background-color: lightgrey;*/
   flex-grow:1;
 }
 .viewcontrol-menu-item{
@@ -122,15 +121,6 @@ Must select proper classes for the menu and container. Select based on the orien
 .viewcontrol-menu-vmt>div>.viewcontrol-menu-item{
   flex-grow:unset;
   min-width: 100px;
-}
-
-.viewcontrol-menu-hml,
-.viewcontrol-menu-hmr{
-  /*border-bottom: 2px solid var(--BEE-blue);*/
-}
-.viewcontrol-menu-hml>div>.viewcontrol-menu-item,
-.viewcontrol-menu-hmr>div>.viewcontrol-menu-item{
-  /*border-radius: 10px 10px 0px 0px;*/
 }
 /*////////////////////////*/
 
