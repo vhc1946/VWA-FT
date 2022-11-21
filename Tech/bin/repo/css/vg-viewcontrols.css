@@ -28,7 +28,7 @@ Must select proper classes for the menu and container. Select based on the orien
 .viewcontrol-menu{
   display:flex;
 }
-.viewcontrol-menu>div{
+.viewcontrol-menubox{
   display: flex;
   /*background-color: lightgrey;*/
   flex-grow:1;
@@ -73,6 +73,7 @@ Must select proper classes for the menu and container. Select based on the orien
 }
 .viewcontrol-cont-vb>.viewcontrol-menu{
   position: fixed;
+  width: 100%;
   bottom: 0;
   z-index: 25;
 }
@@ -86,18 +87,17 @@ Must select proper classes for the menu and container. Select based on the orien
 
 
 /* MENUS */
-[class*='viewcontrol-menu-vm']>div:nth-child(1){
+[class*='viewcontrol-menu-vm']>.viewcontrol-menubox{
   flex-direction:column;
   flex-grow: 1;
   background-color: var(--background-dark);
 }
-[class*='viewcontrol-menu-hm']>div:nth-child(1){
+[class*='viewcontrol-menu-hm']>.viewcontrol-menubox{
   flex-direction:row;
-  flex-grow: 0;
+  /*flex-grow: 0;*/
 }
-[class*='viewcontrol-menu-hm']>div:nth-child(1)>.viewcontrol-menu-item{
-  flex-grow:unset;
-  min-width: 200px;
+[class*='viewcontrol-menu-hm']>.viewcontrol-menubox>.viewcontrol-menu-item{
+  flex-grow:1;
 }
 .viewcontrol-menu-hmr{
   justify-content:flex-end;
@@ -106,13 +106,13 @@ Must select proper classes for the menu and container. Select based on the orien
 .viewcontrol-menu-hmr>div{
   justify-content:flex-end;
 }
-.viewcontrol-menu-hml>div:nth-child(1){
+.viewcontrol-menu-hml>.viewcontrol-menubox{
   justify-content:flex-start;
 }
 .viewcontrol-menu-vmt{
   flex-direction: column-reverse;
 }
-.viewcontrol-menu-vmt>div:nth-child(1){
+.viewcontrol-menu-vmt>.viewcontrol-menubox{
   justify-content:flex-start;
 }
 .viewcontrol-menu-vmb>div{
@@ -157,10 +157,12 @@ Must select proper classes for the menu and container. Select based on the orien
   filter:invert();
 }
 .viewcontrol-quick-actions{
-  flex-grow:1;
+  flex-grow: 1;
   justify-content:flex-end;
 }
-
+.viewcontrol-menu-hm>.viewcontrol-quick-actions{
+  flex-grow: unset;
+}
 
 
 /* Printing */

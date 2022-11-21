@@ -185,6 +185,20 @@ place-self: center center;
 .viewcontrol-menu-vmt>div>.viewcontrol-menu-item{
     min-width: unset;
 }
+.si-menu-buttons{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+.si-menu-buttons>img{
+    filter: invert();
+    width: 30px;
+    padding: 5px;
+}
+.si-menu-buttons>img:hover{
+    cursor: pointer;
+    filter: none;
+}
 
 /* Display Forms */
 .ft-form{

@@ -111,6 +111,15 @@ var LOADticket=()=>{
   if(currticket){
     woform.form = currticket.wo;
     contform.form = currticket.contract;
+    
+    let newbox = serviceitems.cont.getElementsByClassName('viewcontrol-menubox')[0];  // Inserts Add and Delete buttons into Items Menu
+    newbox.appendChild(document.createElement('div'));
+    newbox.classList.add('si-menu-buttons');
+    newbox.appendChild(document.createElement('img')).src = '../bin/repo/assets/icons/trash.png';
+    newbox.lastChild.id = 'si-delete';
+    newbox.appendChild(document.createElement('img')).src = '../bin/repo/assets/icons/add.png';
+    newbox.lastChild.id = 'si-add';
+
     for(let i=0;i<currticket.sitems.length;i++){
       let siteinfo = new SIform(document.createElement('div'));
       let sitemvc = new vcontrol.ViewGroup({
@@ -132,6 +141,9 @@ var LOADticket=()=>{
     }
     $(document.getElementsByClassName('viewcontrol-menu-item')[4]).click(); //selects first SI menu item
     serviceitems.cont.getElementsByClassName('viewcontrol-menubox')[0].style.left = '-250px';   // Start with menu hidden
+
+
+
   }
 }
 
@@ -161,6 +173,12 @@ document.getElementById('presentation-open').addEventListener('click',(ele)=>{  
 
 document.getElementById('window-test').addEventListener('click',(ele)=>{  // Presentation show/hide
   window.alert('Window Size: ' + window.innerWidth + '  /  ' + window.innerHeight);
+});
+document.getElementById('si-delete').addEventListener('click',(ele)=>{  // Presentation show/hide
+  DropNote('tr','Delete Service Item','yellow');
+});
+document.getElementById('si-add').addEventListener('click',(ele)=>{  // Presentation show/hide
+  DropNote('tr','Add New Service Item','yellow');
 });
 
 /*
