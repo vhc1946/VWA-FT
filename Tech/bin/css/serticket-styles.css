@@ -1,11 +1,7 @@
 /* Root styling file that will hold the layout structure */
-body{
-    font-size: 100%;
-}
 :root,input,textarea{
-    font-size: 1.2em;
+    font-size: 120%;
 }
-
 a{
     text-decoration: none;
     color: black;
@@ -30,7 +26,6 @@ body::-webkit-scrollbar {
     border-radius: 10px;
     border: 2px solid black;
 }
-/* for Mobile Phones */
 .twelve-col-grid{
     display: grid;
     grid-template-columns: minmax(100px, 1fr) repeat(5, 1fr);
@@ -54,27 +49,7 @@ body::-webkit-scrollbar {
     border: 2px solid var(--vogel-blue);
     border-radius: 8px;
 }
-/* for Desktop */
-@media only screen and (min-width: 768px) {
-    .twelve-col-grid{grid-template-columns: minmax(100px, 1fr) repeat(11, 1fr);}
-    .wo-sys {grid-template-columns: 25px repeat(5, 1fr);}
-    #wo-present-contract-cont{
-        grid-column: 7 / 13;
-        grid-row:1 / 6;
-    }
-}
-@media only screen and (min-width: 1024px) {
-    #wo-present-contract-cont{
-        grid-column: 9 / 13;
-        grid-row:1 / 6;
-    }
-}
-@media only screen and (min-width: 1440px) {
-    #wo-present-contract-cont{
-        grid-column: 11 / 13;
-        grid-row:1 / 6;
-    }
-}
+
 .vg-deleter{
     height:20px;
     width:20px;
@@ -124,6 +99,32 @@ body::-webkit-scrollbar {
     cursor: pointer;
     filter:drop-shadow(2px 2px 3px var(--vogel-blue));
 }
+
+
+
+
+
+@media only screen and (min-width: 768px) {
+    .twelve-col-grid{grid-template-columns: minmax(100px, 1fr) repeat(11, 1fr);}
+    .wo-sys {grid-template-columns: 25px repeat(5, 1fr);}
+    #wo-present-contract-cont{
+        grid-column: 7 / 13;
+        grid-row:1 / 6;
+    }
+    :root,input,textarea{
+        font-size: 120%;
+    }
+}
+@media only screen and (min-width: 1300px) {
+    #wo-present-contract-cont{
+        grid-column: 9 / 13;
+        grid-row:1 / 6;
+    }
+    :root,input,textarea{
+        font-size: unset;
+    }
+}
+
 @media print{
     *{ color-adjust: exact;  -webkit-print-color-adjust: exact;}
     .twelve-col-grid{grid-template-columns: minmax(100px, 1fr) repeat(11, 1fr);}

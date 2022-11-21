@@ -44,7 +44,7 @@
     filter: drop-shadow(3px 3px 5px black);
 }
 .vhc-app>img{
-    width: 70%;
+    width: 65%;
     padding: 5px;
 }
 .vhc-app:hover{
@@ -60,7 +60,7 @@
 }
 [class*='openwo-area-']{
     display: grid;
-    grid-template-columns: repeat(2, 100px);
+    grid-template-columns: repeat(2, 125px);
     row-gap: 5px;
     padding: 5px;
 }
@@ -76,11 +76,6 @@
     }
 }
 @media only screen and (min-width: 1024px) {
-    #vhc-app-dock{
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-@media only screen and (min-width: 1440px) {
     #vhc-app-dock{
         grid-template-columns: repeat(4, 1fr);
     }

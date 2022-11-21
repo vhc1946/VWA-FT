@@ -18,6 +18,11 @@ var qactions = {
     id:'presentation-open',
     src:'../bin/repo/assets/icons/document-signed.png',
     title:'Presentation'
+  },
+  test:{
+    id:'window-test',
+    src:'../bin/repo/assets/icons/badge.png',
+    title:'Window Size'
   }
 };
 var mactions = {
@@ -42,6 +47,8 @@ titlebar.SETUPtitlebar('../bin/repo/',qactions,mactions,false); //login disabled
 
 $(document.getElementById(titlebar.tbdom.page.settings)).hide();
 //$(document.getElementById(titlebar.tbdom.page.user)).hide(); //hide the user section of title bar
+
+
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -122,10 +129,9 @@ var LOADticket=()=>{
       siteinfo.form = currticket.sitems[i];
 
       serviceitems.ADDview(currticket.sitems[i].tagid,sitemvc.cont);
-
-      $(document.getElementsByClassName('viewcontrol-menu-item')[4]).click(); //selects first SI menu item
-      $(document.getElementById('currsi')).click();
     }
+    $(document.getElementsByClassName('viewcontrol-menu-item')[4]).click(); //selects first SI menu item
+    serviceitems.cont.getElementsByClassName('viewcontrol-menubox')[0].style.left = '-250px';   // Start with menu hidden
   }
 }
 
@@ -153,7 +159,9 @@ document.getElementById('presentation-open').addEventListener('click',(ele)=>{  
   else{box.style.left = "0px";}
 });
 
-
+document.getElementById('window-test').addEventListener('click',(ele)=>{  // Presentation show/hide
+  window.alert('Window Size: ' + window.innerWidth + '  /  ' + window.innerHeight);
+});
 
 /*
 ////////////////////////////////////////////////////////////////////////////////
