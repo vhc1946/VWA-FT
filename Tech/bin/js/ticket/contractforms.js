@@ -85,7 +85,7 @@ export class Contform extends VHCform{
             </div>
         </div>
     </div>
-    <div id=${this.dom.cont}>
+    <div id=${this.dom.cont} class='ft-form'>
         <div class="contract-opt">
             <div>Contract ID</div><input class=${this.dom.disp.id} placeholder="id">
         </div>

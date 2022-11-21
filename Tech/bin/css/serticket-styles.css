@@ -1,6 +1,9 @@
 /* Root styling file that will hold the layout structure */
-body, input, textarea{
-    font-size: 1.1em;
+body{
+    font-size: 100%;
+}
+:root,input,textarea{
+    font-size: 1.2em;
 }
 
 a{

@@ -35,32 +35,33 @@ export class SIform extends VHCform{
     }
   }
   content=`
-    <div class=${this.dom.cont}>
-      <div class="si-item">
-        <div>Item ID</div><input class=${this.dom.info.id} placeholder="id">
+    <div id=${this.dom.cont} class='ft-form'>
+      <div class="si-basics">
+        <div class="si-item">
+          <div>Item ID</div><input class=${this.dom.info.id} placeholder="id">
+        </div>
+        <div class="si-item">
+          <div>Tag Num</div><input class=${this.dom.info.tagnum} placeholder="tagnum">
+        </div>
+        <div class="si-item">
+          <div>Description</div><input class=${this.dom.info.descr} placeholder="descr">
+        </div>
+        <div class="si-item">
+          <div>Model Num</div><input class=${this.dom.info.model} placeholder="model">
+        </div>
+        <div class="si-item">
+          <div>Serial Num</div><input class=${this.dom.info.serial} placeholder="serial">
+        </div>
+        <div class="si-item">
+          <div>Brand</div><input class=${this.dom.info.manf} placeholder="manf">
+        </div>
+        <div class="si-item">
+          <div>Location</div><input class=${this.dom.info.location} placeholder="location">
+        </div>
+        <div class="si-item">
+          <div>Area Served</div><input class=${this.dom.info.area} placeholder="area">
+        </div>
       </div>
-      <div class="si-item">
-        <div>Tag Num</div><input class=${this.dom.info.tagnum} placeholder="tagnum">
-      </div>
-      <div class="si-item">
-        <div>Description</div><input class=${this.dom.info.descr} placeholder="descr">
-      </div>
-      <div class="si-item">
-        <div>Model Num</div><input class=${this.dom.info.model} placeholder="model">
-      </div>
-      <div class="si-item">
-        <div>Serial Num</div><input class=${this.dom.info.serial} placeholder="serial">
-      </div>
-      <div class="si-item">
-        <div>Brand</div><input class=${this.dom.info.manf} placeholder="manf">
-      </div>
-      <div class="si-item">
-        <div>Location</div><input class=${this.dom.info.location} placeholder="location">
-      </div>
-      <div class="si-item">
-        <div>Area Served</div><input class=${this.dom.info.area} placeholder="area">
-      </div>
-
       <div class="si-materials">
         <div class="si-item">
           <div>Filter Type 1</div><input class=${this.dom.info.filt1} placeholder="filt1">

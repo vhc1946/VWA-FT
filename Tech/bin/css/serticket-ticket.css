@@ -286,10 +286,22 @@ place-self: center center;
 .viewcontrol-menu-vmt>div>.viewcontrol-menu-item{
     min-width: unset;
 }
-
-.si-item,.contract-opt{
+.ft-form{
+    margin: 5px;
     display: grid;
-    grid-template-columns: 150px 250px;
+    grid-template-columns: 1fr;
+    column-gap: 50px;
+}
+.si-materials{
+    border-top: 1px solid black;
+}
+.si-warranties{
+    border-top: 1px solid black;
+}
+.wo-item,.si-item,.contract-opt{
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    padding: 5px 0px;
 }
 .item-header{
     font-weight: bold;
@@ -308,4 +320,29 @@ place-self: center center;
     left: -5000px;
     width: 100vw;
     transition: left 0.5s;
+}
+
+@media only screen and (min-width: 768px) {
+    .ft-form{
+        grid-template-columns: 1fr;
+    }
+    .si-materials{
+        border-top: 1px solid black;
+    }
+}
+@media only screen and (min-width: 1024px) {
+    .ft-form{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .si-materials{
+        border-top: none;
+    }
+}
+@media only screen and (min-width: 1440px) {
+    .ft-form{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .si-materials{
+        border-top: none;
+    }
 }
