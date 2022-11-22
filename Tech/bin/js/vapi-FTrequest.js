@@ -2,8 +2,9 @@ import {awo} from '../repo/ds/wos/vogel-wos.js';
 import {aservicecontract} from '../repo/ds/contracts/vogel-servicecontracts.js';
 import {aserviceitem} from '../repo/ds/customers/vogel-serviceitems.js';
 
-import { SENDrequest } from '../repo/apis/vapi/vapicore.js';
 
+import { SENDrequest } from '../repo/apis/vapi/vapicore.js';
+import {DropNote} from '../repo/modules/vg-poppers.js';
 
 var vurl = 'https://18.191.134.244:5000/api'//'https://localhost:5000/api'//;
 var vapp = 'VMT';
@@ -187,6 +188,7 @@ var STARTticket=(wonum)=>{
                             console.log('Contracts request fail');
                         }
                         havesc=true;
+                        DropNote('tr','Service Contracts have loaded')
                         if(havesi){return resolve(ticket);}
                     }
                 )

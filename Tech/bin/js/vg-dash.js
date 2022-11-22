@@ -5,7 +5,7 @@ import * as titlebar from '../repo/modules/vg-titlebar.js';
 import * as viewcontrol from '../repo/layouts/view-controller.js';
 import { STARTticket } from './vapi-FTrequest.js';
 import { SELECTview } from '../repo/modules/vg-floatviews.js';
-import { AppDock } from './appdock.js';
+import { AppDock } from '../repo/modules/appdock.js';
 
 
 // SETUP title bar for dash /////////////////////////////
