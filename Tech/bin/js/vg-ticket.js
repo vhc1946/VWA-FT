@@ -18,6 +18,11 @@ var qactions = {
     id:'presentation-open',
     src:'../bin/repo/assets/icons/document-signed.png',
     title:'Presentation'
+  },
+  test:{
+    id:'window-test',
+    src:'../bin/repo/assets/icons/badge.png',
+    title:'Window Size'
   }
 };
 var mactions = {
@@ -42,6 +47,8 @@ titlebar.SETUPtitlebar('../bin/repo/',qactions,mactions,false); //login disabled
 
 $(document.getElementById(titlebar.tbdom.page.settings)).hide();
 //$(document.getElementById(titlebar.tbdom.page.user)).hide(); //hide the user section of title bar
+
+
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -104,6 +111,15 @@ var LOADticket=()=>{
   if(currticket){
     woform.form = currticket.wo;
     contform.form = currticket.contract;
+    
+    // Inserts Add and Delete buttons into Items Menu
+    let qckbox = serviceitems.cont.getElementsByClassName('viewcontrol-menubox')[0].appendChild(document.createElement('div'));  
+    qckbox.classList.add('si-menu-buttons');
+    qckbox.appendChild(document.createElement('img')).src = '../bin/repo/assets/icons/trash.png';
+    qckbox.lastChild.id = 'si-delete';
+    qckbox.appendChild(document.createElement('img')).src = '../bin/repo/assets/icons/add.png';
+    qckbox.lastChild.id = 'si-add';
+
     for(let i=0;i<currticket.sitems.length;i++){
       let siteinfo = new SIform(document.createElement('div'));
       let sitemvc = new vcontrol.ViewGroup({
@@ -122,10 +138,12 @@ var LOADticket=()=>{
       siteinfo.form = currticket.sitems[i];
 
       serviceitems.ADDview(currticket.sitems[i].tagid,sitemvc.cont);
-
-      $(document.getElementsByClassName('viewcontrol-menu-item')[4]).click(); //selects first SI menu item
-      $(document.getElementById('currsi')).click();
     }
+    $(document.getElementsByClassName('viewcontrol-menu-item')[4]).click(); //selects first SI menu item
+    serviceitems.cont.getElementsByClassName('viewcontrol-menubox')[0].style.left = '-250px';   // Start with menu hidden
+
+
+
   }
 }
 
@@ -153,7 +171,15 @@ document.getElementById('presentation-open').addEventListener('click',(ele)=>{  
   else{box.style.left = "0px";}
 });
 
-
+document.getElementById('window-test').addEventListener('click',(ele)=>{  // Presentation show/hide
+  window.alert('Window Size: ' + window.innerWidth + '  /  ' + window.innerHeight);
+});
+document.getElementById('si-delete').addEventListener('click',(ele)=>{  // Presentation show/hide
+  DropNote('tr','Delete Service Item','yellow');
+});
+document.getElementById('si-add').addEventListener('click',(ele)=>{  // Presentation show/hide
+  DropNote('tr','Add New Service Item','yellow');
+});
 
 /*
 ////////////////////////////////////////////////////////////////////////////////

@@ -33,29 +33,64 @@ export class WOform extends VHCform{
     }
   }
   content=`
-  <div id="${this.dom.cont}" class="twelve-col-grid">
-    <img src="../bin/repo/assets/images/VogelLogo.png" id="header-logo" alt="VOGEL">
-    <div class="client-label">WO Num:</div><input class="${this.dom.info.id}" type="text" />
-    <div class="client-label">Cust Code:</div><input class="${this.dom.info.custcode}" class="client-input" type="text" />
-    <div class="client-label">Client:</div><input class="${this.dom.info.contactname}" class="client-input" type="text" />
-    <div class="client-label">Phone:</div><input class="${this.dom.info.contactphone}" class="client-input" type="text" />
+  <div id="${this.dom.cont}" class="ft-form">
+    <div class='wo-item'>
+      <div>WO Num:</div><input class="${this.dom.info.id}" type="text" />
+    </div>
+    <div class='wo-item'>
+      <div>Cust Code:</div><input class="${this.dom.info.custcode}" type="text" />
+    </div>
+    <div class='wo-item'>
+      <div>Client:</div><input class="${this.dom.info.contactname}" type="text" />
+    </div>
+    <div class='wo-item'>
+      <div>Phone:</div><input class="${this.dom.info.contactphone}" type="text" />
+    </div>
 
-    <div class="client-label">Street:</div><input class="${this.dom.info.street}" class="client-input" type="text" />
-    <div class="client-label">Unit:</div><input class="${this.dom.info.unit}" class="client-input" type="text" />
-    <div class="client-label">City/Zip:</div><input class="${this.dom.info.cityzip}" class="client-input" type="text" />
-    <div class="client-label">State:</div><input class="${this.dom.info.state}" class="client-input" type="text" />
+    <div class='wo-item'>
+      <div>Street:</div><input class="${this.dom.info.street}" type="text" />
+    </div>
+    <div class='wo-item'>
+      <div>Unit:</div><input class="${this.dom.info.unit}" type="text" />
+    </div>
+    <div class='wo-item'>
+      <div>City/Zip:</div><input class="${this.dom.info.cityzip}" type="text" />
+    </div>
+    <div class='wo-item'>
+      <div>State:</div><input class="${this.dom.info.state}" type="text" />
+    </div>
 
-    <div class="client-label">Sales Rep:</div><input class="${this.dom.info.salesrep}" class="client-input" type="text" />
-    <div class="client-label">Taken By:</div><input class="${this.dom.info.takenby}" class="client-input" type="text" />
-    <div class="client-label">Department:</div><input class="${this.dom.info.dept}" class="client-input" type="text" />
-    <div class="client-label">Category:</div><input class="${this.dom.info.cat}" class="client-input" type="text" />
-    <div class="client-label">Reference:</div><input class="${this.dom.info.ref}" class="client-input" type="text" />
-    <div class="client-label">Job Reference:</div><input class="${this.dom.info.jobref}" class="client-input" type="text" />
-    <div class="client-label">Contract Reference:</div><input class="${this.dom.info.conref}" class="client-input" type="text" />
+    <div class='wo-item'>
+      <div>Sales Rep:</div><input class="${this.dom.info.salesrep}" type="text" />
+    </div>
+    <div class='wo-item'>
+      <div>Taken By:</div><input class="${this.dom.info.takenby}" type="text" />
+    </div>
+    <div class='wo-item'>
+      <div>Department:</div><input class="${this.dom.info.dept}" type="text" />
+    </div>
+    <div class='wo-item'>
+      <div>Category:</div><input class="${this.dom.info.cat}" type="text" />
+    </div>
+    <div class='wo-item'>
+      <div>Reference:</div><input class="${this.dom.info.ref}" type="text" />
+    </div>
 
-    <div class="client-label">Price Book:</div><input class="${this.dom.info.pricebook}" class="client-input" type="text" />
-    <div class="client-label">Price Level:</div><input class="${this.dom.info.pricelevel}" class="client-input" type="text" />
-    <div class="client-label">Description:</div><textarea class="${this.dom.info.descr}"></textarea>
+    <div class='wo-item'>
+      <div>Job Reference:</div><input class="${this.dom.info.jobref}" type="text" />
+    </div>
+    <div class='wo-item'>
+      <div>Contract Reference:</div><input class="${this.dom.info.conref}" type="text" />
+    </div>
+    <div class='wo-item'>
+      <div>Price Book:</div><input class="${this.dom.info.pricebook}" type="text" />
+    </div>
+    <div class='wo-item'>
+      <div>Price Level:</div><input class="${this.dom.info.pricelevel}" type="text" />
+    </div>
+    <div class='wo-item'>
+      <div>Description:</div><textarea class="${this.dom.info.descr}"></textarea>
+    </div>
   </div>
   `
   submit(){}
