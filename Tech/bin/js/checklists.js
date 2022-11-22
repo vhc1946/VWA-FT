@@ -1,4 +1,4 @@
-var dom = {
+var toggledom = {
     cont: 'checklist-cont',
     info: 'checklist-info',
     cool: 'checklist-cooling',
@@ -16,8 +16,8 @@ var HideAll=()=>{
     }
 }
 var Clicktoclose=()=>{
-    for (let ea in dom){
-        let box = document.getElementsByClassName(dom[ea]);
+    for (let ea in toggledom){
+        let box = document.getElementsByClassName(toggledom[ea]);
         for (let i=0;i<box.length;i++){
             box[i].getElementsByClassName('section-header')[0].addEventListener('click', (ele)=>{
                 $(box[i].getElementsByClassName('section-cont')[0]).toggle();
@@ -28,6 +28,99 @@ var Clicktoclose=()=>{
 
 HideAll();
 Clicktoclose();
+
+
+// First two characters = in / ou / ai / ac
+// Next four characters = cool / heat / info
+var coolingdom = {
+    cont: 'cooling-rewards',
+    inputs: {
+        in_cool_densityalt: 'densityalt',
+        in_cool_wbentering: 'wbentering',
+        in_cool_wbleaving: 'wbleaving',
+        in_cool_dbentering: 'dbentering',
+        in_cool_dbleaving: 'dbleaving',
+        in_cool_tempdrop: 'tempdrop',
+        ou_cool_sucpress: 'sucpress',
+        ou_cool_headpress: 'headpress',
+        ou_cool_liqpress: 'liqpress',
+        ou_cool_dboutdoor: 'dboutdoor',
+        ou_cool_targetsh: 'targetsh',
+        ou_cool_actualsh: 'actualsh',
+        ou_cool_targetsc: 'targetsc',
+        ou_cool_actualsc: 'actualsc',
+        ou_cool_ratedamps: 'ratedamps',
+        ou_cool_actualamps: 'actualamps',
+        ou_cool_condfan: 'condfan',
+        ou_cool_condcoil: 'condcoil',
+        ou_cool_elecout: 'elecout'
+    },
+    validation: {}
+}
+var heatingdom = {
+    cont: 'heating-rewards',
+    inputs: {
+        in_heat_hriserated: 'hriserated',
+        in_heat_hriseactual: 'hriseactual',
+        in_heat_gpin: 'gpin',
+        in_heat_gpouthigh: 'gpouthigh',
+        in_heat_gpoutlow: 'gpoutlow',
+        in_heat_flmsensor: 'flmsensor',
+        in_heat_blowerrated: 'blowerrated',
+        in_heat_bloweractual: 'bloweractual',
+        in_heat_ignitionop: 'ignitionop',
+        in_heat_combustop: 'combustop',
+        in_heat_fluesafety: 'fluesafety',
+        in_heat_heatex: 'heatex',
+        in_heat_inducerops: 'inducerops',
+        in_heat_testO2: 'testO2',
+        in_heat_testCO: 'testCO',
+        in_heat_testeffic: 'testeffic',
+        in_heat_testCO2: 'testCO2',
+        in_heat_stacktemp: 'stacktemp',
+        in_heat_elecin: 'elecin',
+        ai_heat_blowerrated: 'blowerrated',
+        ai_heat_bloweractual: 'bloweractual'
+    },
+    validation: {}
+}
+var systemdom = {
+    cont: 'system-info',
+    inputs: {
+        in_info_indes: 'indes',
+        in_info_heatage: 'heatage',
+        in_info_heatratedcap: 'heatratedcap',
+        in_info_heatactualcap: 'heatactualcap',
+        in_info_heatlosteffic: 'heatlosteffic',
+        in_info_incondition: 'incondition',
+        in_airf_returnstatic: 'returnstatic',
+        in_airf_ratedcfm: 'ratedcfm',
+        in_airf_buildpress: 'buildpress',
+        in_airf_partcount: 'partcount',
+        in_airf_filtercond: 'filtercond',
+        in_airf_evapcond: 'evapcond',
+        in_airf_belttight: 'belttight',
+        in_cool_drainclear: 'drainclear',
+        in_heat_drainclear: 'drainclear',
+        in_heat_hplockout: 'hplockout',
+        in_heat_statprog: 'statprog',
+        in_acce_humdop: 'humdop',
+        in_acce_eacop: 'eacop',
+        in_acce_ervop: 'ervop',
+        in_acce_uvop: 'uvop',
+        in_acce_coop: 'coop',
+        ou_info_outdes: 'outdes',
+        ou_info_coolage: 'coolage',
+        ou_info_coolratedcap: 'coolratedcap',
+        ou_info_coolactualcap: 'coolactualcap',
+        ou_info_coollosteffic: 'coollosteffic',
+        ou_info_outcondition: 'outcondition',
+        ou_airf_supplystatic: 'supplystatic',
+        ou_airf_actualcfm: 'actualcfm',
+        ou_acce_econ: 'econ'
+    },
+    validation: {}
+}
 
 var coolingrewards = `
     <div class="checklist-cont" class="cooling-rewards">
@@ -114,7 +207,7 @@ var coolingrewards = `
     </div>
 `
 var heatingrewards = `
-    <div class="checklist-cont" id="heating-rewards">
+    <div class="checklist-cont" class="heating-rewards">
         <div class="section-header">Heating Rewards</div>
         <div class="section-cont">
             <div class="checklist-indoor">
@@ -199,7 +292,7 @@ var heatingrewards = `
     </div>
 `
 var systeminfo = `
-    <div class="checklist-cont" id="system-info">
+    <div class="checklist-cont" class="system-info">
         <div class="section-header">System Info</div>
         <div class="section-cont">
             <div class="checklist-indoor">
@@ -280,19 +373,19 @@ var systeminfo = `
                         <div class="section-header">--Accessories</div>
                         <div class="section-cont">
                             <div class="checklist-item">
-                                <div>Humidifier Operations</div><input class="humd-op" placeholder="Choose One">
+                                <div>Humidifier Operations</div><input class="humdop" placeholder="Choose One">
                             </div>
                             <div class="checklist-item">
-                                <div>Whole Home Air Cleaner</div><input class="eac-op" placeholder="Choose One">
+                                <div>Whole Home Air Cleaner</div><input class="eacop" placeholder="Choose One">
                             </div>
                             <div class="checklist-item">
-                                <div>Energy Recovery Ventilator</div><input class="erv-op" placeholder="Choose One">
+                                <div>Energy Recovery Ventilator</div><input class="ervop" placeholder="Choose One">
                             </div>
                             <div class="checklist-item">
-                                <div>Anti Microbial Lamp System</div><input class="uv-op" placeholder="Choose One">
+                                <div>Anti Microbial Lamp System</div><input class="uvop" placeholder="Choose One">
                             </div>
                             <div class="checklist-item">
-                                <div>CO Sensor </div><input class="co-op" placeholder="Choose One">
+                                <div>CO Sensor </div><input class="coop" placeholder="Choose One">
                             </div>
                         </div>
                     </div>
