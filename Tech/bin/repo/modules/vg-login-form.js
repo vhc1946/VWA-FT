@@ -1,5 +1,6 @@
 import {VHCform} from '../../repo/tools/vhc-forms.js';
 
+var logurl = 'https://18.191.134.244:5000/login';
 class LoginForm extends VHCform{
     constructor(cont){
         super(cont);
@@ -95,11 +96,12 @@ class LoginForm extends VHCform{
             },
             body:JSON.stringify({access:{user:user,pswrd:pswrd}})
             }
-            fetch('https://18.191.134.244:5000/login/',options)
+            fetch(logurl,options)
             .then(response=>{return response.json()})
             .then(data=>{return resolve(data);})
             .catch(err=>{console.log(err);})
         }else{return resolve({success:false});}
+        3
         });
     }
 }
