@@ -1,6 +1,7 @@
 
 export var ConcurrentLoop=(times,call)=>{
   let report ={
+    name:'CONCURE',
     timein:new Date().getTime(),
     timeout:0,
     calls:{}
@@ -27,6 +28,7 @@ export var ConcurrentLoop=(times,call)=>{
 }
 export var StaggerLoop=(times,call)=>{
   let report ={
+    name:'Stagger',
     timein:new Date().getTime(),
     timeout:0,
     calls:{}
