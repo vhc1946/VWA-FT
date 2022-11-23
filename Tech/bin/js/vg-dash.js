@@ -23,7 +23,16 @@ var qactions = {
         title:'Stress Test'
     }
 };
-var mactions = {};
+var mactions = {
+  test1:{
+    id:'stress-test1',
+    alt:'TEST1'
+  },
+  test2:{
+    id:'stress-test2',
+    alt:'TEST2'
+  }
+};
 
 titlebar.SETUPtitlebar('./bin/repo/',qactions,mactions,false);//returns login Form
 //console.log(login.storecreds,'Has Permission: ',login.permission);
@@ -136,20 +145,23 @@ document.getElementById('submit-search').addEventListener('click', (ele)=>{
     $(document.getElementById('vg-float-frame-close')).click();
 });
 
+// TESTING BLOCK ///////////////////////////////////////////////////////////////
 
-document.getElementById('stress-test').addEventListener('click',(ele)=>{  // Presentation show/hide
+import {
+  ConcurrentLoop,
+  StaggerLoop
+} from '../repo/apis/vapi/testing/load-testing.js';
+
+document.getElementById(mactions.test1.id).addEventListener('click',(ele)=>{  // Presentation show/hide
     let times = window.prompt('Enter Number of Tests','5');
     DropNote('tr','Stress testing','yellow');
-    for (let i=0;i<times;i++){
-        let wo = String(Math.floor(Math.random() * 1001) + 2001);
-        while(wo.length < 8){
-            wo = '0' + wo;
-        }
-        console.log(wo);
-        STARTticket(wo).then(
-            ticket=>{console.log(ticket)}
-        );
-    }
+    ConcurrentLoop(times,STARTticket);
+});
+
+document.getElementById(mactions.test2.id).addEventListener('click',(ele)=>{  // Presentation show/hide
+    let times = window.prompt('Enter Number of Tests','5');
+    DropNote('tr','Stress testing','yellow');
+    StaggerLoop(times,STARTticket);
 });
 
 ////////////////////////////////////////////////////////////////////////////////
