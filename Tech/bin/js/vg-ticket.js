@@ -8,7 +8,8 @@ import * as vcontrol from '../repo/layouts/view-controller.js';
 
 import {WOform} from './ticket/woforms.js';
 import {Contform} from './ticket/contractforms.js';
-import {SIform} from './ticket/serviceitem-module.js';
+import * as sitemmod from './ticket/serviceitem-module.js';
+
 var publicfolder = '/Tech/bin/css';
 
 window.opener.ticketdata('ticket has opened');
@@ -48,16 +49,11 @@ titlebar.SETUPtitlebar('../bin/repo/',qactions,mactions,false); //login disabled
 $(document.getElementById(titlebar.tbdom.page.settings)).hide();
 //$(document.getElementById(titlebar.tbdom.page.user)).hide(); //hide the user section of title bar
 
-
-
 ////////////////////////////////////////////////////////////////////////////////
 
 // LOAD Ticket /////////////////////////////////////////////////////////////////
 
 var currticket = JSON.parse(localStorage.getItem(wolstore.toloadwo));
-
-console.log(currticket);
-
 if(currticket){
   localStorage.setItem(wolstore.toloadwo,null);
   localStorage.setItem(wolstore.lastwo,JSON.stringify(currticket));
@@ -70,96 +66,101 @@ window.addEventListener('beforeunload',(ele)=>{ //here for page refresh
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// SETUP ticket view group /////////////////////////////////////////////////////
+// Setup ticket view groups ////////////////////////////////////////////////////
 
 vcontrol.SETUPviewcontroller('../bin/repo/');
-var ticketviews = new vcontrol.ViewGroup({
-  cont:document.getElementById('ticket-build-container'),
-  type:'mbe'
-});
 
-var syschange=(cont,view,button)=>{
-  document.getElementById('currsi').innerText = view.title;
-  $(document.getElementById('currsi')).click();
-}
+var CREATEticket=()=>{
+  let ticketview = new vcontrol.ViewGroup({
+    cont:document.getElementById('ticket-build-container'),
+    type:'mbe'
+  });
+  let infoview = new vcontrol.ViewGroup({
+    type:'mtl'
+  });
+  let sitemview = new vcontrol.ViewGroup({
+    type:'mlt',
+    swtchEve:(cont,view,button)=>{
+      document.getElementById('currsi').innerText = view.title;
+      $(document.getElementById('currsi')).click();
+    },
+    qactions:{
+      '#currsi.div':{
+        attributes:{
+          class: 'flat-action-button'
+        },
+        value:'Items'
+      }
+    }
+  });
+  sitemview.cont.id='si-cont';
 
-var serviceitems = new vcontrol.ViewGroup({
-  type:'mlt',
-  swtchEve:syschange,
-  qactions:{
-    '#currsi.div':{
-      attributes:{
-        class: 'flat-action-button'
-      },
-      value:'Items'
+  let woform = new WOform(document.createElement('div'));
+  let contform = new Contform(document.createElement('div'));
+
+  infoview.ADDview('WO',woform.cont);
+  infoview.ADDview('Contract',contform.cont);
+  $(infoview.buttons.children[0]).click();
+
+  ticketview.ADDview('Information',infoview.cont);
+  ticketview.ADDview('Service Items',sitemview.cont);
+  $(ticketview.buttons.children[0]).click();  //Sets first tab as selected
+
+  /*
+
+  */
+  return {
+    views:{
+      ticket:ticketview,
+      info:infoview,
+      sitems:sitemview
+    },
+    forms:{
+      wo:woform,
+      contract:contform,
+      sitems:[],
+      checks:[],
+      repairs:[]
     }
   }
-});
-serviceitems.cont.id='si-cont';
-
-var woform = new WOform(document.createElement('div'));
-var contform = new Contform(document.createElement('div'));
-
-ticketviews.ADDview('Information',woform.cont);
-ticketviews.ADDview('Contract',contform.cont);
-ticketviews.ADDview('Service Items',serviceitems.cont);
-ticketviews.ADDview('Checklists',document.createElement('div'));
+}
+var ticket = CREATEticket();
+ticket.data = currticket; //link ticket data
 
 $(document.getElementsByClassName('viewcontrol-menu-item')[0]).click();  //Sets first tab as selected
 
-var LOADticket=()=>{
-  if(currticket){
-    woform.form = currticket.wo;
-    contform.form = currticket.contract;
-    
-    // Inserts Add and Delete buttons into Items Menu
-    let qckbox = serviceitems.cont.getElementsByClassName('viewcontrol-menubox')[0].appendChild(document.createElement('div'));  
-    qckbox.classList.add('si-menu-buttons');
-    qckbox.appendChild(document.createElement('img')).src = '../bin/repo/assets/icons/trash.png';
-    qckbox.lastChild.id = 'si-delete';
-    qckbox.appendChild(document.createElement('img')).src = '../bin/repo/assets/icons/add.png';
-    qckbox.lastChild.id = 'si-add';
+////////////////////////////////////////////////////////////////////////////////
 
-    for(let i=0;i<currticket.sitems.length;i++){
-      let siteinfo = new SIform(document.createElement('div'));
-      let sitemvc = new vcontrol.ViewGroup({
-        type:'mtr',
-        qactions:{['.item-header.div']:{value:currticket.sitems[i].descr}}
-      });
+var LOADticket=(ticket)=>{
+  let {forms,views,data}=ticket;
 
-      if(currticket.repairs[currticket.sitems[i].tagid]==undefined){currticket.repairs[currticket.sitems[i].tagid]=[]}
+  if(ticket.data){
+    forms.wo.form = data.wo;
+    forms.contract.form = data.contract;
 
-
-      // add/init service repairs
-      sitemvc.ADDview('Repairs',document.createElement('div'))
-
-      //add/init service info form
-      sitemvc.ADDview('Info',siteinfo.cont);
-      siteinfo.form = currticket.sitems[i];
-
-      serviceitems.ADDview(currticket.sitems[i].tagid,sitemvc.cont);
-    }
-    $(document.getElementsByClassName('viewcontrol-menu-item')[4]).click(); //selects first SI menu item
-    serviceitems.cont.getElementsByClassName('viewcontrol-menubox')[0].style.left = '-250px';   // Start with menu hidden
-
-
+    views.sitems.CLEARview();
+    let{sitems,checks,repairs}=sitemmod.SETUPserviceitems(views.sitems,data.sitems,data.repairs);
+    forms.sitems=sitems;
+    forms.checks=checks;
+    forms.repairs=repairs;
 
   }
 }
-
-LOADticket();
-
-console.log(currticket);
+var GETticket=()=>{
+  
+}
+LOADticket(ticket);
+console.log(ticket.forms);
 
 document.getElementById('currsi').addEventListener('click',(ele)=>{   // Service Items menu toggle
-  let box = serviceitems.cont.getElementsByClassName('viewcontrol-menubox')[0];
+  let box = ticket.views.sitems.menu.children[0];
   if(box.style.left=='-250px'){box.style.left='0px';}
   else{box.style.left='-250px';}
 });
 document.getElementById('wo-refresh-button').addEventListener('click',(ele)=>{   // Refresh info
   SYNCticket(currticket.wo.id).then(
-    ticket=>{
-      if(ticket.wo){currticket.wo=ticket.wo;woform.form=currticket.wo;}
+    sync=>{
+      if(sync.wo){currticket.wo=sync.wo;ticket.form.wo=currticket.wo;}
     });
 });
 document.getElementById(titlebar.tbdom.utils.buttons.home).addEventListener('click', (ele)=>{   // Home Button
@@ -180,68 +181,3 @@ document.getElementById('si-delete').addEventListener('click',(ele)=>{  // Prese
 document.getElementById('si-add').addEventListener('click',(ele)=>{  // Presentation show/hide
   DropNote('tr','Add New Service Item','yellow');
 });
-
-/*
-////////////////////////////////////////////////////////////////////////////////
-var DELETEwo = (wonum=null)=>{
-  if(wonum){
-    let wolist = JSON.parse(localStorage.getItem(wolstore.techwo));
-    let nwolist = [];
-    for(let x=0;x<wolist.length;x++){
-      if(wolist[x].num!=wonum){
-        nwolist.push(wolist[x]);
-      }
-    }
-    localStorage.setItem(wolstore.techwo,JSON.stringify(nwolist));
-    LOADwolist();
-  }
-}
-
-//WO Number CHANGE
-document.getElementById('wo-info-num').addEventListener('change', (ele) => { //WO number input change
-    if (ele.target.value != '') {
-        document.getElementsByTagName('title')[0].innerText = ele.target.value;
-        $(document.getElementById('wo-setup-sys')).show();
-        $(document.getElementById('wo-setup-repair')).show();
-        curwo.SAVEwo();
-        LOADwolist();
-    }
-});
-
-// Buttons ///////////////////////////////////////////////////////////
-document.getElementById('wo-save').addEventListener('click',(ele)=>{
-  curwo.SAVEwo();
-  LOADwolist();
-  console.log('WO saved...',curwo.wo);
-  DropNote('tr','WO Saved!','green');
-});
-/*
-document.getElementById(titlebar.tbdom.window.close).addEventListener('click',(ele)=>{
-  //curwo.SAVEwo();
-  //curwo.LOADwo();
-  DropNote('tr','WO Saved!','green');
-  window.close();
-});
-document.getElementById('wo-delete').addEventListener('click',(ele)=>{
-  DELETEwo(curwo.wo.num);
-  curwo.LOADwo();
-  DropNote('tr','WO Deleted..','red');
-});
-
-
-
-*/
-/* Navbar Testing
-var prevScrollpos = window.pageYOffset; // Set initial screen position
-window.onscroll = function() {
-  var currentScrollPos = window.pageYOffset;
-  if (prevScrollpos > currentScrollPos) { //  Checks if the user has scolled UP
-    document.getElementById("titlebar-cont").style.top = "0";
-    document.getElementsByClassName("viewcontrol-menu")[0].style.bottom = "-50px";
-  } else {
-    document.getElementById("titlebar-cont").style.top = "-50px";
-    document.getElementsByClassName("viewcontrol-menu")[0].style.bottom = "0px";
-  }
-  prevScrollpos = currentScrollPos;
-}
- */
