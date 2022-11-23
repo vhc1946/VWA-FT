@@ -154,9 +154,15 @@ var vcgroup={//STYLE GROUPS
     views will not be setup
 */
 class ViewGroup{
-  constructor({cont=document.createElement('div'),type='',style=null,delEve=()=>{},swtchEve=()=>{},qactions={}}){
+  constructor({
+    cont=document.createElement('div'),
+    type='',
+    style=null,
+    delEve=()=>{},
+    swtchEve=()=>{},
+    qactions={}
+  }){
     this.cont=cont;
-    console.log(this.cont);
     this.group=CreateComponent(vdom());
     this.cont.appendChild(this.group);
 
