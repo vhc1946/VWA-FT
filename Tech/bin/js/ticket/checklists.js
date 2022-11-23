@@ -1,3 +1,6 @@
+import {CheckListForm} from './checklist-form.js';
+import {VHCform} from '../../repo/tools/vhc-forms.js';
+
 var toggledom = {
     cont: 'checklist-cont',
     info: 'checklist-info',
@@ -9,15 +12,15 @@ var toggledom = {
     outdoor: 'checklist-outdoor'
 }
 
-var HideAll=()=>{
-    let hide = document.getElementsByClassName('section-cont');
+var HideAll=(cont)=>{
+    let hide = cont.getElementsByClassName('section-cont');
     for (let i=0;i<hide.length;i++){
         $(hide[i]).hide();
     }
 }
-var Clicktoclose=()=>{
+var Clicktoclose=(cont)=>{
     for (let ea in toggledom){
-        let box = document.getElementsByClassName(toggledom[ea]);
+        let box = cont.getElementsByClassName(toggledom[ea]);
         for (let i=0;i<box.length;i++){
             box[i].getElementsByClassName('section-header')[0].addEventListener('click', (ele)=>{
                 $(box[i].getElementsByClassName('section-cont')[0]).toggle();
@@ -25,10 +28,6 @@ var Clicktoclose=()=>{
         }
     }
 }
-
-HideAll();
-Clicktoclose();
-
 
 // First two characters = in / ou / ai / ac
 // Next four characters = cool / heat / info
@@ -55,7 +54,7 @@ var coolingdom = {
         ou_cool_condcoil: 'condcoil',
         ou_cool_elecout: 'elecout'
     },
-    validation: {}
+    valids: {}
 }
 var heatingdom = {
     cont: 'heating-rewards',
@@ -82,7 +81,7 @@ var heatingdom = {
         ai_heat_blowerrated: 'blowerrated',
         ai_heat_bloweractual: 'bloweractual'
     },
-    validation: {}
+    valids: {}
 }
 var systemdom = {
     cont: 'system-info',
@@ -119,7 +118,7 @@ var systemdom = {
         ou_airf_actualcfm: 'actualcfm',
         ou_acce_econ: 'econ'
     },
-    validation: {}
+    valids: {}
 }
 
 var coolingrewards = `
@@ -150,7 +149,7 @@ var coolingrewards = `
                             <div class="checklist-item">
                                 <div>Temperature Drop</div><input class="tempdrop" type="number" placeholder="">
                             </div>
-                        </div>          
+                        </div>
                     </div>
                 </div>
             </div>
@@ -198,8 +197,8 @@ var coolingrewards = `
                             </div>
                             <div class="checklist-item">
                                 <div>Electrical Connections Secured</div><input class="elecout" placeholder="Choose One">
-                            </div>  
-                        </div>                                                                        
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -441,3 +440,34 @@ var systeminfo = `
         </div>
     </div>
 `
+
+var checklists = {
+  doms:{
+    cooling:coolingdom,
+    heating:heatingdom,
+    system:systemdom
+  },
+  contents:{
+    cooling:coolingrewards,
+    heating:heatingrewards,
+    system:systeminfo
+  }
+}
+
+export var SETUPchecklist=(cont)=>{
+
+  let checkforms = [];
+
+  for(let c in checklists.contents){
+    checkforms.push(new CheckListForm(document.createElement('div'),checklists.contents[c],checklists.doms[c]));
+    cont.appendChild(checkforms[checkforms.length-1].cont);
+  }
+
+  HideAll(cont);
+  Clicktoclose(cont);
+
+  return {
+    cont:cont,
+    forms:checkforms
+  }
+}

@@ -1,108 +1,63 @@
-import {VHCform} from '../../repo/tools/vhc-forms.js';
-export class SIform extends VHCform{
-  constructor(cont){
-    super(cont);
-    this.cont.innerHTML=this.content;
-    this.setinputs(this.dom.info);
+/* Service Item Module
+    Responsible for:
+    - Adding service items to view
+    - linking all service item's info to one
+    - linking service item repairs to one fo
+*/
+import {ViewGroup} from '../../repo/layouts/view-controller.js';
+import {SIform} from './serviceitem-form.js';
+import {SETUPchecklist} from './checklists.js';
+import {SETUPrepairs} from './repairlist.js';
+
+//repairs table
+
+
+export var SETUPserviceitems=(group,items,repairs)=>{
+  // Inserts Add and Delete buttons into Items Menu
+  let qckbox = group.cont.getElementsByClassName('viewcontrol-menubox')[0].appendChild(document.createElement('div'));
+  qckbox.classList.add('si-menu-buttons');
+  qckbox.appendChild(document.createElement('img')).src = '../bin/repo/assets/icons/trash.png';
+  qckbox.lastChild.id = 'si-delete';
+  qckbox.appendChild(document.createElement('img')).src = '../bin/repo/assets/icons/add.png';
+  qckbox.lastChild.id = 'si-add';
+
+  let sitemforms = [];
+  let repairforms = [];
+  let checkforms = [];
+
+  for(let i=0;i<items.length;i++){
+    let sitemview = new ViewGroup({
+      type:'mtr',
+      qactions:{['.item-header.div']:{value:items[i].descr}}
+    });
+
+    //add/init service info form
+    sitemforms.push(new SIform(document.createElement('div')));
+    sitemview.ADDview('Info',sitemforms[i].cont);
+    sitemforms[i].form = items[i]; //load info
+
+    // add/init service repairs
+    if(repairs[items[i].tagid]==undefined){repairs[items[i].tagid]=[]}
+    let repcont = document.createElement('div');
+    repairforms.push(SETUPrepairs(repairs));
+    sitemview.ADDview('Repairs',repcont);
+
+    //add/init service checklist
+    let checkscont = document.createElement('div')
+    checkforms.push(SETUPchecklist(checkscont));
+    sitemview.ADDview('Checklist',checkscont);
+
+    $(sitemview.buttons.children[0]).click();
+    group.ADDview(items[i].tagid,sitemview.cont); //add service item to group
   }
-  dom={
-    cont: 'si-form',
-    info: {
-      area: 'si-area', //
-      beltsize: 'si-beltsize',//
-      controls: 'si-controls',
-      descr: 'si-descr',//
-      elec: 'si-elec',
-      filt1: 'si-filt1',//
-      filt1q: 'si-filt1q',//
-      filt2: 'si-filt2',//
-      filt2q: 'si-filt2q',//
-      id: 'si-id',//
-      location: 'si-location',//
-      manf: 'si-manf',//
-      model: 'si-model',//
-      refri: 'si-refri',//
-      serial: 'si-serial',//
-      status: 'si-status',
-      tagnum: 'si-tagnum',//
-      type: 'si-type',
-      warr1: 'si-warr1',//
-      warr2: 'si-warr2',//
-      warr3: 'si-warr3',//
-      expry1: 'si-expry1',//
-      expry2: 'si-expry2',//
-      expry3: 'si-expry3'//
-    }
+  // DONT DO THIS => $(document.getElementsByClassName('viewcontrol-menu-item')[4]).click(); //selects first SI menu item
+  group.menu.children[1].children[0].innerText = items[items.length-1].tagid;
+  $(group.buttons.children[0]).click();
+  group.menu.children[0].style.left = '-250px';   // Start with menu hidden
+
+  return {
+    sitems:sitemforms,
+    repairs:repairforms,
+    checks:checkforms
   }
-  content=`
-    <div id=${this.dom.cont} class='ft-form'>
-      <div class="si-basics">
-        <div class="si-item">
-          <div>Item ID</div><input class=${this.dom.info.id} placeholder="id">
-        </div>
-        <div class="si-item">
-          <div>Tag Num</div><input class=${this.dom.info.tagnum} placeholder="tagnum">
-        </div>
-        <div class="si-item">
-          <div>Description</div><input class=${this.dom.info.descr} placeholder="descr">
-        </div>
-        <div class="si-item">
-          <div>Model Num</div><input class=${this.dom.info.model} placeholder="model">
-        </div>
-        <div class="si-item">
-          <div>Serial Num</div><input class=${this.dom.info.serial} placeholder="serial">
-        </div>
-        <div class="si-item">
-          <div>Brand</div><input class=${this.dom.info.manf} placeholder="manf">
-        </div>
-        <div class="si-item">
-          <div>Location</div><input class=${this.dom.info.location} placeholder="location">
-        </div>
-        <div class="si-item">
-          <div>Area Served</div><input class=${this.dom.info.area} placeholder="area">
-        </div>
-      </div>
-      <div class="si-materials">
-        <div class="si-item">
-          <div>Filter Type 1</div><input class=${this.dom.info.filt1} placeholder="filt1">
-        </div>
-        <div class="si-item">
-          <div>Filter Qty 1</div><input class=${this.dom.info.filt1q} placeholder="filt1q">
-        </div>
-        <div class="si-item">
-          <div>Filter Type 2</div><input class=${this.dom.info.filt2} placeholder="filt2">
-        </div>
-        <div class="si-item">
-          <div>Filter Qty 2</div><input class=${this.dom.info.filt2q} placeholder="filt2q">
-        </div>
-        <div class="si-item">
-          <div>Belt Size</div><input class=${this.dom.info.beltsize} placeholder="beltsize">
-        </div>
-        <div class="si-item">
-          <div>Refrigerant</div><input class=${this.dom.info.refri} placeholder="refri">
-        </div>
-      </div>
-      <div class="si-warranties">
-        <div class="si-item">
-          <div>Parts Warranty</div><input class=${this.dom.info.warr1} placeholder="warr1">
-        </div>
-        <div class="si-item">
-          <div>Labor Warranty</div><input class=${this.dom.info.warr2} placeholder="warr2">
-        </div>
-        <div class="si-item">
-          <div>Addl Warranty</div><input class=${this.dom.info.warr3} placeholder="warr3">
-        </div>
-        <div class="si-item">
-          <div>Parts Expires</div><input class=${this.dom.info.expry1} placeholder="expry1">
-        </div>
-        <div class="si-item">
-          <div>Labor Expires</div><input class=${this.dom.info.expry2} placeholder="expry2">
-        </div>
-        <div class="si-item">
-          <div>Addl Expires</div><input class=${this.dom.info.expry3} placeholder="expry3">
-        </div>
-      </div>
-    </div>
-  `
-  submit(){}
 }

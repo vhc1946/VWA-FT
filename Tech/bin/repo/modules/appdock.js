@@ -1,8 +1,5 @@
-import { VHCform } from '../repo/tools/vhc-forms.js';
-
-class AppDock extends VHCform{
+export class AppDock{
     constructor(cont,apps){
-        super(cont);
         this.cont=this.CREATEdock(apps);
     }
     CREATEdock=(apps)=>{
@@ -28,5 +25,3 @@ class AppDock extends VHCform{
     }
 
 }
-
-export{AppDock}

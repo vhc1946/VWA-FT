@@ -4,6 +4,7 @@ class VHCform{
     this.cont=cont;
     this.inputs={}
   }
+
   set form(input={}){
     for(let i in this.inputs){
       try{
@@ -29,8 +30,8 @@ class VHCform{
   }
 
   switch(){}
-  validate(){}
-  submit(){}
+  validate(){return true}
+  submit(){return validate?this.form:null}
 
   setinputs(inputs){
     for(let i in inputs){
