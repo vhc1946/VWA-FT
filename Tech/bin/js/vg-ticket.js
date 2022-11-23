@@ -1,6 +1,6 @@
 import {wolstore} from './lstore.js';
 import {ServiceWO} from '../back/sticket-build.js';
-import {SYNCticket} from './vapi-FTrequest.js';
+import {SYNCticket, STARTticket} from './vapi-FTrequest.js';
 
 import {DropNote} from '../repo/modules/vg-poppers.js';
 import * as titlebar from '../repo/modules/vg-titlebar.js';
@@ -18,11 +18,6 @@ var qactions = {
     id:'presentation-open',
     src:'../bin/repo/assets/icons/document-signed.png',
     title:'Presentation'
-  },
-  test:{
-    id:'window-test',
-    src:'../bin/repo/assets/icons/badge.png',
-    title:'Window Size'
   }
 };
 var mactions = {
@@ -170,16 +165,14 @@ document.getElementById('presentation-open').addEventListener('click',(ele)=>{  
   if(box.style.left == "0px"){box.style.left = "-5000px";}
   else{box.style.left = "0px";}
 });
-
-document.getElementById('window-test').addEventListener('click',(ele)=>{  // Presentation show/hide
-  window.alert('Window Size: ' + window.innerWidth + '  /  ' + window.innerHeight);
-});
 document.getElementById('si-delete').addEventListener('click',(ele)=>{  // Presentation show/hide
   DropNote('tr','Delete Service Item','yellow');
 });
 document.getElementById('si-add').addEventListener('click',(ele)=>{  // Presentation show/hide
   DropNote('tr','Add New Service Item','yellow');
 });
+
+
 
 /*
 ////////////////////////////////////////////////////////////////////////////////

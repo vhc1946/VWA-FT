@@ -16,6 +16,11 @@ var qactions = {
         src:'./bin/repo/assets/icons/file.png',
         alt:'SEARCH',
         title:'Search WO'
+    },
+    test:{
+        id:'stress-test',
+        src:'./bin/repo/assets/icons/badge.png',
+        title:'Stress Test'
     }
 };
 var mactions = {};
@@ -131,15 +136,21 @@ document.getElementById('submit-search').addEventListener('click', (ele)=>{
     $(document.getElementById('vg-float-frame-close')).click();
 });
 
+
+document.getElementById('stress-test').addEventListener('click',(ele)=>{  // Presentation show/hide
+    let times = window.prompt('Enter Number of Tests','5');
+    DropNote('tr','Stress testing','yellow');
+    for (let i=0;i<times;i++){
+        let wo = String(Math.floor(Math.random() * 1001) + 2001);
+        while(wo.length < 8){
+            wo = '0' + wo;
+        }
+        console.log(wo);
+        STARTticket(wo).then(
+            ticket=>{console.log(ticket)}
+        );
+    }
+});
+
 ////////////////////////////////////////////////////////////////////////////////
-
-/*
-document.getElementById(titlebar.tbdom.page.print).addEventListener('click', (ele)=>{
-    window.print();
-});
-
-document.getElementById(titlebar.tbdom.page.user).addEventListener('click', (ele)=>{
-    window.location.href='../index.html';
-});
-*/
 LOADwolist();
