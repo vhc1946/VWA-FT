@@ -443,17 +443,19 @@ var systeminfo = `
 
 var checklists = {
   doms:{
+    system:systemdom,
     cooling:coolingdom,
-    heating:heatingdom,
-    system:systemdom
+    heating:heatingdom
   },
   contents:{
+    system:systeminfo,
     cooling:coolingrewards,
-    heating:heatingrewards,
-    system:systeminfo
+    heating:heatingrewards
   }
 }
 
+/* SETUP 1 group of checklist
+*/
 export var SETUPchecklist=(cont)=>{
 
   let checkforms = [];
@@ -467,7 +469,7 @@ export var SETUPchecklist=(cont)=>{
   Clicktoclose(cont);
 
   return {
-    cont:cont,
-    forms:checkforms
+    checkcont:cont,
+    checkforms:checkforms
   }
 }

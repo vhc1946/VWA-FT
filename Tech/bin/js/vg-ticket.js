@@ -9,6 +9,7 @@ import * as vcontrol from '../repo/layouts/view-controller.js';
 import {WOform} from './ticket/woforms.js';
 import {Contform} from './ticket/contractforms.js';
 import * as sitemmod from './ticket/serviceitem-module.js';
+import {SETUPchecklist} from './ticket/checklists.js';
 
 var publicfolder = '/Tech/bin/css';
 
@@ -88,7 +89,11 @@ var CREATEticket=()=>{
       }
     }
   });
+  let checkview = new vcontrol.ViewGroup({
+    type:'mtr'
+  })
   sitemview.cont.id='si-cont';
+  checkview.cont.id='check-cont';
 
   let woform = new WOform(document.createElement('div'));
   let contform = new Contform(document.createElement('div'));
@@ -99,6 +104,10 @@ var CREATEticket=()=>{
 
   ticketview.ADDview('Information',infoview.cont);
   ticketview.ADDview('Service Items',sitemview.cont);
+  ticketview.ADDview('Check Lists',checkview.cont);
+
+  let {checkforms,checkcont}=SETUPchecklist(document.createElement('div'));
+  checkview.ADDview('System 1',checkcont);
   $(ticketview.buttons.children[0]).click();  //Sets first tab as selected
 
   /*
@@ -108,13 +117,14 @@ var CREATEticket=()=>{
     views:{
       ticket:ticketview,
       info:infoview,
-      sitems:sitemview
+      sitems:sitemview,
+      checks:checkview
     },
     forms:{
       wo:woform,
       contract:contform,
       sitems:[],
-      checks:[],
+      checks:[checkforms],
       repairs:[]
     }
   }
@@ -134,16 +144,16 @@ var LOADticket=(ticket)=>{
     forms.contract.form = data.contract;
 
     views.sitems.CLEARview();
-    let{sitems,checks,repairs}=sitemmod.SETUPserviceitems(views.sitems,data.sitems,data.repairs);
+    let{sitems,repairs}=sitemmod.SETUPserviceitems(views.sitems,data.sitems,data.repairs);
     forms.sitems=sitems;
-    forms.checks=checks;
     forms.repairs=repairs;
 
   }
 }
 var GETticket=()=>{
-  
+
 }
+
 LOADticket(ticket);
 console.log(ticket.forms);
 

@@ -23,7 +23,6 @@ export var SETUPserviceitems=(group,items,repairs)=>{
 
   let sitemforms = [];
   let repairforms = [];
-  let checkforms = [];
 
   for(let i=0;i<items.length;i++){
     let sitemview = new ViewGroup({
@@ -42,11 +41,6 @@ export var SETUPserviceitems=(group,items,repairs)=>{
     repairforms.push(SETUPrepairs(repairs));
     sitemview.ADDview('Repairs',repcont);
 
-    //add/init service checklist
-    let checkscont = document.createElement('div')
-    checkforms.push(SETUPchecklist(checkscont));
-    sitemview.ADDview('Checklist',checkscont);
-
     $(sitemview.buttons.children[0]).click();
     group.ADDview(items[i].tagid,sitemview.cont); //add service item to group
   }
@@ -57,7 +51,6 @@ export var SETUPserviceitems=(group,items,repairs)=>{
 
   return {
     sitems:sitemforms,
-    repairs:repairforms,
-    checks:checkforms
+    repairs:repairforms
   }
 }

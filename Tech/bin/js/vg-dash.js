@@ -7,7 +7,6 @@ import { STARTticket } from './vapi-FTrequest.js';
 import { SELECTview } from '../repo/modules/vg-floatviews.js';
 import { AppDock } from '../repo/modules/appdock.js';
 
-
 // SETUP title bar for dash /////////////////////////////
 
 var qactions = {
@@ -98,10 +97,10 @@ var dockapps={
     ['Performance']:launchPerf,
     ['Resources']:launchReso,
 }
+
 var appdock = new AppDock(document.createElement('div'),dockapps);
 document.body.appendChild(appdock.cont);
 ////////////////////////////////////////////////////////////////////////////////
-
 
 // Tech Dash Navigation ////////////////////////////////////////////////////////
 document.getElementById(titlebar.tbdom.utils.buttons.home).addEventListener('click', (ele)=>{
@@ -145,24 +144,4 @@ document.getElementById('submit-search').addEventListener('click', (ele)=>{
     $(document.getElementById('vg-float-frame-close')).click();
 });
 
-// TESTING BLOCK ///////////////////////////////////////////////////////////////
-
-import {
-  ConcurrentLoop,
-  StaggerLoop
-} from '../repo/apis/vapi/testing/load-testing.js';
-
-document.getElementById(mactions.test1.id).addEventListener('click',(ele)=>{  // Presentation show/hide
-    let times = window.prompt('Enter Number of Tests','5');
-    DropNote('tr','Stress testing','yellow');
-    ConcurrentLoop(times,STARTticket);
-});
-
-document.getElementById(mactions.test2.id).addEventListener('click',(ele)=>{  // Presentation show/hide
-    let times = window.prompt('Enter Number of Tests','5');
-    DropNote('tr','Stress testing','yellow');
-    StaggerLoop(times,STARTticket);
-});
-
-////////////////////////////////////////////////////////////////////////////////
 LOADwolist();

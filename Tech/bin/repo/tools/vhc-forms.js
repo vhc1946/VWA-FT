@@ -31,7 +31,7 @@ class VHCform{
 
   switch(){}
   validate(){return true}
-  submit(){return validate?this.form:null}
+  submit(){return this.validate()?this.form:null}
 
   setinputs(inputs){
     for(let i in inputs){
