@@ -295,6 +295,7 @@ class ViewGroup{
 
 export {
   vcdom,
+  FINDparentele,
   SETUPviewcontroller,
   ViewGroup
 };

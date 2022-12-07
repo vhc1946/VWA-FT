@@ -1,32 +1,60 @@
-import {wolstore} from './lstore.js';
-import {ServiceWO} from '../back/sticket-build.js';
-import {SYNCticket, STARTticket} from './vapi-FTrequest.js';
+import {wolstore} from './store/lstore.js';
+import {ServiceWO} from './back/sticket-build.js';
+import {SYNCticket, STARTticket} from './tools/vapi-FTrequest.js';
 
-import {DropNote} from '../repo/modules/vg-poppers.js';
-import * as titlebar from '../repo/modules/vg-titlebar.js';
-import * as vcontrol from '../repo/layouts/view-controller.js';
+import {DropNote} from './repo/modules/vg-dropnote.js';
+import * as titlebar from './repo/modules/vg-titlebar.js';
+import * as vcontrol from './repo/layouts/view-controller.js';
 
-import {WOform} from './ticket/woforms.js';
-import {Contform} from './ticket/contractforms.js';
+import {WOform} from './forms/wo-form.js';
+import {Contform} from './forms/contract-form.js';
+import {SIform} from './forms/serviceitem-form.js';
+
 import * as sitemmod from './ticket/serviceitem-module.js';
 import {SETUPchecklist} from './ticket/checklists.js';
 
 var publicfolder = '/Tech/bin/css';
 
-window.opener.ticketdata('ticket has opened');
+// LOAD Ticket /////////////////////////////////////////////////////////////////
+
+var currticket = JSON.parse(localStorage.getItem(wolstore.toloadwo));
+if(currticket){
+  localStorage.setItem(wolstore.toloadwo,null);
+  localStorage.setItem(wolstore.lastwo,JSON.stringify(currticket));
+  DropNote('tr','WO found','green');
+}else{DropNote('tr','WO not found','red');}
+console.log(currticket);
+window.addEventListener('beforeunload',(ele)=>{ //here for page refresh
+  localStorage.setItem(wolstore.toloadwo,JSON.stringify(currticket));
+});
+
+////////////////////////////////////////////////////////////////////////////////
 // SETUP title bar ////////////////////////////////////////
 var qactions = {
   present:{
     id:'presentation-open',
     src:'../bin/repo/assets/icons/document-signed.png',
-    title:'Presentation'
+    title:'Presentation',
+    onclick:(ele)=>{  // Presentation show/hide
+      let box = document.getElementsByClassName('present-cont')[0];
+      if(box.style.left == "0px"){box.style.left = "-5000px";}
+      else{box.style.left = "0px";}
+    }
   }
 };
 var mactions = {
   save:{
     id:'wo-save-button',
     src:'../bin/repo/assets/icons/disk.png',
-    title:'Save WO'
+    title:'Save WO',
+    ondblclick:(ele)=>{
+      GETticket();
+      //window.opener.techwos.UPDATEstore(currticket).then(answr=>{
+      //  console.log(answr)
+      //  if(answr){DropNote('tr','Ticket WAS Saved','green');}
+      //  else{DropNote('tr','Ticket was NOTSaved','yellow');}
+      //});
+    }
   },
   delete:{
     id:'wo-delete-button',
@@ -36,7 +64,14 @@ var mactions = {
   refresh:{
     id:'wo-refresh-button',
     src:'../bin/repo/assets/icons/refresh.png',
-    title:'Refresh WO'
+    title:'Refresh WO',
+    onclick:(ele)=>{   // Refresh info
+      SYNCticket(currticket.wo.id).then(
+        sync=>{
+          if(sync.wo){currticket.wo=sync.wo;ticket.form.wo=currticket.wo;}
+        }
+      );
+    }
   }
 };
 
@@ -47,20 +82,6 @@ $(document.getElementById(titlebar.tbdom.page.settings)).hide();
 
 ////////////////////////////////////////////////////////////////////////////////
 
-// LOAD Ticket /////////////////////////////////////////////////////////////////
-
-var currticket = JSON.parse(localStorage.getItem(wolstore.toloadwo));
-if(currticket){
-  localStorage.setItem(wolstore.toloadwo,null);
-  localStorage.setItem(wolstore.lastwo,JSON.stringify(currticket));
-  DropNote('tr','WO found','green');
-}else{DropNote('tr','WO not found','red');}
-
-window.addEventListener('beforeunload',(ele)=>{ //here for page refresh
-  localStorage.setItem(wolstore.toloadwo,JSON.stringify(currticket));
-});
-
-////////////////////////////////////////////////////////////////////////////////
 
 // Setup ticket view groups ////////////////////////////////////////////////////
 
@@ -95,9 +116,10 @@ var CREATEticket=()=>{
   sitemview.cont.id='si-cont';
   checkview.cont.id='check-cont';
 
+  // Create Forms
   let woform = new WOform(document.createElement('div'));
   let contform = new Contform(document.createElement('div'));
-
+  /////////////////////////////
   infoview.ADDview('WO',woform.cont);
   infoview.ADDview('Contract',contform.cont);
   $(infoview.buttons.children[0]).click();
@@ -110,9 +132,6 @@ var CREATEticket=()=>{
   checkview.ADDview('System 1',checkcont);
   $(ticketview.buttons.children[0]).click();  //Sets first tab as selected
 
-  /*
-
-  */
   return {
     views:{
       ticket:ticketview,
@@ -144,37 +163,42 @@ var LOADticket=(ticket)=>{
     forms.contract.form = data.contract;
 
     views.sitems.CLEARview();
+    
     let{sitems,repairs}=sitemmod.SETUPserviceitems(views.sitems,data.sitems,data.repairs);
     forms.sitems=sitems;
     forms.repairs=repairs;
-
+    console.log(ticket);
   }
 }
 var GETticket=()=>{
-
+  for(let f in ticket.forms){
+    try{
+      if(ticket.forms[f].form){
+        console.log(f,ticket.forms[f].form)
+        currticket[f]=ticket.forms[f].form; //load ticket part from form
+      }
+      else{
+        for(let x=0;x<ticket.forms[f].length;x++){
+          for(let ff in ticket.forms[f][x]){
+            currticket[f][x]=ticket.forms[f][x].form;
+          }
+        }
+      }
+    }
+    catch{}
+  }
+  console.log('QUOTE',currticket);
 }
 
 LOADticket(ticket);
-console.log(ticket.forms);
 
 document.getElementById('currsi').addEventListener('click',(ele)=>{   // Service Items menu toggle
   let box = ticket.views.sitems.menu.children[0];
   if(box.style.left=='-250px'){box.style.left='0px';}
   else{box.style.left='-250px';}
 });
-document.getElementById('wo-refresh-button').addEventListener('click',(ele)=>{   // Refresh info
-  SYNCticket(currticket.wo.id).then(
-    sync=>{
-      if(sync.wo){currticket.wo=sync.wo;ticket.form.wo=currticket.wo;}
-    });
-});
 document.getElementById(titlebar.tbdom.utils.buttons.home).addEventListener('click', (ele)=>{   // Home Button
   DropNote('tr','Going home','yellow');
-});
-document.getElementById('presentation-open').addEventListener('click',(ele)=>{  // Presentation show/hide
-  let box = document.getElementsByClassName('present-cont')[0];
-  if(box.style.left == "0px"){box.style.left = "-5000px";}
-  else{box.style.left = "0px";}
 });
 document.getElementById('si-delete').addEventListener('click',(ele)=>{  // Presentation show/hide
   DropNote('tr','Delete Service Item','yellow');

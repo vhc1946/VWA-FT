@@ -1,30 +1,36 @@
-import {VHCform} from '../../repo/tools/vhc-forms.js';
+import {VHCform} from '../repo/tools/vhc-forms.js';
+import * as ttools from '../repo/modules/vg-tables.js';
+
+// service item information
 export class SIform extends VHCform{
-  constructor(cont){
+  constructor(cont,seletable=()=>{}){
     super(cont);
     this.cont.innerHTML=this.content;
     this.setinputs(this.dom.info);
+
+
   }
   dom={
     cont: 'si-form',
     info: {
+      id: 'si-id',//
+      tagid: 'si-tagnum',//
       area: 'si-area', //
       beltsize: 'si-beltsize',//
       controls: 'si-controls',
       descr: 'si-descr',//
+
       elec: 'si-elec',
       filt1: 'si-filt1',//
       filt1q: 'si-filt1q',//
       filt2: 'si-filt2',//
       filt2q: 'si-filt2q',//
-      id: 'si-id',//
       location: 'si-location',//
       manf: 'si-manf',//
       model: 'si-model',//
       refri: 'si-refri',//
       serial: 'si-serial',//
       status: 'si-status',
-      tagnum: 'si-tagnum',//
       type: 'si-type',
       warr1: 'si-warr1',//
       warr2: 'si-warr2',//
@@ -41,7 +47,7 @@ export class SIform extends VHCform{
           <div>Item ID</div><input class=${this.dom.info.id} placeholder="id">
         </div>
         <div class="si-item">
-          <div>Tag Num</div><input class=${this.dom.info.tagnum} placeholder="tagnum">
+          <div>Tag Num</div><input class=${this.dom.info.tagid} placeholder="tagnum">
         </div>
         <div class="si-item">
           <div>Description</div><input class=${this.dom.info.descr} placeholder="descr">
@@ -104,5 +110,74 @@ export class SIform extends VHCform{
       </div>
     </div>
   `
-  submit(){}
+}
+
+// service item repairs
+export class SIrepairform extends VHCform{
+  constructor(cont,seletable=()=>{}){
+    super(cont);
+    this.cont.innerHTML=this.content;
+    this.table = this.cont.getElementsByClassName(this.dom.table.cont);
+    this.cont.getElementsByClassName(this.dom.actions.save)[0].addEventListener('click',(ele)=>{
+      this.ADDrepair(this.addform);
+    });
+  }
+  dom={
+    cont:'si-repair-cont',
+    actions:{
+      add:'si-repair-add',
+      delete:'si-rcd cepair-delete'
+    },
+    addform:{
+      desc:'si-add-form-desc',
+      price:'si-add-form-price',
+    },
+    table:{
+      cont:'si-repair-table',
+      actions:'si-repair-actions',
+      header:'si-repair-heads',
+      rows:'si-repair-rows'
+    }
+  }
+  content=`
+  <div class="${this.dom.cont}"> TABLE
+    <div class="${this.dom.table.actions}"><img class="${this.dom.actions.add}"/><input class="add-repair-value"/></div>
+    <div class="${this.dom.table.heads}"></div>
+    <div class="${this.dom.table.cont}">
+    </div>
+  </div>
+  `
+
+  get addform(){
+    let form={};
+    for(let i in this.dom.addform){
+      form[i]=this.cont.getElementsByClassName(this.dom.addform[i])[0].value;
+    }
+    return form;
+  }
+  set addform(af){
+
+  }
+
+  get form(){
+    let rlist = [];
+    let rrows = this.table.getElementsByClassName(this.dom.table.rows);
+    for(let x=0;x<rrows.length;x++){
+      rlist.push(ttools.GETrowTOobject(rrows[x]));
+    }
+    return rlist;
+  }
+  set form(rlist=[]){
+    this.table.innerHTML='';
+    for(let x=0;x<rlist.length;x++){
+      this.table.appendChild(ttools.SETrowFROMobject(rlist[x]));
+    }
+  }
+
+  ADDrepair(item=null){
+    if(item){
+      this.table.appendChild(ttools.SETrowFROMobject(item));
+    }
+  }
+
 }

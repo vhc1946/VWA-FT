@@ -1,8 +1,9 @@
 import {VHCform} from '../../repo/tools/vhc-forms.js';
+import {DropNote} from '../../repo/modules/vg-dropnote.js';
 
-var logurl = 'https://18.191.134.244:5000/login';
+var logurl = 'https://localHost:5000/login'; //'https://18.191.134.244:5000/login';//
 class LoginForm extends VHCform{
-    constructor(cont){
+    constructor(cont,logineve=()=>{}){
         super(cont);
         this.cont.innerHTML=this.content;
 
@@ -30,11 +31,12 @@ class LoginForm extends VHCform{
         this.submit().then(
             result=>{
             if(result.success){
-                //DropNote('tr','Logged in','green');
+                DropNote('tr','Logged in','green');
                 this.permission=true;
                 $(this.cont).hide();
+                logineve(this.storecreds);
             }else{//login failed
-                //DropNote('tr','User or Password Failed','yellow');
+                DropNote('tr','User or Password Failed','yellow');
                 this.permission=false;
                 this.form={user:"",pswrd:""};//reset form
             }
@@ -86,13 +88,15 @@ class LoginForm extends VHCform{
         else{return false;}
     }
     submit(){
+      console.log('here');
         return new Promise((resolve,reject)=>{
         let {user,pswrd} = this.form;
+        console.log(this.form)
         if(user!=''||pswrd!=''){
             var options={
-            method:'GET',
+            method:'POST',
             headers:{
-                'Accept':'application/json'
+              'Accept':'application/json'
             },
             body:JSON.stringify({access:{user:user,pswrd:pswrd}})
             }

@@ -4,8 +4,8 @@
     - linking all service item's info to one
     - linking service item repairs to one fo
 */
-import {ViewGroup} from '../../repo/layouts/view-controller.js';
-import {SIform} from './serviceitem-form.js';
+import {ViewGroup} from '../repo/layouts/view-controller.js';
+import {SIform,SIrepairform} from '../forms/serviceitem-form.js';
 import {SETUPchecklist} from './checklists.js';
 import {SETUPrepairs} from './repairlist.js';
 
@@ -36,10 +36,12 @@ export var SETUPserviceitems=(group,items,repairs)=>{
     sitemforms[i].form = items[i]; //load info
 
     // add/init service repairs
-    if(repairs[items[i].tagid]==undefined){repairs[items[i].tagid]=[]}
-    let repcont = document.createElement('div');
-    repairforms.push(SETUPrepairs(repairs));
-    sitemview.ADDview('Repairs',repcont);
+
+    if(repairs[i]==undefined){repairs[i]=[]}
+    repairforms.push(new SIrepairform(document.createElement('div')));
+    sitemview.ADDview('Repairs',repairforms[i].cont);
+    try{repairforms[i].form=repairs[i];}
+    catch{}
 
     $(sitemview.buttons.children[0]).click();
     group.ADDview(items[i].tagid,sitemview.cont); //add service item to group

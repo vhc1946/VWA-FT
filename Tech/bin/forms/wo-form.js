@@ -1,5 +1,5 @@
 
-import {VHCform} from '../../repo/tools/vhc-forms.js';
+import {VHCform} from '../repo/tools/vhc-forms.js';
 export class WOform extends VHCform{
   constructor(cont){
     super(cont);

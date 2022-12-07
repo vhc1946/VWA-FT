@@ -44,11 +44,11 @@ export var GETjapitest=()=>{
   });
 }
 
-export var GETresflbook=(wonum,table='flatratebook')=>{
+export var GETflbook=(book='RES',table='flatratebook')=>{
     return new Promise((res,rej)=>{
         let opts = {
             table:table,
-            bookcode:'RES'
+            bookcode:book
         };
         return res(SENDrequestapi(opts,'japi'));
     })

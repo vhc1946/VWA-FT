@@ -1,5 +1,5 @@
-import {CheckListForm} from './checklist-form.js';
-import {VHCform} from '../../repo/tools/vhc-forms.js';
+import {CheckListForm} from '../forms/checklist-form.js';
+import {VHCform} from '../repo/tools/vhc-forms.js';
 
 var toggledom = {
     cont: 'checklist-cont',

@@ -3,6 +3,7 @@ class VHCform{
   constructor(cont){
     this.cont=cont;
     this.inputs={}
+    
   }
 
   set form(input={}){

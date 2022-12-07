@@ -1,7 +1,7 @@
 
 import * as japi from '../repo/apis/vapi/vapi-jmart.js';
 
-import {DropNote} from '../repo/modules/vg-poppers.js';
+import {DropNote} from '../repo/modules/vg-dropnote.js';
 
 var STARTticket=(wonum)=>{
   return new Promise((resolve,reject)=>{
@@ -10,6 +10,7 @@ var STARTticket=(wonum)=>{
             if(wo){
                 let ticket = {};
                 ticket.history = {};
+                ticket.checks={}
                 ticket.wo = wo;
                 let havesc = false;
                 let havesi = false;
@@ -48,7 +49,19 @@ var SYNCticket=(wonum,ticket)=>{
   });
 }
 
+var SYNCdatalist=()=>{
+  let book=false;
+  DropNote('tr','Starting Data Sync','green');
+  japi.GETflbook().then(
+    book=>{
+      console.log('BOOK',book);
+      localStorage.setItem('flbook',JSON.stringify(book.body.table));
+    }
+  )
+}
+
 export{
   STARTticket,
-  SYNCticket
+  SYNCticket,
+  SYNCdatalist
 }

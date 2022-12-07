@@ -1,4 +1,4 @@
-import {VHCform} from '../../repo/tools/vhc-forms.js';
+import {VHCform} from '../repo/tools/vhc-forms.js';
 export class Contform extends VHCform{
   constructor(cont){
     super(cont);

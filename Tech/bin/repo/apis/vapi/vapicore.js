@@ -1,5 +1,5 @@
 
-export var VAPIhost = 'https://18.191.134.244:5000/'; //'https://localhost:5000/'//;
+export var VAPIhost = 'https://localhost:5000/';//'https://18.191.134.244:5000/'; //
 
 export var SENDrequest = (pack,request='mart',url=VAPIhost)=>{
   return new Promise((res,rej)=>{
@@ -45,7 +45,7 @@ export var SENDrequestapi = (pack,request='mart',url=VAPIhost+'api/')=>{
     }
     fetch(url,options)
     .then(response=>{return response.json()})
-    .then(data=>{console.log(data);return res(data);})
+    .then(data=>{return res(data);})
     .catch(err=>{return res(false);})
   });
 }

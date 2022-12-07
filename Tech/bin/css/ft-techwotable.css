@@ -1,0 +1,37 @@
+.techwo-row{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  height:150px;
+}
+.techwo-row-contact{
+  display:block;
+}
+
+.techwo-row-date{
+  width:100px;
+}
+.techwo-row-contact{
+  width:100px;
+}
+
+.techwo-row-descr{
+  width:500px;
+  overflow:hidden;
+}
+
+.techwo-row-actions{
+  display:flex;
+  flex-direction:column;
+}
+.techwo-row-actions>div{
+  height:50%;
+  width:100%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+.techwo-row-actions img{
+  width:40px;
+  height:40px;
+  align-self:center;
+}
