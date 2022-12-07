@@ -1,7 +1,7 @@
 import {VHCform} from '../../repo/tools/vhc-forms.js';
 import {DropNote} from '../../repo/modules/vg-dropnote.js';
 
-var logurl = 'https://localHost:5000/login'; //'https://18.191.134.244:5000/login';//
+var logurl = 'https://18.191.134.244:5000/login';//'https://localHost:5000/login'; //
 class LoginForm extends VHCform{
     constructor(cont,logineve=()=>{}){
         super(cont);
