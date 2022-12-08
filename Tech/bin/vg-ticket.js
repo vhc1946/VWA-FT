@@ -200,9 +200,9 @@ document.getElementById('currsi').addEventListener('click',(ele)=>{   // Service
 document.getElementById(titlebar.tbdom.utils.buttons.home).addEventListener('click', (ele)=>{   // Home Button
   DropNote('tr','Going home','yellow');
 });
-document.getElementById('si-delete').addEventListener('click',(ele)=>{  // Presentation show/hide
+document.getElementById('si-delete').addEventListener('click',(ele)=>{  
   DropNote('tr','Delete Service Item','yellow');
 });
-document.getElementById('si-add').addEventListener('click',(ele)=>{  // Presentation show/hide
+document.getElementById('si-add').addEventListener('click',(ele)=>{  
   DropNote('tr','Add New Service Item','yellow');
 });

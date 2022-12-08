@@ -1,8 +1,11 @@
+#vg-wo-dash{
+  display: none;
+}
 .techwo-row{
   display:grid;
   grid-template-columns:10% 15% 45% 25% 5%;
   border-bottom: 1px solid black;
-  max-height: 100px;
+  height: 125px;
 }
 .techwo-row:nth-child(even){
   background-color: var(--background-light);
@@ -12,15 +15,18 @@
 .techwo-row-descr,
 .techwo-row-address{
   padding: 3px;
-  overflow: auto;
-  max-height: 85px;
+  overflow: hidden;
+  max-height: 120px;
 }
 .techwo-row-date{
   max-width:75px;
+  text-align: center;
+}
+.techwo-row-contact{
+  text-align: center;
 }
 .techwo-row-descr{
   min-width:350px;
-  overflow:auto;
 }
 
 .techwo-row-actions{
