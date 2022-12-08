@@ -4,6 +4,8 @@ import {FINDparentele} from '../repo/tools/vg-displaytools.js';
 import {TechLocalWos} from '../store/techwo-store.js';
 import {DropNote} from '../repo/modules/vg-dropnote.js';
 
+var molist = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+
 const wrmap = (w)=>{
   if(!w){w={};}
   return{
@@ -64,9 +66,17 @@ var SETUProw=(item={})=>{
   row.innerHTML=wotablerow;
   console.log(item.wo)
   for(let v in wrdom.values){
-    row.getElementsByClassName(wrdom.values[v])[0].innerText = item.wo[v];
+    if(v != "datescheduled"){
+      row.getElementsByClassName(wrdom.values[v])[0].innerText = item.wo[v];
+    }else{
+      let date = new Date(item.wo[v].split('T')[0]+'Z12:00:00');
+      let datespot = row.getElementsByClassName(wrdom.values[v])[0]
+      datespot.appendChild(document.createElement('div'));
+      datespot.lastChild.innerText = molist[date.getMonth()] + ' ' + date.getDate();
+      datespot.appendChild(document.createElement('div'));
+      datespot.lastChild.innerText = date.getFullYear();
+    }
   }
-
   row.getElementsByClassName(wrdom.actions.delete)[0].addEventListener('dblclick',(ele)=>{
     console.log()
   });
