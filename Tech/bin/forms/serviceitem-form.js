@@ -67,6 +67,18 @@ export class SIform extends VHCform{
         <div class="si-item">
           <div>Area Served</div><input class=${this.dom.info.area} placeholder="area">
         </div>
+        <div class="si-item">
+          <div>Controls</div><input class=${this.dom.info.controls} placeholder="controls">
+        </div>
+        <div class="si-item">
+          <div>Electrical</div><input class=${this.dom.info.elec} placeholder="elec">
+        </div>
+        <div class="si-item">
+          <div>Status</div><input class=${this.dom.info.status} placeholder="status">
+        </div>
+        <div class="si-item">
+          <div>Type</div><input class=${this.dom.info.type} placeholder="type">
+        </div>
       </div>
       <div class="si-materials">
         <div class="si-item">

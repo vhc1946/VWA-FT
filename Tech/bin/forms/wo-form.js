@@ -11,86 +11,84 @@ export class WOform extends VHCform{
     info: {
         id: 'wo-info-id',
         custcode: 'wo-info-custcode',
-        contactname: 'wo-info-contactname',
-        contactphone: 'wo-info-contactphone',
+        contactname: 'wo-info-name',
+        contactphone: 'wo-info-phone',
 
         street: 'wo-info-street',
         unit: 'wo-info-unit',
-        cityzip: 'wo-info-cityzip',
+        cityzip: 'wo-info-city',
         state: 'wo-info-state',
-        descr:'wo-description',
-
+        
         salesrep: 'wo-info-salesrep',
-        takenby:'wo-takenby',
+        takenby:'wo-info-takenby',
         dept: 'wo-info-dept',
         cat:'wo-info-cat',
         jobref:'wo-info-jobref',
         conref:'wo-info-conref',
         ref:'wo-info-ref',
 
+        status:'wo-info-status',
+
         pricebook: 'wo-info-pricebook',
-        pricelevel: 'wo-info-pricelevel'
+        pricelevel: 'wo-info-pricelevel',
+
+        descr:'wo-info-descr'
+    },
+    label:{
+        id: 'wo-label-id',
+        custcode: 'wo-label-custcode',
+        contactname: 'wo-label-name',
+        contactphone: 'wo-label-phone',
+
+        street: 'wo-label-street',
+        unit: 'wo-label-unit',
+        cityzip: 'wo-label-city',
+        state: 'wo-label-state',
+        
+        salesrep: 'wo-label-salesrep',
+        takenby:'wo-label-takenby',
+        dept: 'wo-label-dept',
+        cat:'wo-label-cat',
+        jobref:'wo-label-jobref',
+        conref:'wo-label-conref',
+        ref:'wo-label-ref',
+
+        status:'wo-label-status',
+
+        pricebook: 'wo-label-pricebook',
+        pricelevel: 'wo-label-pricelevel',
+
+        descr:'wo-label-descr'
     }
   }
   content=`
-  <div id="${this.dom.cont}" class="ft-form">
-    <div class='wo-item'>
-      <div>WO Num:</div><input class="${this.dom.info.id}" type="text" />
-    </div>
-    <div class='wo-item'>
-      <div>Cust Code:</div><input class="${this.dom.info.custcode}" type="text" />
-    </div>
-    <div class='wo-item'>
-      <div>Client:</div><input class="${this.dom.info.contactname}" type="text" />
-    </div>
-    <div class='wo-item'>
-      <div>Phone:</div><input class="${this.dom.info.contactphone}" type="text" />
-    </div>
-
-    <div class='wo-item'>
-      <div>Street:</div><input class="${this.dom.info.street}" type="text" />
-    </div>
-    <div class='wo-item'>
-      <div>Unit:</div><input class="${this.dom.info.unit}" type="text" />
-    </div>
-    <div class='wo-item'>
-      <div>City/Zip:</div><input class="${this.dom.info.cityzip}" type="text" />
-    </div>
-    <div class='wo-item'>
-      <div>State:</div><input class="${this.dom.info.state}" type="text" />
-    </div>
-
-    <div class='wo-item'>
-      <div>Sales Rep:</div><input class="${this.dom.info.salesrep}" type="text" />
-    </div>
-    <div class='wo-item'>
-      <div>Taken By:</div><input class="${this.dom.info.takenby}" type="text" />
-    </div>
-    <div class='wo-item'>
-      <div>Department:</div><input class="${this.dom.info.dept}" type="text" />
-    </div>
-    <div class='wo-item'>
-      <div>Category:</div><input class="${this.dom.info.cat}" type="text" />
-    </div>
-    <div class='wo-item'>
-      <div>Reference:</div><input class="${this.dom.info.ref}" type="text" />
-    </div>
-
-    <div class='wo-item'>
-      <div>Job Reference:</div><input class="${this.dom.info.jobref}" type="text" />
-    </div>
-    <div class='wo-item'>
-      <div>Contract Reference:</div><input class="${this.dom.info.conref}" type="text" />
-    </div>
-    <div class='wo-item'>
-      <div>Price Book:</div><input class="${this.dom.info.pricebook}" type="text" />
-    </div>
-    <div class='wo-item'>
-      <div>Price Level:</div><input class="${this.dom.info.pricelevel}" type="text" />
-    </div>
-    <div class='wo-item'>
-      <div>Description:</div><textarea class="${this.dom.info.descr}"></textarea>
-    </div>
+  <div id="${this.dom.cont}" class="wo-info-cont">
+      <div class="${this.dom.info.id}"></div>
+      <div class="${this.dom.info.custcode}"></div>
+      
+      <div class="wo-contact-cont">
+        <div class="${this.dom.info.contactname}"></div>
+        <div class="${this.dom.info.contactphone}"></div>
+        <div class="${this.dom.info.street}"></div>
+        <div class="${this.dom.info.unit}"></div>
+        <div class="${this.dom.info.cityzip}"></div>
+        <div class="${this.dom.info.state}"></div>
+      </div>
+      <div class="wo-reference-cont">
+        <div class="${this.dom.label.salesrep}">Sales Rep:</div><div class="${this.dom.info.salesrep}"></div>
+        <div class="${this.dom.label.takenby}">Taken By:</div><div class="${this.dom.info.takenby}"></div>
+        <div class="${this.dom.label.dept}">Depart:</div><div class="${this.dom.info.dept}"></div>
+        <div class="${this.dom.label.cat}">Category:</div><div class="${this.dom.info.cat}"></div>
+        <div class="${this.dom.label.ref}">Reference:</div><div class="${this.dom.info.ref}"></div>
+        <div class="${this.dom.label.status}">Status:</div><div class="${this.dom.info.status}"></div>
+        <div class="${this.dom.label.jobref}">Job Ref.:</div><input class="${this.dom.info.jobref}" type="text" />
+        <div class="${this.dom.label.conref}">Contract:</div><input class="${this.dom.info.conref}" type="text" />
+      </div>
+      <div class="wo-pricing-cont">
+        <div class="${this.dom.label.pricebook}">Price Book:</div><input class="${this.dom.info.pricebook}" type="text" />
+        <div class="${this.dom.label.pricelevel}">Price Level:</div><input class="${this.dom.info.pricelevel}" type="text" />
+      </div>
+      <textarea class="${this.dom.info.descr}"></textarea>
   </div>
   `
   submit(){}

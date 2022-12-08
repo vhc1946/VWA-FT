@@ -1,6 +1,9 @@
 /* Root styling file that will hold the layout structure */
-:root,input,textarea{
+:root{
     font-size: 120%;
+}
+input,textarea{
+    font-size: 100%;
 }
 a{
     text-decoration: none;
@@ -111,8 +114,11 @@ body::-webkit-scrollbar {
         grid-column: 7 / 13;
         grid-row:1 / 6;
     }
-    :root,input,textarea{
+    :root{
         font-size: 120%;
+    }
+    input,textarea{
+        font-size: 100%;
     }
 }
 @media only screen and (min-width: 1300px) {
