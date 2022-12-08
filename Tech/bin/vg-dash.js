@@ -17,7 +17,7 @@ var datamart=null;
 manlist.INITmanagelist().then(
   mlist=>{
     datamart=mlist;
-    window.datamart=datamart;
+    window.datamart=datamart; //can be used in child windows
     console.log('Done With list')
     //post needed updates to manage list
   }
