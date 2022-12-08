@@ -19,6 +19,7 @@ export class IDBinterface{
       dbsetup(eve.target.result);
     }
     request.onsuccess=(eve)=>{
+      console.log('onsuccess')
       this.db=eve.target.result;
       this.GETstore().then(
         list=>{
