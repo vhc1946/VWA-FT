@@ -89,24 +89,23 @@ class LoginForm extends VHCform{
     }
     submit(){
       console.log('here');
-        return new Promise((resolve,reject)=>{
-        let {user,pswrd} = this.form;
-        console.log(this.form)
-        if(user!=''||pswrd!=''){
-            var options={
-            method:'POST',
-            headers:{
-              'Accept':'application/json'
-            },
-            body:JSON.stringify({access:{user:user,pswrd:pswrd}})
-            }
-            fetch(logurl,options)
-            .then(response=>{return response.json()})
-            .then(data=>{return resolve(data);})
-            .catch(err=>{console.log(err);})
-        }else{return resolve({success:false});}
-        3
-        });
+      return new Promise((resolve,reject)=>{
+      let {user,pswrd} = this.form;
+      this.storecreds=this.form;
+      if(user!=''||pswrd!=''){
+          var options={
+          method:'POST',
+          headers:{
+            'Accept':'application/json'
+          },
+          body:JSON.stringify({access:{user:user,pswrd:pswrd}})
+          }
+          fetch(logurl,options)
+          .then(response=>{return response.json()})
+          .then(data=>{return resolve(data);})
+          .catch(err=>{console.log(err);})
+      }else{return resolve({success:false});}
+      });
     }
 }
 
