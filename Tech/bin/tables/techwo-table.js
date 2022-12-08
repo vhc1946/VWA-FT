@@ -64,17 +64,18 @@ var SETUProw=(item={})=>{
   let row = document.createElement('div');
   row.classList.add(wrdom.cont);
   row.innerHTML=wotablerow;
-  console.log(item.wo)
   for(let v in wrdom.values){
     if(v != "datescheduled"){
       row.getElementsByClassName(wrdom.values[v])[0].innerText = item.wo[v];
     }else{
-      let date = new Date(item.wo[v].split('T')[0]+'Z12:00:00');
-      let datespot = row.getElementsByClassName(wrdom.values[v])[0]
-      datespot.appendChild(document.createElement('div'));
-      datespot.lastChild.innerText = molist[date.getMonth()] + ' ' + date.getDate();
-      datespot.appendChild(document.createElement('div'));
-      datespot.lastChild.innerText = date.getFullYear();
+      try{
+        let date = new Date(item.wo[v].split('T')[0]+'Z12:00:00');
+        let datespot = row.getElementsByClassName(wrdom.values[v])[0]
+        datespot.appendChild(document.createElement('div'));
+        datespot.lastChild.innerText = molist[date.getMonth()] + ' ' + date.getDate();
+        datespot.appendChild(document.createElement('div'));
+        datespot.lastChild.innerText = date.getFullYear();
+      }catch{}
     }
   }
   row.getElementsByClassName(wrdom.actions.delete)[0].addEventListener('dblclick',(ele)=>{
@@ -131,16 +132,17 @@ export class CustomList{
       let set = false;
       let x=0;
       for(x;x<this.cont.children.length;x++){
-        if(this.cond.children[x].classList.contains(this.dom.part[p])){set=true;break;}
+        if(this.cont.children[x].classList.contains(this.dom.part[p])){set=true;break;}
       }
       if(!set){
+        console.log(p)
         this[p]=document.createElement('div');
         this[p].classList.add(this.dom.part[p]);
+        this.cont.appendChild(this[p]);
       }else{
         this[p]=this.cont.children[x];
       }
     }
-    console.log(this)
     for(let x=0;x<list.length;x++){
       this.ADDitem(list[x]);
     }
@@ -158,12 +160,17 @@ export class CustomList{
   ADDitem(item={}){
     item=this.rmap(item);
     let row = this.lrow?this.lrow(item):SETrowFROMobject(item);
-    this.cont.appendChild(row);
+    this.list.appendChild(row);
   }
   LOADlist(list){
+    console.log(this.list)
+    console.log(this.list.children);
     this.list.innerHTML='';
+    console.log(this.list.children);
+    console.log(list)
     for(let x=0;x<list.length;x++){
       this.ADDitem(list[x]);
     }
+    console.log(this.list.children);
   }
 }

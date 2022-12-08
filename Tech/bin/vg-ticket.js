@@ -15,8 +15,13 @@ import {SETUPchecklist} from './ticket/checklists.js';
 
 var publicfolder = '/Tech/bin/css';
 
-// LOAD Ticket /////////////////////////////////////////////////////////////////
+//fbstore holds connections to indexdb and an instance of ObjList
+//fbstore.list = is the ObjList, and can be used as normal fbstore.list.TRIMlist()
+var fbstore = window.opener.datamart.fbstore;
 
+console.log('FLATRATE BOOK >',fbstore.list.list);
+
+// LOAD Ticket /////////////////////////////////////////////////////////////////
 var currticket = JSON.parse(localStorage.getItem(wolstore.toloadwo));
 if(currticket){
   localStorage.setItem(wolstore.toloadwo,null);
@@ -163,7 +168,7 @@ var LOADticket=(ticket)=>{
     forms.contract.form = data.contract;
 
     views.sitems.CLEARview();
-    
+
     let{sitems,repairs}=sitemmod.SETUPserviceitems(views.sitems,data.sitems,data.repairs);
     forms.sitems=sitems;
     forms.repairs=repairs;
