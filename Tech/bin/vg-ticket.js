@@ -86,15 +86,19 @@ $(document.getElementById(titlebar.tbdom.page.settings)).hide();
 //$(document.getElementById(titlebar.tbdom.page.user)).hide(); //hide the user section of title bar
 
 ////////////////////////////////////////////////////////////////////////////////
+document.getElementsByClassName('frbook-list')[0].classList.add('vg-gentable');
 gendis.BUILDtruetable(fbstore.list.list,document.getElementsByClassName('frbook-list')[0],false,'wo-item-row');
+var SETrepairblock=(block)=>{
+  gendis.BUILDtruetable(fbstore.list.list,document.getElementsByClassName('frbook-list')[0],false,'wo-item-row');
 
-document.getElementsByClassName('si-repair-add')[0].addEventListener('click',(ele)=>{
-  $(document.getElementsByClassName('min-page-cont')[0]).show();
-});
+  document.getElementsByClassName('si-repair-add')[0].addEventListener('click',(ele)=>{
+    $(document.getElementsByClassName('min-page-cont')[0]).show();
+  });
 
-document.getElementsByClassName('min-page-hide-button')[0].addEventListener('click',(ele)=>{
-  $(document.getElementsByClassName('min-page-cont')[0]).hide();
-});
+  document.getElementsByClassName('min-page-hide-button')[0].addEventListener('click',(ele)=>{
+    $(document.getElementsByClassName('min-page-cont')[0]).hide();
+  });
+}
 
 // Setup ticket view groups ////////////////////////////////////////////////////
 
