@@ -138,7 +138,7 @@ export class SIrepairform extends VHCform{
     cont:'si-repair-cont',
     actions:{
       add:'si-repair-add',
-      delete:'si-rcd cepair-delete'
+      delete:'si-repair-delete'
     },
     addform:{
       desc:'si-add-form-desc',
@@ -153,7 +153,7 @@ export class SIrepairform extends VHCform{
   }
   content=`
   <div class="${this.dom.cont}"> TABLE
-    <div class="${this.dom.table.actions}"><img class="${this.dom.actions.add}"/><input class="add-repair-value"/></div>
+    <div class="${this.dom.table.actions}"><input class="add-repair-value"/><img class="${this.dom.actions.add} sm-action-button" src="../../images/icons/plus-icon.png"/></div>
     <div class="${this.dom.table.heads}"></div>
     <div class="${this.dom.table.cont}">
     </div>

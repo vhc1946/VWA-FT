@@ -12,6 +12,7 @@ import {SIform} from './forms/serviceitem-form.js';
 
 import * as sitemmod from './ticket/serviceitem-module.js';
 import {SETUPchecklist} from './ticket/checklists.js';
+import * as gendis from './repo/modules/vg-tables.js';
 
 var publicfolder = '/Tech/bin/css';
 
@@ -86,7 +87,15 @@ $(document.getElementById(titlebar.tbdom.page.settings)).hide();
 //$(document.getElementById(titlebar.tbdom.page.user)).hide(); //hide the user section of title bar
 
 ////////////////////////////////////////////////////////////////////////////////
+gendis.BUILDtruetable(fbstore.list.list,document.getElementsByClassName('frbook-list')[0],false,'wo-item-row');
 
+document.getElementsByClassName('si-repair-add')[0].addEventListener('click',(ele)=>{
+  $(document.getElementsByClassName('min-page-cont')[0]).show();
+});
+
+document.getElementsByClassName('min-page-hide-button')[0].addEventListener('click',(ele)=>{
+  $(document.getElementsByClassName('min-page-cont')[0]).hide();
+});
 
 // Setup ticket view groups ////////////////////////////////////////////////////
 

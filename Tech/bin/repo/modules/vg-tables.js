@@ -1,20 +1,3 @@
-//  Setup Module ///////////////////////////////////////////////////////////////
-var SETUPmodule=(root)=>{
-  console.log('Controller Root HAS been declared for vg-tables.js')
-  ROOT=root;
-  for(let x=0;x<stylesheets.length;x++){
-    let viewstyles = document.createElement('link');
-    viewstyles.setAttribute('rel','stylesheet');
-    viewstyles.setAttribute('href',ROOT+stylesheets[x]);
-    document.getElementsByTagName('head')[0].prepend(viewstyles);
-  }
-}
-
-//  PATHS //
-var stylesheets = ['gui/styles/modules/vg-tables.css'];
-var assets={
-}
-
 var gtdom={
   table:'vg-gentable',
   header:'vg-gentable-header'

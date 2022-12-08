@@ -297,6 +297,28 @@ place-self: center center;
     height: 100px;
 }
 
+/* Service Items */
+
+/* Repairs */
+/*-- Min Tab --------------*/
+[class*="min-page-cont"]{
+    position: fixed;
+    bottom: 0;
+    left: 5%;
+    width: 90%;
+    max-height: 500px;
+    border: 2px solid var(--vogel-blue);
+    background-color: var(--background-base);
+    filter: drop-shadow(3px 3px 5px black);
+}
+.min-page-hide-button{
+    float: right;
+    margin: 0;
+}
+.min-page-view{
+    padding: 20px;
+}
+
 
 /* Service Item Checklists */
 .checklist-cont{
