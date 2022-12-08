@@ -3,7 +3,7 @@ import {DropNote} from '../../repo/modules/vg-dropnote.js';
 
 var logurl = 'https://18.191.134.244:5000/login';//'https://localHost:5000/login'; //
 class LoginForm extends VHCform{
-    constructor(cont,logineve=()=>{}){
+    constructor(cont,logieve=()=>{},logoeve=()=>{}){
         super(cont);
         this.cont.innerHTML=this.content;
 
@@ -14,36 +14,44 @@ class LoginForm extends VHCform{
 
         let creds=this.storecreds;
         if(creds && creds.user!=''||creds.pswrd!=''){
-        this.form=creds;
-        this.submit().then(
+        console.log(creds);
+          this.form=creds;
+          this.submit().then(
             result=>{
             if(result.success){
                 this.permission=true;
                 $(this.cont).hide();
+                logieve(this.storecreds);
             }
             else{this.form=undefined;}//reset form
-            this.storecreds=this.form;//store result
+              this.storecreds=this.form;//store result
             }
         )
         }else{this.storecreds=undefined}
 
         document.getElementById(this.dom.actions.submit).addEventListener("click",(ele)=>{
-        this.submit().then(
-            result=>{
-            if(result.success){
-                DropNote('tr','Logged in','green');
-                this.permission=true;
-                $(this.cont).hide();
-                logineve(this.storecreds);
-            }else{//login failed
-                DropNote('tr','User or Password Failed','yellow');
-                this.permission=false;
-                this.form={user:"",pswrd:""};//reset form
-            }
-            this.storecreds=this.form;//reset store
-            }
-        )
+          this.submit().then(
+              result=>{
+              if(result.success){
+                  DropNote('tr','Logged in','green');
+                  this.permission=true;
+                  $(this.cont).hide();
+                  logieve(this.storecreds);
+              }else{//login failed
+                  DropNote('tr','User or Password Failed','yellow');
+                  this.permission=false;
+                  this.form={user:"",pswrd:""};//reset form
+              }
+              this.storecreds=this.form;//reset store
+              }
+          )
         });
+        document.getElementById(this.dom.actions.logout).addEventListener("click",(ele)=>{
+          this.form = undefined;
+          this.storecreds = this.form;
+          logoeve();//do passed down event
+        });
+
         for(let i in this.inputs){
         this.inputs[i].addEventListener('keypress',(eve)=>{
             if(eve.key == 'Enter'){document.getElementById(this.dom.actions.submit).click();};
@@ -55,11 +63,12 @@ class LoginForm extends VHCform{
         cont:'login-box',
         info:'login-info',
         inputs:{
-        user:'login-username',
-        pswrd:'login-password'
+          user:'login-username',
+          pswrd:'login-password'
         },
         actions:{
-        submit:'login-submit'
+          submit:'login-submit',
+          logout:'logiout-button'
         }
     }
 
@@ -68,16 +77,19 @@ class LoginForm extends VHCform{
         <div id=${this.dom.info}>
             <label>User</label><input id=${this.dom.inputs.user} type="text"/>
             <label>Password</label><input id=${this.dom.inputs.pswrd} type="password"/>
-            <div id=${this.dom.actions.submit} class="flat-action-button">SUBMIT</div>
+            <div>
+              <div id=${this.dom.actions.submit} class="flat-action-button">SUBMIT</div>
+              <div id=${this.dom.actions.logout} class="flat-action-button">LOGOUT</div>
+            </div>
         </div>
         </div>
     `
 
     get storecreds(){
         try{
-        let creds=JSON.parse(localStorage.getItem('vapi-user'));
-        if(creds){return creds;}
-        else{return {user:'',pswrd:''};}
+          let creds=JSON.parse(localStorage.getItem('vapi-user'));
+          if(creds){return creds;}
+          else{return {user:'',pswrd:''};}
         }catch{return {user:'',pswrd:''};}
     }
     set storecreds(creds={user:'',pswrd:''}){localStorage.setItem('vapi-user',JSON.stringify(creds))}

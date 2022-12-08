@@ -2,6 +2,17 @@
 import {ObjList} from '../repo/tools/vg-lists.js';
 import {SENDrequestapi} from '../repo/apis/vapi/vapicore.js';
 
+
+  SENDrequestapi({
+    collect:'apps',
+    store:'VFT',
+    db:'techwos',
+    method:'query',
+    options:{query:{tech:"VOGCH"}}
+  }).then(
+    answr=>{console.log(answr);
+    }
+  );
 export class TechLocalWos extends ObjList{
   constructor(list){
     super(list);
@@ -75,5 +86,4 @@ export class TechLocalWos extends ObjList{
       );
     });
   }
-
 }

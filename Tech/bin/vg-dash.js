@@ -42,21 +42,27 @@ var mactions = {
   }
 };
 
-var login = titlebar.SETUPtitlebar('./bin/repo/',qactions,mactions,true,(creds)=>{
-  twolist.REFRESHstore(creds.user).then(res=>{console.log('RESPONSE ',res)})
-});//returns login Form
-if(login){
+var login = titlebar.SETUPtitlebar(
+  './bin/repo/',
+  qactions,
+  mactions,
+  true,
+  (creds)=>{
+    techwos.twolist.REFRESHstore(creds.user).then(res=>{if(res){twdashlist.LOADlist(techwos.twolist.list);}console.log('RESPONSE ',res);})},
+  ()=>{console.log('logout');DropNote('tr','Logging Out','green');window.location.replace('../index.html')}
+);//returns login Form
+if(login.storecreds.user!=''){
   console.log('LOGIN')
   console.log(login.storecreds)
   techwos.twolist.REFRESHstore(login.storecreds.user).then(res=>{
   twdashlist.LOADlist(techwos.twolist.list);
-    //if(res){LOADwolist(twolist.list);}
   })
 }
 
 var twdashlist = new techwos.CustomList({
   cont:document.getElementById(dashdom.list.cont)
 });
+
 // Work Order List Setup ////////////////////////////////////////////////////////
 
 // App Dock Setup ///////////////////////////////////////////////////////////////
@@ -103,7 +109,6 @@ document.getElementById('submit-search').addEventListener('click', (ele)=>{
     }
     let woitem = techwos.twolist.GETitem(wonum);
     if(woitem){
-      console.log('FOUND ',woitem);
       localStorage.setItem(wolstore.toloadwo,JSON.stringify(woitem));
       window.open('controllers/ticket.html');
     }else{
@@ -114,12 +119,10 @@ document.getElementById('submit-search').addEventListener('click', (ele)=>{
               ticket.id = wonum;//add an id
               ticket.mobile=true; //add mobile
               ticket.tech=login.storecreds.user; //add tech
-              console.log(ticket);
               DropNote('tr','Wo is Loading...','green');
               localStorage.setItem(wolstore.toloadwo,JSON.stringify(ticket));
               techwos.twolist.UPDATEstore(ticket).then(
                 result=>{
-                  console.log(techwos.twolist.list);
                   twdashlist.LOADlist(techwos.twolist.list);
                 }
               );

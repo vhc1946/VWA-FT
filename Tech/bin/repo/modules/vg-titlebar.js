@@ -163,7 +163,7 @@ var CREATEactionbuttons=(acts)=>{
   return alist;
 }
 
-var SETUPtitlebar=(RROOT='',qacts={},macts={},login=true,logineve=()=>{})=>{
+var SETUPtitlebar=(RROOT='',qacts={},macts={},login=true,logieve=()=>{},logoeve=()=>{})=>{
   document.body.prepend(CreateComponent(tdom(RROOT))); //add titlebar to the body
   for(let x=0,l=stylesheets.length;x<l;x++){
     let viewstyles = document.createElement('link');
@@ -187,7 +187,7 @@ var SETUPtitlebar=(RROOT='',qacts={},macts={},login=true,logineve=()=>{})=>{
         $(document.getElementById(tbdom.login.cont)).hide();
       }else{$(document.getElementById(tbdom.login.cont)).show()}
     });
-    return new LoginForm(document.getElementById(tbdom.login.cont),logineve);}
+    return new LoginForm(document.getElementById(tbdom.login.cont),logieve,logoeve);}
   else{$(document.getElementById(tbdom.login.cont)).hide();return null;}
 }
 
