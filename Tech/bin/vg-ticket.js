@@ -18,7 +18,6 @@ var publicfolder = '/Tech/bin/css';
 //fbstore holds connections to indexdb and an instance of ObjList
 //fbstore.list = is the ObjList, and can be used as normal fbstore.list.TRIMlist()
 var fbstore = window.opener.datamart.fbstore;
-
 console.log('FLATRATE BOOK >',fbstore.list.list);
 
 // LOAD Ticket /////////////////////////////////////////////////////////////////
