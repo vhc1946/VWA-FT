@@ -4,17 +4,17 @@
     - linking all service item's info to one
     - linking service item repairs to one fo
 */
+import * as gendis from '../repo/modules/vg-tables.js';
 import {ViewGroup} from '../repo/layouts/view-controller.js';
-import {SIform,SIrepairform} from '../forms/serviceitem-form.js';
+import {SIform} from '../forms/serviceitem-form.js';
+import {SIrepairform} from '../forms/servicerepairs-form.js';
 
 import {SETUPchecklist} from './service-checks.js';
-import {SETUPrepairs} from './service-repairs.js';
-
 //repairs table
 
 export class TicketServiceItems{
   // Inserts Add and Delete buttons into Items Menu
-  constructor(items,repairs){
+  constructor(items,repairs,pricebook){
     let cont = document.createElement('div');
     cont.id='si-cont';
     this.view = new ViewGroup({
@@ -59,6 +59,11 @@ export class TicketServiceItems{
 
     this.currsi=this.view.cont.getElementsByClassName('currsi')[0];
 
+    //attach price book, want to move
+    this.pricebook = pricebook; // object to handle the price
+    console.log(this.pricebook);
+
+    gendis.BUILDtruetable(this.pricebook.list,this.pricebook.cont,false,'wo-item-row');
 
     this.info = [];
     this.repairs = [];
@@ -78,7 +83,7 @@ export class TicketServiceItems{
 
       // add/init service repairs
       if(repairs[i]==undefined){repairs[i]=[]}
-      this.repairs.push(new SIrepairform(document.createElement('div')));
+      this.repairs.push(new SIrepairform(document.createElement('div'),this.pricebook));
       sitemview.ADDview('Repairs',this.repairs[i].cont);
       try{this.repairs[i].form=repairs[i];}
       catch{}
@@ -99,5 +104,5 @@ export class TicketServiceItems{
     this.view.cont.getElementsByClassName('si-add')[0].addEventListener('click',(ele)=>{DropNote('tr','Add New Service Item','yellow');});
 
   }
-  
+
 }

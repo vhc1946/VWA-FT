@@ -28,15 +28,16 @@ import {Contform} from '../forms/contract-form.js';
   - repairs
 
 */
+var fbtable = document.getElementsByClassName('frbook-list')[0];
+
 export class ServiceTicket{
-  constructor(ticket=null){
+  constructor(ticket=null,pricing){
     this.data = ticket;
 
     this.view=new vcontrol.ViewGroup({
       cont:document.getElementById('ticket-build-container'),
       type:'mbe'
     });
-
 
     if(this.data){
       //do a check on this.ticket
@@ -46,12 +47,13 @@ export class ServiceTicket{
       //load blank ticket
     }
 
+    pricing.cont=fbtable; //attach container to store
 
     this.port={
       info:new vcontrol.ViewGroup({
         type:'mtl'
       }),
-      sitems:new TicketServiceItems(this.data.sitems,this.data.repairs),
+      sitems:new TicketServiceItems(this.data.sitems,this.data.repairs,pricing),
       checks:new vcontrol.ViewGroup({
         type:'mtr'
       })

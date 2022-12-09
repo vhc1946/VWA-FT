@@ -24,7 +24,7 @@ window.addEventListener('beforeunload',(ele)=>{ //here for page refresh
 
 // Setup ticket view groups ////////////////////////////////////////////////////
 // /var ticket = CREATEticket();
-var ticket = new ServiceTicket(currticket);
+var ticket = new ServiceTicket(currticket,fbstore.list);
 // Setup Page //
 var qactions = {
   present:{
