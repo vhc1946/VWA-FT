@@ -33,7 +33,7 @@ export class SIrepairform extends VHCform{
   }
   content=`
   <div class="${this.dom.cont}"> TABLE
-    <div class="${this.dom.table.actions}"><input class="add-repair-value"/><img class="${this.dom.actions.add} sm-action-button" src="../../images/icons/plus-icon.png"/></div>
+    <div class="${this.dom.table.actions}"><input class="add-repair-value"/><img class="${this.dom.actions.add} icon-action-button" src="../../images/icons/plus-icon.png"/></div>
     <div class="${this.dom.table.heads}"></div>
     <div class="${this.dom.table.cont}">
     </div>

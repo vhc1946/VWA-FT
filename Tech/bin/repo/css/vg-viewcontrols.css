@@ -41,7 +41,7 @@ Must select proper classes for the menu and container. Select based on the orien
   position: relative;
 }
 .viewcontrol-menu-item:hover{
-  opacity: .4;
+  background-color: grey;
   cursor:pointer;
 }
 .viewcontrol-port{
@@ -60,7 +60,7 @@ Must select proper classes for the menu and container. Select based on the orien
   background-color: var(--BEE-blue);
 }
 .viewcontrol-menu-selected:hover{
-  opacity: 1;
+  background-color: var(--BEE-blue);
 }
 
 

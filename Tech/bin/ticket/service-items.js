@@ -10,6 +10,7 @@ import {SIform} from '../forms/serviceitem-form.js';
 import {SIrepairform} from '../forms/servicerepairs-form.js';
 
 import {SETUPchecklist} from './service-checks.js';
+import { DropNote } from '../repo/modules/vg-dropnote.js';
 //repairs table
 
 export class TicketServiceItems{
@@ -45,8 +46,7 @@ export class TicketServiceItems{
                 },
                 '.si-add.img':{
                   attributes:{
-                    src:'../bin/repo/assets/icons/add.png',
-                    dblclick:(ele)=>{console.log('Add Service Item')}
+                    src:'../bin/repo/assets/icons/add.png'
                   },
                   children:{}
                 }
@@ -63,7 +63,9 @@ export class TicketServiceItems{
     this.pricebook = pricebook; // object to handle the price
     console.log(this.pricebook);
 
-    gendis.BUILDtruetable(this.pricebook.list,this.pricebook.cont,false,'wo-item-row');
+    this.SETfilters();
+    this.SETrepairlist(this.pricebook.list);
+    
 
     this.info = [];
     this.repairs = [];
@@ -77,7 +79,7 @@ export class TicketServiceItems{
 
       //add/init service info form
       this.info.push(new SIform(document.createElement('div')));
-      console.log(i,this.info[i].cont)
+      //console.log(i,this.info[i].cont)
       sitemview.ADDview('Info',this.info[i].cont);
       this.info[i].form = items[i]; //load info
 
@@ -102,7 +104,30 @@ export class TicketServiceItems{
 
     this.view.cont.getElementsByClassName('si-delete')[0].addEventListener('click',(ele)=>{DropNote('tr','Delete Service Item','yellow');});
     this.view.cont.getElementsByClassName('si-add')[0].addEventListener('click',(ele)=>{DropNote('tr','Add New Service Item','yellow');});
-
   }
 
+  SETfilters=()=>{
+    document.getElementsByClassName('min-page-menu')[0].appendChild(gendis.SETrowFROMobject({FlatRateBookCode:'',TaskID:'',PriceLevelCode:''},true));
+    let accfilterrow = document.getElementsByClassName('min-page-menu')[0].lastChild;
+    accfilterrow.classList.add('wo-filter-row');
+    accfilterrow.children[0].setAttribute('type','search');
+    accfilterrow.children[0].setAttribute('list','flatrate-book-list');
+    accfilterrow.children[0].setAttribute('placeholder','Select');
+    accfilterrow.children[0].value = 'RES';
+
+    accfilterrow.children[1].setAttribute('placeholder','Search');
+
+    accfilterrow.children[2].setAttribute('type','search');
+    accfilterrow.children[2].setAttribute('list','flatrate-book-pl-list');
+    accfilterrow.children[2].setAttribute('placeholder','Select');
+    accfilterrow.children[2].value = 'STA';
+
+    accfilterrow.addEventListener('change',(ele)=>{
+      let flts = gendis.GETrowTOobject(document.getElementsByClassName('min-page-menu')[0].lastChild,true);
+      this.SETrepairlist(this.pricebook.TRIMlist(flts,true));
+    });
+  }
+  SETrepairlist=(list)=>{
+    gendis.BUILDtruetable(list,this.pricebook.cont,false,'wo-item-row');
+  }
 }

@@ -173,13 +173,14 @@ place-self: center center;
 }
 #si-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox{
     position: relative;
+    height: 0px;
     left: 0px;
     transition: left 0.25s;
 }
 #si-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-selected{
     display: none;
 }
-#currsi{
+.currsi{
     margin: 0;
 }
 .viewcontrol-menu-vmt>div>.viewcontrol-menu-item{
@@ -300,10 +301,15 @@ place-self: center center;
 /* Service Items */
 
 /* Repairs */
+.frbook-list{
+    max-height:400px;
+}
+
+
 /*-- Min Tab --------------*/
 [class*="min-page-cont"]{
     position: fixed;
-    bottom: 0;
+    bottom: 30px;
     left: 5%;
     width: 90%;
     max-height: 500px;
@@ -316,9 +322,14 @@ place-self: center center;
     margin: 0;
 }
 .min-page-view{
-    padding: 20px;
+    padding: 0px 20px 20px 20px;
 }
-
+.wo-filter-row{
+    padding: 20px 0px 0px 20px;
+}
+.wo-filter-row>input{
+    width: 100px;
+}
 
 /* Service Item Checklists */
 .checklist-cont{
