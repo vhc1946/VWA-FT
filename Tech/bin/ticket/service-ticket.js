@@ -34,6 +34,11 @@ export class ServiceTicket{
   constructor(ticket=null,pricing){
     this.data = ticket;
 
+    // Setup Price Book
+    this.pricing = new FlatRateTable(pricing.TRIMlist({FlatRateBookCode:this.data.wo.pricebook}),fbtable);
+    this.pricing.fltrs.PriceLevelCode=this.data.wo.pricelevel;
+    this.pricing.SETrepairlist();
+
     this.view=new vcontrol.ViewGroup({
       cont:document.getElementById('ticket-build-container'),
       type:'mbe'
@@ -46,11 +51,6 @@ export class ServiceTicket{
       console.log('NO Ticket');
       //load blank ticket
     }
-
-    // Setup Price Book
-    this.pricing = new FlatRateTable(pricing.TRIMlist({FlatRateBookCode:this.data.wo.pricebook}),fbtable);
-    this.pricing.fltrs.PriceLevelCode=this.data.wo.pricelevel;
-    this.pricing.SETrepairlist();
 
 
     this.port={
@@ -90,7 +90,7 @@ export class ServiceTicket{
     this.forms.sitems = this.port.sitems.info
     this.forms.repairs = this.port.sitems.repairs
 
-    
+
     this.port.info.cont.getElementsByClassName('wo-info-pricelevel')[0].addEventListener('change',(ele)=>{
       let plevel = ele.target.value;
       if(plevel&&plevel!=''){this.pricing.GETfilters({PriceLevelCode:plevel})}
