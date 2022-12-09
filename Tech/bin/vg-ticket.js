@@ -79,4 +79,6 @@ document.getElementById(titlebar.tbdom.utils.buttons.home).addEventListener('cli
 $(document.getElementById(titlebar.tbdom.page.settings)).hide();
 ////////////////
 
-//LOADticket(ticket.data);
+document.getElementsByClassName('min-page-hide-button')[0].addEventListener('click', (ele)=>{   // Home Button
+  $(document.getElementsByClassName('min-page-cont')[0]).toggle();
+});

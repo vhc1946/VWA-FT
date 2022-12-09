@@ -127,21 +127,21 @@ export class TicketServiceItems{
 
   SETfilters=()=>{
     document.getElementsByClassName('min-page-menu')[0].appendChild(gendis.SETrowFROMobject({FlatRateBookCode:'',TaskID:'',PriceLevelCode:''},true));
-    let accfilterrow = document.getElementsByClassName('min-page-menu')[0].lastChild;
-    accfilterrow.classList.add('wo-filter-row');
-    accfilterrow.children[0].setAttribute('type','search');
-    accfilterrow.children[0].setAttribute('list','flatrate-book-list');
-    accfilterrow.children[0].setAttribute('placeholder','Select');
-    accfilterrow.children[0].value = 'RES';
+    let filterrow = document.getElementsByClassName('min-page-menu')[0].lastChild;
+    filterrow.classList.add('wo-filter-row');
+    filterrow.children[0].setAttribute('type','search');
+    filterrow.children[0].setAttribute('list','flatrate-book-list');
+    filterrow.children[0].setAttribute('placeholder','Select');
+    filterrow.children[0].value = 'RES';
 
-    accfilterrow.children[1].setAttribute('placeholder','Search');
+    filterrow.children[1].setAttribute('placeholder','Search');
 
-    accfilterrow.children[2].setAttribute('type','search');
-    accfilterrow.children[2].setAttribute('list','flatrate-book-pl-list');
-    accfilterrow.children[2].setAttribute('placeholder','Select');
-    accfilterrow.children[2].value = 'STA';
+    filterrow.children[2].setAttribute('type','search');
+    filterrow.children[2].setAttribute('list','flatrate-book-pl-list');
+    filterrow.children[2].setAttribute('placeholder','Select');
+    filterrow.children[2].value = 'STA';
 
-    accfilterrow.addEventListener('change',(ele)=>{
+    filterrow.addEventListener('change',(ele)=>{
       this.GETfilters();
     });
 
