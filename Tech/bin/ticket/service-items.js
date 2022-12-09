@@ -18,10 +18,11 @@ export class TicketServiceItems{
   constructor(items,repairs,pricebook){
     let cont = document.createElement('div');
     cont.id='si-cont';
+
     this.view = new ViewGroup({
       cont:cont,
       type:'mlt',
-      swtchEve:(contt,view,button)=>{
+      swtchEve:(cont,view,button)=>{
         cont.getElementsByClassName('currsi')[0].innerText = view.title;
         $(cont.getElementsByClassName('currsi')[0]).click();
       },
@@ -72,13 +73,7 @@ export class TicketServiceItems{
     this.currsi=this.view.cont.getElementsByClassName('currsi')[0];
 
     //attach price book, want to move
-    this.pricebook = pricebook; // object to handle the price
-    console.log(this.pricebook);
-    
-    this.SETrepairlist(this.pricebook.list);
-    this.SETfilters();
-    
-    
+    this.pricebook = pricebook; // FlatRateTable passed from parent
 
     this.info = [];
     this.repairs = [];
@@ -123,35 +118,5 @@ export class TicketServiceItems{
 
     this.view.cont.getElementsByClassName('si-delete')[0].addEventListener('click',(ele)=>{DropNote('tr','Delete Service Item','yellow');});
     this.view.cont.getElementsByClassName('si-add')[0].addEventListener('click',(ele)=>{DropNote('tr','Add New Service Item','yellow');});
-  }
-
-  SETfilters=()=>{
-    document.getElementsByClassName('min-page-menu')[0].appendChild(gendis.SETrowFROMobject({FlatRateBookCode:'',TaskID:'',PriceLevelCode:''},true));
-    let filterrow = document.getElementsByClassName('min-page-menu')[0].lastChild;
-    filterrow.classList.add('wo-filter-row');
-    filterrow.children[0].setAttribute('type','search');
-    filterrow.children[0].setAttribute('list','flatrate-book-list');
-    filterrow.children[0].setAttribute('placeholder','Select');
-    filterrow.children[0].value = 'RES';
-
-    filterrow.children[1].setAttribute('placeholder','Search');
-
-    filterrow.children[2].setAttribute('type','search');
-    filterrow.children[2].setAttribute('list','flatrate-book-pl-list');
-    filterrow.children[2].setAttribute('placeholder','Select');
-    filterrow.children[2].value = 'STA';
-
-    filterrow.addEventListener('change',(ele)=>{
-      this.GETfilters();
-    });
-
-    this.GETfilters();
-  }
-  GETfilters=()=>{
-    let flts = gendis.GETrowTOobject(document.getElementsByClassName('min-page-menu')[0].lastChild,true);
-    this.SETrepairlist(this.pricebook.TRIMlist(flts,true));
-  }
-  SETrepairlist=(list)=>{
-    gendis.BUILDtruetable(list,this.pricebook.cont,false,'wo-item-row');
   }
 }
