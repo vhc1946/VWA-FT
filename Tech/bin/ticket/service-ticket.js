@@ -1,0 +1,112 @@
+
+import {DropNote} from '../repo/modules/vg-dropnote.js';
+import * as gendis from '../repo/modules/vg-tables.js';
+import * as vcontrol from '../repo/layouts/view-controller.js';
+vcontrol.SETUPviewcontroller('../bin/repo/');
+
+
+import * as sitemmod from './service-items.js';
+import {TicketServiceItems} from './service-items.js';
+
+import {SETUPchecklist} from './service-checks.js';
+
+import {WOform} from '../forms/wo-form.js';
+import {Contform} from '../forms/contract-form.js';
+
+/* A Residential Ticket
+
+  Parts:
+  - customer
+  - wo
+  - serviceitems - class TicketSITab
+  - contracts
+  - checklists
+
+  SERVICEITEMS
+  Parts for every item:
+  - info
+  - repairs
+
+*/
+export class ServiceTicket{
+  constructor(ticket=null){
+    this.data = ticket;
+
+    this.view=new vcontrol.ViewGroup({
+      cont:document.getElementById('ticket-build-container'),
+      type:'mbe'
+    });
+
+
+    if(this.data){
+      //do a check on this.ticket
+
+    }else{
+      console.log('NO Ticket');
+      //load blank ticket
+    }
+
+
+    this.port={
+      info:new vcontrol.ViewGroup({
+        type:'mtl'
+      }),
+      sitems:new TicketServiceItems(this.data.sitems,this.data.repairs),
+      checks:new vcontrol.ViewGroup({
+        type:'mtr'
+      })
+    };
+
+    this.forms={//hold the list of children data forms
+      wo:new WOform(document.createElement('div')),
+      contract:new Contform(document.createElement('div')),
+      sitems:[],
+      checks:[]
+    };
+
+
+    this.port.checks.cont.id='check-cont';
+
+    this.view.ADDview('Information',this.port.info.cont);
+    this.view.ADDview('Service Items',this.port.sitems.view.cont);
+    this.view.ADDview('Check Lists',this.port.checks.cont);
+
+    this.port.info.ADDview('WO',this.forms.wo.cont);
+    this.port.info.ADDview('Contract',this.forms.contract.cont);
+    $(this.port.info.buttons.children[0]).click();
+
+    let {checkforms,checkcont}=SETUPchecklist(document.createElement('div'));
+    this.forms.checks=checkforms;
+    this.port.checks.ADDview('System 1',checkcont);
+    $(this.view.buttons.children[0]).click();  //Sets first tab as selected
+
+    this.forms.wo.form = this.data.wo;
+    this.forms.contract.form = this.data.contract;
+    this.forms.sitems = this.port.sitems.info
+    this.forms.repairs = this.port.sitems.repairs
+  }
+
+  get ticket(){
+    let ttick={};
+    for(let f in this.forms){
+      try{
+        if(this.forms[f].form){
+          console.log(f,this.forms[f].form)
+          ttick[f]=this.forms[f].form; //load ticket part from form
+        }
+        else{
+          for(let x=0;x<this.forms[f].length;x++){
+            for(let ff in this.forms[f][x]){
+              ttick[f][x]=this.forms[f][x].form;
+            }
+          }
+        }
+      }
+      catch{}
+    }
+    return ttick
+
+  }
+  set ticket(tick={}){this.data=tick;}
+  //puts the current ticket data to the screen
+}

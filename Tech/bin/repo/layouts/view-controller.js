@@ -191,7 +191,6 @@ class ViewGroup{
     view.title=name;
     view.classList.add(vcdom.port.view,vcdom.port.selected);
     this.port.appendChild(view);
-    console.log()
     var button = document.createElement('div');//create tab button and add
     button.innerText = name
     button.title = name; //change to .title
