@@ -10,21 +10,10 @@ export class FlatRateTable{
     this.SETfilters();
   }
   SETfilters=()=>{
-    document.getElementsByClassName('min-page-menu')[0].appendChild(gendis.SETrowFROMobject({FlatRateBookCode:'',TaskID:'',PriceLevelCode:''},true));
+    document.getElementsByClassName('min-page-menu')[0].appendChild(gendis.SETrowFROMobject({TaskID:''},true));
     let filterrow = document.getElementsByClassName('min-page-menu')[0].lastChild;
     filterrow.classList.add('wo-filter-row');
-    filterrow.children[0].setAttribute('type','search');
-    filterrow.children[0].setAttribute('list','flatrate-book-list');
-    filterrow.children[0].setAttribute('placeholder','Select');
-    filterrow.children[0].value = 'RES';
-
-    filterrow.children[1].setAttribute('placeholder','Search');
-
-    filterrow.children[2].setAttribute('type','search');
-    filterrow.children[2].setAttribute('list','flatrate-book-pl-list');
-    filterrow.children[2].setAttribute('placeholder','Select');
-    filterrow.children[2].value = 'STA';
-
+    filterrow.children[0].setAttribute('placeholder','Search');
     filterrow.addEventListener('change',(ele)=>{
       this.GETfilters();
     });
