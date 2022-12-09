@@ -38,17 +38,29 @@ export class TicketServiceItems{
             '.si-menu-buttons.div':{
               attributes:{},
               children:{
-                '.si-delete.img':{
+                '.si-delete.div':{
                   attributes:{
-                    src:'../bin/repo/assets/icons/trash.png'
+                    class:'icon-action-button'
                   },
-                  Children:{}
+                  children:{
+                    '.delete-button.img':{
+                      attributes:{
+                        src:'../bin/repo/assets/icons/trash.png'
+                      }
+                    }
+                  }
                 },
-                '.si-add.img':{
+                '.si-add.div':{
                   attributes:{
-                    src:'../bin/repo/assets/icons/add.png'
+                    class:'icon-action-button'
                   },
-                  children:{}
+                  children:{
+                    '.add-button.img':{
+                      attributes:{
+                        src:'../bin/repo/assets/icons/add.png'
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -96,8 +108,14 @@ export class TicketServiceItems{
 
     this.currsi.addEventListener('click',(ele)=>{   // Service Items menu toggle
       let box = this.view.buttons;
-      if(box.style.left=='-250px'){box.style.left='0px';}
-      else{box.style.left='-250px';}
+      let exbuttons = this.view.cont.getElementsByClassName('si-menu-buttons')[0];
+      if(box.style.left=='-250px'){
+        box.style.left='0px';
+        exbuttons.style.left='0px';
+      }else{
+        box.style.left='-250px';
+        exbuttons.style.left='-250px';
+      }
     });
 
     $(this.view.buttons.children[0]).click();
