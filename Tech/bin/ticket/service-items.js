@@ -74,9 +74,10 @@ export class TicketServiceItems{
     //attach price book, want to move
     this.pricebook = pricebook; // object to handle the price
     console.log(this.pricebook);
-
-    this.SETfilters();
+    
     this.SETrepairlist(this.pricebook.list);
+    this.SETfilters();
+    
     
 
     this.info = [];
@@ -141,9 +142,14 @@ export class TicketServiceItems{
     accfilterrow.children[2].value = 'STA';
 
     accfilterrow.addEventListener('change',(ele)=>{
-      let flts = gendis.GETrowTOobject(document.getElementsByClassName('min-page-menu')[0].lastChild,true);
-      this.SETrepairlist(this.pricebook.TRIMlist(flts,true));
+      this.GETfilters();
     });
+
+    this.GETfilters();
+  }
+  GETfilters=()=>{
+    let flts = gendis.GETrowTOobject(document.getElementsByClassName('min-page-menu')[0].lastChild,true);
+    this.SETrepairlist(this.pricebook.TRIMlist(flts,true));
   }
   SETrepairlist=(list)=>{
     gendis.BUILDtruetable(list,this.pricebook.cont,false,'wo-item-row');

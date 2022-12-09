@@ -1,5 +1,6 @@
 import {VHCform} from '../repo/tools/vhc-forms.js';
 import * as ttools from '../repo/modules/vg-tables.js';
+import { DropNote } from '../repo/modules/vg-dropnote.js';
 // service item repairs
 export class SIrepairform extends VHCform{
   constructor(cont,pricebook){
@@ -8,10 +9,12 @@ export class SIrepairform extends VHCform{
     this.table = this.cont.getElementsByClassName(this.dom.table.cont);
     this.pricebook=pricebook;
     this.cont.getElementsByClassName(this.dom.actions.add)[0].addEventListener('click',(ele)=>{
-      //check if custom input
-
-      if(true){$(document.getElementsByClassName('min-page-cont')[0]).toggle();}
-      //this.ADDrepair(this.addform);
+      let customin = this.cont.getElementsByClassName(this.dom.input)[0].value;
+      if(customin === ''){
+        $(document.getElementsByClassName('min-page-cont')[0]).toggle();
+      }else{
+        DropNote('tr',`Add ${customin}`);
+      }
     });
   }
   dom={
@@ -20,6 +23,7 @@ export class SIrepairform extends VHCform{
       add:'si-repair-add',
       delete:'si-repair-delete'
     },
+    input: 'add-repair-value',
     addform:{
       desc:'si-add-form-desc',
       price:'si-add-form-price',
@@ -33,7 +37,7 @@ export class SIrepairform extends VHCform{
   }
   content=`
   <div class="${this.dom.cont}"> TABLE
-    <div class="${this.dom.table.actions}"><input class="add-repair-value"/><img class="${this.dom.actions.add} icon-action-button" src="../../images/icons/plus-icon.png"/></div>
+    <div class="${this.dom.table.actions}"><input class="${this.dom.input}"/><div class="${this.dom.actions.add} icon-action-button"><img src="../../images/icons/plus-icon.png"/></div></div>
     <div class="${this.dom.table.heads}"></div>
     <div class="${this.dom.table.cont}">
     </div>
