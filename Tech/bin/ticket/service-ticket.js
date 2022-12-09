@@ -9,7 +9,7 @@ import * as sitemmod from './service-items.js';
 import {TicketServiceItems} from './service-items.js';
 
 import {SETUPchecklist} from './service-checks.js';
-
+import {FlatRateTable} from '../tables/fbook-table.js';
 import {WOform} from '../forms/wo-form.js';
 import {Contform} from '../forms/contract-form.js';
 
@@ -34,6 +34,11 @@ export class ServiceTicket{
   constructor(ticket=null,pricing){
     this.data = ticket;
 
+    // Setup Price Book
+    this.pricing = new FlatRateTable(pricing.TRIMlist({FlatRateBookCode:this.data.wo.pricebook}),fbtable);
+    this.pricing.fltrs.PriceLevelCode=this.data.wo.pricelevel;
+    this.pricing.SETrepairlist();
+
     this.view=new vcontrol.ViewGroup({
       cont:document.getElementById('ticket-build-container'),
       type:'mbe'
@@ -47,13 +52,12 @@ export class ServiceTicket{
       //load blank ticket
     }
 
-    pricing.cont=fbtable; //attach container to store
 
     this.port={
       info:new vcontrol.ViewGroup({
         type:'mtl'
       }),
-      sitems:new TicketServiceItems(this.data.sitems,this.data.repairs,pricing),
+      sitems:new TicketServiceItems(this.data.sitems,this.data.repairs,this.pricing),
       checks:new vcontrol.ViewGroup({
         type:'mtr'
       })
@@ -65,7 +69,6 @@ export class ServiceTicket{
       sitems:[],
       checks:[]
     };
-
 
     this.port.checks.cont.id='check-cont';
 
@@ -86,6 +89,14 @@ export class ServiceTicket{
     this.forms.contract.form = this.data.contract;
     this.forms.sitems = this.port.sitems.info
     this.forms.repairs = this.port.sitems.repairs
+
+
+    this.port.info.cont.getElementsByClassName('wo-info-pricelevel')[0].addEventListener('change',(ele)=>{
+      let plevel = ele.target.value;
+      if(plevel&&plevel!=''){this.pricing.GETfilters({PriceLevelCode:plevel})}
+      else{DropNote('tr','Choose a Correct Price Level');}
+    });
+
   }
 
   get ticket(){
