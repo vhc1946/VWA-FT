@@ -60,7 +60,7 @@ export var twolist = new TechLocalWos();
 
 ///////////////
 
-var SETUProw=(item={})=>{
+export var SETUProw=(item={})=>{
   let row = document.createElement('div');
   row.classList.add(wrdom.cont);
   row.innerHTML=wotablerow;
@@ -98,79 +98,5 @@ var OPENwo=(ele)=>{
         window.open('controllers/ticket.html');
         DropNote('tr',`WO # ${wonum} Loaded..`,'green');
       }else{DropNote('tr',`WO # ${wonum} Could NOT Load`,'yellow')}
-  }
-}
-
-/*
-  cont: the top of the custom list
-  seleeve: an option to apply function to row click
-  rmap: the values to include in row
-  lheads: any desired headers
-  lrow: a template row, needs to be repeatedly creatable as lrow will run as a function
-*/
-export class CustomList{
-  constructor({
-    cont=document.createElement('div'),
-    seleeve=()=>{},
-    rmap=(r)=>{return r},
-    laction=null,
-    lhead=null,
-    lrow=SETUProw,
-    list=[]
-  }){
-    this.cont = cont;
-    this.sleeve=seleeve;
-    this.rmap=rmap;
-    this.laction=laction;
-    this.lhead=lhead;
-    this.lrow=lrow;
-
-    if(!this.cont.classList.contains(this.dom.cont)){this.cont.classList.add(this.dom.cont)}
-    let ccount=[];
-
-    for(let p in this.dom.part){//ensure parts
-      let set = false;
-      let x=0;
-      for(x;x<this.cont.children.length;x++){
-        if(this.cont.children[x].classList.contains(this.dom.part[p])){set=true;break;}
-      }
-      if(!set){
-        console.log(p)
-        this[p]=document.createElement('div');
-        this[p].classList.add(this.dom.part[p]);
-        this.cont.appendChild(this[p]);
-      }else{
-        this[p]=this.cont.children[x];
-      }
-    }
-    for(let x=0;x<list.length;x++){
-      this.ADDitem(list[x]);
-    }
-  }
-
-  dom={
-    cont:'cl-cont',
-    part:{
-      actions:'cl-actions',
-      heads:'cl-heads',
-      list:'cl-list'
-    }
-  }
-
-  ADDitem(item={}){
-    item=this.rmap(item);
-    let row = this.lrow?this.lrow(item):SETrowFROMobject(item);
-    this.list.appendChild(row);
-  }
-  LOADlist(list){
-    console.log(this.list)
-    console.log(this.list.children);
-    this.list.innerHTML='';
-    console.log(this.list.children);
-    console.log(list)
-    for(let x=0;x<list.length;x++){
-      this.ADDitem(list[x]);
-    }
-    console.log(this.list.children);
   }
 }

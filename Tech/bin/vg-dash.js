@@ -4,6 +4,7 @@ import * as titlebar from './repo/modules/vg-titlebar.js';
 import * as viewcontrol from './repo/layouts/view-controller.js';
 import { SELECTview } from './repo/modules/vg-floatviews.js';
 import { AppDock } from './repo/modules/appdock.js';
+import {FormList} from './repo/tools/vhc-formlist.js';
 
 import {dashdom} from './back/ticket-dom.js';
 import { STARTticket,SYNCdatalist } from './tools/vapi-FTrequest.js';
@@ -59,8 +60,9 @@ if(login.storecreds.user!=''){
   })
 }
 
-var twdashlist = new techwos.CustomList({
-  cont:document.getElementById(dashdom.list.cont)
+var twdashlist = new FormList({
+  cont:document.getElementById(dashdom.list.cont),
+  srow:techwos.SETUProw
 });
 
 // Work Order List Setup ////////////////////////////////////////////////////////
