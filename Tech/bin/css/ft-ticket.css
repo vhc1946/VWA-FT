@@ -170,8 +170,8 @@
 .si-repair-actions{
     display: flex;
 }
-.frbook-list{
-    max-height:400px;
+.si-repair-table>div>div:nth-child(2){
+    width: 400px;
 }
 
 
@@ -200,7 +200,9 @@
 .wo-filter-row>input{
     width: 100px;
 }
-
+.frbook-list{
+    max-height:400px;
+}
 /* Service Item Checklists */
 .checklist-cont{
     margin: 5px;

@@ -42,7 +42,7 @@ export class SIrepairform extends VHCform{
   <div class="${this.dom.cont}"> TABLE
     <div class="${this.dom.table.actions}"><input class="${this.dom.input}"/><div class="${this.dom.actions.add} icon-action-button"><img src="../../images/icons/plus-icon.png"/></div></div>
     <div class="${this.dom.table.heads}"></div>
-    <div class="${this.dom.table.cont}">
+    <div class="${this.dom.table.cont} vg-gentable">
     </div>
   </div>
   `
@@ -72,12 +72,33 @@ export class SIrepairform extends VHCform{
       this.table.appendChild(ttools.SETrowFROMobject(rlist[x]));
     }
   }
-
   ADDrepair(item=null){
     if(item){
-      //loop through current repairs to check for dups
-      this.table.appendChild(ttools.SETrowFROMobject(item));
+      let newrow = ttools.SETrowFROMobject(arepair(item))
+      if(this.Dupcheck(newrow)){
+        this.table.appendChild(newrow);
+      }else{
+        DropNote('tr','Already on List','yellow');
+      }
     }
   }
-
+  Dupcheck(lrow){ //Checks for duplicates in table before adding
+    let cont = this.table;
+      for(let x=0;x<cont.children.length;x++){
+        if(cont.children[x].innerHTML == lrow.innerHTML){
+          return false;
+        }
+      }
+    return true;
+  }
 }
+var arepair=(item)=>{
+  return {
+    TaskID: item.TaskID,
+    Descr: "Descriptions to come",
+    SellingPrice: item.SellingPrice,
+    FlatRateBookCode: item.FlatRateBookCode,
+    Active: true
+  }
+}
+
