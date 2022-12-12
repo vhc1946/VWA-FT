@@ -73,7 +73,7 @@ export class FlatRateTable{
       but.classList.add('text-action-button');
       but.innerText = this.miscreps[x].title;
       but.addEventListener('click',(ele)=>{
-        repadd.ADDrepair(this.GETmiscrepairs(x));
+        repadd.ADDitem(this.GETmiscrepairs(x));
       });
       miscs.appendChild(but);
     }

@@ -129,7 +129,7 @@ export class TicketServiceItems{
     //setup flatrate add event
     pricebook.cont.addEventListener('click',(ele)=>{
       let row  = FINDparentele(ele.target,'wo-item-row');
-      this.repairs[this.currtab].ADDrepair(gendis.GETrowTOobject(row));
+      this.repairs[this.currtab].ADDitem(gendis.GETrowTOobject(row));
     });
   }
 

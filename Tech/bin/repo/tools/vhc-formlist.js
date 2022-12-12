@@ -1,5 +1,6 @@
 import {VHCform} from './vhc-forms.js';
 import {GETrowTOobject,SETrowFROMobject} from '../modules/vg-tables.js';
+
 /*
   cont: the top of the custom list
   seleeve: an option to apply function to row click
@@ -78,6 +79,7 @@ export class FormList extends VHCform{
   }
 
   ADDitem(item={}){
+    console.log(item)
     item=this.rmap(item);
     let row = this.srow?this.srow(item):SETrowFROMobject(item);
     if(row){this.list.appendChild(row);}
