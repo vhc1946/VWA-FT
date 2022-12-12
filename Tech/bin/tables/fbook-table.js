@@ -8,7 +8,8 @@ export class FlatRateTable{
     this.fltrs={}; //holds any on going filters
     this.miscreps={//Misc Repairs
       'CLNCHK-AC':{
-        'desc':'AC Clean and Check',
+        'title':'Condensor C&C',
+        'desc':'Condensor Clean and Check',
         'STA':149,
         'AHR':149,
         'CLA':0,
@@ -16,6 +17,7 @@ export class FlatRateTable{
         'ULT':0
       },
       'CLNCHK-FURN':{
+        'title':'Furnace C&C',
         'desc':'Furnace Clean and Check',
         'STA':149,
         'AHR':149,
@@ -24,6 +26,7 @@ export class FlatRateTable{
         'ULT':0
       },
       'DIAG':{
+        'title':'Diagnostic',
         'desc':'Diagnostic',
         'STA':119,
         'AHR':149,
@@ -64,12 +67,11 @@ export class FlatRateTable{
 
 
   CREATEmiscinputs(repadd=()=>{}){
-    console.log()
     let miscs = document.createElement('div');
     for(let x in this.miscreps){
       let but = document.createElement('div');
-      but.classList.add('flat-action-button');
-      but.innerText = this.miscreps[x].desc;
+      but.classList.add('text-action-button');
+      but.innerText = this.miscreps[x].title;
       but.addEventListener('click',(ele)=>{
         repadd.ADDrepair(this.GETmiscrepairs(x));
       });
@@ -80,9 +82,11 @@ export class FlatRateTable{
   GETmiscrepairs(name){
     let repair={};
     if(this.fltrs.PriceLevelCode){
+      repair.TaskID = name;
       repair.desc = this.miscreps[name].desc;
       repair.PriceLevelCode=this.fltrs.PriceLevelCode;
-      repair.amount = this.miscreps[name][this.fltrs.PriceLevelCode];
+      repair.FlatRateBookCode=this.fltrs.FlatRateBookCode;
+      repair.SellingPrice = this.miscreps[name][this.fltrs.PriceLevelCode];
     }
     return repair;
   }

@@ -45,10 +45,10 @@ export class SIrepairform extends VHCform{
   <div class="${this.dom.cont}">
     <div class="${this.dom.table.actions}">
       <input class="${this.dom.input}"/>
-      <input class="${this.dom.addform.desc} placehodle"/>
+      <input class="${this.dom.addform.desc} placeholder="Add description"/>
       <div class="${this.dom.actions.add} icon-action-button"><img src="../../images/icons/plus-icon.png"/></div></div>
       <div class="${this.dom.table.heads}"></div>
-      <div class="${this.dom.table.cont}">
+      <div class="${this.dom.table.cont} vg-gentable">
     </div>
   </div>
   `
@@ -101,9 +101,9 @@ export class SIrepairform extends VHCform{
 var arepair=(item)=>{
   return {
     TaskID: item.TaskID,
-    Descr: "Descriptions to come",
+    Desc: item.desc ||"Descriptions to come",
     SellingPrice: item.SellingPrice,
-    FlatRateBookCode: item.FlatRateBookCode,
+    PriceLevelCode: item.PriceLevelCode,
     Active: true
   }
 }

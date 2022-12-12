@@ -144,7 +144,6 @@ function getPosition(event){
 function startPainting(event){
   paint = true;
   getPosition(event);
-  console.log(event);
 }
 
 function stopPainting(){
