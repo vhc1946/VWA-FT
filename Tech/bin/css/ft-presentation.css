@@ -151,3 +151,9 @@ place-self: center center;
 #wo-setup-repair input{
     margin-bottom:5px;
 }
+.signature-pad{
+    background-color: lightgrey;
+    height: 100px;
+    width: 400px;
+    border-radius: 10px;
+}
