@@ -44,7 +44,7 @@ var mactions = {
     src:'../bin/repo/assets/icons/disk.png',
     title:'Save WO',
     ondblclick:(ele)=>{
-      console.log('SAVE TICKET',ticket);
+      console.log('SAVE TICKET',ticket.ticket);
       //window.opener.techwos.UPDATEstore(currticket).then(answr=>{
       //  console.log(answr)
       //  if(answr){DropNote('tr','Ticket WAS Saved','green');}
@@ -96,7 +96,7 @@ var resize=()=>{
 }
 var reposition=(event)=>{
   coord.x = event.offsetX;
-  coord.y = event.offsetY; 
+  coord.y = event.offsetY;
 }
 var start=(event)=>{
   document.addEventListener("mousemove", draw);
@@ -127,15 +127,15 @@ resize();
 
 const canvas = document.getElementsByClassName('signature-pad')[0];
 const ctx = canvas.getContext('2d');
-	
+
 function resize(){
   ctx.canvas.width = canvas.width;
   ctx.canvas.height = canvas.height;
 }
-	
+
 let coord = {x:0 , y:0};
 let paint = false;
-	
+
 function getPosition(event){
   coord.x = event.offsetX;
   coord.y = event.offsetY;
@@ -149,7 +149,7 @@ function startPainting(event){
 function stopPainting(){
   paint = false;
 }
-	
+
 function sketch(event){
   if (!paint) return;
   ctx.beginPath();
