@@ -1,4 +1,6 @@
 import {VHCform} from './vhc-forms.js';
+import {GETrowTOobject,SETrowFROMobject} from '../modules/vg-tables.js';
+
 /*
   cont: the top of the custom list
   seleeve: an option to apply function to row click
@@ -18,11 +20,14 @@ export class FormList extends VHCform{
     list=[]
   }){
     super(cont);
-    this.sleeve=seleeve;
+    this.sleeve=seleeve;//select event
     this.rmap=rmap;
+
     this.laction=laction;
     this.lhead=lhead;
-    this.srow=srow;
+
+    this.srow=srow;//set row
+    this.grow=grow;//get row
 
     if(!this.cont.classList.contains(this.dom.cont)){this.cont.classList.add(this.dom.cont)}
     let ccount=[];
@@ -58,28 +63,32 @@ export class FormList extends VHCform{
 
   get form(){
     let rlist = [];
-    let rrows = this.table.getElementsByClassName(this.dom.table.rows);
-    for(let x=0;x<rrows.length;x++){
-      rlist.push(this.GETitem());
+    console.log(this.list.children)
+    for(let x=0;x<this.list.children.length;x++){
+      rlist.push(this.GETitem(this.list.children[x]));
     }
     return rlist;
   }
   set form(rlist=[]){
-    this.table.innerHTML='';
+    this.list.innerHTML='';
+    console.log(rlist[1]);
     for(let x=0;x<rlist.length;x++){
-      this.table.appendChild(this.ADDitem(rlist[x]));
+      console.log(rlist[x])
+      this.ADDitem(rlist[x]);
     }
   }
-  
+
   ADDitem(item={}){
+    console.log(item)
     item=this.rmap(item);
     let row = this.srow?this.srow(item):SETrowFROMobject(item);
-    this.list.appendChild(row);
+    if(row){this.list.appendChild(row);}
   }
   GETitem(row){
     let item = this.grow?this.grow(row):GETrowTOobject(row);
     return item;
   }
+
   LOADlist(list=[]){
     this.list.innerHTML='';
     for(let x=0;x<list.length;x++){

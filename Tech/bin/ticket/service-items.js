@@ -101,8 +101,9 @@ export class TicketServiceItems{
       if(repairs[i]==undefined){repairs[i]=[]}//correct empty repairs
       this.repairs.push(new SIrepairform(document.createElement('div'),this.pricebook));
       sitemview.ADDview('Repairs',this.repairs[i].cont);
-      try{this.repairs[i].form=repairs[i];}
-      catch{}
+      //try{
+      this.repairs[i].form=repairs[i];
+      //catch{}
 
       this.view.ADDview(items[i].tagid,sitemview.cont); //add service item to group
       $(sitemview.buttons.children[0]).click();
@@ -128,7 +129,7 @@ export class TicketServiceItems{
     //setup flatrate add event
     pricebook.cont.addEventListener('click',(ele)=>{
       let row  = FINDparentele(ele.target,'wo-item-row');
-      this.repairs[this.currtab].ADDrepair(gendis.GETrowTOobject(row));
+      this.repairs[this.currtab].ADDitem(gendis.GETrowTOobject(row));
     });
   }
 

@@ -8,7 +8,7 @@ export class SIrepairform extends FormList{
     super(cont);
 
     this.cont.innerHTML=this.content;
-    this.table = this.cont.getElementsByClassName(this.dom.table.cont)[0];
+    this.list = this.cont.getElementsByClassName(this.dom.table.cont)[0];
     this.pricebook=pricebook;
 
 
@@ -78,14 +78,15 @@ export class SIrepairform extends FormList{
       newrow.lastChild.src = '../../images/icons/trash.png';
       newrow.lastChild.classList.add('delete-repair-item');
       if(this.Dupcheck(newrow)){
-        this.table.appendChild(newrow);
+        return newrow;
       }else{
         DropNote('tr','Already on List','yellow');
+        return null;
       }
     }
   }
   Dupcheck(lrow){ //Checks for duplicates in table before adding
-    let cont = this.table;
+    let cont = this.list;
       for(let x=0;x<cont.children.length;x++){
         if(cont.children[x].innerHTML == lrow.innerHTML){
           return false;
