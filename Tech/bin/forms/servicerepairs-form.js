@@ -1,15 +1,20 @@
-import {VHCform} from '../repo/tools/vhc-forms.js';
+import {FormList} from '../repo/tools/vhc-formlist.js';
 import * as ttools from '../repo/modules/vg-tables.js';
 import { DropNote } from '../repo/modules/vg-dropnote.js';
 // service item repairs
 
-export class SIrepairform extends VHCform{
+export class SIrepairform extends FormList{
   constructor(cont,pricebook){
     super(cont);
 
     this.cont.innerHTML=this.content;
     this.table = this.cont.getElementsByClassName(this.dom.table.cont)[0];
     this.pricebook=pricebook;
+
+
+    this.srow = this.ADDrepair;//morph this.srow
+    //this.grow = this.GETrepair;//morph this.grow
+
     this.cont.getElementsByClassName(this.dom.actions.add)[0].addEventListener('click',(ele)=>{
       let customin = this.cont.getElementsByClassName(this.dom.input)[0].value;
       if(customin === ''){
@@ -64,20 +69,6 @@ export class SIrepairform extends VHCform{
 
   }
 
-  get form(){
-    let rlist = [];
-    let rrows = this.table.getElementsByClassName(this.dom.table.rows);
-    for(let x=0;x<rrows.length;x++){
-      rlist.push(ttools.GETrowTOobject(rrows[x]));
-    }
-    return rlist;
-  }
-  set form(rlist=[]){
-    this.table.innerHTML='';
-    for(let x=0;x<rlist.length;x++){
-      this.table.appendChild(ttools.SETrowFROMobject(rlist[x]));
-    }
-  }
   ADDrepair(item=null){
     if(item){
       let newrow = ttools.SETrowFROMobject(arepair(item))
@@ -98,6 +89,8 @@ export class SIrepairform extends VHCform{
     return true;
   }
 }
+
+
 var arepair=(item)=>{
   return {
     TaskID: item.TaskID,
@@ -107,4 +100,3 @@ var arepair=(item)=>{
     Active: true
   }
 }
-

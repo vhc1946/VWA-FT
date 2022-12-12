@@ -56,6 +56,21 @@ export class FormList extends VHCform{
     }
   }
 
+  get form(){
+    let rlist = [];
+    let rrows = this.table.getElementsByClassName(this.dom.table.rows);
+    for(let x=0;x<rrows.length;x++){
+      rlist.push(this.GETitem());
+    }
+    return rlist;
+  }
+  set form(rlist=[]){
+    this.table.innerHTML='';
+    for(let x=0;x<rlist.length;x++){
+      this.table.appendChild(this.ADDitem(rlist[x]));
+    }
+  }
+  
   ADDitem(item={}){
     item=this.rmap(item);
     let row = this.srow?this.srow(item):SETrowFROMobject(item);
