@@ -35,10 +35,10 @@ export class FlatRateTable{
 
     //add misc repairs to header of flatrate table
     //events need to be returned to
-    //
+
     this.SETfilters();
   }
-  SETfilters=()=>{
+  SETfilters(){
     document.getElementsByClassName('min-page-menu')[0].appendChild(gendis.SETrowFROMobject({TaskID:''},true));
     let filterrow = document.getElementsByClassName('min-page-menu')[0].lastChild;
     filterrow.classList.add('wo-filter-row');
@@ -49,7 +49,7 @@ export class FlatRateTable{
 
     this.GETfilters();
   }
-  GETfilters=(flts)=>{
+  GETfilters(flts){
     for(let f in flts){
       if(flts[f]!=''){
         this.fltrs[f]=flts[f];
@@ -58,7 +58,32 @@ export class FlatRateTable{
     }
     this.SETrepairlist(this.master.TRIMlist(flts,true));
   }
-  SETrepairlist=()=>{
+  SETrepairlist(){
     gendis.BUILDtruetable(this.master.TRIMlist(this.fltrs),this.cont,false,'wo-item-row');
+  }
+
+
+  CREATEmiscinputs(repadd=()=>{}){
+    console.log()
+    let miscs = document.createElement('div');
+    for(let x in this.miscreps){
+      let but = document.createElement('div');
+      but.classList.add('flat-action-button');
+      but.innerText = this.miscreps[x].desc;
+      but.addEventListener('click',(ele)=>{
+        repadd.ADDrepair(this.GETmiscrepairs(x));
+      });
+      miscs.appendChild(but);
+    }
+    return miscs;
+  }
+  GETmiscrepairs(name){
+    let repair={};
+    if(this.fltrs.PriceLevelCode){
+      repair.desc = this.miscreps[name].desc;
+      repair.PriceLevelCode=this.fltrs.PriceLevelCode;
+      repair.amount = this.miscreps[name][this.fltrs.PriceLevelCode];
+    }
+    return repair;
   }
 }

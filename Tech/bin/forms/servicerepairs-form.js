@@ -18,7 +18,10 @@ export class SIrepairform extends VHCform{
         DropNote('tr',`Add ${customin}`);
       }
     });
+
+    this.cont.getElementsByClassName(this.dom.table.actions)[0].appendChild(this.pricebook.CREATEmiscinputs(this));
   }
+
   dom={
     cont:'si-repair-cont',
     actions:{
@@ -39,10 +42,13 @@ export class SIrepairform extends VHCform{
   }
 
   content=`
-  <div class="${this.dom.cont}"> TABLE
-    <div class="${this.dom.table.actions}"><input class="${this.dom.input}"/><div class="${this.dom.actions.add} icon-action-button"><img src="../../images/icons/plus-icon.png"/></div></div>
-    <div class="${this.dom.table.heads}"></div>
-    <div class="${this.dom.table.cont}">
+  <div class="${this.dom.cont}">
+    <div class="${this.dom.table.actions}">
+      <input class="${this.dom.input}"/>
+      <input class="${this.dom.addform.desc} placehodle"/>
+      <div class="${this.dom.actions.add} icon-action-button"><img src="../../images/icons/plus-icon.png"/></div></div>
+      <div class="${this.dom.table.heads}"></div>
+      <div class="${this.dom.table.cont}">
     </div>
   </div>
   `
