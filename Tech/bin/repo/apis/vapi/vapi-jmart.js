@@ -16,33 +16,25 @@ import {aserviceitem} from '../../ds/customers/vogel-serviceitems.js';
 //AR_ServiceItemCustomInfoLog_tbl
 
 /*
-GETjapitest().then(
-  res=>{
-    let arr=[]
-    for(let x in res.body.table[0]){arr.push(x);}
-    console.log(arr);
-    var wopull = {
-        table:'test',
-        option:'download',
-        template:'AR_ServiceItemCustomInfo_tbl',
-        where:[{OP:'=',CustomerCode:'801C01'}]
-    };
-    SENDrequest(vurl,vapp,wopull).then(
-            res=>{console.log(res);}
-        );
-  });
-//*/
 
 export var GETjapitest=()=>{
   return new Promise((res,rej)=>{
       var wopull = {
           table:'test',
-          option:'template',
-          template:'AR_ServiceItemCustomInfo_tbl'
+          option:'download',
+          template:'WO_FlatRateBookHeader_tbl',
+          where:[{OP:'=',TaskID:'T600616'}]
       };
       return res(SENDrequestapi(wopull,'japi'));
   });
 }
+//T600616
+GETjapitest().then(
+  res=>{
+    console.log('Flat Test ',res);
+  });
+//*/
+
 
 export var GETflbook=(book='RES',table='flatratebook')=>{
     return new Promise((res,rej)=>{

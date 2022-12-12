@@ -5,12 +5,17 @@
     - linking service item repairs to one fo
 */
 import * as gendis from '../repo/modules/vg-tables.js';
+import {FINDparentele} from '../repo/tools/vg-displaytools.js';
+
 import {ViewGroup} from '../repo/layouts/view-controller.js';
+
 import {SIform} from '../forms/serviceitem-form.js';
 import {SIrepairform} from '../forms/servicerepairs-form.js';
 
 import {SETUPchecklist} from './service-checks.js';
 import { DropNote } from '../repo/modules/vg-dropnote.js';
+
+
 //repairs table
 
 export class TicketServiceItems{
@@ -24,6 +29,7 @@ export class TicketServiceItems{
       type:'mlt',
       swtchEve:(cont,view,button)=>{
         cont.getElementsByClassName('currsi')[0].innerText = view.title;
+        this.SETcurrtab(view.title);
         $(cont.getElementsByClassName('currsi')[0]).click();
       },
       qactions:{
@@ -71,7 +77,7 @@ export class TicketServiceItems{
     });
 
     this.currsi=this.view.cont.getElementsByClassName('currsi')[0];
-
+    this.currtab=null;
     //attach price book, want to move
     this.pricebook = pricebook; // FlatRateTable passed from parent
 
@@ -92,7 +98,7 @@ export class TicketServiceItems{
       this.info[i].form = items[i]; //load info
 
       // add/init service repairs
-      if(repairs[i]==undefined){repairs[i]=[]}
+      if(repairs[i]==undefined){repairs[i]=[]}//correct empty repairs
       this.repairs.push(new SIrepairform(document.createElement('div'),this.pricebook));
       sitemview.ADDview('Repairs',this.repairs[i].cont);
       try{this.repairs[i].form=repairs[i];}
@@ -118,5 +124,21 @@ export class TicketServiceItems{
 
     this.view.cont.getElementsByClassName('si-delete')[0].addEventListener('click',(ele)=>{DropNote('tr','Delete Service Item','yellow');});
     this.view.cont.getElementsByClassName('si-add')[0].addEventListener('click',(ele)=>{DropNote('tr','Add New Service Item','yellow');});
+
+    //setup flatrate add event
+    pricebook.cont.addEventListener('click',(ele)=>{
+      let row  = FINDparentele(ele.target,'wo-item-row');
+      this.repairs[this.currtab].ADDrepair(gendis.GETrowTOobject(row));
+    });
+  }
+
+  //add item
+  //remove item
+
+  //get currtab as index
+  SETcurrtab(tagid){
+    for(let x=0;x<this.info.length;x++){
+      if(this.info[x].form.tagid===tagid){console.log(x);this.currtab=x;break;}
+    }
   }
 }
