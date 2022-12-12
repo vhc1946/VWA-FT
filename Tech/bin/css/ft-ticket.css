@@ -184,7 +184,9 @@
     width: 100%;
     justify-content: flex-end;
 }
-
+.delete-repair-item{
+    width: 35px;
+}
 
 /*-- Min Tab --------------*/
 [class*="min-page-cont"]{

@@ -72,6 +72,11 @@ export class SIrepairform extends FormList{
   ADDrepair(item=null){
     if(item){
       let newrow = ttools.SETrowFROMobject(arepair(item))
+      newrow.appendChild(document.createElement('input'));
+      newrow.lastChild.setAttribute('type','checkbox');
+      newrow.appendChild(document.createElement('img'));
+      newrow.lastChild.src = '../../images/icons/trash.png';
+      newrow.lastChild.classList.add('delete-repair-item');
       if(this.Dupcheck(newrow)){
         this.table.appendChild(newrow);
       }else{
@@ -97,6 +102,5 @@ var arepair=(item)=>{
     Desc: item.desc ||"Descriptions to come",
     SellingPrice: item.SellingPrice,
     PriceLevelCode: item.PriceLevelCode,
-    Active: true
   }
 }
