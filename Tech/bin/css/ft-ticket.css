@@ -167,13 +167,23 @@
 
 
 /* Repairs */
+.si-repair-cont{
+    padding: 5px;
+}
 .si-repair-actions{
     display: flex;
+}
+.si-repair-table{
+    padding-top: 10px;
 }
 .si-repair-table>div>div:nth-child(2){
     width: 400px;
 }
-
+.misc-buttons{
+    display:flex;
+    width: 100%;
+    justify-content: flex-end;
+}
 
 
 /*-- Min Tab --------------*/

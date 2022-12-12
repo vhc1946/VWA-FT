@@ -68,6 +68,7 @@ export class FlatRateTable{
 
   CREATEmiscinputs(repadd=()=>{}){
     let miscs = document.createElement('div');
+    miscs.classList.add('misc-buttons');
     for(let x in this.miscreps){
       let but = document.createElement('div');
       but.classList.add('text-action-button');

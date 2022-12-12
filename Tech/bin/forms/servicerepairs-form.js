@@ -44,8 +44,8 @@ export class SIrepairform extends VHCform{
   content=`
   <div class="${this.dom.cont}">
     <div class="${this.dom.table.actions}">
-      <input class="${this.dom.input}"/>
-      <input class="${this.dom.addform.desc} placeholder="Add description"/>
+      <input class="${this.dom.addform.desc}" placeholder="Add description"/>  
+      <input class="${this.dom.input}" placeholder="Price"/>
       <div class="${this.dom.actions.add} icon-action-button"><img src="../../images/icons/plus-icon.png"/></div></div>
       <div class="${this.dom.table.heads}"></div>
       <div class="${this.dom.table.cont} vg-gentable">
