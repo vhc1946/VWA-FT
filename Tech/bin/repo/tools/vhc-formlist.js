@@ -70,7 +70,9 @@ export class FormList extends VHCform{
   }
   set form(rlist=[]){
     this.list.innerHTML='';
+    console.log(rlist[1]);
     for(let x=0;x<rlist.length;x++){
+      console.log(rlist[x])
       this.ADDitem(rlist[x]);
     }
   }
@@ -78,7 +80,7 @@ export class FormList extends VHCform{
   ADDitem(item={}){
     item=this.rmap(item);
     let row = this.srow?this.srow(item):SETrowFROMobject(item);
-    this.list.appendChild(row);
+    if(row){this.list.appendChild(row);}
   }
   GETitem(row){
     let item = this.grow?this.grow(row):GETrowTOobject(row);

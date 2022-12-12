@@ -44,7 +44,8 @@ var mactions = {
     src:'../bin/repo/assets/icons/disk.png',
     title:'Save WO',
     ondblclick:(ele)=>{
-      console.log('SAVE TICKET',ticket.ticket);
+      currticket = ticket.ticket;
+      console.log(currticket)
       //window.opener.techwos.UPDATEstore(currticket).then(answr=>{
       //  console.log(answr)
       //  if(answr){DropNote('tr','Ticket WAS Saved','green');}

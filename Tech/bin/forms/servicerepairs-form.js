@@ -73,9 +73,10 @@ export class SIrepairform extends FormList{
     if(item){
       let newrow = ttools.SETrowFROMobject(arepair(item))
       if(this.Dupcheck(newrow)){
-        this.list.appendChild(newrow);
+        return newrow;
       }else{
         DropNote('tr','Already on List','yellow');
+        return null;
       }
     }
   }

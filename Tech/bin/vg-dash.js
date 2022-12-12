@@ -49,14 +49,14 @@ var login = titlebar.SETUPtitlebar(
   mactions,
   true,
   (creds)=>{
-    techwos.twolist.REFRESHstore(creds.user).then(res=>{if(res){twdashlist.LOADlist(techwos.twolist.list);}console.log('RESPONSE ',res);})},
+    techwos.twolist.REFRESHstore(creds.user).then(res=>{if(res){twdashlist.LOADlist(techwos.twolist.list);}})},
   ()=>{console.log('logout');DropNote('tr','Logging Out','green');window.location.replace('../index.html')}
 );//returns login Form
 if(login.storecreds.user!=''){
-  console.log('LOGIN')
-  console.log(login.storecreds)
+  console.log('LOGIN');
+  console.log(login.storecreds);
   techwos.twolist.REFRESHstore(login.storecreds.user).then(res=>{
-  twdashlist.LOADlist(techwos.twolist.list);
+  twdashlist.form = techwos.twolist.list;
   })
 }
 

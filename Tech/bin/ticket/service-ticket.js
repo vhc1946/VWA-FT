@@ -27,6 +27,7 @@ import {Contform} from '../forms/contract-form.js';
   - repairs
 
 */
+
 var fbtable = document.getElementsByClassName('frbook-list')[0];
 
 export class ServiceTicket{
@@ -104,12 +105,10 @@ export class ServiceTicket{
     for(let f in this.forms){
       //try{
         if(this.forms[f].form){
-          console.log(f,this.forms[f].form)
           ttick[f]=this.forms[f].form; //load ticket part from form
         }
         else{
           ttick[f]=[];
-          console.log(this.forms[f])
           for(let x=0;x<this.forms[f].length;x++){
             ttick[f].push(this.forms[f][x].form)
           }
@@ -117,6 +116,7 @@ export class ServiceTicket{
       //}
       //catch{}
     }
+    this.data=ttick;
     return ttick
 
   }
