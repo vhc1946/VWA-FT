@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../bin/repo/css/vg-tables.css" />
     <link rel="stylesheet" href="../bin/css/ft-styles.css" />
     <link rel="stylesheet" href="../bin/css/ft-ticket.css" />
+    <link rel="stylesheet" href="../bin/css/ft-presentation.css" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -42,13 +43,20 @@
         </div>
     </div>
     <!------------------->
-    <div class="present-cont">
-        <div id="wo-header-cont" class="twelve-col-grid">
-            <img src="../bin/repo/assets/images/VogelLogo.png" id="header-logo" alt="VOGEL">
-            <div class="client-label">WO Num:</div><input id="wo-info-num" type="text" />
-            <div class="client-label">Client:</div><input id="wo-info-customer" class="client-input" type="text" />
-            <div class="client-label">Address:</div><input id="wo-info-address" class="client-input" type="text" />
-            <div id="wo-present-contract-cont">
+    <div class="present-cont"><!--PRESENTATION CONTAINER-->
+        <div class="present-header-cont">
+            <div class="wo-contact-cont">
+                <img src="../bin/repo/assets/images/VogelLogo.png" id="header-logo" alt="VOGEL">
+                <div class='wo-info-name'>Client Name</div>
+                <div class='wo-info-street'>1234 Street Dr</div>
+                <div class='wo-info-unit'></div>
+                <div class='wo-info-city'>Fenton, MO 63026</div>
+                <div class='wo-info-phone'>Phone Number</div>
+                <div class='wo-info-description'>Description text</div>
+                <div class='wo-info-cust'>CUSTCODE</div>
+                <div class='wo-info-wonum'>wonum</div>
+            </div>
+            <div id="wo-present-contract-cont"> <!-- Rewards Summary Box -->
                 <input id="present-contract-name" type="search" list="contract-name-list" />
                 <div id="present-contract-opts">
                     <div class="present-contract-opt">
@@ -94,7 +102,7 @@
             </div>
         </div>
 
-        <div id="wo-presentation-cont"><!--PRESENTATION CONTAINER-->
+        <div class="present-bottom-cont">
             <div id="wo-present-repair-cont">
                 <div class="wo-present-repair"><!--Extra Headers-->
                     <div id="wo-present-membership"><!--Membership Name Presenting >> Placed grid-columns 3 -->

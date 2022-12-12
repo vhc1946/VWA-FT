@@ -41,50 +41,6 @@ export class Contform extends VHCform{
     }
   }
   content=`
-    <div id="wo-present-contract-cont">
-        <input id="present-contract-name" type="search" list="contract-name-list" />
-        <div id="present-contract-opts">
-            <div class="present-contract-opt">
-                <div class="present-contract-opt-desc" id="monthly-tag">Monthly Plan</div>
-                <input id="wo-contract-appr" type="checkbox" />
-                <div id="present-contract-monthly">24</div>
-            </div>
-
-            <div class="present-contract-opt">
-                <div class="present-contract-opt-desc">Additional System(s)</div><input
-                    class="present-contract-opt-quantity" type="number" />
-                <div id="present-contract-addsys">21</div>
-            </div>
-            <div class="present-contract-opt">
-                <div class="present-contract-opt-desc">Additional Component(s)</div><input
-                    class="present-contract-opt-quantity" type="number" />
-                <div id="present-contract-addcomp">12</div>
-            </div>
-
-            <div id="enhance-tag">Enhancements</div>
-
-            <div class="present-contract-opt">
-                <div class="present-contract-opt-desc">Standard Filters</div><input
-                    class="present-contract-opt-quantity" type="number" />
-                <div id="present-contract-addstdflt">5</div>
-            </div>
-            <div class="present-contract-opt">
-                <div class="present-contract-opt-desc">Humidifier Service/Pad</div><input
-                    class="present-contract-opt-quantity" type="number" />
-                <div id="present-contract-addhumpad">5</div>
-            </div>
-            <div class="present-contract-opt">
-                <div class="present-contract-opt-desc">Specialty Filters</div><input
-                    class="present-contract-opt-quantity" type="number" />
-                <div id="present-contract-addspcflt">12</div>
-            </div>
-            <div class="present-contract-opt">
-                <div class="present-contract-opt-desc">Time Saver Disc.</div><input
-                    class="present-contract-opt-quantity" type="number" />
-                <div id="present-contract-addtimesave">-4</div>
-            </div>
-        </div>
-    </div>
     <div id=${this.dom.cont} class='ft-form'>
         <div class="contract-opt">
             <div>Contract ID</div><input class=${this.dom.disp.id} placeholder="id">
