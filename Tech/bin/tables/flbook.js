@@ -27,7 +27,6 @@ export class FlatRateBook {
         'PRE':59.5,
         'ULT':0
       }
-
     }
 
     this.pl=pl||undefined;
@@ -86,9 +85,9 @@ export class FlatRateBook {
           ele.target.classList.remove('vg-checkbox-checked');
         }else{ele.target.classList.add('vg-checkbox-checked')}
       });
-      r.appendChild(document.createElement('div')).innerText = row.task != undefined ? row.task : '' //inrow.children[0].innerText;
+      r.appendChild(document.createElement('div')).innerText = row.task != undefined ? row.task : ''; //inrow.children[0].innerText;
       r.children[r.children.length - 1].classList.add(sysdom.list.system.repair.id);
-      r.appendChild(document.createElement('div')).innerText = row.desc != undefined ? row.desc : '' //inrow.target.parentNode.children[1].innerText;
+      r.appendChild(document.createElement('div')).innerText = row.desc != undefined ? row.desc : ''; //inrow.target.parentNode.children[1].innerText;
       r.children[r.children.length - 1].classList.add(sysdom.list.system.repair.desc);
 
       r.appendChild(document.createElement('img')).src = '../images/icons/trash.png';

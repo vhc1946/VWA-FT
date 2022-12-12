@@ -4,12 +4,11 @@ import * as gendis from '../repo/modules/vg-tables.js';
 import * as vcontrol from '../repo/layouts/view-controller.js';
 vcontrol.SETUPviewcontroller('../bin/repo/');
 
-
-import * as sitemmod from './service-items.js';
 import {TicketServiceItems} from './service-items.js';
 
 import {SETUPchecklist} from './service-checks.js';
 import {FlatRateTable} from '../tables/fbook-table.js';
+
 import {WOform} from '../forms/wo-form.js';
 import {Contform} from '../forms/contract-form.js';
 

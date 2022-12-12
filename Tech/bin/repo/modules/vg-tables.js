@@ -102,6 +102,7 @@ var GETrowTOobject=(row,inn=false)=>{
   }else{return null}
   return obj;
 }
+
 export{
   gtdom,
   BUILDintable,

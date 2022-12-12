@@ -2,11 +2,13 @@ import {VHCform} from '../repo/tools/vhc-forms.js';
 import * as ttools from '../repo/modules/vg-tables.js';
 import { DropNote } from '../repo/modules/vg-dropnote.js';
 // service item repairs
+
 export class SIrepairform extends VHCform{
   constructor(cont,pricebook){
     super(cont);
+
     this.cont.innerHTML=this.content;
-    this.table = this.cont.getElementsByClassName(this.dom.table.cont);
+    this.table = this.cont.getElementsByClassName(this.dom.table.cont)[0];
     this.pricebook=pricebook;
     this.cont.getElementsByClassName(this.dom.actions.add)[0].addEventListener('click',(ele)=>{
       let customin = this.cont.getElementsByClassName(this.dom.input)[0].value;
@@ -35,6 +37,7 @@ export class SIrepairform extends VHCform{
       rows:'si-repair-rows'
     }
   }
+
   content=`
   <div class="${this.dom.cont}"> TABLE
     <div class="${this.dom.table.actions}"><input class="${this.dom.input}"/><div class="${this.dom.actions.add} icon-action-button"><img src="../../images/icons/plus-icon.png"/></div></div>
@@ -72,6 +75,7 @@ export class SIrepairform extends VHCform{
 
   ADDrepair(item=null){
     if(item){
+      //loop through current repairs to check for dups
       this.table.appendChild(ttools.SETrowFROMobject(item));
     }
   }

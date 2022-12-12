@@ -6,7 +6,36 @@ export class FlatRateTable{
     this.master = new ObjList(list); //holds 1 book with all levels
     this.cont=cont;
     this.fltrs={}; //holds any on going filters
+    this.miscreps={//Misc Repairs
+      'CLNCHK-AC':{
+        'desc':'AC Clean and Check',
+        'STA':149,
+        'AHR':149,
+        'CLA':0,
+        'PRE':0,
+        'ULT':0
+      },
+      'CLNCHK-FURN':{
+        'desc':'Furnace Clean and Check',
+        'STA':149,
+        'AHR':149,
+        'CLA':0,
+        'PRE':0,
+        'ULT':0
+      },
+      'DIAG':{
+        'desc':'Diagnostic',
+        'STA':119,
+        'AHR':149,
+        'CLA':119,
+        'PRE':59.5,
+        'ULT':0
+      }
+    }
 
+    //add misc repairs to header of flatrate table
+    //events need to be returned to
+    //
     this.SETfilters();
   }
   SETfilters=()=>{
