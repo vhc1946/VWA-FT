@@ -6,7 +6,7 @@ vcontrol.SETUPviewcontroller('../bin/repo/');
 
 import {TicketServiceItems} from './service-items.js';
 
-import {SETUPchecklist} from './service-checks.js';
+import {SETUPchecklist,ServiceChecks} from './service-checks.js';
 import {FlatRateTable} from '../tables/fbook-table.js';
 
 import {WOform} from '../forms/wo-form.js';
@@ -58,9 +58,7 @@ export class ServiceTicket{
         type:'mtl'
       }),
       sitems:new TicketServiceItems(this.data.sitems,this.data.repairs,this.pricing),
-      checks:new vcontrol.ViewGroup({
-        type:'mtr'
-      })
+      checks:new ServiceChecks(this.data.checks)
     };
 
     this.forms={//hold the list of children data forms
@@ -70,26 +68,22 @@ export class ServiceTicket{
       checks:[]
     };
 
-    this.port.checks.cont.id='check-cont';
-
     this.view.ADDview('Information',this.port.info.cont);
     this.view.ADDview('Service Items',this.port.sitems.view.cont);
-    this.view.ADDview('Check Lists',this.port.checks.cont);
+    this.view.ADDview('Check Lists',this.port.checks.view.cont);
 
     this.port.info.ADDview('WO',this.forms.wo.cont);
     this.port.info.ADDview('Contract',this.forms.contract.cont);
     $(this.port.info.buttons.children[0]).click();
 
-    let {checkforms,checkcont}=SETUPchecklist(document.createElement('div'));
-    this.forms.checks=checkforms;
-    this.port.checks.ADDview('System 1',checkcont);
     $(this.view.buttons.children[0]).click();  //Sets first tab as selected
+
 
     this.forms.wo.form = this.data.wo;
     this.forms.contract.form = this.data.contract;
     this.forms.sitems = this.port.sitems.info
     this.forms.repairs = this.port.sitems.repairs
-
+    this.forms.checks = this.port.checks.forms
 
     this.port.info.cont.getElementsByClassName('wo-info-pricelevel')[0].addEventListener('change',(ele)=>{
       let plevel = ele.target.value;

@@ -1,5 +1,6 @@
 import {CheckListForm} from '../forms/checklist-form.js';
 import {VHCform} from '../repo/tools/vhc-forms.js';
+import {ViewGroup} from '../repo/layouts/view-controller.js';
 
 var toggledom = {
     cont: 'checklist-cont',
@@ -454,6 +455,22 @@ var checklists = {
   }
 }
 
+export class ServiceChecks{
+  constructor(checks){
+    let cont = document.createElement('div');
+    cont.id='check-cont';
+    this.view = new ViewGroup({
+      cont:cont,
+      type:'mlt'
+    });
+    this.forms = [];
+    for(let c in checklists.contents){
+      this.forms.push(new CheckListForm(document.createElement('div'),checklists.contents[c],checklists.doms[c]));
+      this.view.ADDview(c,this.forms[this.forms.length-1].cont);
+    }
+  }
+}
+
 /* SETUP 1 group of checklist
 */
 export var SETUPchecklist=(cont)=>{
@@ -465,7 +482,7 @@ export var SETUPchecklist=(cont)=>{
     cont.appendChild(checkforms[checkforms.length-1].cont);
   }
 
-  HideAll(cont);
+  //HideAll(cont);
   Clicktoclose(cont);
 
   return {
