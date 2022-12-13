@@ -6,12 +6,28 @@ import { SELECTview } from './repo/modules/vg-floatviews.js';
 import { AppDock } from './repo/modules/appdock.js';
 import {FormList} from './repo/tools/vhc-formlist.js';
 
-import {dashdom} from './back/ticket-dom.js';
+
 import { STARTticket,SYNCdatalist } from './tools/vapi-FTrequest.js';
 import * as manlist from './store/tech-managelist.js';
 import {SENDrequestapi} from './repo/apis/vapi/vapicore.js';
 
 import * as techwos from './tables/techwo-table.js';
+
+var dashdom = {
+  cont:'vg-wo-dash',
+  buttons:{
+    editToggle:'tech-wo-selector'
+  },
+  list:{
+    cont:'vg-wo-list',
+    item:{
+      cont:'vg-wo-item',
+      num:'vg-wo-item-num',
+      name:'vg-wo-item-name',
+      address:'vg-wo-item-address'
+    }
+  }
+}
 
 // SETUP title bar for dash /////////////////////////////
 var datamart=null;

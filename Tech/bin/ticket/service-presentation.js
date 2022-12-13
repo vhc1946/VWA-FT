@@ -27,7 +27,7 @@ var cfcontent = ``;
 
 
 
-class ServicePresentation{
+export class ServicePresentation{
   constructor(cont,data,pricebook){
     this.cont = cont;
     this.cont.innerHTML=this.contents;

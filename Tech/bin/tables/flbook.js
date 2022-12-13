@@ -1,7 +1,10 @@
 
-export class FlatRateBook {
-  constructor(book,pl=null){
-    this.book = book
+/* FlatRateBook Pricing
+*/
+export class FlatRatePricing {
+  constructor(book){
+    this.book = new ObjList(book);
+
     this.miscreps = {//Misc Repairs
       'CLNCHK-AC':{
         'desc':'AC Clean and Check',
@@ -43,79 +46,6 @@ export class FlatRateBook {
         );
     })();
     */
-
-    document.getElementById(fbdom.search.pl).value = this.pl;
-
-    document.getElementById(fbdom.search.book).value = 'Res Book';
-    document.getElementById(fbdom.search.fltr).value = 'Task Description';
-
-    document.getElementById(fbdom.search.book).addEventListener('change', switchBook);
-    document.getElementById(fbdom.search.value).addEventListener('change', this.REFRESHbook);
-
-    document.getElementById(fbdom.special.accleancheck).addEventListener('click',(ele)=>{ //add a clean and check
-      this.ADDrepair({
-        task:'CLNCHK-AC',
-        desc:'AC Clean and Check'
-      });
-    });
-    document.getElementById(fbdom.special.furncleancheck).addEventListener('click',(ele)=>{ //add a clean and check
-      this.ADDrepair({
-        task:'CLNCHK-FURN',
-        desc:'Furnace Clean and Check'
-      });
-    });
-    document.getElementById(fbdom.special.diagnostic).addEventListener('click',(ele)=>{ //add a clean and check
-      this.ADDrepair({
-        task:'DIAG',
-        desc:'Diagnostic Fee'
-      });
-    });
-  }
-
-  /*Display functions ////////////////////////////////////////////
-  */
-  ADDrepair(row = {}){//Adds a repair display row
-      let rlist = document.getElementsByClassName(sysdom.list.selected)[0].getElementsByClassName(sysdom.list.system.repairs)[0];
-      let r = rlist.appendChild(document.createElement('div'));
-      r.classList.add(sysdom.list.system.repair.cont);
-      r.appendChild(document.createElement('div')).classList.add('vg-checkbox');
-      if(row.appr){r.children[r.children.length-1].classList.add('vg-checkbox-checked')}
-      r.children[r.children.length-1].addEventListener('click',(ele)=>{
-        if(ele.target.classList.contains('vg-checkbox-checked')){
-          ele.target.classList.remove('vg-checkbox-checked');
-        }else{ele.target.classList.add('vg-checkbox-checked')}
-      });
-      r.appendChild(document.createElement('div')).innerText = row.task != undefined ? row.task : ''; //inrow.children[0].innerText;
-      r.children[r.children.length - 1].classList.add(sysdom.list.system.repair.id);
-      r.appendChild(document.createElement('div')).innerText = row.desc != undefined ? row.desc : ''; //inrow.target.parentNode.children[1].innerText;
-      r.children[r.children.length - 1].classList.add(sysdom.list.system.repair.desc);
-
-      r.appendChild(document.createElement('img')).src = '../images/icons/trash.png';
-      r.children[r.children.length-1].classList.add(sysdom.buttons.delete);
-      r.children[r.children.length-1].addEventListener('dblclick',(ele)=>{
-        ele.target.parentNode.parentNode.removeChild(ele.target.parentNode);
-      });
-
-  }
-
-  FILTERbook(flts = {}){ //Filter book, return filtered list
-      var finds = [];
-      var bad;
-      if (this.book) {
-          for (let x = 0; x < this.book.length; x++) {
-              bad = false;
-              for (let f in flts) {
-                  if (this.book[x][f] && !this.book[x][f].includes(flts[f].toUpperCase()) || this.book[x][f] == '') {
-                      bad = true;
-                      break;
-                  }
-              }
-              if (!bad) {
-                  finds.push(this.book[x]);
-              }
-          }
-      }
-      return finds;
   }
 
   LOADbook(finds, pl){//Filter the book

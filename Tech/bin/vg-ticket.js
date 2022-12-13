@@ -4,7 +4,7 @@ import {DropNote} from './repo/modules/vg-dropnote.js';
 
 import {SYNCticket, STARTticket} from './tools/vapi-FTrequest.js';
 import {ServiceTicket} from './ticket/service-ticket.js';
-import {ServicePresentation} from './service-presentation.js';
+import {ServicePresentation} from './ticket/service-presentation.js';
 
 var publicfolder = '/Tech/bin/css'; //not sure we need
 // Load Data //
