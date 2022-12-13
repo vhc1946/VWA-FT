@@ -16,11 +16,16 @@ export class SIrepairform extends FormList{
     //this.grow = this.GETrepair;//morph this.grow
 
     this.cont.getElementsByClassName(this.dom.actions.add)[0].addEventListener('click',(ele)=>{
-      let customin = this.cont.getElementsByClassName(this.dom.input)[0].value;
-      if(customin === ''){
+      let customdesc = this.cont.getElementsByClassName(this.dom.addform.desc)[0].value;
+      let customprc = this.cont.getElementsByClassName(this.dom.addform.price)[0].value;
+      if(customdesc === '' || customprc === ''){
         $(document.getElementsByClassName('min-page-cont')[0]).toggle();
       }else{
-        DropNote('tr',`Add ${customin}`);
+        this.ADDrepair({
+          TaskID: customdesc.substring(0,4),
+          desc: customdesc,
+          SellingPrice: Number(customprc)
+        });
       }
 
     });
@@ -54,10 +59,10 @@ export class SIrepairform extends FormList{
   <div class="${this.dom.cont}">
     <div class="${this.dom.table.actions}">
       <input class="${this.dom.addform.desc}" placeholder="Add description"/>
-      <input class="${this.dom.input}" placeholder="Price"/>
+      <input class="${this.dom.addform.price}" placeholder="Price"/>
       <div class="icon-action-button ${this.dom.actions.add} "><img src="../../images/icons/plus-icon.png"/></div></div>
       <div class="${this.dom.table.heads}"></div>
-      <div class="${this.dom.table.cont} vg-gentable">
+      <div class="${this.dom.table.cont}">
     </div>
   </div>
   `
@@ -74,14 +79,26 @@ export class SIrepairform extends FormList{
   }
 
   ADDrepair(item=null){
+    
     if(item){
+      console.log(arepair(item));
       if(this.list.getElementsByClassName('vg-displynone').length!=0){this.list.innerHTML='';}
       let newrow = ttools.SETrowFROMobject(arepair(item))
-      newrow.appendChild(document.createElement('input'));
-      newrow.lastChild.setAttribute('type','checkbox');
+      
+      newrow.appendChild(document.createElement('div'));
+      newrow.lastChild.appendChild(document.createElement('div'));
+      newrow.lastChild.lastChild.classList.add('vg-checkbox');
+      newrow.lastChild.lastChild.addEventListener('click',(ele)=>{
+        ele.target.classList.toggle('vg-checkbox-checked')
+      });
+      
       newrow.appendChild(document.createElement('img'));
       newrow.lastChild.src = '../../images/icons/trash.png';
       newrow.lastChild.classList.add('delete-repair-item');
+      newrow.lastChild.addEventListener('click',(ele)=>{
+        DropNote('tr','Remove Item','yellow');
+      });
+
       if(this.Dupcheck(newrow)){
         return newrow;
       }else{
@@ -92,11 +109,11 @@ export class SIrepairform extends FormList{
   }
   Dupcheck(lrow){ //Checks for duplicates in table before adding
     let cont = this.list;
-      for(let x=0;x<cont.children.length;x++){
-        if(cont.children[x].innerHTML == lrow.innerHTML){
-          return false;
-        }
+    for(let x=0;x<cont.children.length;x++){
+      if(cont.children[x].children[0].innerText == lrow.children[0].innerText){
+        return false;
       }
+    }
     return true;
   }
   DisplayNone(){
@@ -109,8 +126,8 @@ export class SIrepairform extends FormList{
 var arepair=(item)=>{
   return {
     TaskID: item.TaskID,
-    Desc: item.desc ||"Descriptions to come",
-    SellingPrice: item.SellingPrice,
-    PriceLevelCode: item.PriceLevelCode,
+    Desc: item.desc || "Descriptions to come",
+    SellingPrice: item.SellingPrice || 0,
+    PriceLevelCode: item.PriceLevelCode || "CUST",
   }
 }

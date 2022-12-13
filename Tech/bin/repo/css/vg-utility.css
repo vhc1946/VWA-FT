@@ -7,6 +7,9 @@
     margin: 5px;
     border-radius: 3px;
 }
+.vg-checkbox:hover{
+  cursor: pointer;
+}
 .vg-checkbox-checked{
   background-color: var(--background-light);
 }
