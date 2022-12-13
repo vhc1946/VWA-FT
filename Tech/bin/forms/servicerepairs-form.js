@@ -57,7 +57,7 @@ export class SIrepairform extends FormList{
       <input class="${this.dom.input}" placeholder="Price"/>
       <div class="icon-action-button ${this.dom.actions.add} "><img src="../../images/icons/plus-icon.png"/></div></div>
       <div class="${this.dom.table.heads}"></div>
-      <div class="${this.dom.table.cont} vg-gentable">
+      <div class="${this.dom.table.cont}">
     </div>
   </div>
   `
@@ -77,11 +77,20 @@ export class SIrepairform extends FormList{
     if(item){
       if(this.list.getElementsByClassName('vg-displynone').length!=0){this.list.innerHTML='';}
       let newrow = ttools.SETrowFROMobject(arepair(item))
-      newrow.appendChild(document.createElement('input'));
-      newrow.lastChild.setAttribute('type','checkbox');
+      
+      newrow.appendChild(document.createElement('div'));
+      newrow.lastChild.appendChild(document.createElement('div'));
+      newrow.lastChild.lastChild.classList.add('vg-checkbox');
+      newrow.lastChild.lastChild.addEventListener('click',(ele)=>{
+        ele.target.classList.toggle('vg-checkbox-checked')
+      });
+      
       newrow.appendChild(document.createElement('img'));
       newrow.lastChild.src = '../../images/icons/trash.png';
       newrow.lastChild.classList.add('delete-repair-item');
+      newrow.lastChild.addEventListener('click',(ele)=>{
+        DropNote('tr','Remove Item','yellow');
+      });
       if(this.Dupcheck(newrow)){
         return newrow;
       }else{
