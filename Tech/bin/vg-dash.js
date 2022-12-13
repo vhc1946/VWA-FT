@@ -6,7 +6,6 @@ import { SELECTview } from './repo/modules/vg-floatviews.js';
 import { AppDock } from './repo/modules/appdock.js';
 import {FormList} from './repo/tools/vhc-formlist.js';
 
-import {dashdom} from './back/ticket-dom.js';
 import { STARTticket,SYNCdatalist } from './tools/vapi-FTrequest.js';
 import * as manlist from './store/tech-managelist.js';
 import {SENDrequestapi} from './repo/apis/vapi/vapicore.js';
@@ -61,7 +60,7 @@ if(login.storecreds.user!=''){
 }
 
 var twdashlist = new FormList({
-  cont:document.getElementById(dashdom.list.cont),
+  cont:document.getElementById('vg-wo-dash'),
   srow:techwos.SETUProw
 });
 
