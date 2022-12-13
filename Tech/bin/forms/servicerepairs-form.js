@@ -96,7 +96,7 @@ export class SIrepairform extends FormList{
       newrow.lastChild.src = '../../images/icons/trash.png';
       newrow.lastChild.classList.add('delete-repair-item');
       newrow.lastChild.addEventListener('click',(ele)=>{
-        DropNote('tr','Remove Item','yellow');
+        ele.target.parentNode.remove();
       });
 
       if(this.Dupcheck(newrow)){
