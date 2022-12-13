@@ -101,11 +101,12 @@ export class SIrepairform extends FormList{
   }
   Dupcheck(lrow){ //Checks for duplicates in table before adding
     let cont = this.list;
-      for(let x=0;x<cont.children.length;x++){
-        if(cont.children[x].innerHTML == lrow.innerHTML){
-          return false;
-        }
+    for(let x=0;x<cont.children.length;x++){
+      console.log(cont.children[x].children[[0]]);
+      if(cont.children[x].children[0].innerText == lrow.children[0].innerText){
+        return false;
       }
+    }
     return true;
   }
   DisplayNone(){
@@ -118,8 +119,8 @@ export class SIrepairform extends FormList{
 var arepair=(item)=>{
   return {
     TaskID: item.TaskID,
-    Desc: item.desc ||"Descriptions to come",
-    SellingPrice: item.SellingPrice,
-    PriceLevelCode: item.PriceLevelCode,
+    Desc: item.desc || "Descriptions to come",
+    SellingPrice: item.SellingPrice || 0,
+    PriceLevelCode: item.PriceLevelCode || "CUST",
   }
 }
