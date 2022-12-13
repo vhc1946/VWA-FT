@@ -12,7 +12,6 @@ import {ViewGroup} from '../repo/layouts/view-controller.js';
 import {SIform} from '../forms/serviceitem-form.js';
 import {SIrepairform} from '../forms/servicerepairs-form.js';
 
-import {SETUPchecklist} from './service-checks.js';
 import { DropNote } from '../repo/modules/vg-dropnote.js';
 
 
@@ -111,7 +110,7 @@ export class TicketServiceItems{
     }
 
     this.view.port.addEventListener('click',(ele)=>{
-      this.TOGGLEitemlist();
+      this.TOGGLEitemlist(true);
     });
     this.currsi.addEventListener('click',(ele)=>{   // Service Items menu toggle
       this.TOGGLEitemlist();
@@ -138,10 +137,10 @@ export class TicketServiceItems{
       if(this.info[x].form.tagid===tagid){console.log(x);this.currtab=x;break;}
     }
   }
-  TOGGLEitemlist(){
+  TOGGLEitemlist(hide=false){
     let box = this.view.buttons;
     let exbuttons = this.view.cont.getElementsByClassName('si-menu-buttons')[0];
-    if(box.style.left=='-250px'){
+    if(box.style.left=='-250px'&&!hide){
       box.style.left='0px';
       exbuttons.style.left='0px';
     }else{

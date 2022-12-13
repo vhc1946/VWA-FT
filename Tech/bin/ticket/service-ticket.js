@@ -6,7 +6,7 @@ vcontrol.SETUPviewcontroller('../bin/repo/');
 
 import {TicketServiceItems} from './service-items.js';
 
-import {SETUPchecklist,ServiceChecks} from './service-checks.js';
+import {ServiceChecks} from './service-checks.js';
 import {FlatRateTable} from '../tables/fbook-table.js';
 
 import {WOform} from '../forms/wo-form.js';

@@ -468,25 +468,8 @@ export class ServiceChecks{
       this.forms.push(new CheckListForm(document.createElement('div'),checklists.contents[c],checklists.doms[c]));
       this.view.ADDview(c,this.forms[this.forms.length-1].cont);
     }
-  }
-}
 
-/* SETUP 1 group of checklist
-*/
-export var SETUPchecklist=(cont)=>{
-
-  let checkforms = [];
-
-  for(let c in checklists.contents){
-    checkforms.push(new CheckListForm(document.createElement('div'),checklists.contents[c],checklists.doms[c]));
-    cont.appendChild(checkforms[checkforms.length-1].cont);
-  }
-
-  //HideAll(cont);
-  Clicktoclose(cont);
-
-  return {
-    checkcont:cont,
-    checkforms:checkforms
+    //HideAll(cont);
+    Clicktoclose(cont);
   }
 }

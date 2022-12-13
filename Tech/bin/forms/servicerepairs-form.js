@@ -22,9 +22,13 @@ export class SIrepairform extends FormList{
       }else{
         DropNote('tr',`Add ${customin}`);
       }
+
     });
 
     this.cont.getElementsByClassName(this.dom.table.actions)[0].appendChild(this.pricebook.CREATEmiscinputs(this));
+    this.cont.addEventListener('mouseover',(ele)=>{
+      if(this.cont.children.length==0){this.DisplayNone();}
+    })
   }
 
   dom={
@@ -49,9 +53,9 @@ export class SIrepairform extends FormList{
   content=`
   <div class="${this.dom.cont}">
     <div class="${this.dom.table.actions}">
-      <input class="${this.dom.addform.desc}" placeholder="Add description"/>  
+      <input class="${this.dom.addform.desc}" placeholder="Add description"/>
       <input class="${this.dom.input}" placeholder="Price"/>
-      <div class="${this.dom.actions.add} icon-action-button"><img src="../../images/icons/plus-icon.png"/></div></div>
+      <div class="icon-action-button ${this.dom.actions.add} "><img src="../../images/icons/plus-icon.png"/></div></div>
       <div class="${this.dom.table.heads}"></div>
       <div class="${this.dom.table.cont} vg-gentable">
     </div>
@@ -71,6 +75,7 @@ export class SIrepairform extends FormList{
 
   ADDrepair(item=null){
     if(item){
+      if(this.list.getElementsByClassName('vg-displynone').length!=0){this.list.innerHTML='';}
       let newrow = ttools.SETrowFROMobject(arepair(item))
       newrow.appendChild(document.createElement('input'));
       newrow.lastChild.setAttribute('type','checkbox');
@@ -94,6 +99,10 @@ export class SIrepairform extends FormList{
       }
     return true;
   }
+  DisplayNone(){
+    this.list.innerHTML=`<div class="vg-displaynone">DISPLAY NONE</div>`
+  }
+
 }
 
 
