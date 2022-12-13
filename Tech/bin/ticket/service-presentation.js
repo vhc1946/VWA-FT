@@ -4,12 +4,27 @@ class ServicePresentation{
   }
 
   dom = {
-    cont: 'wo-presentation-cont',
-    head: 'wo-presentaiton-header',
+    cont: 'present-full-cont',
     button:{
       open:'button-open-presentation'
     },
+
+    head: 'present-header-cont',
+    info:{
+      name:'wo-info-name',
+      street:'wo-info-street',
+      unit:'wo-info-unit',
+      city:'wo-info-city',
+      phone:'wo-info-phone',
+      desc:'wo-info-description',
+      custcode:'wo-info-custcode',
+      wonum:'wo-info-wonum'
+    },
+
     contract: cntrctform, //from vg-membership.js
+
+    body: 'present-bottom-cont',
+
     memlevel:'wo-present-membership',
     systems: 'wo-present-systems',
     system: {
@@ -37,8 +52,115 @@ class ServicePresentation{
     }
   }
 
-  contents=``
+  contents=`
+  <div class="present-full-cont">
+        <div class="present-header-cont">
+            <div class="wo-contact-cont">
+                <img src="../bin/repo/assets/images/VogelLogo.png" id="header-logo" alt="VOGEL">
+                <div class='wo-info-name'>Client Name</div>
+                <div class='wo-info-street'>1234 Street Dr</div>
+                <div class='wo-info-unit'></div>
+                <div class='wo-info-city'>Fenton, MO 63026</div>
+                <div class='wo-info-phone'>Phone Number</div>
+                <div class='wo-info-description'>Description text</div>
+                <div class='wo-info-cust'>CUSTCODE</div>
+                <div class='wo-info-wonum'>wonum</div>
+            </div>
+            <div id="wo-present-contract-cont">
+                <input id="present-contract-name" type="search" list="contract-name-list" />
+                <div id="present-contract-opts">
+                    <div class="present-contract-opt">
+                        <div class="present-contract-opt-desc" id="monthly-tag">Monthly Plan</div>
+                        <input id="wo-contract-appr" type="checkbox" />
+                        <div id="present-contract-monthly">24</div>
+                    </div>
 
+                    <div class="present-contract-opt">
+                        <div class="present-contract-opt-desc">Additional System(s)</div>
+                        <input class="present-contract-opt-quantity" type="number" />
+                        <div id="present-contract-addsys">21</div>
+                    </div>
+                    <div class="present-contract-opt">
+                        <div class="present-contract-opt-desc">Additional Component(s)</div>
+                        <input class="present-contract-opt-quantity" type="number" />
+                        <div id="present-contract-addcomp">12</div>
+                    </div>
+
+                    <div id="enhance-tag">Enhancements</div>
+
+                    <div class="present-contract-opt">
+                        <div class="present-contract-opt-desc">Standard Filters</div>
+                        <input class="present-contract-opt-quantity" type="number" />
+                        <div id="present-contract-addstdflt">5</div>
+                    </div>
+                    <div class="present-contract-opt">
+                        <div class="present-contract-opt-desc">Humidifier Service/Pad</div>
+                        <input class="present-contract-opt-quantity" type="number" />
+                        <div id="present-contract-addhumpad">5</div>
+                    </div>
+                    <div class="present-contract-opt">
+                        <div class="present-contract-opt-desc">Specialty Filters</div>
+                        <input class="present-contract-opt-quantity" type="number" />
+                        <div id="present-contract-addspcflt">12</div>
+                    </div>
+                    <div class="present-contract-opt">
+                        <div class="present-contract-opt-desc">Time Saver Disc.</div>
+                        <input class="present-contract-opt-quantity" type="number" />
+                        <div id="present-contract-addtimesave">-4</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="present-bottom-cont">
+            <div id="wo-present-repair-cont">
+                <div class="wo-present-repair">
+                    <div id="wo-present-membership">Premium</div>
+                    <a href="https://www.vogelhvac.co/" target="_blank" id="membership-link">Sign Up for Your Membership!</a>
+                </div>
+                <div id="wo-present-headers">
+                    <div>Services & Repairs</div>
+                    <div>Regular</div>
+                    <div>Member</div>
+                    <div>Savings</div>
+                    <div>Approval</div>
+                </div>
+                
+
+                <div id="wo-present-repair-diagnostic" class="wo-present-repair" style="display:none">
+                    
+                    <div class="present-repair-desc">Diagnostic</div>
+                    <div class="present-repair-price"></div>
+                    <div></div>
+                    <div class="present-repair-savings"></div>
+                    <div>YES</div>
+                </div>
+
+                <div id="wo-present-systems">
+                </div>
+            <div class="wo-present-repair">
+                <div>Savings Today</div><!--TITLE-->
+                <div>0</div>
+                <div id="wo-present-savings-today"></div>
+            </div>
+            <div class="wo-present-repair">
+                <div>Monthly Membership</div>
+                <div id="wo-present-contract-monthly"></div>
+            </div>
+            <div class="wo-present-repair">
+                <div>Due Today</div>
+                <div id="wo-present-regprice-today"></div>
+                <div id="wo-present-memprice-today"></div>
+            </div>
+            </div>
+            <div class="present-signature-area">
+                <canvas class="signature-pad"></canvas>
+            </div> 
+        </div>
+        
+    </div>
+  `
+  
   SETpresent = (wodata) => {
     console.log(wodata);
     if (wodata.sitems != null) {
