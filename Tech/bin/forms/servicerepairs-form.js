@@ -16,11 +16,16 @@ export class SIrepairform extends FormList{
     //this.grow = this.GETrepair;//morph this.grow
 
     this.cont.getElementsByClassName(this.dom.actions.add)[0].addEventListener('click',(ele)=>{
-      let customin = this.cont.getElementsByClassName(this.dom.input)[0].value;
-      if(customin === ''){
+      let customdesc = this.cont.getElementsByClassName(this.dom.addform.desc)[0].value;
+      let customprc = this.cont.getElementsByClassName(this.dom.addform.price)[0].value;
+      if(customdesc === '' || customprc === ''){
         $(document.getElementsByClassName('min-page-cont')[0]).toggle();
       }else{
-        DropNote('tr',`Add ${customin}`);
+        this.ADDrepair({
+          TaskID: customdesc.substring(0,4),
+          desc: customdesc,
+          SellingPrice: Number(customprc)
+        });
       }
 
     });
@@ -54,7 +59,7 @@ export class SIrepairform extends FormList{
   <div class="${this.dom.cont}">
     <div class="${this.dom.table.actions}">
       <input class="${this.dom.addform.desc}" placeholder="Add description"/>
-      <input class="${this.dom.input}" placeholder="Price"/>
+      <input class="${this.dom.addform.price}" placeholder="Price"/>
       <div class="icon-action-button ${this.dom.actions.add} "><img src="../../images/icons/plus-icon.png"/></div></div>
       <div class="${this.dom.table.heads}"></div>
       <div class="${this.dom.table.cont}">
@@ -74,7 +79,9 @@ export class SIrepairform extends FormList{
   }
 
   ADDrepair(item=null){
+    
     if(item){
+      console.log(arepair(item));
       if(this.list.getElementsByClassName('vg-displynone').length!=0){this.list.innerHTML='';}
       let newrow = ttools.SETrowFROMobject(arepair(item))
       
@@ -91,6 +98,7 @@ export class SIrepairform extends FormList{
       newrow.lastChild.addEventListener('click',(ele)=>{
         DropNote('tr','Remove Item','yellow');
       });
+
       if(this.Dupcheck(newrow)){
         return newrow;
       }else{
@@ -102,7 +110,6 @@ export class SIrepairform extends FormList{
   Dupcheck(lrow){ //Checks for duplicates in table before adding
     let cont = this.list;
     for(let x=0;x<cont.children.length;x++){
-      console.log(cont.children[x].children[[0]]);
       if(cont.children[x].children[0].innerText == lrow.children[0].innerText){
         return false;
       }
