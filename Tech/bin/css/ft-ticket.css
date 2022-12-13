@@ -162,25 +162,34 @@
 .si-menu-buttons{
     position: relative;
     display: flex;
-    /*justify-content: space-around;*/
     text-align: center;
     transition: left 0.25s;
     background-color: var(--BEE-blue);
 }
 
-.si-menu-buttons>div{
-  width:50%;
+.si-delete,.si-add{
+    width:50%;
+    margin:0;
 }
 .si-menu-buttons>div>img{
   width:17px;
   padding:1px;
 }
 .si-add:hover{
-  background-color:#15ca31;
+  background-color:var(--BCE-green);
 }
 .si-delete:hover{
-  background-color:#cc1717;;
-
+  background-color:var(--vogel-red);
+}
+.si-add-inputs{
+    position:absolute;
+    left:-200px;
+    display:flex;
+    transition: left 0.25s;
+    z-index: -1;   
+}
+.si-add-input{
+    width: 100px;
 }
 
 
