@@ -118,7 +118,7 @@ export class TicketServiceItems{
 
     $(this.view.buttons.children[0]).click();
 
-    this.view.cont.getElementsByClassName('si-delete')[0].addEventListener('click',(ele)=>{DropNote('tr','Delete Service Item','yellow');});
+    //this.view.cont.getElementsByClassName('si-delete')[0].addEventListener('click',(ele)=>{DropNote('tr','Delete Service Item','yellow');});
     this.view.cont.getElementsByClassName('si-add')[0].addEventListener('click',(ele)=>{DropNote('tr','Add New Service Item','yellow');});
 
     //setup flatrate add event

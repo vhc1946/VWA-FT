@@ -26,10 +26,7 @@ window.addEventListener('beforeunload',(ele)=>{ //here for page refresh
   localStorage.setItem(wolstore.toloadwo,JSON.stringify(currticket));
 });
 
-// Setup ticket view groups ////////////////////////////////////////////////////
-// /var ticket = CREATEticket();
-var ticket = new ServiceTicket(currticket,fbstore.list);
-var presentation = new ServicePresentation(currticket);
+
 
 // Setup Page //
 var qactions = {
@@ -38,13 +35,13 @@ var qactions = {
     src:'../bin/repo/assets/icons/document-signed.png',
     title:'Presentation',
     onclick:(ele)=>{  // Presentation show/hide
-      let box = document.getElementsByClassName('present-cont')[0];
+      let box = document.getElementsByClassName('present-full-cont')[0];
       if(box.style.left == "0px"){
         //pass to ticket
         box.style.left = "-5000px";
       }
       else{
-        presentation.SETpresent(ticket.ticket);
+        //presentation.SETpresent(ticket.ticket);
         box.style.left = "0px";}
     }
   }
@@ -90,6 +87,15 @@ document.getElementById(titlebar.tbdom.utils.buttons.home).addEventListener('cli
 //$(document.getElementById(titlebar.tbdom.page.user)).hide(); //hide the user section of title bar
 $(document.getElementById(titlebar.tbdom.page.settings)).hide();
 ////////////////
+
+
+// Setup ticket view groups ////////////////////////////////////////////////////
+// /var ticket = CREATEticket();
+var ticket = new ServiceTicket(currticket,fbstore.list);
+var presentation = new ServicePresentation(document.createElement('div'),currticket);
+
+
+
 
 document.getElementsByClassName('min-page-hide-button')[0].addEventListener('click', (ele)=>{   // Home Button
   $(document.getElementsByClassName('min-page-cont')[0]).toggle();

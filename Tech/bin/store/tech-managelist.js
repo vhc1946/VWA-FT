@@ -48,17 +48,20 @@ export var INITmanagelist=()=>{
   will be refreshed from their sources.
 */
 export var REFRESHmanagelist=(store=null)=>{
-  if(store){}
-  else{
-    let finish = {};
-    for(let ml in managelist){
-      finish[ml]=false;
-      managelist[ml].REFRESHstore().then(
-        ready=>{
-          finish[ml]=true;
-          if(checkisdone(finish)){return resolve(managelist);}
-        }
-      )
+  return new Promise((resolve,reject)=>{
+    if(store){}
+    else{
+      let finish = {};
+      for(let ml in managelist){
+        finish[ml]=false;
+        managelist[ml].REFRESHstore().then(
+          ready=>{
+            console.log(ready)
+            finish[ml]=true;
+            if(checkisdone(finish)){return resolve(managelist);}
+          }
+        )
+      }
     }
-  }
+  });
 }

@@ -15,12 +15,10 @@ import {aserviceitem} from '../../ds/customers/vogel-serviceitems.js';
 //AR_ServiceItemCustomInfo_tbl * use for custom service items
 //AR_ServiceItemCustomInfoLog_tbl
 
-/*
-
 export var GETjapitest=()=>{
   return new Promise((res,rej)=>{
       var wopull = {
-          table:'test',
+          table:'custom',
           option:'download',
           template:'WO_FlatRateBookHeader_tbl',
           where:[{OP:'=',TaskID:'T600616'}]
@@ -28,13 +26,6 @@ export var GETjapitest=()=>{
       return res(SENDrequestapi(wopull,'japi'));
   });
 }
-//T600616
-GETjapitest().then(
-  res=>{
-    console.log('Flat Test ',res);
-  });
-//*/
-
 
 export var GETflbook=(book='RES',table='flatratebook')=>{
     return new Promise((res,rej)=>{

@@ -54,6 +54,7 @@ export class IDBinterface{
       let trans=this.db.transaction(this.store,'readwrite').objectStore(this.store);
       trans.clear().onsuccess=(eve)=>{
         for(let x=1,l=this.list.list.length;x<l;x++){trans.add(this.list.list[x])}
+        return resolve(true);
       }
     });
   }

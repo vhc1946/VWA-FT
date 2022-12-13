@@ -37,5 +37,25 @@ var fbdbsetup =(db)=>{
 export var fbstore = new IDBinterface('jonas-flatratebook','books',fbdbsetup);
 
 fbstore.REFRESHstore=function(){
-  console.log(this.list.list);
+  return new Promise((resolve,reject)=>{
+    console.log('refreshing')
+    SENDrequestapi({
+      collect:"jonas",
+      store:'SERVICE',
+      db:'flbook',
+      method:'query',
+      options:{query:{}}
+    }).then(
+      list=>{
+        if(list.success){
+          console.log(list);
+          this.list.list = list.body.result;
+          this.FLUSHstore().then(
+            fdone=>{return resolve(fdone);}
+          )
+        }
+        else{return resolve(false)}
+      }
+    );
+  });
 }
