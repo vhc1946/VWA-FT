@@ -108,7 +108,7 @@
 .wo-reference-cont,
 .wo-pricing-cont{
     row-gap: 5px;
-    
+
     padding: 3px;
 }
 .wo-contact-cont{
@@ -159,10 +159,25 @@
 .si-menu-buttons{
     position: relative;
     display: flex;
-    justify-content: space-around;
+    /*justify-content: space-around;*/
     text-align: center;
     transition: left 0.25s;
     background-color: var(--BEE-blue);
+}
+
+.si-menu-buttons>div{
+  width:50%;
+}
+.si-menu-buttons>div>img{
+  width:17px;
+  padding:1px;
+}
+.si-add:hover{
+  background-color:#15ca31;
+}
+.si-delete:hover{
+  background-color:#cc1717;;
+
 }
 
 
