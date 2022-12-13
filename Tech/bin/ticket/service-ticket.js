@@ -78,6 +78,7 @@ export class ServiceTicket{
 
     $(this.view.buttons.children[0]).click();  //Sets first tab as selected
 
+    //this.ticket = this.data;
 
     this.forms.wo.form = this.data.wo;
     this.forms.contract.form = this.data.contract;
@@ -116,4 +117,5 @@ export class ServiceTicket{
   }
   set ticket(tick={}){this.data=tick;}
   //puts the current ticket data to the screen
+
 }
