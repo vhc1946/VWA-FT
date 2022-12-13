@@ -44,9 +44,9 @@ export class TicketServiceItems{
             '.si-menu-buttons.div':{
               attributes:{},
               children:{
-                '.si-delete.div':{
+                '.icon-action-button.div':{
                   attributes:{
-                    class:'icon-action-button si-delete'
+                    class:'si-delete'
                   },
                   children:{
                     '.delete-button.img':{
@@ -56,9 +56,9 @@ export class TicketServiceItems{
                     }
                   }
                 },
-                '.si-add.div':{
+                '.icon-action-button.div':{
                   attributes:{
-                    class:'icon-action-button si-add'
+                    class:'si-add'
                   },
                   children:{
                     '.add-button.img':{

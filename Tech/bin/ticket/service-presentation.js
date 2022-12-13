@@ -1,6 +1,45 @@
-class ServicePresentation{
-  constructor(){
+//arepair
 
+//aservicepresentation(){}
+var cfdom = {
+  cont: 'wo-present-contract-cont',
+  form: {
+      cont: 'present-contract-opts',
+      memappr: 'wo-contract-appr',
+      desc: 'present-contract-opt-desc',
+      quantity: 'present-contract-opt-quantity',
+      appr: 'present-contract-opt-appr',
+      name: 'present-contract-name',
+      month: 'present-contract-monthly',
+
+      inputs: {
+          sys: 'present-contract-addsys',
+          comp: 'present-contract-addcomp',
+          stdfltr: 'present-contract-addstdflt',
+          spcfltr: 'present-contract-addspcflt',
+          humpad: 'present-contract-addhumpad',
+          timesave: 'present-contract-addtimesave'
+      }
+  }
+}
+var cfcontent = ``;
+
+
+
+
+class ServicePresentation{
+  constructor(cont,data,pricebook){
+    this.cont = cont;
+    this.cont.innerHTML=this.contents;
+    //this.pricebook = new ServicePricing();
+
+    //this.conform = VHCform(conform.cont);
+    //this.conform.setinputs(this.dom.contract.form.inputs);
+
+    this.conform.cont.addEventListener('change',(ele)=>{
+      console.log(cfdom.form);
+    });
+    SETpresent(data);
   }
 
   dom = {
@@ -9,7 +48,9 @@ class ServicePresentation{
     button:{
       open:'button-open-presentation'
     },
-    contract: cntrctform, //from vg-membership.js
+    contract:{
+      contdontknow:'cntractform',
+    }, //from vg-membership.js
     memlevel:'wo-present-membership',
     systems: 'wo-present-systems',
     system: {
@@ -68,13 +109,13 @@ class ServicePresentation{
           r.classList.add(prsdom.system.repair.cont);
           r.appendChild(document.createElement('div')).innerText = wodata.repairs[x][y].desc;
 
-          rprice = this.GETbookprice(wodata.repairs[x][y].task,this.wo.reg);
+          //rprice = this.GETbookprice(wodata.repairs[x][y].task,this.wo.reg);
           r.appendChild(document.createElement('div')).innerText =  rprice;
           this.wo.build.regprice += (wodata.repairs[x][y].appr ? rprice : 0);
 
           if(wodata.repairs[x][y].task=='DIAG'){ //special case for diagnostic fee
             if(this.wo.hascntrct){
-              mprice = this.GETbookprice(wodata.repairs[x][y].task,this.wo.cntrct);
+              mprice = this.pricing.GETbookprice(wodata.repairs[x][y].task,this.wo.cntrct);
             }else{mprice = this.GETbookprice(wodata.repairs[x][y].task,this.wo.reg);}
           }else{mprice = this.GETbookprice(wodata.repairs[x][y].task,this.wo.cntrct);}
 

@@ -1,6 +1,17 @@
 
 import * as gendis from '../repo/modules/vg-tables.js';
 import {ObjList} from '../repo/tools/vg-lists.js';
+
+
+var arepair=(item)=>{
+  return {
+    TaskID: item.TaskID,
+    Desc: item.desc ||"Descriptions to come",
+    SellingPrice: item.SellingPrice,
+    PriceLevelCode: item.PriceLevelCode,
+  }
+}
+
 export class FlatRateTable{
   constructor(list,cont){
     this.master = new ObjList(list); //holds 1 book with all levels

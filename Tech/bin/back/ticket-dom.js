@@ -1,32 +1,3 @@
-export var dashdom = {
-  cont:'vg-wo-dash',
-  buttons:{
-    editToggle:'tech-wo-selector'
-  },
-  list:{
-    cont:'vg-wo-list',
-    item:{
-      cont:'vg-wo-item',
-      num:'vg-wo-item-num',
-      name:'vg-wo-item-name',
-      address:'vg-wo-item-address'
-    }
-  }
-}
-
-export var wodom = {
-    cont: '',
-    action:{
-      save:'wo-action-save',
-      close:'wo-action-close',
-      delete:'wo-action-delete'
-    },
-    info: {
-        num: 'wo-info-num',
-        name: 'wo-info-customer',
-        address: 'wo-info-address'
-    }
-}
 
 export var cntrctform = {
     cont: 'wo-present-contract-cont',
@@ -84,68 +55,11 @@ export var prsdom = {
     }
 }
 
-export var sysdom = { //System DOM
-    cont:'wo-setup-cont',
-    input: {
-        tagid: "wo-setup-sys-tagid"
-    },
-    buttons:{
-      approver:{
-        toggle:'vg-checkbox',
-        approved:'vg-checkbox-checked'
-      },
-      delete:'vg-deleter'
-    },
 
-    list: {
-        cont: 'wo-sys-list',
-        system: {
-            cont: 'wo-sys',
-            button: 'wo-sys-button',
-            tagid: 'wo-sys-tagid',
-            area: 'wo-sys-area',
-            repairs: 'wo-sys-repairs',
-            repair: {
-                cont: 'wo-sys-repair',
-                id: 'wo-sys-repair-id',
-                desc: 'wo-sys-repair-desc',
-            }
-        },
-        selected: 'wo-sys-selected',
-        buttonimg:{
-          selected:'../bin/assets/icons/angle-down.png',
-          nonselected:'../bin/assets/icons/angle-right.png'
-        }
-    }
-};
 
-export var fbdom = { //Flate Rate DOM
-    cont: 'wo-setup-repair',
-    special:{
-      diagnostic:'flatrate-repair-diagnostic',
-      furncleancheck:'flatrate-repair-furn-cleancheck',
-      accleancheck:'flatrate-repair-ac-cleancheck'
-    },
-    search: {
-        book: 'wo-repair-search-book',
-        value: 'wo-repair-search-value',
-        pl: 'wo-repair-search-pl',
-        fltr: 'wo-repair-search-column'
-    },
-    table: {
-        cont: 'flatrate-search-table',
-        row: {
-            cont: '',
-            task: 'flatrate-taskid',
-            desc: 'flatrate-desc',
-            value: 'flatrate-value'
-        }
-    },
-    lists: {
-        pls: 'flatrate-book-pl-list'
-    }
-}
 
+
+////////////////////////////////////////////////////////////////////////////////
 export var wotabdom ={  //WO data from JONAS
   ARSubledgerCode:'ARCode',                //"AR",
   ApprovedForBillingDate:'ApprBillDate',   //"null"

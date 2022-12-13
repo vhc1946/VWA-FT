@@ -4,11 +4,15 @@ import {DropNote} from './repo/modules/vg-dropnote.js';
 
 import {SYNCticket, STARTticket} from './tools/vapi-FTrequest.js';
 import {ServiceTicket} from './ticket/service-ticket.js';
+import {ServicePresentation} from './service-presentation.js';
 
 var publicfolder = '/Tech/bin/css'; //not sure we need
 // Load Data //
 //fbstore.list = is the ObjList, and can be used as normal fbstore.list.TRIMlist()
 var fbstore = window.opener.datamart.fbstore;//fbstore holds connections to indexdb and an instance of ObjList
+console.log(window.opener.test);
+
+
 console.log('FLATRATE BOOK >',fbstore.list.list);
 
 // LOAD Ticket //
@@ -25,6 +29,8 @@ window.addEventListener('beforeunload',(ele)=>{ //here for page refresh
 // Setup ticket view groups ////////////////////////////////////////////////////
 // /var ticket = CREATEticket();
 var ticket = new ServiceTicket(currticket,fbstore.list);
+var presentation = new ServicePresentation(currticket);
+
 // Setup Page //
 var qactions = {
   present:{
@@ -33,8 +39,13 @@ var qactions = {
     title:'Presentation',
     onclick:(ele)=>{  // Presentation show/hide
       let box = document.getElementsByClassName('present-cont')[0];
-      if(box.style.left == "0px"){box.style.left = "-5000px";}
-      else{box.style.left = "0px";}
+      if(box.style.left == "0px"){
+        //pass to ticket
+        box.style.left = "-5000px";
+      }
+      else{
+        presentation.SETpresent(ticket.ticket);
+        box.style.left = "0px";}
     }
   }
 };
