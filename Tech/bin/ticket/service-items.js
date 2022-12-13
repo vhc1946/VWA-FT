@@ -44,9 +44,9 @@ export class TicketServiceItems{
             '.si-menu-buttons.div':{
               attributes:{},
               children:{
-                '.icon-action-button.div':{
+                '.si-delete.div':{
                   attributes:{
-                    class:'si-delete'
+                    class:'icon-action-button'
                   },
                   children:{
                     '.delete-button.img':{
@@ -56,9 +56,9 @@ export class TicketServiceItems{
                     }
                   }
                 },
-                '.icon-action-button.div':{
+                '.si-add.div':{
                   attributes:{
-                    class:'si-add'
+                    class:'icon-action-button'
                   },
                   children:{
                     '.add-button.img':{
@@ -67,7 +67,28 @@ export class TicketServiceItems{
                       }
                     }
                   }
-                }
+                },
+                '.si-add-inputs.div':{
+                      attributes:{},
+                      children:{
+                        '.si-add-input.input':{
+                          attributes:{},
+                          children:{}
+                        },
+                        '.si-add-button.div':{
+                          attributes:{
+                            class:'icon-action-button'
+                          },
+                          children:{
+                            '.add-button.img':{
+                              attributes:{
+                                src:'../bin/repo/assets/icons/add.png'
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
               }
             }
           }
@@ -92,7 +113,6 @@ export class TicketServiceItems{
 
       //add/init service info form
       this.info.push(new SIform(document.createElement('div')));
-      //console.log(i,this.info[i].cont)
       sitemview.ADDview('Info',this.info[i].cont);
       this.info[i].form = items[i]; //load info
 
@@ -118,9 +138,18 @@ export class TicketServiceItems{
 
     $(this.view.buttons.children[0]).click();
 
-    //this.view.cont.getElementsByClassName('si-delete')[0].addEventListener('click',(ele)=>{DropNote('tr','Delete Service Item','yellow');});
-    this.view.cont.getElementsByClassName('si-add')[0].addEventListener('click',(ele)=>{DropNote('tr','Add New Service Item','yellow');});
-
+    this.view.cont.getElementsByClassName('si-delete')[0].addEventListener('click',(ele)=>{DropNote('tr','Delete Service Item','yellow');});
+    this.view.cont.getElementsByClassName('si-add')[0].addEventListener('click',(ele)=>{
+      this.TOGGLEaddinput();
+    });
+    this.view.cont.getElementsByClassName('si-add-button')[0].addEventListener('click',(ele)=>{
+      let name = this.view.cont.getElementsByClassName('si-add-input')[0];
+      if(name.value != ''){
+        DropNote('tr',`Adding ${name.value}`);
+        name.value = '';
+        this.TOGGLEaddinput();
+      }
+    });
     //setup flatrate add event
     pricebook.cont.addEventListener('click',(ele)=>{
       let row  = FINDparentele(ele.target,'wo-item-row');
@@ -146,6 +175,14 @@ export class TicketServiceItems{
     }else{
       box.style.left='-250px';
       exbuttons.style.left='-250px';
+    }
+  }
+  TOGGLEaddinput(){
+    let box = this.view.cont.getElementsByClassName('si-add-inputs')[0];
+    if(box.style.left == '80px'){
+      box.style.left = '-200px';
+    }else{
+      box.style.left = '80px';
     }
   }
 }
