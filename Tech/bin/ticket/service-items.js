@@ -47,7 +47,7 @@ export class TicketServiceItems{
               children:{
                 '.si-delete.div':{
                   attributes:{
-                    class:'icon-action-button'
+                    class:'icon-action-button si-delete'
                   },
                   children:{
                     '.delete-button.img':{
@@ -59,7 +59,7 @@ export class TicketServiceItems{
                 },
                 '.si-add.div':{
                   attributes:{
-                    class:'icon-action-button'
+                    class:'icon-action-button si-add'
                   },
                   children:{
                     '.add-button.img':{
@@ -107,18 +107,14 @@ export class TicketServiceItems{
 
       this.view.ADDview(items[i].tagid,sitemview.cont); //add service item to group
       $(sitemview.buttons.children[0]).click();
+
     }
 
+    this.view.port.addEventListener('click',(ele)=>{
+      this.TOGGLEitemlist();
+    });
     this.currsi.addEventListener('click',(ele)=>{   // Service Items menu toggle
-      let box = this.view.buttons;
-      let exbuttons = this.view.cont.getElementsByClassName('si-menu-buttons')[0];
-      if(box.style.left=='-250px'){
-        box.style.left='0px';
-        exbuttons.style.left='0px';
-      }else{
-        box.style.left='-250px';
-        exbuttons.style.left='-250px';
-      }
+      this.TOGGLEitemlist();
     });
 
     $(this.view.buttons.children[0]).click();
@@ -140,6 +136,17 @@ export class TicketServiceItems{
   SETcurrtab(tagid){
     for(let x=0;x<this.info.length;x++){
       if(this.info[x].form.tagid===tagid){console.log(x);this.currtab=x;break;}
+    }
+  }
+  TOGGLEitemlist(){
+    let box = this.view.buttons;
+    let exbuttons = this.view.cont.getElementsByClassName('si-menu-buttons')[0];
+    if(box.style.left=='-250px'){
+      box.style.left='0px';
+      exbuttons.style.left='0px';
+    }else{
+      box.style.left='-250px';
+      exbuttons.style.left='-250px';
     }
   }
 }
