@@ -8,78 +8,58 @@
       <link rel="stylesheet" href="../repo/css/vg-general.css" />
     </head>
     <body>
-      <style>
-        body, table, td, a {
-          -webkit-text-size-adjust: 100%;
-          -ms-text-size-adjust: 100%;
-        }
-        body {
-          height: 100% !important;
-          margin: 0 !important;
-          padding: 0 !important;
-          width: 100% !important;
-          -webkit-text-size-adjust: 100% !important;
-          -ms-text-size-adjust: 100% !important;
-          -webkit-font-smoothing: antialiased !important;
-          font-family: Arial, Helvetica, sans-serif;
-        }
-        table, td {
-          mso-table-lspace: 0pt;
-          mso-table-rspace: 0pt;
-        }
-        table {
-          
-          mso-table-lspace: 0px !important;
-          mso-table-rspace: 0px !important;
-        }
-        td {
-          
-          mso-line-height-rule: exactly;
-          font-family: Arial, Helvetica, sans-serif;
-        }
-      </style>
-      <div class="invoice-header">
-        <img id='vogel-logo'/>
-        <div class="invoice-vogel-info">
-            <div id="vogel-text">HEATING & COOLING</div>
-            <div id="vogel-addy">1642 Manufacturers Dr, Fenton, MO 63026</div>
-            <div id="phone-number">P: 314-351-2533 &nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp; F: 314-351-3253</div>
-            <div id="vogel-website">vogelheating.com</div>
+        <img id='header-logo'src="../repo/assets/images/Header.jpg"/>  
+        <div class="invoice-top">
+            <div class="invoice-section-client">
+                <div class="invoice-sectionhead">SOLD TO:</div>
+                <div>
+                    <div class="invoice-info-client">Client Name</div>
+                    <div class="invoice-info-street">1234 Street Dr</div>
+                    <div class="invoice-info-city">Anyplace, MO 60000</div>
+                </div>
+            </div>
+            <div class="invoice-section-location">
+                <div class="invoice-sectionhead">JOB LOCATION:</div>
+                <div>
+                    <div class="invoice-info-lstreet">1234 Street Dr</div>
+                    <div class="invoice-info-lcity">Anyplace, MO 60000</div>
+                </div>
+            </div>
+            <div class="invoice-section-info">
+                <label class="invoice-sectionlabel">Invoice Number:</label><div class="invoice-info-invnum">Test</div>
+                <label class="invoice-sectionlabel">Invoice Date:</label><div class="invoice-info-invdate">Test</div>
+                <label class="invoice-sectionlabel">Terms:</label><div class="invoice-info-terms">Test</div>
+                <label class="invoice-sectionlabel">Customer Code:</label><div class="invoice-info-custcode">Test</div>
+                <label class="invoice-sectionlabel">Reference:</label><div class="invoice-info-reference">Test</div>
+                <label class="invoice-sectionlabel">Work Order #:</label><div class="invoice-info-wonum">Test</div>
+                <label class="invoice-sectionlabel">Work Order Type:</label><div class="invoice-info-wotype">Test</div>
+                <label class="invoice-sectionlabel">Job Location:</label><div class="invoice-info-location">Test</div>
+                <label class="invoice-sectionlabel">Starting Date:</label><div class="invoice-info-strtdate">Test</div>
+                <label class="invoice-sectionlabel">Completion Date:</label><div class="invoice-info-compdate">Test</div>
+            </div>
         </div>
-      </div>
-      <div class="invoice-top">
-        <div class="invoice-section-client">
-            <div class="invoice-sectionhead">SOLD TO:</div>
-            <div class="invoice-info-client">Client Name</div>
-            <div class="invoice-info-street">1234 Street Dr</div>
-            <div class="invoice-info-city">Anyplace, MO 60000</div>
+        <div class="invoice-body">
+            <div class="invoice-descbox">
+                <div class="invoice-info-description">Test Text</div>
+            </div>
+            <table class="invoice-totals">
+                <tr>
+                    <td>
+                        <label class="invoice-sectionlabel">Subtotal</label>
+                    </td>
+                    <td>
+                        <div class="invoice-info-subtotal">420.00</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="invoice-sectionlabel">Total Invoice</label>
+                    </td>
+                    <td>
+                        <div class="invoice-info-total">420.00</div>
+                    </td>
+                </tr>
+            </table>
         </div>
-        <div class="invoice-section-location">
-            <div class="invoice-sectionhead">JOB LOCATION:</div>
-            <div class="invoice-info-lstreet">1234 Street Dr</div>
-            <div class="invoice-info-lcity">Anyplace, MO 60000</div>
-        </div>
-        <div class="invoice-section-info">
-            <label class="invoice-sectionlabel">Invoice Number:</label><div class="invoice-info-invnum">Test</div>
-            <label class="invoice-sectionlabel">Invoice Date:</label><div class="invoice-info-invdate">Test</div>
-            <label class="invoice-sectionlabel">Terms:</label><div class="invoice-info-terms">Test</div>
-            <label class="invoice-sectionlabel">Customer Code:</label><div class="invoice-info-custcode">Test</div>
-            <label class="invoice-sectionlabel">Reference:</label><div class="invoice-info-reference">Test</div>
-            <label class="invoice-sectionlabel">Work Order #:</label><div class="invoice-info-wonum">Test</div>
-            <label class="invoice-sectionlabel">Work Order Type:</label><div class="invoice-info-wotype">Test</div>
-            <label class="invoice-sectionlabel">Job Location:</label><div class="invoice-info-location">Test</div>
-            <label class="invoice-sectionlabel">Starting Date:</label><div class="invoice-info-strtdate">Test</div>
-            <label class="invoice-sectionlabel">Completion Date:</label><div class="invoice-info-compdate">Test</div>
-        </div>
-      </div>
-      <div class="invoice-body">
-        <div class="invoice-descbox">
-            <div class="invoice-info-description">Test Text</div>
-        </div>
-        <div class="invoice-totals">
-            <div><label class="invoice-sectionlabel">Subtotal</label><div class="invoice-info-subtotal">420.00</div></div>
-            <div><label class="invoice-sectionlabel">Total Invoice</label><div class="invoice-info-total">420.00</div></div>
-        </div>
-      </div>
     </body>
 </html>
