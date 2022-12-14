@@ -279,6 +279,12 @@
 .frbook-list{
     max-height:400px;
 }
+.frbook-list>table>tr>td:nth-child(6){
+    display: none;
+}
+
+
+
 /* Service Item Checklists */
 #check-cont .viewcontrol-quick-actions{
     flex-grow: 0;

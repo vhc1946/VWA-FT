@@ -30,7 +30,11 @@ var BUILDtruetable=(list,cont,header=false,rowclass=false,map=(obj)=>{return obj
   cont.innerHTML='';
   let table = cont.appendChild(document.createElement('table'));
   table.appendChild(SETtablerowFROMobject(map(list[0]),false));
-  if(header){table.lastChild.classList.add(rowclass,'vg-gentable-header')}
+  if(header){
+    table.lastChild.classList.add(rowclass,gtdom.header)
+  }else if(rowclass){
+    table.lastChild.classList.add(rowclass)
+  }
   for(let x=1;x<list.length;x++){
     table.appendChild(SETtablerowFROMobject(map(list[x]),false));
     if(rowclass){table.lastChild.classList.add(rowclass)}
