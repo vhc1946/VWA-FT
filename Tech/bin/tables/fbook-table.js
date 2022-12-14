@@ -1,16 +1,7 @@
 
 import * as gendis from '../repo/modules/vg-tables.js';
 import {ObjList} from '../repo/tools/vg-lists.js';
-
-
-var arepair=(item)=>{
-  return {
-    TaskID: item.TaskID,
-    Desc: item.desc ||"Descriptions to come",
-    SellingPrice: item.SellingPrice,
-    PriceLevelCode: item.PriceLevelCode,
-  }
-}
+import {aflatrepair} from '../repo/ds/jonas/flatratebook.js';
 
 export class FlatRateTable{
   constructor(list,cont){
@@ -52,8 +43,9 @@ export class FlatRateTable{
 
     this.SETfilters();
   }
+
   SETfilters(){
-    document.getElementsByClassName('min-page-menu')[0].appendChild(gendis.SETrowFROMobject({TaskID:''},true));
+    document.getElementsByClassName('min-page-menu')[0].appendChild(gendis.SETrowFROMobject({task:''},true));
     let filterrow = document.getElementsByClassName('min-page-menu')[0].lastChild;
     filterrow.classList.add('wo-filter-row');
     filterrow.children[0].setAttribute('placeholder','Search');
@@ -76,7 +68,6 @@ export class FlatRateTable{
     gendis.BUILDtruetable(this.master.TRIMlist(this.fltrs),this.cont,false,'wo-item-row');
   }
 
-
   CREATEmiscinputs(repadd=()=>{}){
     let miscs = document.createElement('div');
     miscs.classList.add('misc-buttons');
@@ -93,12 +84,12 @@ export class FlatRateTable{
   }
   GETmiscrepairs(name){
     let repair={};
-    if(this.fltrs.PriceLevelCode){
-      repair.TaskID = name;
-      repair.desc = this.miscreps[name].desc;
-      repair.PriceLevelCode=this.fltrs.PriceLevelCode;
-      repair.FlatRateBookCode=this.fltrs.FlatRateBookCode;
-      repair.SellingPrice = this.miscreps[name][this.fltrs.PriceLevelCode];
+    if(this.fltrs.pl){
+      repair.task = name;
+      repair.descr = this.miscreps[name].desc;
+      repair.pl=this.fltrs.pl;
+      repair.book=this.fltrs.book;
+      repair.price = this.miscreps[name][this.fltrs.pl];
     }
     return repair;
   }

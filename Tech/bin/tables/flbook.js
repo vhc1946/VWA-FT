@@ -94,5 +94,28 @@ export class FlatRatePricing {
 
   }
 
+  GETbookprice(tnum, tpl){
+      let pl = 'pl';
+      let count = '';
+      let cnum = 1;
+
+      if (this.book) {
+          for (let x = 0; x < this.book.length; x++) {
+              if (this.book[x].num == tnum ){
+                  while (this.book[x][pl + count] != undefined) {
+                      if (this.book[x][pl + count] == tpl) {
+                          return Number(this.book[x]['sp' + count]);
+                      }
+                      count = '_' + cnum++;
+                  }
+              }
+          }
+      }
+      for(let s in this.miscreps){
+        if(s ==tnum){return this.miscreps[tnum][tpl] || 0}
+      }
+      return 0;
+  }
+
   ////////////////////////////////////////////////////////////////
 }

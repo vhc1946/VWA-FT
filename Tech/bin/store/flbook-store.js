@@ -24,7 +24,7 @@ var fbdbsetup =(db)=>{
     options:{query:{}}
   }).then(
     answr=>{
-      console.log(answr)
+      console.log(answr);
       if(answr.success){
         let list = answr.body.result;
         console.log('>>>>>>',list);

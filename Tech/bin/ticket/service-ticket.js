@@ -35,8 +35,8 @@ export class ServiceTicket{
     this.data = ticket;
 
     // Setup Price Book
-    this.pricing = new FlatRateTable(pricing.TRIMlist({FlatRateBookCode:this.data.wo.pricebook}),fbtable);
-    this.pricing.fltrs.PriceLevelCode=this.data.wo.pricelevel;
+    this.pricing = new FlatRateTable(pricing.TRIMlist({book:this.data.wo.pricebook}),fbtable);
+    this.pricing.fltrs.pl=this.data.wo.pricelevel;
     this.pricing.SETrepairlist();
 
     this.view=new vcontrol.ViewGroup({
@@ -88,7 +88,7 @@ export class ServiceTicket{
 
     this.port.info.cont.getElementsByClassName('wo-info-pricelevel')[0].addEventListener('change',(ele)=>{
       let plevel = ele.target.value;
-      if(plevel&&plevel!=''){this.pricing.GETfilters({PriceLevelCode:plevel})}
+      if(plevel&&plevel!=''){this.pricing.GETfilters({pl:plevel})}
       else{DropNote('tr','Choose a Correct Price Level');}
     });
 

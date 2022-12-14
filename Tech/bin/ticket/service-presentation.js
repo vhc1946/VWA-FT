@@ -230,7 +230,7 @@ export class ServicePresentation{
           let r = rlist.appendChild(document.createElement('div'));
 
           r.classList.add(this.dom.system.repair.cont);
-          r.appendChild(document.createElement('div')).innerText = wodata.repairs[x][y].Desc;
+          r.appendChild(document.createElement('div')).innerText = wodata.repairs[x][y].desc;
 
           //rprice = this.GETbookprice(wodata.repairs[x][y].task,this.wo.reg);
           r.appendChild(document.createElement('div')).innerText =  rprice;
@@ -239,9 +239,9 @@ export class ServicePresentation{
 
           if(wodata.repairs[x][y].task=='DIAG'){ //special case for diagnostic fee
             if(this.wo.hascntrct){
-              mprice = this.pricing.GETbookprice(wodata.repairs[x][y].TaskID,this.wo.cntrct);
-            }else{mprice = this.GETbookprice(wodata.repairs[x][y].TaskID,this.wo.reg);}
-          }else{mprice = this.GETbookprice(wodata.repairs[x][y].TaskID,this.wo.cntrct);}
+              mprice = this.pricing.GETbookprice(wodata.repairs[x][y].task,this.wo.cntrct);
+            }else{mprice = this.GETbookprice(wodata.repairs[x][y].task,this.wo.reg);}
+          }else{mprice = this.GETbookprice(wodata.repairs[x][y].task,this.wo.cntrct);}
 
           r.appendChild(document.createElement('div')).innerText = mprice;
           this.wo.build.memprice += (wodata.repairs[x][y].appr ? mprice : 0);
@@ -259,7 +259,7 @@ export class ServicePresentation{
       document.getElementById(this.dom.invest.regprice).innerText = this.wo.build.regprice;
       document.getElementById(this.dom.invest.memprice).innerText = this.wo.build.memprice;
       document.getElementById(this.dom.invest.savings).innerText = this.wo.build.savings;
-      document.getElementById(this.dom.invest.conmonth).innerText = this.rewardform.GETformprice();
+      //document.getElementById(this.dom.invest.conmonth).innerText = this.rewardform.GETformprice();
     }
   }
 

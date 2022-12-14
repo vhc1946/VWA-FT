@@ -27,12 +27,12 @@ export var aflatrateitem=(fi={})=>{
 export var aflatrepair=(fr={})=>{
   if(!fr){fr={}}
   return{
-    book:fi.book || '',
-    task:fi.task || '',
-    descr:fi.descr || '',
-    pl:fi.pl || '',
-    price:fi.price||'',
-    qty:fi.qty||0,
-    appr:fi.appr||false
+    book:fr.book || '',
+    task:fr.task || '',
+    descr:fr.descr || '',
+    pl:fr.pl || '',
+    price:fr.price||'',
+    qty:fr.qty||0,
+    appr:fr.appr||false
   }
 }
