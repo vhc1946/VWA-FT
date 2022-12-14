@@ -214,11 +214,13 @@
     padding: 3px;
     border-bottom: 1px solid var(--background-dark);
     align-items: center;
+    justify-content: space-between;
 }
-.si-repair-table>div>div{
+.si-repair-table>div>div,
+.si-repair-table>div>input{
     flex-grow:0;
     flex-shrink:1;
-    width:150px;
+    width:75px;
 }
 .si-repair-table>div:nth-child(even){
     background-color: var(--background-light);
@@ -226,11 +228,20 @@
 .si-repair-table>div:nth-child(odd){
     background-color: var(--background-base);
 }
+.si-repair-table>div>div:nth-child(1){
+    width: 150px;
+}
 .si-repair-table>div>div:nth-child(2){
     width: 400px;
 }
 .si-repair-table>div>img:hover{
     cursor: pointer;
+}
+.si-add-form-desc{
+    width: 400px;
+}
+.si-add-form-price{
+    width: 75px;
 }
 .misc-buttons{
     display:flex;

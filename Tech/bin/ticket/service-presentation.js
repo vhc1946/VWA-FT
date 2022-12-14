@@ -255,10 +255,10 @@ export class ServicePresentation{
           */
         }
       }
-      document.getElementById(this.dom.memlevel).innerText = this.rewardform.GETmemhead(document.getElementById(this.dom.contract.form.name).value) || this.wo.cntrct;
-      document.getElementById(this.dom.invest.regprice).innerText = this.wo.build.regprice;
-      document.getElementById(this.dom.invest.memprice).innerText = this.wo.build.memprice;
-      document.getElementById(this.dom.invest.savings).innerText = this.wo.build.savings;
+      //document.getElementById(this.dom.memlevel).innerText = this.rewardform.GETmemhead(document.getElementById(this.dom.contract.form.name).value) || this.wo.cntrct;
+      //document.getElementById(this.dom.invest.regprice).innerText = this.wo.build.regprice;
+      //document.getElementById(this.dom.invest.memprice).innerText = this.wo.build.memprice;
+      //document.getElementById(this.dom.invest.savings).innerText = this.wo.build.savings;
       //document.getElementById(this.dom.invest.conmonth).innerText = this.rewardform.GETformprice();
     }
   }
