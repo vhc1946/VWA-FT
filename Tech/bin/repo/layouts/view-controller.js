@@ -27,7 +27,7 @@ var SETUPviewcontroller=(pfolder)=>{
 //  PATHS //
 var stylesheets = ['vg-viewcontrols.css'];
 var assets={
-  viewclose:'assets/icons/cross-red.png'
+  viewclose:'https://18.191.134.244:5000/assets/icons/cross.png'
 }
 var pubfolder = ''
 /////////////////////////////////////////////////////////////////////////////////
