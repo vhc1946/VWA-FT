@@ -86,12 +86,6 @@ export class ServiceChecks{
                           attributes:{},
                           children:{}
                         },
-                        '.si-add-input-system.checkbox':{
-                          attributes:{
-                            class: 'si-add-input-system',
-                          },
-                          children:{}
-                        },
                         '.si-add-button.div':{
                           attributes:{
                             class:'icon-action-button'
