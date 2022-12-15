@@ -112,7 +112,7 @@ export class TicketServiceItems{
         console.log("Correcting empty repairs for index ", i)
         repairs.push([])
       }
-      this.addItem(items[i], repairs[i])
+      this.ADDserviceitem(items[i], repairs[i])
     }
 
     this.view.port.addEventListener('click',(ele)=>{
@@ -133,17 +133,19 @@ export class TicketServiceItems{
       let name = this.view.cont.getElementsByClassName('si-add-input')[0];
 
       if(name.value != ''){
-        //
-        DropNote('tr',`Adding ${name.value}`);
+        let retval = this.ADDserviceitem({tagid: name.value});
+        if (retval) {
+          DropNote('tr',`Adding ${name.value}`);
+          this.currsi.innerText=name.value;
+          this.SETcurrtab(this.currsi.innerText);
+          
+          name.value = '';
+          this.TOGGLEaddinput();
+        } else {
+          DropNote('tr',`${name.value} Already Added`,'yellow');
+        }
 
-
-        this.addItem({tagid: name.value});
-
-        this.currsi.innerText=name.value;
-        this.SETcurrtab(this.currsi.innerText);
-
-        name.value = '';
-        this.TOGGLEaddinput();
+        
       }
     });
     //setup flatrate add event
@@ -157,8 +159,9 @@ export class TicketServiceItems{
 
   /*
     Adds a new repair item to the service items
+    Returns true if the item doesn't exist, null otherwise
   */
-  addItem(item, repairs=[]) {
+  ADDserviceitem(item, repairs=[]) {
     console.log("Item: ", item)
 
     let sitemview = new ViewGroup({
@@ -178,8 +181,11 @@ export class TicketServiceItems{
 
     this.repairs[index].form=repairs[index];
 
-    this.view.ADDview(item.tagid,sitemview.cont); //add service item to group
-    $(sitemview.buttons.children[0]).click();
+    let added = this.view.ADDview(item.tagid,sitemview.cont); //add service item to group
+    if (added) {
+      $(sitemview.buttons.children[0]).click();
+    }
+    return added;
   }
   //remove item
 
