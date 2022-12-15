@@ -27,7 +27,6 @@ window.addEventListener('beforeunload',(ele)=>{ //here for page refresh
 });
 
 
-
 // Setup Page //
 var qactions = {
   present:{
@@ -81,6 +80,9 @@ var mactions = {
 };
 
 titlebar.SETUPtitlebar('../bin/repo/',qactions,mactions,false); //login disabled
+
+
+
 document.getElementById(titlebar.tbdom.utils.buttons.home).addEventListener('click', (ele)=>{   // Home Button
   DropNote('tr','Going home','yellow');
 });
@@ -93,6 +95,7 @@ $(document.getElementById(titlebar.tbdom.page.settings)).hide();
 // /var ticket = CREATEticket();
 var ticket = new ServiceTicket(currticket,fbstore.list);
 var presentation = new ServicePresentation(document.createElement('div'),currticket);
+// final summary
 
 
 
