@@ -49,7 +49,6 @@ export class FlatRateTable{
     filterrow.children[0].setAttribute('placeholder','Task ID');
     filterrow.children[1].setAttribute('placeholder','Description');
     filterrow.addEventListener('change',(ele)=>{
-      console.log('Filters Change',this.fltrs,ele.target);
       let row = FINDparentele(ele.target,'wo-filter-row');
       this.GETfilters(gendis.GETrowTOobject(row,true));
     });
@@ -57,15 +56,10 @@ export class FlatRateTable{
     this.GETfilters();
   }
   GETfilters(flts){
-    console.log
     for(let f in flts){
-      if(flts[f]!=''){
-        this.fltrs[f]=flts[f];
-      }else if(flts[f]==''&&this.fltrs[f]){this.fltrs[f]=undefined;}
-
+      if(flts[f]!=''){this.fltrs[f]=flts[f];}
+      else if(flts[f]=='' && this.fltrs[f]){this.fltrs[f]=undefined;}
     }
-    console.log(this.fltrs);
-    console.log(this.master.TRIMlist({}));
     this.SETrepairlist();
   }
   SETrepairlist(){

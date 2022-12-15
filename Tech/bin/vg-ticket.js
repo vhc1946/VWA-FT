@@ -39,7 +39,7 @@ var qactions = {
         box.style.left = "-5000px";
       }
       else{
-        //presentation.SETpresent(ticket.ticket);
+        presentation.SETpresent(ticket.ticket);
         box.style.left = "0px";}
     }
   }

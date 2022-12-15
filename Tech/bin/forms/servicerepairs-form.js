@@ -130,7 +130,7 @@ export class SIrepairform extends FormList{
     item.pl=row.getElementsByClassName('sr-pl')[0].innerText||'';
     item.qty=row.getElementsByClassName('sr-qty')[0].innerText||'';
     item.price=row.getElementsByClassName('sr-price')[0].innerText||'';
-    item.appr=row.getElementsByClassName('sr-appr')[0].innerText||'';
+    item.appr=row.getElementsByClassName('sr-appr')[0].classList.contains('vg-checkbox-checked')?true:false;
     return item;
   }
 
