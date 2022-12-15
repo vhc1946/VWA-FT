@@ -209,7 +209,7 @@ class ViewGroup{
         if(ele){
           console.log('Closing view..');
           this.delEve(); //optional delete process
-          this.REMOVEview(ele);
+          this.REMOVEview(ele.target);
         }
       });
     }
