@@ -1,5 +1,6 @@
 import {CheckListForm} from '../forms/checklist-form.js';
 import {VHCform} from '../repo/tools/vhc-forms.js';
+import { DropNote } from '../repo/modules/vg-dropnote.js';
 import {ViewGroup} from '../repo/layouts/view-controller.js';
 
 var toggledom = {
@@ -463,7 +464,68 @@ export class ServiceChecks{
     this.view = new ViewGroup({
       cont:cont,
       type:'mtr',
-      qactions:{}
+      qactions:{
+        'div':{
+          children:{
+            '.si-menu-buttons.div':{
+              attributes:{},
+              children:{
+                '.si-delete.div':{
+                  attributes:{
+                    class:'icon-action-button'
+                  },
+                  children:{
+                    '.delete-button.img':{
+                      attributes:{
+                        src:'../bin/repo/assets/icons/trash.png'
+                      }
+                    }
+                  }
+                },
+                '.si-add.div':{
+                  attributes:{
+                    class:'icon-action-button'
+                  },
+                  children:{
+                    '.add-button.img':{
+                      attributes:{
+                        src:'../bin/repo/assets/icons/add.png'
+                      }
+                    }
+                  }
+                },
+                '.si-add-inputs.div':{
+                      attributes:{},
+                      children:{
+                        '.si-add-input.input':{
+                          attributes:{},
+                          children:{}
+                        },
+                        '.si-add-input-system.checkbox':{
+                          attributes:{
+                            class: 'si-add-input-system',
+                          },
+                          children:{}
+                        },
+                        '.si-add-button.div':{
+                          attributes:{
+                            class:'icon-action-button'
+                          },
+                          children:{
+                            '.add-button.img':{
+                              attributes:{
+                                src:'../bin/repo/assets/icons/add.png'
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+              }
+            }
+          }
+        }
+      }
 
     });
     this.forms = [];
@@ -482,6 +544,26 @@ export class ServiceChecks{
         this.ADDgroup(checks[x].name,agroup);
       }
     }
+
+    //Quick actions events
+    this.view.cont.getElementsByClassName('si-add')[0].addEventListener('click',(ele)=>{
+      this.TOGGLEaddinput();
+    });
+    this.view.cont.getElementsByClassName('si-add-button')[0].addEventListener('click',(ele)=>{
+      let name = this.view.cont.getElementsByClassName('si-add-input')[0];
+
+      
+
+      if(name.value != ''){
+        DropNote('tr',`Adding ${name.value}`);
+
+
+        this.ADDgroup(name.value);
+
+        name.value = '';
+        this.TOGGLEaddinput();
+      }
+    });
     //HideAll(cont);
     //Clicktoclose(cont);
 
@@ -498,7 +580,18 @@ export class ServiceChecks{
       cview.ADDview(c,this.forms[this.forms.length-1].cont);
       this.forms[this.forms.length-1].form=group[c];
     }
-    this.view.ADDview(name,cview.cont);
+    this.view.ADDview(name,cview.cont, true);
   }
   //REMOVEgroup(){}
+
+  TOGGLEaddinput(){
+    let box = this.view.cont.getElementsByClassName('si-add-inputs')[0];
+    if(box.style.left == '80px'){
+      box.style.left = '-200px';
+      box.style.zIndex = "-1";
+    }else{
+      box.style.left = '80px';
+      box.style.zIndex = "2";
+    }
+  }
 }
