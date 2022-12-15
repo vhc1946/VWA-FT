@@ -12,7 +12,6 @@ var publicfolder = '/Tech/bin/css'; //not sure we need
 var fbstore = window.opener.datamart.fbstore;//fbstore holds connections to indexdb and an instance of ObjList
 console.log(window.opener.test);
 
-
 console.log('FLATRATE BOOK >',fbstore.list.list);
 
 // LOAD Ticket //
@@ -94,7 +93,7 @@ $(document.getElementById(titlebar.tbdom.page.settings)).hide();
 // Setup ticket view groups ////////////////////////////////////////////////////
 // /var ticket = CREATEticket();
 var ticket = new ServiceTicket(currticket,fbstore.list);
-var presentation = new ServicePresentation(document.createElement('div'),currticket);
+var presentation = new ServicePresentation(document.createElement('div'),currticket,fbstore.list.TRIMlist({book:'RES'}));
 // final summary
 
 

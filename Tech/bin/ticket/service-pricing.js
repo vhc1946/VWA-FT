@@ -1,8 +1,9 @@
 
-/* FlatRateBook Pricing
+import {ObjList} from '../repo/tools/vg-lists.js';
+/*
 */
-export class FlatRatePricing {
-  constructor(book){
+export class ServicePricing{
+  constructor(book,pl=''){
     this.book = new ObjList(book);
 
     this.miscreps = {//Misc Repairs
@@ -32,20 +33,12 @@ export class FlatRatePricing {
       }
     }
 
-    this.pl=pl||undefined;
-
-    /*
-    this.pl = ((pl) => { //get STD or AHR price level depending on time and/of day
-        var wodate = new Date();
-        let time = wodate.getHours();
-        let day = wodate.getDay();
-        return (
-            (time > 17 ||
-                day >= 6)
-                ? 'AHR' : 'STA'
-        );
+    this.pl = ((date=new Date()) => { //get STD or AHR price level depending on time and/of day
+        let time = date.getHours();
+        let day = date.getDay();
+        return ((time > 17 || day >= 6)? 'AHR' : 'STA');
     })();
-    */
+    console.log('PRIC LEVEL ',this.pl);
   }
 
   LOADbook(finds, pl){//Filter the book
@@ -94,27 +87,17 @@ export class FlatRatePricing {
 
   }
 
-  GETbookprice(tnum, tpl){
-      let pl = 'pl';
-      let count = '';
-      let cnum = 1;
-
-      if (this.book) {
-          for (let x = 0; x < this.book.length; x++) {
-              if (this.book[x].num == tnum ){
-                  while (this.book[x][pl + count] != undefined) {
-                      if (this.book[x][pl + count] == tpl) {
-                          return Number(this.book[x]['sp' + count]);
-                      }
-                      count = '_' + cnum++;
-                  }
-              }
-          }
-      }
+  GETbookprice(task, tpl=this.pl){
+    let bookitem = this.book.TRIMlist({task:task,pl:tpl}); //search for item
+    if(bookitem.length===1){return bookitem[0].price} //found item
+    else if(bookitem.length===0){//is mis repair
       for(let s in this.miscreps){
-        if(s ==tnum){return this.miscreps[tnum][tpl] || 0}
+        if(s===task){return this.miscreps[task][tpl] || 0}
       }
-      return 0;
+    }
+    //if here the search resulted in more than one item
+    // or the search failed in some other way
+    return 0; //default price
   }
 
   ////////////////////////////////////////////////////////////////
