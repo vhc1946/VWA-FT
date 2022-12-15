@@ -104,29 +104,13 @@ export class TicketServiceItems{
     this.info = [];
     this.repairs = [];
 
-
     for(let i=0;i<items.length;i++){//Loop ticket.serviceitems
-      let sitemview = new ViewGroup({
-        type:'mtr',
-        qactions:{['.item-header.div']:{value:items[i].descr}}
-      });
+      if(repairs[i]==undefined){
+        console.log("Correcting empty repairs for index ", i)
+        repairs.push([])
+      }
 
-      //add/init service info form
-      this.info.push(new SIform(document.createElement('div')));
-      sitemview.ADDview('Info',this.info[i].cont);
-      this.info[i].form = items[i]; //load info
-
-      // add/init service repairs
-      if(repairs[i]==undefined){repairs[i]=[]}//correct empty repairs
-      this.repairs.push(new SIrepairform(document.createElement('div'),this.pricebook));
-      sitemview.ADDview('Repairs',this.repairs[i].cont);
-      //try{
-      this.repairs[i].form=repairs[i];
-      //catch{}
-
-      this.view.ADDview(items[i].tagid,sitemview.cont); //add service item to group
-      $(sitemview.buttons.children[0]).click();
-
+      this.addItem(items[i], repairs[i])
     }
 
     this.view.port.addEventListener('click',(ele)=>{
@@ -146,6 +130,12 @@ export class TicketServiceItems{
       let name = this.view.cont.getElementsByClassName('si-add-input')[0];
       if(name.value != ''){
         DropNote('tr',`Adding ${name.value}`);
+
+        
+        this.addItem({tagid: name.value})
+
+        this.currsi.innerText=name.value
+
         name.value = '';
         this.TOGGLEaddinput();
       }
@@ -157,7 +147,32 @@ export class TicketServiceItems{
     });
   }
 
-  //add item
+  /*
+    Adds a new repair item to the service items
+  */
+  addItem(item, repairs=[]) {
+    console.log("Item: ", item)
+
+    let sitemview = new ViewGroup({
+      type:'mtr',
+      qactions:{['.item-header.div']:{value:item.descr}}
+    });
+
+    //add/init service info form
+    this.info.push(new SIform(document.createElement('div')));
+    var index = this.info.length-1
+    sitemview.ADDview('Info',this.info[index].cont);
+    this.info.form = item; //load info
+    console.log(this.repairs)
+    //add/init service repairs
+    this.repairs.push(new SIrepairform(document.createElement('div'),this.pricebook));
+    sitemview.ADDview('Repairs',this.repairs[index].cont);
+
+    this.repairs[index].form=repairs[index];
+
+    this.view.ADDview(item.tagid,sitemview.cont); //add service item to group
+    $(sitemview.buttons.children[0]).click();
+  }
   //remove item
 
   //get currtab as index
