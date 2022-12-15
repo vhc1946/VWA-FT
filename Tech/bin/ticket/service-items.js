@@ -111,11 +111,7 @@ export class TicketServiceItems{
         console.log("Correcting empty repairs for index ", i)
         repairs.push([]);
       }
-<<<<<<< HEAD
-      this.ADDitem(items[i], repairs[i]);
-=======
       this.ADDserviceitem(items[i], repairs[i])
->>>>>>> ae250030ce928bf613bc01ddf56c82925c365a5b
     }
 
     this.view.port.addEventListener('click',(ele)=>{this.TOGGLEitemlist(true);});
@@ -133,30 +129,19 @@ export class TicketServiceItems{
       let name = this.view.cont.getElementsByClassName('si-add-input')[0];
 
       if(name.value != ''){
-<<<<<<< HEAD
-        //
-        DropNote('tr',`Adding ${name.value}`);
-
-
-        this.ADDitem({tagid: name.value});
-
-        this.currsi.innerText=name.value;
-        this.SETcurrtab(this.currsi.innerText);
-=======
         let retval = this.ADDserviceitem({tagid: name.value});
         if (retval) {
           DropNote('tr',`Adding ${name.value}`);
           this.currsi.innerText=name.value;
           this.SETcurrtab(this.currsi.innerText);
-          
+
           name.value = '';
           this.TOGGLEaddinput();
         } else {
           DropNote('tr',`${name.value} Already Added`,'yellow');
         }
->>>>>>> ae250030ce928bf613bc01ddf56c82925c365a5b
 
-        
+
       }
     });
     //setup flatrate add event
@@ -170,13 +155,9 @@ export class TicketServiceItems{
     Adds a new repair item to the service items
     Returns true if the item doesn't exist, null otherwise
   */
-<<<<<<< HEAD
-  ADDitem(item, repairs=[]) {
-=======
   ADDserviceitem(item, repairs=[]) {
     console.log("Item: ", item)
 
->>>>>>> ae250030ce928bf613bc01ddf56c82925c365a5b
     let sitemview = new ViewGroup({
       type:'mtr',
       qactions:{['.item-header.div']:{value:item.descr}}
