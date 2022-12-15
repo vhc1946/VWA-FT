@@ -94,6 +94,14 @@
     transition: bottom 0.3s;
 }
 
+#checklists-menu-buttons {
+    width: 80px;
+}
+
+#checklists-add-button {
+    width: 100%;
+}
+
 
 
 /* WO Tab */
