@@ -442,6 +442,7 @@ var systeminfo = `
     </div>
 `
 
+
 var checklists = {
   doms:{
     system:systemdom,
@@ -456,20 +457,48 @@ var checklists = {
 }
 
 export class ServiceChecks{
-  constructor(checks){
+  constructor(checks=[]){
     let cont = document.createElement('div');
-    cont.id='check-cont';
+    //cont.id='check-cont';
     this.view = new ViewGroup({
       cont:cont,
-      type:'mlt'
+      type:'mtr',
+      qactions:{}
+
     });
     this.forms = [];
-    for(let c in checklists.contents){
-      this.forms.push(new CheckListForm(document.createElement('div'),checklists.contents[c],checklists.doms[c]));
-      this.view.ADDview(c,this.forms[this.forms.length-1].cont);
+    console.log(checks);
+    if(!checks==undefined||checks.length===0){
+      console.log('No Checks')
+      this.ADDgroup('System 1');
+    }else{
+      for(let x=0;x<checks.length;x++){ //INIT checks
+        let agroup = {};
+        for(let cl in checks[x]){
+          if(checklists.contents[cl]){
+            agroup[cl]=checks[x][cl];
+          }else{console.log('bad list')}
+        }
+        this.ADDgroup(checks[x].name,agroup);
+      }
     }
-
     //HideAll(cont);
-    Clicktoclose(cont);
+    //Clicktoclose(cont);
+
   }
+  ADDgroup(name,group={system:null,cooling:null,heating:null}){
+    let cview = new ViewGroup({
+      cont:document.createElement('div'),
+      type:'mlt'
+    });
+
+    this.forms = [];
+    for(let c in group){
+      this.forms.push(new CheckListForm(document.createElement('div'),checklists.contents[c],checklists.doms[c]));
+      cview.ADDview(c,this.forms[this.forms.length-1].cont);
+      this.forms[this.forms.length-1].form=group[c];
+    }
+    this.view.ADDview(name,cview.cont);
+  }
+  //REMOVEgroup(){}
 }
