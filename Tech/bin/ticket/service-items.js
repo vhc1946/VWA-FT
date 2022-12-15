@@ -28,6 +28,7 @@ export class TicketServiceItems{
       type:'mlt',
       swtchEve:(cont,view,button)=>{
         cont.getElementsByClassName('currsi')[0].innerText = view.title;
+        console.log('TITLE',view.title);
         this.SETcurrtab(view.title);
         $(cont.getElementsByClassName('currsi')[0]).click();
       },
@@ -97,19 +98,20 @@ export class TicketServiceItems{
     });
 
     this.currsi=this.view.cont.getElementsByClassName('currsi')[0];
-    this.currtab=null;
+    this.currtab=0;
     //attach price book, want to move
     this.pricebook = pricebook; // FlatRateTable passed from parent
 
     this.info = [];
     this.repairs = [];
 
+    if(repairs[0]==undefined||repairs.length===0){console.log(repairs);repairs=[];}
+
     for(let i=0;i<items.length;i++){//Loop ticket.serviceitems
       if(repairs[i]==undefined){
         console.log("Correcting empty repairs for index ", i)
         repairs.push([])
       }
-
       this.addItem(items[i], repairs[i])
     }
 
@@ -121,7 +123,8 @@ export class TicketServiceItems{
     });
 
     $(this.view.buttons.children[0]).click();
-
+    this.SETcurrtab(this.currsi.innerText);
+    console.log('First run',this.currtab,this.currsi.innerText);
     this.view.cont.getElementsByClassName('si-delete')[0].addEventListener('click',(ele)=>{DropNote('tr','Delete Service Item','yellow');});
     this.view.cont.getElementsByClassName('si-add')[0].addEventListener('click',(ele)=>{
       this.TOGGLEaddinput();
@@ -133,10 +136,11 @@ export class TicketServiceItems{
         //
         DropNote('tr',`Adding ${name.value}`);
 
-        
-        this.addItem({tagid: name.value})
 
-        this.currsi.innerText=name.value
+        this.addItem({tagid: name.value});
+
+        this.currsi.innerText=name.value;
+        this.SETcurrtab(this.currsi.innerText);
 
         name.value = '';
         this.TOGGLEaddinput();
@@ -145,6 +149,8 @@ export class TicketServiceItems{
     //setup flatrate add event
     pricebook.cont.addEventListener('click',(ele)=>{
       let row  = FINDparentele(ele.target,'wo-item-row');
+
+      console.log(this.currtab,this.repairs.length);
       this.repairs[this.currtab].ADDitem(gendis.GETrowTOobject(row));
     });
   }
@@ -180,9 +186,10 @@ export class TicketServiceItems{
   //get currtab as index
   SETcurrtab(tagid){
     for(let x=0;x<this.info.length;x++){
-      if(this.info[x].form.tagid===tagid){console.log(x);this.currtab=x;break;}
+      if(this.info[x].form.tagid===tagid){this.currtab=x;break;}
     }
   }
+
   TOGGLEitemlist(hide=false){
     let box = this.view.buttons;
     let exbuttons = this.view.cont.getElementsByClassName('si-menu-buttons')[0];
