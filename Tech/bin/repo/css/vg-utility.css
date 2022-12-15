@@ -28,6 +28,7 @@
   color: var(--text-light);
   margin-right: 1px;
   text-align: center;
+  
 }
 [class*="-action-button"]:hover{
   background-color: gray;

@@ -73,7 +73,7 @@ export class SIrepairform extends FormList{
     <div class="sr-pl"></div>
     <div class="sr-price"></div>
     <input class="sr-qty"></div>
-    <div class="sr-price"></div>
+    <div class="sr-cost"></div>
     <div>
       <div class="sr-appr vg-checkbox"></div>
     </div>
@@ -91,6 +91,7 @@ export class SIrepairform extends FormList{
   }
 
   ADDrepair(item=null){
+    console.log(item);
     if(item){
       item = aflatrepair(item);
 
@@ -103,6 +104,7 @@ export class SIrepairform extends FormList{
       row.getElementsByClassName('sr-pl')[0].innerText = item.pl;
       row.getElementsByClassName('sr-qty')[0].value = item.qty;
       row.getElementsByClassName('sr-price')[0].innerText = item.price;
+      row.getElementsByClassName('sr-cost')[0].innerText = item.price * item.qty;
       if(item.appr){row.getElementsByClassName('sr-appr')[0].classList.add('vg-checkbox-checked');}
 
       row.getElementsByClassName('sr-appr')[0].addEventListener('click',(ele)=>{

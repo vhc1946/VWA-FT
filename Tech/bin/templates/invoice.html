@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <link rel="stylesheet" href="./invoice.css" />
+      <link rel="stylesheet" href="../repo/css/vg-general.css" />
+    </head>
+    <body>
+        <img id='header-logo'src="../repo/assets/images/Header.jpg"/>  
+        <div class="invoice-top">
+            <div class="invoice-section-client">
+                <div class="invoice-sectionhead">SOLD TO:</div>
+                <div>
+                    <div class="invoice-info-client">Client Name</div>
+                    <div class="invoice-info-street">1234 Street Dr</div>
+                    <div class="invoice-info-city">Anyplace, MO 60000</div>
+                </div>
+            </div>
+            <div class="invoice-section-location">
+                <div class="invoice-sectionhead">JOB LOCATION:</div>
+                <div>
+                    <div class="invoice-info-lstreet">1234 Street Dr</div>
+                    <div class="invoice-info-lcity">Anyplace, MO 60000</div>
+                </div>
+            </div>
+            <div class="invoice-section-info">
+                <label class="invoice-sectionlabel">Invoice Number:</label><div class="invoice-info-invnum">Test</div>
+                <label class="invoice-sectionlabel">Invoice Date:</label><div class="invoice-info-invdate">Test</div>
+                <label class="invoice-sectionlabel">Terms:</label><div class="invoice-info-terms">Test</div>
+                <label class="invoice-sectionlabel">Customer Code:</label><div class="invoice-info-custcode">Test</div>
+                <label class="invoice-sectionlabel">Reference:</label><div class="invoice-info-reference">Test</div>
+                <label class="invoice-sectionlabel">Work Order #:</label><div class="invoice-info-wonum">Test</div>
+                <label class="invoice-sectionlabel">Work Order Type:</label><div class="invoice-info-wotype">Test</div>
+                <label class="invoice-sectionlabel">Job Location:</label><div class="invoice-info-location">Test</div>
+                <label class="invoice-sectionlabel">Starting Date:</label><div class="invoice-info-strtdate">Test</div>
+                <label class="invoice-sectionlabel">Completion Date:</label><div class="invoice-info-compdate">Test</div>
+            </div>
+        </div>
+        <div class="invoice-body">
+            <div class="invoice-descbox">
+                <div class="invoice-info-description">Test Text</div>
+            </div>
+            <table class="invoice-totals">
+                <tr>
+                    <td>
+                        <label class="invoice-sectionlabel">Subtotal</label>
+                    </td>
+                    <td>
+                        <div class="invoice-info-subtotal">420.00</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="invoice-sectionlabel">Total Invoice</label>
+                    </td>
+                    <td>
+                        <div class="invoice-info-total">420.00</div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
