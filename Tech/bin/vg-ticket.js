@@ -26,6 +26,7 @@ window.addEventListener('beforeunload',(ele)=>{ //here for page refresh
 });
 
 
+var setpresent=()=>{}
 // Setup Page //
 var qactions = {
   present:{
@@ -39,7 +40,7 @@ var qactions = {
         box.style.left = "-5000px";
       }
       else{
-        presentation.SETpresent(ticket.ticket);
+        setpresent(ticket.ticket);
         box.style.left = "0px";}
     }
   }
@@ -94,8 +95,8 @@ $(document.getElementById(titlebar.tbdom.page.settings)).hide();
 // /var ticket = CREATEticket();
 var ticket = new ServiceTicket(currticket,fbstore.list);
 var presentation = new ServicePresentation(document.createElement('div'),currticket,fbstore.list.TRIMlist({book:'RES'}));
+setpresent = presentation.SETpresent;
 // final summary
-
 
 
 
