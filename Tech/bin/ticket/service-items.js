@@ -170,7 +170,7 @@ export class TicketServiceItems{
     this.info.push(new SIform(document.createElement('div')));
     var index = this.info.length-1
     sitemview.ADDview('Info',this.info[index].cont);
-    this.info.form = item; //load info
+    this.info[index].form = item; //load info
     console.log(this.repairs)
     //add/init service repairs
     this.repairs.push(new SIrepairform(document.createElement('div'),this.pricebook));

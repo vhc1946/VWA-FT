@@ -26,7 +26,11 @@ window.addEventListener('beforeunload',(ele)=>{ //here for page refresh
 });
 
 
-var setpresent=()=>{}
+// Setup ticket view groups ////////////////////////////////////////////////////
+// /var ticket = CREATEticket();
+var ticket = new ServiceTicket(currticket,fbstore.list);
+//var presentation = new ServicePresentation(document.createElement('div'),currticket,fbstore.list.TRIMlist({book:'RES'}));
+// final summary
 // Setup Page //
 var qactions = {
   present:{
@@ -40,7 +44,7 @@ var qactions = {
         box.style.left = "-5000px";
       }
       else{
-        setpresent(ticket.ticket);
+        //presentation.SETpresent(ticket.ticket);
         box.style.left = "0px";}
     }
   }
@@ -89,15 +93,6 @@ document.getElementById(titlebar.tbdom.utils.buttons.home).addEventListener('cli
 //$(document.getElementById(titlebar.tbdom.page.user)).hide(); //hide the user section of title bar
 $(document.getElementById(titlebar.tbdom.page.settings)).hide();
 ////////////////
-
-
-// Setup ticket view groups ////////////////////////////////////////////////////
-// /var ticket = CREATEticket();
-var ticket = new ServiceTicket(currticket,fbstore.list);
-var presentation = new ServicePresentation(document.createElement('div'),currticket,fbstore.list.TRIMlist({book:'RES'}));
-setpresent = presentation.SETpresent;
-// final summary
-
 
 
 document.getElementsByClassName('min-page-hide-button')[0].addEventListener('click', (ele)=>{   // Home Button

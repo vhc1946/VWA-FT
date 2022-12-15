@@ -52,7 +52,6 @@ export class ServiceTicket{
       //load blank ticket
     }
 
-
     this.port={
       info:new vcontrol.ViewGroup({
         type:'mtl'

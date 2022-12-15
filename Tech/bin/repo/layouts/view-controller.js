@@ -188,33 +188,43 @@ class ViewGroup{
       console.log('Container id:',this.group.id,' May NOT Exist...');
       return null;
     }
-    view.title=name;
-    view.classList.add(vcdom.port.view,vcdom.port.selected);
-    this.port.appendChild(view);
-    var button = document.createElement('div');//create tab button and add
-    button.innerText = name
-    button.title = name; //change to .title
-    button.classList.add(vcdom.menu.button,vcdom.menu.selected);
+    let fview = this.FINDview(name);
+    if(!fview){//does not exist
+      view.title=name;
+      view.classList.add(vcdom.port.view,vcdom.port.selected);
+      this.port.appendChild(view);
+      var button = document.createElement('div');//create tab button and add
+      button.innerText = name
+      button.title = name; //change to .title
+      button.classList.add(vcdom.menu.button,vcdom.menu.selected);
 
-    button.addEventListener('click',(ele)=>{
-      if(ele.target.classList.contains(vcdom.menu.button)){
-        this.SWITCHview(view,ele.target);
-      }
-    });
-    if(del){
-      button.appendChild(document.createElement('img')).src =assets.viewclose;
-      button.lastChild.classList.add(vcdom.util.close);
-      button.lastChild.addEventListener('dblclick',(ele)=>{
-        ele=FINDparentele(ele.target,vcdom.menu.button);
-        if(ele){
-          console.log('Closing view..');
-          this.delEve(); //optional delete process
-          this.REMOVEview(ele.target);
+      button.addEventListener('click',(ele)=>{
+        if(ele.target.classList.contains(vcdom.menu.button)){
+          this.SWITCHview(view,ele.target);
         }
       });
+      if(del){
+        button.appendChild(document.createElement('img')).src =assets.viewclose;
+        button.lastChild.classList.add(vcdom.util.close);
+        button.lastChild.addEventListener('dblclick',(ele)=>{
+          let butt=FINDparentele(ele.target,vcdom.menu.button);
+          if(butt){
+            console.log('Closing view..');
+            this.delEve(); //optional delete process
+            this.REMOVEview(butt);
+          }
+        });
+      }
+      this.buttons.appendChild(button);
+
+      return view;
+    }else{
+      console.log('does exist')
+      //open the found view
+
+      this.FINDbutton(name).click();
+      return null;
     }
-    this.buttons.appendChild(button);
-    return view;
   }
 
   ADDqactions(qacts){
@@ -233,11 +243,12 @@ class ViewGroup{
     var reset = false;
     if(button.classList.contains(vcdom.menu.selected)){reset=true}
 
-    this.port.removeChild(this.FINDview(this.group,button.title));
-    this.menu.removeChild(button);
+    this.port.removeChild(this.FINDview(button.title));
+    this.buttons.removeChild(button);
+
     if(reset){
       try{this.port.children[this.port.children.length-1].classList.add(vcdom.port.selected);}catch{}
-      try{this.menu.children[this.menu.children.length-1].classList.add(vcdom.menu.selected);}catch{}
+      try{this.buttons.children[this.menu.children.length-1].classList.add(vcdom.menu.selected);}catch{}
       if(this.port.children.length==0){ //add default view
         //port.appendChild(document.createElement('div'));
         //port.lastChild.innerText = 'SELECT VIEW';
@@ -268,8 +279,8 @@ class ViewGroup{
 
   FINDbutton(name){
     let buts = this.buttons.children;
-    for(let x=0;x<this.buts.length;x++){
-      if(this.buts[x].title==name){return this.buts[x]}
+    for(let x=0;x<buts.length;x++){
+      if(buts[x].title===name){return buts[x]}
     }
     return null;
   }

@@ -25,7 +25,7 @@ var STARTticket=(wonum)=>{
                 japi.GETserviceitems(ticket.wo.custcode).then(
                     result=>{
                         ticket.sitems = result;
-                        ticket.repairs={}; //init repair list
+                        ticket.repairs=[]; //init repair list
                         havesi=true;
                         if(havesc){return resolve(ticket);}
                     }

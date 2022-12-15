@@ -33,6 +33,124 @@ var Clicktoclose=(cont)=>{
 
 // First two characters = in / ou / ai / ac
 // Next four characters = cool / heat / info
+coolingchecks(toggledom)
+
+export var coolingcheck(gendom){
+  return {
+    dom:{
+
+          cont: 'cooling-rewards',
+          inputs: {
+              in_cool_densityalt: 'densityalt',
+              in_cool_wbentering: 'wbentering',
+              in_cool_wbleaving: 'wbleaving',
+              in_cool_dbentering: 'dbentering',
+              in_cool_dbleaving: 'dbleaving',
+              in_cool_tempdrop: 'tempdrop',
+              ou_cool_sucpress: 'sucpress',
+              ou_cool_headpress: 'headpress',
+              ou_cool_liqpress: 'liqpress',
+              ou_cool_dboutdoor: 'dboutdoor',
+              ou_cool_targetsh: 'targetsh',
+              ou_cool_actualsh: 'actualsh',
+              ou_cool_targetsc: 'targetsc',
+              ou_cool_actualsc: 'actualsc',
+              ou_cool_ratedamps: 'ratedamps',
+              ou_cool_actualamps: 'actualamps',
+              ou_cool_condfan: 'condfan',
+              ou_cool_condcoil: 'condcoil',
+              ou_cool_elecout: 'elecout'
+          },
+          valids: {}
+    },
+    contents:`
+        <div class="${gendom.cont}" class="cooling-rewards">
+            <div class="section-header">Cooling Rewards</div>
+            <div class="section-cont">
+                <div class="checklist-indoor">
+                    <div class="section-header">-Indoor</div>
+                    <div class="section-cont">
+                        <div class="checklist-cooling">
+                            <div class="section-header">--Cooling</div>
+                            <div class="section-cont">
+                                <div class="checklist-item">
+                                    <div>Density Altitude</div><input class="densityalt" type="number" placeholder="HARDCODE">
+                                </div>
+                                <div class="checklist-item">
+                                    <div>Wet Bulb - Entering</div><input class="wbentering" type="number" placeholder="">
+                                </div>
+                                <div class="checklist-item">
+                                    <div>Wet Bulb - Leaving</div><input class="wbleaving" type="number" placeholder="">
+                                </div>
+                                <div class="checklist-item">
+                                    <div>Dry Bulb - Entering</div><input class="dbentering" type="number" placeholder="">
+                                </div>
+                                <div class="checklist-item">
+                                    <div>Dry Bulb - Leaving</div><input class="dbleaving" type="number" placeholder="">
+                                </div>
+                                <div class="checklist-item">
+                                    <div>Temperature Drop</div><input class="tempdrop" type="number" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="checklist-outdoor">
+                    <div class="section-header">-Outdoor</div>
+                    <div class="section-cont">
+                        <div class="checklist-cooling">
+                            <div class="section-header">--Cooling</div>
+                            <div class="section-cont">
+                                <div class="checklist-item">
+                                    <div>Suction Pressure</div><input class="sucpress" type="number" placeholder="">
+                                </div>
+                                <div class="checklist-item">
+                                    <div>Head Pressure</div><input class="headpress" type="number" placeholder="">
+                                </div>
+                                <div class="checklist-item">
+                                    <div>Liquid Pressure</div><input class="liqpress" type="number" placeholder="">
+                                </div>
+                                <div class="checklist-item">
+                                    <div>Dry Bulb - Outdoor</div><input class="dboutdoor" type="number" placeholder="">
+                                </div>
+                                <div class="checklist-item">
+                                    <div>Target Superheat</div><input class="targetsh" type="number" placeholder="">
+                                </div>
+                                <div class="checklist-item">
+                                    <div>Actual Superheat</div><input class="actualsh" type="number" placeholder="">
+                                </div>
+                                <div class="checklist-item">
+                                    <div>Target Subcooling</div><input class="targetsc" type="number" placeholder="">
+                                </div>
+                                <div class="checklist-item">
+                                    <div>Actual Subcooling</div><input class="actualsc" type="number" placeholder="">
+                                </div>
+                                <div class="checklist-item">
+                                    <div>Compressor Amps Rated</div><input class="ratedamps" type="number" placeholder="">
+                                </div>
+                                <div class="checklist-item">
+                                    <div>Compressor Amps Actual</div><input class="actualamps" type="number" placeholder="">
+                                </div>
+                                <div class="checklist-item">
+                                    <div>Condenser Fan Operation</div><input class="condfan" placeholder="Choose One">
+                                </div>
+                                <div class="checklist-item">
+                                    <div>Condenser Coil Condition</div><input class="condcoil" placeholder="Choose One">
+                                </div>
+                                <div class="checklist-item">
+                                    <div>Electrical Connections Secured</div><input class="elecout" placeholder="Choose One">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `,
+    calcs:0
+  }
+}
+
 var coolingdom = {
     cont: 'cooling-rewards',
     inputs: {
@@ -443,22 +561,22 @@ var systeminfo = `
     </div>
 `
 
-
+let coolchecks = coolingchecks();
 var checklists = {
   doms:{
     system:systemdom,
-    cooling:coolingdom,
+    cooling:coolchecks.dom,
     heating:heatingdom
   },
   contents:{
     system:systeminfo,
-    cooling:coolingrewards,
+    cooling:coolchecks.contents,
     heating:heatingrewards
   }
 }
 
 export class ServiceChecks{
-  constructor(checks=[]){
+  constructor(checks={}){
     let cont = document.createElement('div');
     //cont.id='check-cont';
     this.view = new ViewGroup({
@@ -517,19 +635,19 @@ export class ServiceChecks{
 
     });
     this.forms = [];
-    console.log(checks);
-    if(!checks==undefined||checks.length===0){
+    console.log(Object.keys(checks).length)
+    if(checks===undefined||Object.keys(checks).length===0){//default if no checks
       console.log('No Checks')
       this.ADDgroup('System 1');
     }else{
-      for(let x=0;x<checks.length;x++){ //INIT checks
-        let agroup = {};
-        for(let cl in checks[x]){
+      for(let c in checks){ //INIT checks
+        let agroup = {}; //to pull from pool
+        for(let cl in checks[c]){
           if(checklists.contents[cl]){
-            agroup[cl]=checks[x][cl];
+            agroup[cl]=checks[c][cl];
           }else{console.log('bad list')}
         }
-        this.ADDgroup(checks[x].name,agroup);
+        this.ADDgroup(c,agroup);
       }
     }
 
@@ -539,11 +657,9 @@ export class ServiceChecks{
     });
     this.view.cont.getElementsByClassName('si-add-button')[0].addEventListener('click',(ele)=>{
       let name = this.view.cont.getElementsByClassName('si-add-input')[0];
-
-      
-
       if(name.value != ''){
         DropNote('tr',`Adding ${name.value}`);
+        DropNote('tr',`${name.value} Already Added`,'yellow');
 
 
         this.ADDgroup(name.value);
@@ -562,13 +678,16 @@ export class ServiceChecks{
       type:'mlt'
     });
 
-    this.forms = [];
-    for(let c in group){
-      this.forms.push(new CheckListForm(document.createElement('div'),checklists.contents[c],checklists.doms[c]));
-      cview.ADDview(c,this.forms[this.forms.length-1].cont);
-      this.forms[this.forms.length-1].form=group[c];
+    if(this.view.ADDview(name,cview.cont, true)){
+      console.log('not added')
+      this.forms = [];
+      for(let c in group){
+        this.forms.push(new CheckListForm(document.createElement('div'),checklists.contents[c],checklists.doms[c]));
+        let nview = cview.ADDview(c,this.forms[this.forms.length-1].cont);
+
+        this.forms[this.forms.length-1].form=group[c];
+      }
     }
-    this.view.ADDview(name,cview.cont, true);
   }
   //REMOVEgroup(){}
 
