@@ -1,3 +1,5 @@
+
+import {ServicePricing} from './service-pricing.js';
 //arepair
 
 //aservicepresentation(){}
@@ -73,7 +75,8 @@ export class ServicePresentation{
   constructor(cont,data,pricebook){
     this.cont = cont;
     this.cont.innerHTML=this.contents;
-    //this.pricebook = new ServicePricing();
+    this.data = data; //ticket data
+    this.pricebook = new ServicePricing(pricebook); //ticket book
 
     //this.conform = VHCform(conform.cont);
     //this.conform.setinputs(this.dom.contract.form.inputs);
@@ -81,6 +84,8 @@ export class ServicePresentation{
     //this.conform.cont.addEventListener('change',(ele)=>{
     //  console.log(cfdom.form);
     //});
+
+    this.contract='PRE'
     this.SETpresent(data);
   }
 
@@ -201,25 +206,31 @@ export class ServicePresentation{
   `
 
   SETpresent = (wodata) => {
-    console.log(wodata);
+    console.log('To Present > ',wodata);
     if (wodata.sitems != null) {
       document.body.appendChild(this.cont);  // Creates presentation
-      document.getElementsByClassName(this.dom.head)[0].appendChild(document.createElement('div')).innerHTML = cfcontent; // Appends Contract Form within presentation
+      //document.getElementsByClassName(this.dom.head)[0].appendChild(document.createElement('div')).innerHTML = cfcontent; // Appends Contract Form within presentation
 
       let slist = document.getElementById(this.dom.systems);
 
-      let rprice=0; //temp for reg book price
-      let mprice=0; //temp for mem book price
+      let rprice=0; //item reg price
+      let mprice=0; //item member price
+
+      let trprice=0; //total reg price
+      let tmprice=0; //total member price
+      let savings=0; //total savings
+
       slist.innerHTML = '';
 
       for (let x = 0; x < wodata.sitems.length; x++) {  // Sets each system
-        let s = slist.appendChild(document.createElement('div'));
-        s.classList.add(this.dom.system.cont);
-        s.appendChild(document.createElement('div')).innerText = wodata.sitems[x].tagid;
-        let rlist = s.appendChild(document.createElement('div'));
-        rlist.classList.add(this.dom.system.repairs);
+        if(wodata.repairs[x].length!==0){//only display if repairs
+          let s = slist.appendChild(document.createElement('div'));
+          s.classList.add(this.dom.system.cont);
+          s.appendChild(document.createElement('div')).innerText = wodata.sitems[x].tagid;
+          let rlist = s.appendChild(document.createElement('div'));
+          rlist.classList.add(this.dom.system.repairs);
 
-        for (let y = 0; y < wodata.repairs[x].length; y++) {  // Sets each repair for given system
+          for (let y = 0; y < wodata.repairs[x].length; y++) {  // Sets each repair for given system
           rprice = 0;
           mprice = 0;
           //tell what column repcost goes to
@@ -230,35 +241,34 @@ export class ServicePresentation{
           let r = rlist.appendChild(document.createElement('div'));
 
           r.classList.add(this.dom.system.repair.cont);
-          r.appendChild(document.createElement('div')).innerText = wodata.repairs[x][y].desc;
+          r.appendChild(document.createElement('div')).innerText = wodata.repairs[x][y].descr;
 
-          //rprice = this.GETbookprice(wodata.repairs[x][y].task,this.wo.reg);
+          rprice = this.pricebook.GETbookprice(wodata.repairs[x][y].task);
           r.appendChild(document.createElement('div')).innerText =  rprice;
-          /*
-          this.wo.build.regprice += (wodata.repairs[x][y].appr ? rprice : 0);
+          trprice += (wodata.repairs[x][y].appr ? rprice : 0);
 
           if(wodata.repairs[x][y].task=='DIAG'){ //special case for diagnostic fee
-            if(this.wo.hascntrct){
-              mprice = this.pricing.GETbookprice(wodata.repairs[x][y].task,this.wo.cntrct);
-            }else{mprice = this.GETbookprice(wodata.repairs[x][y].task,this.wo.reg);}
-          }else{mprice = this.GETbookprice(wodata.repairs[x][y].task,this.wo.cntrct);}
+            if(wodata.contract && Object.keys(wodata.contract).length!==0){
+              mprice = this.pricebook.GETbookprice(wodata.repairs[x][y].task,this.contract);
+            }else{mprice = this.pricebook.GETbookprice(wodata.repairs[x][y].task);}
+          }else{mprice = this.pricebook.GETbookprice(wodata.repairs[x][y].task,this.contract);}
 
           r.appendChild(document.createElement('div')).innerText = mprice;
-          this.wo.build.memprice += (wodata.repairs[x][y].appr ? mprice : 0);
+          tmprice += (wodata.repairs[x][y].appr ? mprice : 0);
           r.appendChild(document.createElement('div')).innerText = rprice - mprice;
-          this.wo.build.savings += (wodata.repairs[x][y].appr ? rprice - mprice :0);
+          savings += (wodata.repairs[x][y].appr ? rprice - mprice :0);
 
           if(!wodata.repairs[x][y].appr){
             r.classList.add(this.dom.system.repair.unapproved);
           }
           r.appendChild(document.createElement('div')).innerText = wodata.repairs[x][y].appr ? 'YES':'NO';
-          */
+        }
         }
       }
       //document.getElementById(this.dom.memlevel).innerText = this.rewardform.GETmemhead(document.getElementById(this.dom.contract.form.name).value) || this.wo.cntrct;
-      //document.getElementById(this.dom.invest.regprice).innerText = this.wo.build.regprice;
-      //document.getElementById(this.dom.invest.memprice).innerText = this.wo.build.memprice;
-      //document.getElementById(this.dom.invest.savings).innerText = this.wo.build.savings;
+      document.getElementById(this.dom.invest.regprice).innerText = trprice;
+      document.getElementById(this.dom.invest.memprice).innerText = tmprice;
+      document.getElementById(this.dom.invest.savings).innerText = savings;
       //document.getElementById(this.dom.invest.conmonth).innerText = this.rewardform.GETformprice();
     }
   }

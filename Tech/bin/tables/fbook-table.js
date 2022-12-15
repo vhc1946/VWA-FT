@@ -1,5 +1,6 @@
 
 import * as gendis from '../repo/modules/vg-tables.js';
+import {FINDparentele} from '../repo/tools/vg-displaytools.js';
 import {ObjList} from '../repo/tools/vg-lists.js';
 import {aflatrepair} from '../repo/ds/jonas/flatratebook.js';
 
@@ -38,34 +39,31 @@ export class FlatRateTable{
       }
     }
 
-    //add misc repairs to header of flatrate table
-    //events need to be returned to
-
     this.SETfilters();
   }
 
   SETfilters(){
-    document.getElementsByClassName('min-page-menu')[0].appendChild(gendis.SETrowFROMobject({task:''},true));
+    document.getElementsByClassName('min-page-menu')[0].appendChild(gendis.SETrowFROMobject({task:'',descr:''},true));
     let filterrow = document.getElementsByClassName('min-page-menu')[0].lastChild;
     filterrow.classList.add('wo-filter-row');
-    filterrow.children[0].setAttribute('placeholder','Search');
+    filterrow.children[0].setAttribute('placeholder','Task ID');
+    filterrow.children[1].setAttribute('placeholder','Description');
     filterrow.addEventListener('change',(ele)=>{
-      this.GETfilters();
+      let row = FINDparentele(ele.target,'wo-filter-row');
+      this.GETfilters(gendis.GETrowTOobject(row,true));
     });
 
     this.GETfilters();
   }
   GETfilters(flts){
     for(let f in flts){
-      if(flts[f]!=''){
-        this.fltrs[f]=flts[f];
-      }else if(flts[f]===''&&this.fltrs[f]){this.fltrs[f]=undefined;}
-
+      if(flts[f]!=''){this.fltrs[f]=flts[f];}
+      else if(flts[f]=='' && this.fltrs[f]){this.fltrs[f]=undefined;}
     }
-    this.SETrepairlist(this.master.TRIMlist(flts,true));
+    this.SETrepairlist();
   }
   SETrepairlist(){
-    gendis.BUILDtruetable(this.master.TRIMlist(this.fltrs),this.cont,false,'wo-item-row');
+    gendis.BUILDtruetable(this.master.TRIMlist(this.fltrs,true),this.cont,false,'wo-item-row');
   }
 
   CREATEmiscinputs(repadd=()=>{}){

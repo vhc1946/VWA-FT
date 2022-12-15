@@ -5,6 +5,7 @@
     - linking service item repairs to one fo
 */
 import * as gendis from '../repo/modules/vg-tables.js';
+import { DropNote } from '../repo/modules/vg-dropnote.js';
 import {FINDparentele} from '../repo/tools/vg-displaytools.js';
 
 import {ViewGroup} from '../repo/layouts/view-controller.js';
@@ -12,7 +13,6 @@ import {ViewGroup} from '../repo/layouts/view-controller.js';
 import {SIform} from '../forms/serviceitem-form.js';
 import {SIrepairform} from '../forms/servicerepairs-form.js';
 
-import { DropNote } from '../repo/modules/vg-dropnote.js';
 
 
 //repairs table
@@ -128,7 +128,9 @@ export class TicketServiceItems{
     });
     this.view.cont.getElementsByClassName('si-add-button')[0].addEventListener('click',(ele)=>{
       let name = this.view.cont.getElementsByClassName('si-add-input')[0];
+
       if(name.value != ''){
+        //
         DropNote('tr',`Adding ${name.value}`);
 
         

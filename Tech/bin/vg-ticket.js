@@ -12,7 +12,6 @@ var publicfolder = '/Tech/bin/css'; //not sure we need
 var fbstore = window.opener.datamart.fbstore;//fbstore holds connections to indexdb and an instance of ObjList
 console.log(window.opener.test);
 
-
 console.log('FLATRATE BOOK >',fbstore.list.list);
 
 // LOAD Ticket //
@@ -25,7 +24,6 @@ if(currticket){
 window.addEventListener('beforeunload',(ele)=>{ //here for page refresh
   localStorage.setItem(wolstore.toloadwo,JSON.stringify(currticket));
 });
-
 
 
 // Setup Page //
@@ -41,7 +39,7 @@ var qactions = {
         box.style.left = "-5000px";
       }
       else{
-        //presentation.SETpresent(ticket.ticket);
+        presentation.SETpresent(ticket.ticket);
         box.style.left = "0px";}
     }
   }
@@ -81,6 +79,9 @@ var mactions = {
 };
 
 titlebar.SETUPtitlebar('../bin/repo/',qactions,mactions,false); //login disabled
+
+
+
 document.getElementById(titlebar.tbdom.utils.buttons.home).addEventListener('click', (ele)=>{   // Home Button
   DropNote('tr','Going home','yellow');
 });
@@ -92,7 +93,8 @@ $(document.getElementById(titlebar.tbdom.page.settings)).hide();
 // Setup ticket view groups ////////////////////////////////////////////////////
 // /var ticket = CREATEticket();
 var ticket = new ServiceTicket(currticket,fbstore.list);
-var presentation = new ServicePresentation(document.createElement('div'),currticket);
+var presentation = new ServicePresentation(document.createElement('div'),currticket,fbstore.list.TRIMlist({book:'RES'}));
+// final summary
 
 
 
