@@ -470,18 +470,6 @@ export class ServiceChecks{
             '.si-menu-buttons.div':{
               attributes:{},
               children:{
-                '.si-delete.div':{
-                  attributes:{
-                    class:'icon-action-button'
-                  },
-                  children:{
-                    '.delete-button.img':{
-                      attributes:{
-                        src:'../bin/repo/assets/icons/trash.png'
-                      }
-                    }
-                  }
-                },
                 '.si-add.div':{
                   attributes:{
                     class:'icon-action-button'
