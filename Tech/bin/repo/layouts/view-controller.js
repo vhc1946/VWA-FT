@@ -202,7 +202,7 @@ class ViewGroup{
       }
     });
     if(del){
-      button.appendChild(document.createElement('img')).src ='';
+      button.appendChild(document.createElement('img')).src =assets.viewclose;
       button.lastChild.classList.add(vcdom.util.close);
       button.lastChild.addEventListener('dblclick',(ele)=>{
         ele=FINDparentele(ele.target,vcdom.menu.button);
