@@ -223,46 +223,46 @@ export class ServicePresentation{
       slist.innerHTML = '';
 
       for (let x = 0; x < wodata.sitems.length; x++) {  // Sets each system
-        if(wodata.repairs[x].length!==0){//only display if repairs
+        if(wodata.repairs[x]!=undefined && wodata.repairs[x].length!==0){//only display if repairs
           let s = slist.appendChild(document.createElement('div'));
           s.classList.add(this.dom.system.cont);
           s.appendChild(document.createElement('div')).innerText = wodata.sitems[x].tagid;
           let rlist = s.appendChild(document.createElement('div'));
           rlist.classList.add(this.dom.system.repairs);
-
+          console.log('Repairs',wodata.repairs);
           for (let y = 0; y < wodata.repairs[x].length; y++) {  // Sets each repair for given system
-          rprice = 0;
-          mprice = 0;
-          //tell what column repcost goes to
+            rprice = 0;
+            mprice = 0;
+            //tell what column repcost goes to
 
-          //find the memebership cost (if any)
+            //find the memebership cost (if any)
 
-          //fill the difference
-          let r = rlist.appendChild(document.createElement('div'));
+            //fill the difference
+            let r = rlist.appendChild(document.createElement('div'));
 
-          r.classList.add(this.dom.system.repair.cont);
-          r.appendChild(document.createElement('div')).innerText = wodata.repairs[x][y].descr;
+            r.classList.add(this.dom.system.repair.cont);
+            r.appendChild(document.createElement('div')).innerText = wodata.repairs[x][y].descr;
 
-          rprice = this.pricebook.GETbookprice(wodata.repairs[x][y].task);
-          r.appendChild(document.createElement('div')).innerText =  rprice;
-          trprice += (wodata.repairs[x][y].appr ? rprice : 0);
+            rprice = this.pricebook.GETbookprice(wodata.repairs[x][y].task);
+            r.appendChild(document.createElement('div')).innerText =  rprice;
+            trprice += (wodata.repairs[x][y].appr ? rprice : 0);
 
-          if(wodata.repairs[x][y].task=='DIAG'){ //special case for diagnostic fee
-            if(wodata.contract && Object.keys(wodata.contract).length!==0){
-              mprice = this.pricebook.GETbookprice(wodata.repairs[x][y].task,this.contract);
-            }else{mprice = this.pricebook.GETbookprice(wodata.repairs[x][y].task);}
-          }else{mprice = this.pricebook.GETbookprice(wodata.repairs[x][y].task,this.contract);}
+            if(wodata.repairs[x][y].task=='DIAG'){ //special case for diagnostic fee
+              if(wodata.contract && Object.keys(wodata.contract).length!==0){
+                mprice = this.pricebook.GETbookprice(wodata.repairs[x][y].task,this.contract);
+              }else{mprice = this.pricebook.GETbookprice(wodata.repairs[x][y].task);}
+            }else{mprice = this.pricebook.GETbookprice(wodata.repairs[x][y].task,this.contract);}
 
-          r.appendChild(document.createElement('div')).innerText = mprice;
-          tmprice += (wodata.repairs[x][y].appr ? mprice : 0);
-          r.appendChild(document.createElement('div')).innerText = rprice - mprice;
-          savings += (wodata.repairs[x][y].appr ? rprice - mprice :0);
+            r.appendChild(document.createElement('div')).innerText = mprice;
+            tmprice += (wodata.repairs[x][y].appr ? mprice : 0);
+            r.appendChild(document.createElement('div')).innerText = rprice - mprice;
+            savings += (wodata.repairs[x][y].appr ? rprice - mprice :0);
 
-          if(!wodata.repairs[x][y].appr){
-            r.classList.add(this.dom.system.repair.unapproved);
+            if(!wodata.repairs[x][y].appr){
+              r.classList.add(this.dom.system.repair.unapproved);
+            }
+            r.appendChild(document.createElement('div')).innerText = wodata.repairs[x][y].appr ? 'YES':'NO';
           }
-          r.appendChild(document.createElement('div')).innerText = wodata.repairs[x][y].appr ? 'YES':'NO';
-        }
         }
       }
       //document.getElementById(this.dom.memlevel).innerText = this.rewardform.GETmemhead(document.getElementById(this.dom.contract.form.name).value) || this.wo.cntrct;

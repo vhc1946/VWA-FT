@@ -33,124 +33,6 @@ var Clicktoclose=(cont)=>{
 
 // First two characters = in / ou / ai / ac
 // Next four characters = cool / heat / info
-coolingchecks(toggledom)
-
-export var coolingcheck(gendom){
-  return {
-    dom:{
-
-          cont: 'cooling-rewards',
-          inputs: {
-              in_cool_densityalt: 'densityalt',
-              in_cool_wbentering: 'wbentering',
-              in_cool_wbleaving: 'wbleaving',
-              in_cool_dbentering: 'dbentering',
-              in_cool_dbleaving: 'dbleaving',
-              in_cool_tempdrop: 'tempdrop',
-              ou_cool_sucpress: 'sucpress',
-              ou_cool_headpress: 'headpress',
-              ou_cool_liqpress: 'liqpress',
-              ou_cool_dboutdoor: 'dboutdoor',
-              ou_cool_targetsh: 'targetsh',
-              ou_cool_actualsh: 'actualsh',
-              ou_cool_targetsc: 'targetsc',
-              ou_cool_actualsc: 'actualsc',
-              ou_cool_ratedamps: 'ratedamps',
-              ou_cool_actualamps: 'actualamps',
-              ou_cool_condfan: 'condfan',
-              ou_cool_condcoil: 'condcoil',
-              ou_cool_elecout: 'elecout'
-          },
-          valids: {}
-    },
-    contents:`
-        <div class="${gendom.cont}" class="cooling-rewards">
-            <div class="section-header">Cooling Rewards</div>
-            <div class="section-cont">
-                <div class="checklist-indoor">
-                    <div class="section-header">-Indoor</div>
-                    <div class="section-cont">
-                        <div class="checklist-cooling">
-                            <div class="section-header">--Cooling</div>
-                            <div class="section-cont">
-                                <div class="checklist-item">
-                                    <div>Density Altitude</div><input class="densityalt" type="number" placeholder="HARDCODE">
-                                </div>
-                                <div class="checklist-item">
-                                    <div>Wet Bulb - Entering</div><input class="wbentering" type="number" placeholder="">
-                                </div>
-                                <div class="checklist-item">
-                                    <div>Wet Bulb - Leaving</div><input class="wbleaving" type="number" placeholder="">
-                                </div>
-                                <div class="checklist-item">
-                                    <div>Dry Bulb - Entering</div><input class="dbentering" type="number" placeholder="">
-                                </div>
-                                <div class="checklist-item">
-                                    <div>Dry Bulb - Leaving</div><input class="dbleaving" type="number" placeholder="">
-                                </div>
-                                <div class="checklist-item">
-                                    <div>Temperature Drop</div><input class="tempdrop" type="number" placeholder="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="checklist-outdoor">
-                    <div class="section-header">-Outdoor</div>
-                    <div class="section-cont">
-                        <div class="checklist-cooling">
-                            <div class="section-header">--Cooling</div>
-                            <div class="section-cont">
-                                <div class="checklist-item">
-                                    <div>Suction Pressure</div><input class="sucpress" type="number" placeholder="">
-                                </div>
-                                <div class="checklist-item">
-                                    <div>Head Pressure</div><input class="headpress" type="number" placeholder="">
-                                </div>
-                                <div class="checklist-item">
-                                    <div>Liquid Pressure</div><input class="liqpress" type="number" placeholder="">
-                                </div>
-                                <div class="checklist-item">
-                                    <div>Dry Bulb - Outdoor</div><input class="dboutdoor" type="number" placeholder="">
-                                </div>
-                                <div class="checklist-item">
-                                    <div>Target Superheat</div><input class="targetsh" type="number" placeholder="">
-                                </div>
-                                <div class="checklist-item">
-                                    <div>Actual Superheat</div><input class="actualsh" type="number" placeholder="">
-                                </div>
-                                <div class="checklist-item">
-                                    <div>Target Subcooling</div><input class="targetsc" type="number" placeholder="">
-                                </div>
-                                <div class="checklist-item">
-                                    <div>Actual Subcooling</div><input class="actualsc" type="number" placeholder="">
-                                </div>
-                                <div class="checklist-item">
-                                    <div>Compressor Amps Rated</div><input class="ratedamps" type="number" placeholder="">
-                                </div>
-                                <div class="checklist-item">
-                                    <div>Compressor Amps Actual</div><input class="actualamps" type="number" placeholder="">
-                                </div>
-                                <div class="checklist-item">
-                                    <div>Condenser Fan Operation</div><input class="condfan" placeholder="Choose One">
-                                </div>
-                                <div class="checklist-item">
-                                    <div>Condenser Coil Condition</div><input class="condcoil" placeholder="Choose One">
-                                </div>
-                                <div class="checklist-item">
-                                    <div>Electrical Connections Secured</div><input class="elecout" placeholder="Choose One">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `,
-    calcs:0
-  }
-}
-
 var coolingdom = {
     cont: 'cooling-rewards',
     inputs: {
@@ -561,16 +443,15 @@ var systeminfo = `
     </div>
 `
 
-let coolchecks = coolingchecks();
 var checklists = {
   doms:{
     system:systemdom,
-    cooling:coolchecks.dom,
+    cooling:coolingdom,
     heating:heatingdom
   },
   contents:{
     system:systeminfo,
-    cooling:coolchecks.contents,
+    cooling:coolingrewards,
     heating:heatingrewards
   }
 }

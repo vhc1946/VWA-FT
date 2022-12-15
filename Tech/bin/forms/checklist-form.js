@@ -5,6 +5,7 @@ export class CheckListForm extends VHCform{
     super(cont);
     this.cont.innerHTML = content;
 
+    console.log(config);
     this.setinputs(config.inputs||{});
 
     this.include = true;

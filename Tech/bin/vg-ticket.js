@@ -29,7 +29,7 @@ window.addEventListener('beforeunload',(ele)=>{ //here for page refresh
 // Setup ticket view groups ////////////////////////////////////////////////////
 // /var ticket = CREATEticket();
 var ticket = new ServiceTicket(currticket,fbstore.list);
-//var presentation = new ServicePresentation(document.createElement('div'),currticket,fbstore.list.TRIMlist({book:'RES'}));
+var presentation = new ServicePresentation(document.createElement('div'),currticket,fbstore.list.TRIMlist({book:'RES'}));
 // final summary
 // Setup Page //
 var qactions = {

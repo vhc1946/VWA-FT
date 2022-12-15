@@ -28,7 +28,6 @@ export class TicketServiceItems{
       type:'mlt',
       swtchEve:(cont,view,button)=>{
         cont.getElementsByClassName('currsi')[0].innerText = view.title;
-        console.log('TITLE',view.title);
         this.SETcurrtab(view.title);
         $(cont.getElementsByClassName('currsi')[0]).click();
       },
@@ -110,25 +109,22 @@ export class TicketServiceItems{
     for(let i=0;i<items.length;i++){//Loop ticket.serviceitems
       if(repairs[i]==undefined){
         console.log("Correcting empty repairs for index ", i)
-        repairs.push([])
+        repairs.push([]);
       }
-      this.addItem(items[i], repairs[i])
+      this.ADDitem(items[i], repairs[i]);
     }
 
-    this.view.port.addEventListener('click',(ele)=>{
-      this.TOGGLEitemlist(true);
-    });
-    this.currsi.addEventListener('click',(ele)=>{   // Service Items menu toggle
-      this.TOGGLEitemlist();
-    });
+    this.view.port.addEventListener('click',(ele)=>{this.TOGGLEitemlist(true);});
+
+    this.currsi.addEventListener('click',(ele)=>{this.TOGGLEitemlist();});
 
     $(this.view.buttons.children[0]).click();
-    this.SETcurrtab(this.currsi.innerText);
+
+    this.SETcurrtab(this.currsi.innerText);//shouldnt need
+
     console.log('First run',this.currtab,this.currsi.innerText);
     this.view.cont.getElementsByClassName('si-delete')[0].addEventListener('click',(ele)=>{DropNote('tr','Delete Service Item','yellow');});
-    this.view.cont.getElementsByClassName('si-add')[0].addEventListener('click',(ele)=>{
-      this.TOGGLEaddinput();
-    });
+    this.view.cont.getElementsByClassName('si-add')[0].addEventListener('click',(ele)=>{this.TOGGLEaddinput();});
     this.view.cont.getElementsByClassName('si-add-button')[0].addEventListener('click',(ele)=>{
       let name = this.view.cont.getElementsByClassName('si-add-input')[0];
 
@@ -137,7 +133,7 @@ export class TicketServiceItems{
         DropNote('tr',`Adding ${name.value}`);
 
 
-        this.addItem({tagid: name.value});
+        this.ADDitem({tagid: name.value});
 
         this.currsi.innerText=name.value;
         this.SETcurrtab(this.currsi.innerText);
@@ -149,8 +145,6 @@ export class TicketServiceItems{
     //setup flatrate add event
     pricebook.cont.addEventListener('click',(ele)=>{
       let row  = FINDparentele(ele.target,'wo-item-row');
-
-      console.log(this.currtab,this.repairs.length);
       this.repairs[this.currtab].ADDitem(gendis.GETrowTOobject(row));
     });
   }
@@ -158,9 +152,7 @@ export class TicketServiceItems{
   /*
     Adds a new repair item to the service items
   */
-  addItem(item, repairs=[]) {
-    console.log("Item: ", item)
-
+  ADDitem(item, repairs=[]) {
     let sitemview = new ViewGroup({
       type:'mtr',
       qactions:{['.item-header.div']:{value:item.descr}}
