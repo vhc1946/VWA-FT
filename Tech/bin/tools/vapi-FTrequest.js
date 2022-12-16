@@ -1,16 +1,17 @@
 
 import * as japi from '../repo/apis/vapi/vapi-jmart.js';
-
+import {aserviceticket} from '../repo/ds/tickets/vogel-serviceticket.js';
 import {DropNote} from '../repo/modules/vg-dropnote.js';
 
+/* TODO:
+   - add customer info
+*/
 var STARTticket=(wonum)=>{
   return new Promise((resolve,reject)=>{
     japi.GETwo(wonum).then(
         wo=>{
             if(wo){
-                let ticket = {};
-                ticket.history = {};
-                ticket.checks={}
+                let ticket = aserviceticket();
                 ticket.wo = wo;
                 let havesc = false;
                 let havesi = false;
@@ -25,12 +26,10 @@ var STARTticket=(wonum)=>{
                 japi.GETserviceitems(ticket.wo.custcode).then(
                     result=>{
                         ticket.sitems = result;
-                        ticket.repairs=[]; //init repair list
                         havesi=true;
                         if(havesc){return resolve(ticket);}
                     }
                 )
-
             }else{console.log('WO request fail');return resolve(null);}
         }
     )
@@ -58,6 +57,7 @@ var SYNCdatalist=()=>{
       localStorage.setItem('flbook',JSON.stringify(book.body.table));
     }
   )
+  //...other lists
 }
 
 export{
