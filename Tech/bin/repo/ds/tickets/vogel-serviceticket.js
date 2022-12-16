@@ -1,7 +1,10 @@
+
+
+//import awo
 export var aserviceticket=(st={})=>{
   if(!st){st={};}
   return{
-    wo:st.wo||null,
+    wo:awo(st.wo),
     contract:st.contract||null,
     checks:st.checks||{},
     sitems:st.sitems||[],
