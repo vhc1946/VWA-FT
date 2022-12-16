@@ -1,0 +1,19 @@
+#header-logo{
+    width: 100%;
+}
+.summary-body{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+[class*='summary-section-']{
+    padding: 5px;
+    border: 1px solid black;
+}
+.section-header{
+    font-weight: bold;
+}
+.checklist-item{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}

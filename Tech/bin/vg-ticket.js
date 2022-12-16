@@ -32,6 +32,9 @@ var ticket = new ServiceTicket(currticket,fbstore.list);
 var presentation = new ServicePresentation(document.createElement('div'),currticket,fbstore.list.TRIMlist({book:'RES'}));
 // final summary
 // Setup Page //
+
+
+// Titlebar Setup ///////////////////////////////////////////////////////////
 var qactions = {
   present:{
     id:'presentation-open',
@@ -40,11 +43,10 @@ var qactions = {
     onclick:(ele)=>{  // Presentation show/hide
       let box = document.getElementsByClassName('present-full-cont')[0];
       if(box.style.left == "0px"){
-        //pass to ticket
         box.style.left = "-5000px";
       }
       else{
-        //presentation.SETpresent(ticket.ticket);
+        presentation.SETpresent(ticket.ticket);  //pass to ticket
         box.style.left = "0px";}
     }
   }
@@ -85,15 +87,11 @@ var mactions = {
 
 titlebar.SETUPtitlebar('../bin/repo/',qactions,mactions,false); //login disabled
 
-
-
 document.getElementById(titlebar.tbdom.utils.buttons.home).addEventListener('click', (ele)=>{   // Home Button
   DropNote('tr','Going home','yellow');
 });
-//$(document.getElementById(titlebar.tbdom.page.user)).hide(); //hide the user section of title bar
-$(document.getElementById(titlebar.tbdom.page.settings)).hide();
-////////////////
-
+$(document.getElementById(titlebar.tbdom.page.settings)).hide();   //hide the settings section of title bar
+////////////////////////////////////////////////////
 
 document.getElementsByClassName('min-page-hide-button')[0].addEventListener('click', (ele)=>{   // Home Button
   $(document.getElementsByClassName('min-page-cont')[0]).toggle();

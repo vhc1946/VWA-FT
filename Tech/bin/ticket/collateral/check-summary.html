@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <link rel="stylesheet" href="./check-summary.css" />
+      <link rel="stylesheet" href="../repo/css/vg-general.css" />
+    </head>
+    <body>
+        <img id='header-logo'src="../repo/assets/images/Header.jpg"/>  
+        <div class="summary-body">
+            <div class="summary-section-info">
+                <div class="section-header">Info</div>
+                <div class="section-cont">
+                    <div class="checklist-item">
+                        <div>System Designation</div><div class="${dom.inputs.in_info_indes}">Test info</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div>Heating System Age</div><div class="${dom.inputs.in_info_heatage}">Test info</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div>Rated Capacity</div><div class="${dom.inputs.in_info_heatratedcap}">Test info</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div>Actual Capacity</div><div class="${dom.inputs.in_info_heatactualcap}">Test info</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div>Lost Efficiency</div><div class="${dom.inputs.in_info_heatlosteffic}">Test info</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div>System Condition</div><div class="${dom.inputs.in_info_incondition}">Test info</div>
+                    </div>
+                </div>
+            </div>
+            <div class="summary-section-cooling">
+                <div class="section-header">Indoor</div>
+                <div class="section-cont">
+                    <div class="checklist-item">
+                        <div>Density Altitude</div><div class="${dom.inputs.in_cool_densityalt}">Test info</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div>Wet Bulb - Entering</div><div class="${dom.inputs.in_cool_wbentering}">Test info</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div>Wet Bulb - Leaving</div><div class="${dom.inputs.in_cool_wbleaving}">Test info</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div>Dry Bulb - Entering</div><div class="${dom.inputs.in_cool_dbentering}">Test info</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div>Dry Bulb - Leaving</div><div class="${dom.inputs.in_cool_dbleaving}">Test info</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div>Temperature Drop</div><div class="${dom.inputs.in_cool_tempdrop}">Test info</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div>Drain Clear & Secure</div><div class="${dom.inputs.in_cool_drainclear}">Test info</div>
+                    </div>
+                </div>
+                <div class="section-header">Outdoor</div>
+                <div class="section-cont">
+                    <div class="checklist-item">
+                        <div>Suction Pressure</div><div class="${dom.inputs.ou_cool_sucpress}">Test info</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div>Head Pressure</div><div class="${dom.inputs.ou_cool_headpress}">Test info</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div>Liquid Pressure</div><div class="${dom.inputs.ou_cool_liqpress}">Test info</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div>Dry Bulb - Outdoor</div><div class="${dom.inputs.ou_cool_dboutdoor}">Test info</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div>Target Superheat</div><div class="${dom.inputs.ou_cool_targetsh}">Test info</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div>Actual Superheat</div><div class="${dom.inputs.ou_cool_actualsh}">Test info</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div>Target Subcooling</div><div class="${dom.inputs.ou_cool_targetsc}">Test info</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div>Actual Subcooling</div><div class="${dom.inputs.ou_cool_actualsc}">Test info</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div>Compressor Amps Rated</div><div class="${dom.inputs.ou_cool_ratedamps}">Test info</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div>Compressor Amps Actual</div><div class="${dom.inputs.ou_cool_actualamps}">Test info</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div>Condenser Fan Operation</div><div class="${dom.inputs.ou_cool_condfan}">Test info</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div>Condenser Coil Condition</div><div class="${dom.inputs.ou_cool_condcoil}">Test info</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div>Electrical Connections Secured</div><div class="${dom.inputs.ou_cool_elecout}">Test info</div>
+                    </div>
+                </div>
+            </div>
+            <div class="summary-section-heating">
+                <div class="section-header">Heating</div>
+                <div class="section-cont">
+                    <div class="checklist-item">
+                        <div>Drain Clear & Secure</div><div class="${dom.inputs.in_heat_drainclear}">Test info</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div>Heat Pump Lockout Temperature</div><div class="${dom.inputs.in_heat_hplockout}">Test info</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div>Thermostat Programmed</div><div class="${dom.inputs.in_heat_statprog}">Test info</div>
+                    </div>
+                </div>
+            </div>
+            <div class="summary-section-airflow">
+                <div class="section-header">Airflow</div>
+                <div class="section-cont">
+                    <div class="checklist-item">
+                        <div>Return Air Static</div><div class="${dom.inputs.in_airf_returnstatic}">Test info</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div>Rated CFM</div><div class="${dom.inputs.in_airf_ratedcfm}">Test info</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div>Building Pressure</div><div class="${dom.inputs.in_airf_buildpress}">Test info</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div>Particle Count</div><div class="${dom.inputs.in_airf_partcount}">Test info</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div>Filters Condition</div><div class="${dom.inputs.in_airf_filtercond}">Test info</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div>Evaporator Coil Condition</div><div class="${dom.inputs.in_airf_evapcond}">Test info</div>
+                    </div>
+                    <div class="checklist-item">
+                        <div>Belt Tight</div><div class="${dom.inputs.in_airf_belttight}">Test info</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="summary-section-access">
+            <div class="section-header">Accessories</div>
+            <div class="section-cont">
+                <div class="checklist-item">
+                    <div>Humidifier Operations</div><div class="${dom.inputs.in_acce_humdop}">Test info</div>
+                </div>
+                <div class="checklist-item">
+                    <div>Whole Home Air Cleaner</div><div class="${dom.inputs.in_acce_eacop}">Test info</div>
+                </div>
+                <div class="checklist-item">
+                    <div>Energy Recovery Ventilator</div><div class="${dom.inputs.in_acce_ervop}">Test info</div>
+                </div>
+                <div class="checklist-item">
+                    <div>Anti Microbial Lamp System</div><div class="${dom.inputs.in_acce_uvop}">Test info</div>
+                </div>
+                <div class="checklist-item">
+                    <div>CO Sensor </div><div class="${dom.inputs.in_acce_coop}">Test info</div>
+                </div>
+            </div>
+        </div>
+        <div class="summary-footer">
+            
+        </div>
+    </body>
+</html>
