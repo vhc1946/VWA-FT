@@ -41,15 +41,7 @@ manlist.INITmanagelist().then(
 
 window.techwos=techwos.twolist;
 
-var qactions = {
-  new:{
-    id:'search-wo',
-    src:'./bin/repo/assets/icons/file.png',
-    alt:'SEARCH',
-    title:'Search WO',
-    onclick:(ele)=>{SELECTview(document.getElementById('wo-center'),'Open WO');}
-  }
-};
+var qactions = {};
 var mactions = {
   datalist:{
     id:'refresh-datalist',
@@ -108,6 +100,10 @@ document.body.appendChild(appdock.cont);
 ////////////////////////////////////////////////////////////////////////////////
 
 // Tech Dash Navigation ////////////////////////////////////////////////////////
+document.getElementById('search-wo').addEventListener('click',(ele)=>{
+  SELECTview(document.getElementById('wo-center'),'Open WO');
+});
+
 document.getElementById(titlebar.tbdom.utils.buttons.home).addEventListener('click', (ele)=>{
     $(document.getElementById('vhc-app-dock')).show();
     $(document.getElementById('vg-wo-dash')).hide();

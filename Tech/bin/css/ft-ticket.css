@@ -125,7 +125,8 @@
 }
 .wo-reference-cont{
     display:grid;
-    grid-template-columns: repeat(4, 25%);
+    grid-template-columns: repeat(4, 24%);
+    column-gap: 1%;
 }
 .wo-pricing-cont{
     grid-column: 1/3;
