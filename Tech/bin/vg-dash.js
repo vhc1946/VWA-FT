@@ -11,6 +11,7 @@ import * as manlist from './store/tech-managelist.js';
 import {SENDrequestapi,SENDrequestadmin} from './repo/apis/vapi/vapicore.js';
 
 import * as techwos from './tables/techwo-table.js';
+import { aserviceticket } from './repo/ds/tickets/vogel-serviceticket.js';
 
 
 /*  Tech Dash
@@ -52,7 +53,6 @@ manlist.INITmanagelist().then(
   }
 )
 
-
 var qactions = {
   new:{
     id:'search-wo',
@@ -63,8 +63,6 @@ var qactions = {
   }
 };
 window.techwos=techwos.twolist;
-
-var qactions = {};
 
 var mactions = {
   datalist:{

@@ -1,5 +1,6 @@
 
 import {ServicePricing} from './service-pricing.js';
+import { VHCform } from '../repo/tools/vhc-forms.js';
 //arepair
 
 //aservicepresentation(){}
@@ -25,24 +26,24 @@ var cfdom = {
   }
 }
 var cfcontent = `
-  <div id="${cfdom.cont}">
-      <input id="${cfdom.form.name}" type="search" list="contract-name-list" />
-      <div id="${cfdom.form.cont}">
+  <div class="${cfdom.cont}">
+      <input class="${cfdom.form.name}" type="search" list="contract-name-list" placeholder="Select Plan Type"/>
+      <div class="${cfdom.form.cont}">
           <div class="${cfdom.form.option}">
               <div class="${cfdom.form.desc}" id="monthly-tag">Monthly Plan</div>
-              <input id="${cfdom.form.memappr}" type="checkbox" />
-              <div id="${cfdom.form.month}">24</div>
+              <input class="${cfdom.form.memappr}" type="checkbox" />
+              <div class="${cfdom.form.month}">24</div>
           </div>
 
           <div class="${cfdom.form.option}">
               <div class="${cfdom.form.desc}">Additional System(s)</div>
               <input class="${cfdom.form.qty}" type="number" />
-              <div id="${cfdom.form.inputs.sys}">21</div>
+              <div class="${cfdom.form.inputs.sys}">21</div>
           </div>
           <div class="${cfdom.form.option}">
               <div class="${cfdom.form.desc}">Additional Component(s)</div>
               <input class="${cfdom.form.qty}" type="number" />
-              <div id="${cfdom.form.inputs.comp}">12</div>
+              <div class="${cfdom.form.inputs.comp}">12</div>
           </div>
 
           <div id="enhance-tag">Enhancements</div>
@@ -50,22 +51,22 @@ var cfcontent = `
           <div class="${cfdom.form.option}">
               <div class="${cfdom.form.desc}">Standard Filters</div>
               <input class="${cfdom.form.qty}" type="number" />
-              <div id="${cfdom.form.inputs.stdfltr}">5</div>
+              <div class="${cfdom.form.inputs.stdfltr}">5</div>
           </div>
           <div class="${cfdom.form.option}">
               <div class="${cfdom.form.desc}">Humidifier Service/Pad</div>
               <input class="${cfdom.form.qty}" type="number" />
-              <div id="${cfdom.form.inputs.humpad}">5</div>
+              <div class="${cfdom.form.inputs.humpad}">5</div>
           </div>
           <div class="${cfdom.form.option}">
               <div class="${cfdom.form.desc}">Specialty Filters</div>
               <input class="${cfdom.form.qty}" type="number" />
-              <div id="${cfdom.form.inputs.spcfltr}">12</div>
+              <div class="${cfdom.form.inputs.spcfltr}">12</div>
           </div>
           <div class="${cfdom.form.option}">
               <div class="${cfdom.form.desc}">Time Saver Disc.</div>
               <input class="${cfdom.form.qty}" type="number" />
-              <div id="${cfdom.form.inputs.timesave}">-4</div>
+              <div class="${cfdom.form.inputs.timesave}">-4</div>
           </div>
       </div>
   </div>
@@ -77,13 +78,12 @@ export class ServicePresentation{
     this.cont.innerHTML=this.contents;
     this.data = data; //ticket data
     this.pricebook = new ServicePricing(pricebook); //ticket book
+    this.conform = new VHCform(this.cont.getElementsByClassName(cfdom.cont)[0]);
+    this.conform.setinputs(cfdom.form.inputs);
 
-    //this.conform = VHCform(conform.cont);
-    //this.conform.setinputs(this.dom.contract.form.inputs);
-
-    //this.conform.cont.addEventListener('change',(ele)=>{
-    //  console.log(cfdom.form);
-    //});
+    this.conform.cont.addEventListener('change',(ele)=>{
+      console.log(cfdom.form);
+    });
 
     this.contract='PRE'
     this.SETpresent(data);
@@ -153,7 +153,7 @@ export class ServicePresentation{
                 <div class="${this.dom.info.custcode}">CUSTCODE</div>
                 <div class="${this.dom.info.wonum}">wonum</div>
             </div>
-
+            ${cfcontent}
         </div>
 
         <div class="${this.dom.body}">

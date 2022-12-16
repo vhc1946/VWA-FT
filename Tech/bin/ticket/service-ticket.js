@@ -3,6 +3,7 @@ import {DropNote} from '../repo/modules/vg-dropnote.js';
 import * as gendis from '../repo/modules/vg-tables.js';
 import * as vcontrol from '../repo/layouts/view-controller.js';
 vcontrol.SETUPviewcontroller('../bin/repo/');
+import { aserviceticket, awo, aservicecontract } from '../repo/ds/tickets/vogel-serviceticket.js';
 
 import {TicketServiceItems} from './service-items.js';
 
@@ -38,7 +39,7 @@ var fbtable = document.getElementsByClassName('frbook-list')[0];
 
 export class ServiceTicket{
   constructor(ticket=null,pricing){
-    this.data = ticket;
+    this.data = aserviceticket(ticket);
 
     // Setup Price Book
     this.pricing = new FlatRateTable(pricing.TRIMlist({book:this.data.wo.pricebook}),fbtable);
@@ -101,7 +102,7 @@ export class ServiceTicket{
 
   get ticket(){
     let ttick={};
-    console.log(this.forms);
+    console.log("From get ticket: ", this.forms);
     for(let f in this.forms){
       //try{
         if(this.forms[f].form){
@@ -118,9 +119,18 @@ export class ServiceTicket{
     }
     this.data=ttick;
     return ttick
-
   }
-  set ticket(tick={}){this.data=tick;}
-  //puts the current ticket data to the screen
+
+  set ticket(tick={}){
+    if (this.forms[f].form) {
+      for(let x=0; x<this.forms[f].length;x++) {
+        this.forms[f][x].form = tick[f];
+      }
+    } else {
+      this.forms[f].form = tick[f];
+    }
+    console.log("From set ticket: ", this.forms);
+    this.data=tick;
+  }
 
 }
