@@ -11,3 +11,7 @@ export var aserviceticket=(st={})=>{
     repairs:st.repairs||[]
   }
 }
+
+export{
+  awo
+}
