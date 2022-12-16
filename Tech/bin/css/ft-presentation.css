@@ -17,7 +17,7 @@
 .wo-info-description{
     grid-column: 1 / span all;
 }
-#wo-present-contract-cont {
+.wo-present-contract-cont {
     border: 2px solid var(--vogel-blue);
     border-radius: 8px;
 }
@@ -44,7 +44,7 @@
     grid-column: 1 / span 3;
     margin-bottom: 10px;
 }
-#present-contract-name, #wo-present-membership {
+.present-contract-name, .wo-present-membership {
     width: 100%;
     text-align: center;
     font-size: larger;
@@ -54,19 +54,19 @@
     color: var(--contract-color);
     background-color: transparent;
 }
-#wo-present-membership{
+.wo-present-membership{
     grid-column:3;
 }
-#wo-present-contract-monthly{
+.wo-present-contract-monthly{
     grid-column:3;
 }
 [id*="present-contract-add"]::before{
     content:"$";
 }
-#present-contract-monthly::before{
+.present-contract-monthly::before{
     content:"$";
 }
-#monthly-tag{
+.monthly-tag{
     font-weight: bold;
 }
 #enhance-tag{
