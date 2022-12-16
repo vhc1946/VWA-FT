@@ -1,17 +1,17 @@
+import { awo } from "../wos/vogel-wos.js";
+import { aservicecontract } from "../contracts/vogel-servicecontracts.js";
 
-
-//import awo
-export var aserviceticket=(st={})=>{
+var aserviceticket=(st={})=>{
   if(!st){st={};}
   return{
     wo:awo(st.wo),
-    contract:st.contract||null,
+    contract:aservicecontract(st.contract),
     checks:st.checks||{},
     sitems:st.sitems||[],
     repairs:st.repairs||[]
   }
 }
 
-export{
-  awo
+export {
+  awo, aservicecontract, aserviceticket
 }
