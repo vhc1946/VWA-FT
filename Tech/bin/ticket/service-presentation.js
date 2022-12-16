@@ -78,12 +78,12 @@ export class ServicePresentation{
     this.data = data; //ticket data
     this.pricebook = new ServicePricing(pricebook); //ticket book
 
-    //this.conform = VHCform(conform.cont);
-    //this.conform.setinputs(this.dom.contract.form.inputs);
+    this.conform = VHCform(conform.cont);
+    this.conform.setinputs(this.dom.contract.form.inputs);
 
-    //this.conform.cont.addEventListener('change',(ele)=>{
-    //  console.log(cfdom.form);
-    //});
+    this.conform.cont.addEventListener('change',(ele)=>{
+      console.log(cfdom.form);
+    });
 
     this.contract='PRE'
     this.SETpresent(data);
