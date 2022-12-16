@@ -12,6 +12,3 @@ export var aserviceticket=(st={})=>{
   }
 }
 
-export{
-  awo
-}

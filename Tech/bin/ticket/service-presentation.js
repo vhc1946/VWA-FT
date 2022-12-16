@@ -199,6 +199,10 @@ export class ServicePresentation{
             </div>
             <div class="${this.dom.sig}">
                 <canvas class="signature-pad"></canvas>
+                <div class="signature-buttons">
+                  <div class="flat-action-button sig-clear">Clear</div>
+                  <div class="flat-action-button sig-save">Save</div>
+                </div>
             </div>
         </div>
 
@@ -271,6 +275,7 @@ export class ServicePresentation{
       document.getElementById(this.dom.invest.savings).innerText = savings;
       //document.getElementById(this.dom.invest.conmonth).innerText = this.rewardform.GETformprice();
     }
+  
+  
   }
-
 }
