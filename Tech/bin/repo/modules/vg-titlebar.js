@@ -57,6 +57,15 @@ var tdom = (rroot='')=>{
         [`#${tbdom.utils.groups.left}.div`]:{
           attributes:{},
           children:{
+          [`#${tbdom.utils.buttons.home}.img`]:{
+            attributes:{
+              class: "titlebar-button-action",
+              src: rroot + "assets/icons/V-Mark-red.png",
+              alt: "HOME",
+              title: "Home"
+            },
+            children: null
+          },
             [`#${tbdom.more.cont}.img`]:{
               attributes:{
                 class: "titlebar-button-action",
@@ -71,15 +80,6 @@ var tdom = (rroot='')=>{
                 style: "display:none"
               },
               children:null
-            },
-            [`#${tbdom.utils.buttons.home}.img`]:{
-              attributes:{
-                class: "titlebar-button-action",
-                src: rroot + "assets/icons/home.png",
-                alt: "HOME",
-                title: "Home"
-              },
-              children: null
             }
           }
         },
