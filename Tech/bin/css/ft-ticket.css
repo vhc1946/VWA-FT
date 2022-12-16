@@ -294,10 +294,10 @@
 
 
 /* Service Item Checklists */
-#check-cont .viewcontrol-quick-actions{
+.checklists-menu .viewcontrol-quick-actions{
     flex-grow: 0;
 }
-#check-cont .viewcontrol-menubox{
+.checklists-menu .viewcontrol-menubox{
     height: calc(100vh - 40px);
 }
 .checklist-cont{
