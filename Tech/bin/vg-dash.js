@@ -6,11 +6,25 @@ import { SELECTview } from './repo/modules/vg-floatviews.js';
 import { AppDock } from './repo/modules/appdock.js';
 import {FormList} from './repo/tools/vhc-formlist.js';
 
-import { STARTticket,SYNCdatalist } from './tools/vapi-FTrequest.js';
+import {STARTticket} from './tools/vapi-FTrequest.js';
 import * as manlist from './store/tech-managelist.js';
 import {SENDrequestapi,SENDrequestadmin} from './repo/apis/vapi/vapicore.js';
 
 import * as techwos from './tables/techwo-table.js';
+
+
+/*  Tech Dash
+
+  TODO:
+  - manage list
+  - better oraganize dash into modules that reflect the app dock
+  - rotate quick actions depending on module
+  - provide editable tech information
+  - sleep function that shows date and time on gray screen. Save ticket and clear
+    memory. Restart on mouse move.
+  - move "home"
+*/
+
 
 var dashdom = {
   cont:'vg-wo-dash',
@@ -28,7 +42,6 @@ var dashdom = {
   }
 }
 
-// SETUP title bar for dash /////////////////////////////
 var datamart=null;
 manlist.INITmanagelist().then(
   mlist=>{
@@ -39,9 +52,21 @@ manlist.INITmanagelist().then(
   }
 )
 
+<<<<<<< HEAD
+var qactions = {
+  new:{
+    id:'search-wo',
+    src:'./bin/repo/assets/icons/file.png',
+    alt:'SEARCH',
+    title:'Search WO',
+    onclick:(ele)=>{SELECTview(document.getElementById('wo-center'),'Open WO');}
+  }
+};
+=======
 window.techwos=techwos.twolist;
 
 var qactions = {};
+>>>>>>> 3ee152b628381903205c0896067cc76736e52b8e
 var mactions = {
   datalist:{
     id:'refresh-datalist',
@@ -49,69 +74,37 @@ var mactions = {
     ondblclick:(ele)=>{manlist.REFRESHmanagelist()}
   }
 };
-
 var login = titlebar.SETUPtitlebar(
   './bin/repo/',
   qactions,
   mactions,
   true,
-  (creds)=>{
-    techwos.twolist.REFRESHstore(creds.user).then(res=>{if(res){twdashlist.LOADlist(techwos.twolist.list);}})},
-  ()=>{console.log('logout');DropNote('tr','Logging Out','green');window.location.replace('../index.html')}
+  (creds)=>{ //on login
+    techwos.twolist.REFRESHstore(creds.user).then(res=>{if(res){twdashlist.LOADlist(techwos.twolist.list);}})
+  },
+  ()=>{// on logout
+    DropNote('tr','Logging Out','green');window.location.replace('../index.html')
+  }
 );//returns login Form
+document.getElementById(titlebar.tbdom.utils.buttons.home).addEventListener('click', (ele)=>{
+    $(document.getElementById('vhc-app-dock')).show();
+    $(document.getElementById('vg-wo-dash')).hide();
+});
 if(login.storecreds.user!=''){
-  console.log('LOGIN');
-  console.log(login.storecreds);
+  //console.log('LOGIN');
+  //console.log(login.storecreds);
   techwos.twolist.REFRESHstore(login.storecreds.user).then(res=>{
   twdashlist.form = techwos.twolist.list;
   })
 }
 
+// Pre-load / Setup dash modules
+// Work Order List Setup ////////////////////////////////////////////////////////
 var twdashlist = new FormList({
   cont:document.getElementById('vg-wo-dash'),
   srow:techwos.SETUProw
 });
 
-// Work Order List Setup ////////////////////////////////////////////////////////
-
-// App Dock Setup ///////////////////////////////////////////////////////////////
-var launchSpiffs=(ele)=>{
-    DropNote('tr','Module not ready.','yellow');
-}
-var launchWOs=(ele)=>{
-    $(document.getElementById('vhc-app-dock')).hide();
-    $(document.getElementById('vg-wo-dash')).show();
-}
-var launchPerf=(ele)=>{
-    DropNote('tr','Module not ready.','yellow');
-}
-var launchReso=(ele)=>{
-    DropNote('tr','Module not ready.','yellow');
-}
-var dockapps={
-    ['SPIFFs']:launchSpiffs,
-    ['Work Orders']:launchWOs,
-    ['Performance']:launchPerf,
-    ['Resources']:launchReso,
-}
-
-var appdock = new AppDock(document.createElement('div'),dockapps);
-document.body.appendChild(appdock.cont);
-////////////////////////////////////////////////////////////////////////////////
-
-// Tech Dash Navigation ////////////////////////////////////////////////////////
-document.getElementById('search-wo').addEventListener('click',(ele)=>{
-  SELECTview(document.getElementById('wo-center'),'Open WO');
-});
-
-document.getElementById(titlebar.tbdom.utils.buttons.home).addEventListener('click', (ele)=>{
-    $(document.getElementById('vhc-app-dock')).show();
-    $(document.getElementById('vg-wo-dash')).hide();
-});
-
-////////////////////////////////////////////////////////////////////////////////
-
-// WO Dash /////////////////////////////////////////////////////////////////////
 document.getElementById('openwo-number').addEventListener('keypress',(eve)=>{
     if(eve.key == 'Enter'){document.getElementById('submit-search').click();};
 });
@@ -146,3 +139,30 @@ document.getElementById('submit-search').addEventListener('click', (ele)=>{
     }
     $(document.getElementById('vg-float-frame-close')).click();
 });
+
+// App Dock Setup ///////////////////////////////////////////////////////////////
+var dockapps={
+    ['SPIFFs']:(ele)=>{
+        DropNote('tr','Module not ready.','yellow');
+    },
+    ['Work Orders']:(ele)=>{
+        $(document.getElementById('vhc-app-dock')).hide();
+        $(document.getElementById('vg-wo-dash')).show();
+    },
+    ['Performance']:(ele)=>{
+        DropNote('tr','Module not ready.','yellow');
+    },
+    ['Resources']:(ele)=>{
+        DropNote('tr','Module not ready.','yellow');
+    },
+}
+var appdock = new AppDock(document.createElement('div'),dockapps);
+document.body.appendChild(appdock.cont);
+////////////////////////////////////////////////////////////////////////////////
+
+// Tech Dash Navigation ////////////////////////////////////////////////////////
+document.getElementById(titlebar.tbdom.utils.buttons.home).addEventListener('click', (ele)=>{
+    $(document.getElementById('vhc-app-dock')).show();
+    $(document.getElementById('vg-wo-dash')).hide();
+});
+////////////////////////////////////////////////////////////////////////////////

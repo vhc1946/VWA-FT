@@ -8,9 +8,8 @@ import {ServicePresentation} from './ticket/service-presentation.js';
 
 var publicfolder = '/Tech/bin/css'; //not sure we need
 // Load Data //
-//fbstore.list = is the ObjList, and can be used as normal fbstore.list.TRIMlist()
+
 var fbstore = window.opener.datamart.fbstore;//fbstore holds connections to indexdb and an instance of ObjList
-console.log(window.opener.test);
 
 console.log('FLATRATE BOOK >',fbstore.list.list);
 
@@ -25,11 +24,10 @@ window.addEventListener('beforeunload',(ele)=>{ //here for page refresh
   localStorage.setItem(wolstore.toloadwo,JSON.stringify(currticket));
 });
 
-
 // Setup ticket view groups ////////////////////////////////////////////////////
-// /var ticket = CREATEticket();
 var ticket = new ServiceTicket(currticket,fbstore.list);
 var presentation = new ServicePresentation(document.createElement('div'),currticket,fbstore.list.TRIMlist({book:'RES'}));
+
 // final summary
 // Setup Page //
 

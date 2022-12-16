@@ -26,6 +26,12 @@ import {Contform} from '../forms/contract-form.js';
   - info
   - repairs
 
+
+  TODO::
+  - move Flatrate table to inside serive items
+  - give drop list to filtering
+  - finalize ticket structure
+  - finish set ticket(), take from contructor
 */
 
 var fbtable = document.getElementsByClassName('frbook-list')[0];
