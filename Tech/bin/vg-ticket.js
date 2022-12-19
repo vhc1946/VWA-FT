@@ -5,6 +5,7 @@ import {DropNote} from './repo/modules/vg-dropnote.js';
 import {SYNCticket, STARTticket} from './tools/vapi-FTrequest.js';
 import {ServiceTicket} from './ticket/service-ticket.js';
 import {ServicePresentation} from './ticket/service-presentation.js';
+import { DrawingPad } from './tools/signature-pad.js';
 
 var publicfolder = '/Tech/bin/css'; //not sure we need
 // Load Data //
@@ -96,52 +97,10 @@ document.getElementsByClassName('min-page-hide-button')[0].addEventListener('cli
 });
 
 
-const canvas = document.getElementsByClassName('signature-pad')[0];
-const ctx = canvas.getContext('2d');
-
-function resize(){
-  let ratio = Math.max(window.devicePixelRatio || 1,1);
-  ctx.canvas.width = canvas.offsetWidth * ratio;
-  ctx.canvas.height = canvas.offsetHeight * ratio;
-  canvas.getContext('2d').scale(ratio, ratio);
-}
-
-let coord = {x:0 , y:0};
-let paint = false;
-
-function getPosition(event){
-  coord.x = event.offsetX;
-  coord.y = event.offsetY;
-}
-
-function startPainting(event){
-  paint = true;
-  getPosition(event);
-}
-
-function stopPainting(){
-  paint = false;
-}
-
-function sketch(event){
-  if (!paint) return;
-  ctx.beginPath();
-  ctx.lineWidth = 3;
-  ctx.lineCap = 'round';
-  ctx.strokeStyle = 'black';
-  ctx.moveTo(coord.x, coord.y);
-  getPosition(event);
-  ctx.lineTo(coord.x , coord.y);
-  ctx.stroke();
-}
-
-resize(); // Resizes the canvas once the window loads
-document.addEventListener('pointerdown', startPainting);
-document.addEventListener('pointerleave', stopPainting);
-document.addEventListener('pointerup', stopPainting);
-document.addEventListener('pointermove', sketch);
-window.addEventListener('resize', resize);
+// Signature Pad ///////////////////////////////////
+const sigpad = new DrawingPad(document.getElementsByClassName('signature-pad')[0]);
 
 document.getElementsByClassName('sig-clear')[0].addEventListener('click', (ele)=>{
-  ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height);
+  sigpad.ctx.clearRect(0,0,sigpad.ctx.canvas.width,sigpad.ctx.canvas.height);
 });
+///////////////////////////////////////////////////

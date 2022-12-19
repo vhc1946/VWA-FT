@@ -1,43 +1,48 @@
+export class DrawingPad {
+  constructor(cont){
+    this.canvas = cont;
+    this.ctx = this.canvas.getContext('2d');
+    this.coord = {x:0 , y:0};
+    this.paint = false;
+    
+    this.canvas.addEventListener('mousedown', this.startPainting);
+    this.canvas.addEventListener('mouseup', this.stopPainting);
+    this.canvas.addEventListener('mousemove', this.sketch);
+    window.addEventListener('resize', this.resize);
 
-const canvas = document.getElementsByClassName('signature-pad')[0];
-const ctx = canvas.getContext('2d');
+    this.resize(); // Resizes the canvas once the window loads
+  }
 
-function resize(){
-  ctx.canvas.width = canvas.width;
-  ctx.canvas.height = canvas.height;
+  resize=()=>{
+    let ratio = Math.max(window.devicePixelRatio || 1,1);
+    this.ctx.canvas.width = this.canvas.offsetWidth * ratio;
+    this.ctx.canvas.height = this.canvas.offsetHeight * ratio;
+    this.canvas.getContext('2d').scale(ratio, ratio);
+  }
+
+  getPosition=(event)=>{
+    this.coord.x = event.offsetX;
+    this.coord.y = event.offsetY;
+  }
+
+  startPainting=(event)=>{
+    this.paint = true;
+    this.getPosition(event);
+  }
+
+  stopPainting=()=>{
+    this.paint = false;
+  }
+
+  sketch=(event)=>{
+    if (!this.paint) return;
+    this.ctx.beginPath();
+    this.ctx.lineWidth = 3;
+    this.ctx.lineCap = 'round';
+    this.ctx.strokeStyle = 'black';
+    this.ctx.moveTo(this.coord.x, this.coord.y);
+    this.getPosition(event);
+    this.ctx.lineTo(this.coord.x , this.coord.y);
+    this.ctx.stroke();
+  }
 }
-
-let coord = {x:0 , y:0};
-let paint = false;
-
-function getPosition(event){
-  coord.x = event.offsetX;
-  coord.y = event.offsetY;
-}
-
-function startPainting(event){
-  paint = true;
-  getPosition(event);
-}
-
-function stopPainting(){
-  paint = false;
-}
-
-function sketch(event){
-  if (!paint) return;
-  ctx.beginPath();
-  ctx.lineWidth = 4;
-  ctx.lineCap = 'round';
-  ctx.strokeStyle = 'black';
-  ctx.moveTo(coord.x, coord.y);
-  getPosition(event);
-  ctx.lineTo(coord.x , coord.y);
-  ctx.stroke();
-}
-
-resize(); // Resizes the canvas once the window loads
-document.addEventListener('mousedown', startPainting);
-document.addEventListener('mouseup', stopPainting);
-document.addEventListener('mousemove', sketch);
-window.addEventListener('resize', resize);
