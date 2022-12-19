@@ -27,11 +27,17 @@
   --hover-highlight:rgba(255, 252, 62, 0.637);
 
   --excluded-border:rgb(125, 40, 40);
+<<<<<<< HEAD
   --excluded-border-hover:rgb(92, 29, 29);
   --excluded-background:rgb(225, 180, 180);
   --included-border:rgb(40, 125, 40);
   --included-border-hover:rgb(26, 87, 26);
   --included-background:rgb(180, 225, 180);
+=======
+  --excluded-background:rgb(180, 110, 110);
+  --included-border:rgb(40, 125, 40);
+  --included-background:rgb(110, 180, 110);
+>>>>>>> a98f2ed5edc5040ec5fa89928a73754dcc11021c
 
 }
 *{
