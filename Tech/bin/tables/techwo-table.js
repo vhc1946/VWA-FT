@@ -39,6 +39,20 @@ const wrdom ={
 }
 const wotablerow=`
   <div class="${wrdom.values.datescheduled}"></div>
+    <div class="${wrdom.contact}">
+      <div class="${wrdom.values.id}" style="display:none"></div>
+      <div class="${wrdom.values.contactname}"></div>
+      <div class="${wrdom.values.contactphone}"></div>
+    </div>
+    <div class="${wrdom.values.descr}"></div>
+    <div class="techwo-row-actions">
+      <div class = "action-button" id = "button-delete" ><img class="${wrdom.actions.delete}" src="./bin/repo/assets/icons/cross.png"/></div>
+      <div class = "action-button" id = "button-open" ><img class="${wrdom.actions.open}" src="./bin/repo/assets/icons/edit.png"/></div>
+    </div>
+`
+
+const wotablerow_old=`
+  <div class="${wrdom.values.datescheduled}"></div>
   <div class="${wrdom.contact}">
     <div class="${wrdom.values.id}" style="display:none"></div>
     <div class="${wrdom.values.contactname}"></div>
@@ -50,8 +64,8 @@ const wotablerow=`
     <div class="${wrdom.values.cityzip}"></div>
   </div>
   <div class="techwo-row-actions">
-    <div><img class="${wrdom.actions.delete}" src="./bin/repo/assets/icons/cross.png"/></div>
-    <div><img class="${wrdom.actions.open}" src="./bin/repo/assets/icons/edit.png"/></div>
+    <div><img class="${wrdom.actions.delete} src="./bin/repo/assets/icons/cross.png"/></div>
+    <div><img class="${wrdom.actions.open} src="./bin/repo/assets/icons/edit.png"/></div>
   </div>
 `
 
@@ -66,15 +80,25 @@ export var SETUProw=(item={})=>{
   row.innerHTML=wotablerow;
   for(let v in wrdom.values){
     if(v != "datescheduled"){
-      row.getElementsByClassName(wrdom.values[v])[0].innerText = item.wo[v];
+      let elem = row.getElementsByClassName(wrdom.values[v])[0]; //Check if element exists in the table
+      if (elem) {
+        elem.innerText = item.wo[v];
+      }
     }else{
       try{
-        let date = new Date(item.wo[v].split('T')[0]+'Z12:00:00');
-        let datespot = row.getElementsByClassName(wrdom.values[v])[0]
-        datespot.appendChild(document.createElement('div'));
-        datespot.lastChild.innerText = molist[date.getMonth()] + ' ' + date.getDate();
-        datespot.appendChild(document.createElement('div'));
-        datespot.lastChild.innerText = date.getFullYear();
+        if (item.wo[v] == undefined) {
+          let datespot = row.getElementsByClassName(wrdom.values[v])[0]
+          datespot.appendChild(document.createElement('div'));
+          datespot.lastChild.innerText = "No date available."
+        } else {
+          let date = new Date(item.wo[v].split('T')[0]+'Z12:00:00');
+          let datespot = row.getElementsByClassName(wrdom.values[v])[0]
+          datespot.appendChild(document.createElement('div'));
+          datespot.lastChild.innerText = molist[date.getMonth()] + ' ' + date.getDate();
+          datespot.appendChild(document.createElement('div'));
+          datespot.lastChild.innerText = date.getFullYear();
+        }
+        
       }catch{}
     }
   }

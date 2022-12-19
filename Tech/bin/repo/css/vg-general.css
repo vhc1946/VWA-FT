@@ -14,6 +14,8 @@
   --background-med: rgb(196, 209, 253);
   --background-dark:rgb(112, 128, 157);
 
+  --titlebar-bg: darkgray;
+
   --highlight-color:rgb(196, 209, 253);
 
   --text-light: white;
@@ -25,8 +27,10 @@
   --hover-highlight:rgba(255, 252, 62, 0.637);
 
   --excluded-border:rgb(125, 40, 40);
+  --excluded-border-hover:rgb(92, 29, 29);
   --excluded-background:rgb(225, 180, 180);
   --included-border:rgb(40, 125, 40);
+  --included-border-hover:rgb(26, 87, 26);
   --included-background:rgb(180, 225, 180);
 
 }
