@@ -22,10 +22,6 @@ export class ServicePresentation{
 
   dom = {
     cont: 'present-full-cont',
-    button:{
-      open:'button-open-presentation'
-    },
-
     head: 'present-header-cont',
     info:{
       contactname:'present-info-contactname',
@@ -66,6 +62,11 @@ export class ServicePresentation{
       memprice: 'wo-present-memprice-today',
       conmonth: 'wo-present-contract-monthly'
     },
+    buttons:{
+      open:'button-open-presentation',
+      appreg: 'present-approval-regular',
+      appmem: 'present-approval-membership'
+    },
     sig: 'wo-present-signature'
   }
 
@@ -90,7 +91,7 @@ export class ServicePresentation{
                     <div id="${this.dom.memlevel}">Premium</div>
                     <a href="https://www.vogelhvac.co/" target="_blank" id="membership-link">Sign Up for Your Membership!</a>
                 </div>
-                <div id="wo-present-headers">
+                <div class="wo-present-headers">
                     <div>Services & Repairs</div>
                     <div>Regular</div>
                     <div>Member</div>
@@ -124,6 +125,10 @@ export class ServicePresentation{
                 <div id="${this.dom.invest.regprice}"></div>
                 <div id="${this.dom.invest.memprice}"></div>
             </div>
+            <div class="button-row">
+                <label></label>
+                <div id="${this.dom.buttons.appreg}">Approve</div>
+                <div id="${this.dom.buttons.appmem}">Approve</div>
             </div>
             <div class="${this.dom.sig}">
                 <canvas class="signature-pad"></canvas>

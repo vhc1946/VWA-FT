@@ -122,14 +122,16 @@
     place-self: center stretch;
 }
 #wo-contract-appr{
-place-self: center center;
+    place-self: center center;
 }
-#wo-present-headers{
+.wo-present-headers{
     font-weight:bold;
     padding-bottom:5px;
     border-bottom: 1px solid black;
 }
-#wo-present-headers, .wo-present-repair{
+.wo-present-headers,
+.wo-present-repair,
+.button-row{
     display:grid;
     grid-template-columns: 40% 15% 15% 15% 1fr;
     column-gap: 5px;
@@ -163,7 +165,7 @@ place-self: center center;
     background-color: var(--row-color);
 }
 
-    #wo-present-memprice-today{
+#wo-present-memprice-today{
     color: var(--member-price)
 }
 #wo-present-repair-cont {
@@ -184,6 +186,17 @@ place-self: center center;
 #wo-setup-repair input{
     margin-bottom:5px;
 }
+.button-row>div{
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: var(--BCE-green);
+    color: var(--text-light);
+}
+.button-row>div:hover{
+    cursor: pointer;
+    opacity: .4;
+}
+
 .signature-pad{
     background-color: lightgrey;
     height: 100px;
