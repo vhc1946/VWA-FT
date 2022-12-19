@@ -20,7 +20,7 @@
     position: absolute;
     left:50px;
     top:40px;
-    background-color: darkgray;
+    background-color: var(--titlebar-bg);
 }
 #titlebar-title{
     color: white;
