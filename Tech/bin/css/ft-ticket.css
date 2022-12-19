@@ -134,7 +134,7 @@
     grid-template-columns: repeat(8, 12.5%);
 }
 .wo-pricing-cont>input{
-    width: 75px;
+    width: 100px;
 }
 .wo-info-id,
 .wo-info-custcode{

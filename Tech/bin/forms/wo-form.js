@@ -85,11 +85,19 @@ export class WOform extends VHCform{
         <div class="${this.dom.label.conref}">Contract:</div><input class="${this.dom.info.conref}" type="text" />
       </div>
       <div class="wo-pricing-cont">
-        <div class="${this.dom.label.pricebook}">Price Book:</div><input class="${this.dom.info.pricebook}" type="text" />
-        <div class="${this.dom.label.pricelevel}">Price Level:</div><input class="${this.dom.info.pricelevel}" type="text" />
+        <div class="${this.dom.label.pricebook}">Price Book:</div><div class="${this.dom.info.pricebook}"></div>
+        <div class="${this.dom.label.pricelevel}">Price Level:</div><input class="${this.dom.info.pricelevel}" type="search" list='price-levels'/>
       </div>
       <textarea class="${this.dom.info.descr}"></textarea>
   </div>
+
+  <datalist id='price-levels'>
+    <option value='STA'>
+    <option value='CLA'>
+    <option value='PRE'>
+    <option value='ULT'>
+    
+  </datalist>
   `
   submit(){}
 }
