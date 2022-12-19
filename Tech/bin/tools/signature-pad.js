@@ -1,3 +1,5 @@
+// Takes in a canvas element to create an element that can be drawn on
+
 export class DrawingPad {
   constructor(cont){
     this.canvas = cont;
