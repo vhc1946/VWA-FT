@@ -38,19 +38,19 @@ let contents=`
                               <div>Density Altitude</div><input class="${dom.inputs.in_cool_densityalt}" type="number" placeholder="HARDCODE">
                           </div>
                           <div class="checklist-item">
-                              <div>Wet Bulb - Entering</div><input class="${dom.inputs.in_cool_wbentering}" type="number" placeholder="">
+                              <div>Wet Bulb - Entering</div><input class="${dom.inputs.in_cool_wbentering}" type="number">
                           </div>
                           <div class="checklist-item">
-                              <div>Wet Bulb - Leaving</div><input class="${dom.inputs.in_cool_wbleaving}" type="number" placeholder="">
+                              <div>Wet Bulb - Leaving</div><input class="${dom.inputs.in_cool_wbleaving}" type="number">
                           </div>
                           <div class="checklist-item">
-                              <div>Dry Bulb - Entering</div><input class="${dom.inputs.in_cool_dbentering}" type="number" placeholder="">
+                              <div>Dry Bulb - Entering</div><input class="${dom.inputs.in_cool_dbentering}" type="number">
                           </div>
                           <div class="checklist-item">
-                              <div>Dry Bulb - Leaving</div><input class="${dom.inputs.in_cool_dbleaving}" type="number" placeholder="">
+                              <div>Dry Bulb - Leaving</div><input class="${dom.inputs.in_cool_dbleaving}" type="number">
                           </div>
                           <div class="checklist-item">
-                              <div>Temperature Drop</div><input class="${dom.inputs.in_cool_tempdrop}" type="number" placeholder="">
+                              <div>Temperature Drop</div><input class="${dom.inputs.in_cool_tempdrop}" type="number">
                           </div>
                       </div>
                   </div>
@@ -63,43 +63,43 @@ let contents=`
                       <div class="section-header">--Cooling</div>
                       <div class="section-cont">
                           <div class="checklist-item">
-                              <div>Suction Pressure</div><input class="${dom.inputs.ou_cool_sucpress}" type="number" placeholder="">
+                              <div>Suction Pressure</div><input class="${dom.inputs.ou_cool_sucpress}" type="number">
                           </div>
                           <div class="checklist-item">
-                              <div>Head Pressure</div><input class="${dom.inputs.ou_cool_headpress}" type="number" placeholder="">
+                              <div>Head Pressure</div><input class="${dom.inputs.ou_cool_headpress}" type="number">
                           </div>
                           <div class="checklist-item">
-                              <div>Liquid Pressure</div><input class="${dom.inputs.ou_cool_liqpress}" type="number" placeholder="">
+                              <div>Liquid Pressure</div><input class="${dom.inputs.ou_cool_liqpress}" type="number">
                           </div>
                           <div class="checklist-item">
-                              <div>Dry Bulb - Outdoor</div><input class="${dom.inputs.ou_cool_dboutdoor}" type="number" placeholder="">
+                              <div>Dry Bulb - Outdoor</div><input class="${dom.inputs.ou_cool_dboutdoor}" type="number">
                           </div>
                           <div class="checklist-item">
-                              <div>Target Superheat</div><input class="${dom.inputs.ou_cool_targetsh}" type="number" placeholder="">
+                              <div>Target Superheat</div><input class="${dom.inputs.ou_cool_targetsh}" type="number">
                           </div>
                           <div class="checklist-item">
-                              <div>Actual Superheat</div><input class="${dom.inputs.ou_cool_actualsh}" type="number" placeholder="">
+                              <div>Actual Superheat</div><input class="${dom.inputs.ou_cool_actualsh}" type="number">
                           </div>
                           <div class="checklist-item">
-                              <div>Target Subcooling</div><input class="${dom.inputs.ou_cool_targetsc}" type="number" placeholder="">
+                              <div>Target Subcooling</div><input class="${dom.inputs.ou_cool_targetsc}" type="number">
                           </div>
                           <div class="checklist-item">
-                              <div>Actual Subcooling</div><input class="${dom.inputs.ou_cool_actualsc}" type="number" placeholder="">
+                              <div>Actual Subcooling</div><input class="${dom.inputs.ou_cool_actualsc}" type="number">
                           </div>
                           <div class="checklist-item">
-                              <div>Compressor Amps Rated</div><input class="${dom.inputs.ou_cool_ratedamps}" type="number" placeholder="">
+                              <div>Compressor Amps Rated</div><input class="${dom.inputs.ou_cool_ratedamps}" type="number">
                           </div>
                           <div class="checklist-item">
-                              <div>Compressor Amps Actual</div><input class="${dom.inputs.ou_cool_actualamps}" type="number" placeholder="">
+                              <div>Compressor Amps Actual</div><input class="${dom.inputs.ou_cool_actualamps}" type="number">
                           </div>
                           <div class="checklist-item">
-                              <div>Condenser Fan Operation</div><input class="${dom.inputs.ou_cool_condfan}" placeholder="Choose One">
+                              <div>Condenser Fan Operation</div><input class="${dom.inputs.ou_cool_condfan}" type='search' placeholder="Choose One" list='wear-tear'>
                           </div>
                           <div class="checklist-item">
-                              <div>Condenser Coil Condition</div><input class="${dom.inputs.ou_cool_condcoil}" placeholder="Choose One">
+                              <div>Condenser Coil Condition</div><input class="${dom.inputs.ou_cool_condcoil}" type='search' placeholder="Choose One" list='cond-condition'>
                           </div>
                           <div class="checklist-item">
-                              <div>Electrical Connections Secured</div><input class="${dom.inputs.ou_cool_elecout}" placeholder="Choose One">
+                              <div>Electrical Connections Secured</div><input class="${dom.inputs.ou_cool_elecout}" type='search' placeholder="Choose One" list='needs-repairs'>
                           </div>
                       </div>
                   </div>
@@ -107,6 +107,25 @@ let contents=`
           </div>
       </div>
   </div>
+
+    <datalist id='cond-condition'>
+        <option value='Clean'>
+        <option value='Needs Cleaning'>
+        <option value='Leak Detected'>
+        <option value='Damaged'>
+    </datalist>
+    <datalist id='wear-tear'>
+        <option value='Operational'>
+        <option value='Worn & Doubtful'>
+        <option value='Failed'>
+        <option value='Failed - Furnace Tagged'>
+        <option value='Recommended'>
+    </datalist>
+    <datalist id='needs-repairs'>
+        <option value='Yes'>
+        <option value='Repairs Needed'>
+    </datalist>
+
 `
 export var coolingchecks ={
     dom:dom,

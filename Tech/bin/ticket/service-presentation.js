@@ -73,7 +73,7 @@ export class ServicePresentation{
   <div class="${this.dom.cont}">
         <div class="${this.dom.head}">
             <div class="wo-contact-cont">
-                <img src="../bin/repo/assets/images/VogelLogo.png" id="header-logo" alt="VOGEL">
+                <img src="../bin/repo/assets/images/Header_clean.png" id="header-logo" alt="VOGEL">
                 <div class="${this.dom.info.contactname}">Client Name</div>
                 <div class="${this.dom.info.street}">1234 Street Dr</div>
                 <div class="${this.dom.info.unit}"></div>
