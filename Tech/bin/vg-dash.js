@@ -56,7 +56,7 @@ manlist.INITmanagelist().then(
 var qactions = {
   new:{
     id:'search-wo',
-    src:'./bin/repo/assets/icons/file.png',
+    src:'./bin/repo/assets/icons/search.png',
     alt:'SEARCH',
     title:'Search WO',
     onclick:(ele)=>{SELECTview(document.getElementById('wo-center'),'Open WO');}
@@ -145,6 +145,8 @@ var dockapps={
     ['Work Orders']:(ele)=>{
         $(document.getElementById('vhc-app-dock')).hide();
         $(document.getElementById('vg-wo-dash')).show();
+        //Show quick actions
+        $(document.getElementById('search-wo').style.display = 'unset');
     },
     ['Performance']:(ele)=>{
         DropNote('tr','Module not ready.','yellow');
@@ -161,5 +163,7 @@ document.body.appendChild(appdock.cont);
 document.getElementById(titlebar.tbdom.utils.buttons.home).addEventListener('click', (ele)=>{
     $(document.getElementById('vhc-app-dock')).show();
     $(document.getElementById('vg-wo-dash')).hide();
+    //Hide quick actions
+    $(document.getElementById('search-wo').style.display = 'none');
 });
 ////////////////////////////////////////////////////////////////////////////////

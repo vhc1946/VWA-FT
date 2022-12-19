@@ -22,6 +22,11 @@
 }
 
 #vg-float-frame-close{
+  /*height: 20px;
+  position: relative;
+  left:-30px;
+  top:0.5em;
+  filter:invert();*/
   height: 15px;
   opacity: .25;
   position: relative;
@@ -30,11 +35,13 @@
 }
 #vg-float-frame-close:hover{
   opacity:1;
-  filter:invert();
+  filter:none;
   cursor: pointer;
 }
 
 .vg-float-view>div:first-child{
   background-color: var(--background-base);
   border: 2px solid black;
+  /*filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.5));
+  border-radius: 10px;*/
 }
