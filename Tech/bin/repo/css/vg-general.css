@@ -25,9 +25,9 @@
   --hover-highlight:rgba(255, 252, 62, 0.637);
 
   --excluded-border:rgb(125, 40, 40);
-  --excluded-background:rgb(225, 180, 180);
+  --excluded-background:rgb(180, 110, 110);
   --included-border:rgb(40, 125, 40);
-  --included-background:rgb(180, 225, 180);
+  --included-background:rgb(110, 180, 110);
 
 }
 *{

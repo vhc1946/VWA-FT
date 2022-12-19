@@ -3,9 +3,11 @@ import { VHCform } from "../repo/tools/vhc-forms";
 
 
 export class InvoiceForm extends VHCform{
-    constructor(cont,content){
+    constructor(cont,info){
         super(cont);
-        this.cont.innerHTML = content;
+        this.cont.innerHTML = info.contents;
+        this.dom = info.dom;
+        
       }
 }
 

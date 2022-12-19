@@ -3,9 +3,9 @@ import {VHCform} from '../repo/tools/vhc-forms.js';
 import { DropNote } from '../repo/modules/vg-dropnote.js';
 import {ViewGroup} from '../repo/layouts/view-controller.js';
 
-import { coolingchecks } from './checklists/cooling-checklist.js';
-import { heatingchecks } from './checklists/heating-checklist.js';
-import { systemchecks } from './checklists/system-checklist.js';
+import { coolingchecks } from '../collateral/checklists/cooling-checklist.js';
+import { heatingchecks } from '../collateral/checklists/heating-checklist.js';
+import { systemchecks } from '../collateral/checklists/system-checklist.js';
 
 var toggledom = {
     cont: 'checklist-cont',
