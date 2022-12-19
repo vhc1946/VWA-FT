@@ -28,14 +28,13 @@ export class ServicePresentation{
 
     head: 'present-header-cont',
     info:{
-      name:'wo-info-name',
-      street:'wo-info-street',
-      unit:'wo-info-unit',
-      city:'wo-info-city',
-      phone:'wo-info-phone',
-      desc:'wo-info-description',
-      custcode:'wo-info-custcode',
-      wonum:'wo-info-wonum'
+      contactname:'present-info-contactname',
+      street:'present-info-street',
+      unit:'present-info-unit',
+      cityzip:'present-info-cityzip',
+      contactphone:'present-info-contactphone',
+      custcode:'present-info-custcode',
+      id:'present-info-id'   // wonum
     },
 
     //contract: cntrctform, //from vg-membership.js
@@ -75,14 +74,13 @@ export class ServicePresentation{
         <div class="${this.dom.head}">
             <div class="wo-contact-cont">
                 <img src="../bin/repo/assets/images/VogelLogo.png" id="header-logo" alt="VOGEL">
-                <div class="${this.dom.info.name}">Client Name</div>
+                <div class="${this.dom.info.contactname}">Client Name</div>
                 <div class="${this.dom.info.street}">1234 Street Dr</div>
                 <div class="${this.dom.info.unit}"></div>
-                <div class="${this.dom.info.city}">Fenton, MO 63026</div>
-                <div class="${this.dom.info.phone}">Phone Number</div>
-                <div class="${this.dom.info.desc}">Description text</div>
+                <div class="${this.dom.info.cityzip}">Fenton, MO 63026</div>
+                <div class="${this.dom.info.contactphone}">Phone Number</div>
                 <div class="${this.dom.info.custcode}">CUSTCODE</div>
-                <div class="${this.dom.info.wonum}">wonum</div>
+                <div class="${this.dom.info.id}">wonum</div>
             </div>
         </div>
 
@@ -141,6 +139,11 @@ export class ServicePresentation{
 
   SETpresent = (wodata) => {
     console.log('To Present > ',wodata);
+    for(let i in this.dom.info){
+      this.cont.getElementsByClassName(this.dom.info[i])[0].innerText = wodata.wo[i];
+    }
+
+
     if (wodata.sitems != null) {
       document.body.appendChild(this.cont);  // Creates presentation
       //document.getElementsByClassName(this.dom.head)[0].appendChild(document.createElement('div')).innerHTML = cfcontent; // Appends Contract Form within presentation
