@@ -3,6 +3,7 @@ import {GETrowTOobject,SETrowFROMobject} from '../repo/modules/vg-tables.js';
 import {FINDparentele} from '../repo/tools/vg-displaytools.js';
 import {TechLocalWos} from '../store/techwo-store.js';
 import {DropNote} from '../repo/modules/vg-dropnote.js';
+import {FormList} from '../repo/tools/vhc-formlist.js';
 
 var molist = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
 
@@ -76,7 +77,10 @@ export var twolist = new TechLocalWos();
 
 ///////////////
 
-export var SETUProw=(item={})=>{
+export var twdashlist = new FormList({
+  cont:document.getElementById('vg-wo-dash')
+});
+twdashlist.srow=(item={})=>{
   let row = document.createElement('div');
   row.classList.add(wrdom.cont);
   row.innerHTML=wotablerow;
@@ -105,7 +109,8 @@ export var SETUProw=(item={})=>{
     }
   }
   row.getElementsByClassName(wrdom.actions.delete)[0].addEventListener('dblclick',(ele)=>{
-    console.log()
+    twolist.REMOVEitem(item.wo.id);
+    twdashlist.form=twolist.list;
   });
   row.getElementsByClassName(wrdom.actions.open)[0].addEventListener('dblclick',OPENwo);
 

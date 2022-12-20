@@ -10,7 +10,8 @@ import {STARTticket} from './tools/vapi-FTrequest.js';
 import * as manlist from './store/tech-managelist.js';
 import {SENDrequestapi,SENDrequestadmin} from './repo/apis/vapi/vapicore.js';
 
-import * as techwos from './tables/techwo-table.js';
+import {twdashlist,twolist}from './tables/techwo-table.js';
+
 import { aserviceticket } from './repo/ds/tickets/vogel-serviceticket.js';
 
 
@@ -62,7 +63,7 @@ var qactions = {
     onclick:(ele)=>{SELECTview(document.getElementById('wo-center'),'Open WO');}
   }
 };
-window.techwos=techwos.twolist;
+window.techwos=twolist;
 
 var mactions = {
   datalist:{
@@ -77,7 +78,7 @@ var login = titlebar.SETUPtitlebar(
   mactions,
   true,
   (creds)=>{ //on login
-    techwos.twolist.REFRESHstore(creds.user).then(res=>{if(res){twdashlist.LOADlist(techwos.twolist.list);}})
+    twolist.REFRESHstore(creds.user).then(res=>{if(res){twdashlist.LOADlist(twolist.list);}})
   },
   ()=>{// on logout
     DropNote('tr','Logging Out','green');window.location.replace('../index.html')
@@ -90,49 +91,56 @@ document.getElementById(titlebar.tbdom.utils.buttons.home).addEventListener('cli
 if(login.storecreds.user!=''){
   //console.log('LOGIN');
   //console.log(login.storecreds);
-  techwos.twolist.REFRESHstore(login.storecreds.user).then(res=>{
-  twdashlist.form = techwos.twolist.list;
+  twolist.REFRESHstore(login.storecreds.user).then(res=>{
+  twdashlist.form = twolist.list;
   })
 }
 
 // Pre-load / Setup dash modules
 // Work Order List Setup ////////////////////////////////////////////////////////
-var twdashlist = new FormList({
-  cont:document.getElementById('vg-wo-dash'),
-  srow:techwos.SETUProw
-});
 
 document.getElementById('openwo-number').addEventListener('keypress',(eve)=>{
     if(eve.key == 'Enter'){document.getElementById('submit-search').click();};
 });
 document.getElementById('submit-search').addEventListener('click', (ele)=>{
+    let savenload = (wo)=>{
+      twolist.UPDATEstore(wo).then(
+        result=>{
+          console.log(result);
+          twdashlist.LOADlist(twolist.list);
+        }
+      );
+      localStorage.setItem(wolstore.toloadwo,JSON.stringify(wo));
+      window.open('controllers/ticket.html');
+    }
     let wonum = document.getElementById('openwo-number').value;
     while(wonum.length < 8){
         wonum = '0' + wonum;
     }
-    let woitem = techwos.twolist.GETitem(wonum);
+    let woitem = twolist.GETitem(wonum);
     if(woitem){
-      localStorage.setItem(wolstore.toloadwo,JSON.stringify(woitem));
-      window.open('controllers/ticket.html');
+      savenload(woitem);
     }else{
-      STARTticket(wonum).then(  //'00025796'
-          ticket=>{
-          console.log('TICKET >',ticket);
-          if(ticket){
-              ticket.id = wonum;//add an id
-              ticket.mobile=true; //add mobile
-              ticket.tech=login.storecreds.user; //add tech
-              DropNote('tr','Wo is Loading...','green');
-              localStorage.setItem(wolstore.toloadwo,JSON.stringify(ticket));
-              techwos.twolist.UPDATEstore(ticket).then(
-                result=>{
-                  twdashlist.LOADlist(techwos.twolist.list);
+      //search vapi mart
+      twolist.CHECKmart(wonum).then(
+        found=>{
+          if(found){found.mobile=true;savenload(found);}
+          else{
+            STARTticket(wonum).then(  //'00025796'
+                ticket=>{
+                console.log('TICKET >',ticket);
+                if(ticket){
+                    ticket.id = wonum;//add an id
+                    ticket.mobile=true; //add mobile
+                    ticket.tech=login.storecreds.user; //add tech
+                    DropNote('tr','Wo is Loading...','green');
+                    savenload(ticket);
+                }else{DropNote('tr','Wo Not Found','red');}
                 }
-              );
-              window.open('controllers/ticket.html');
-          }else{DropNote('tr','Wo Not Found','red');}
+            );
           }
-      );
+        }
+      )
     }
     $(document.getElementById('vg-float-frame-close')).click();
 });
