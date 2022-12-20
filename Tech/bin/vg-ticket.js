@@ -77,7 +77,12 @@ var mactions = {
     onclick:(ele)=>{   // Refresh info
       SYNCticket(currticket.wo.id).then(
         sync=>{
-          if(sync.wo){currticket.wo=sync.wo;ticket.form.wo=currticket.wo;}
+          console.log(sync);
+          if(sync.wo){
+            currticket.wo=sync.wo;
+            ticket.ticket={wo:currticket.wo};
+            DropNote('tr','Ticket is updated','green');
+          }else{DropNote('tr','Ticket was NOT updated','yellow');}
         }
       );
     }

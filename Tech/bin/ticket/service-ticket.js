@@ -88,6 +88,7 @@ export class ServiceTicket{
 
     this.forms.wo.form = this.data.wo;
     this.forms.contract.form = this.data.contract;
+
     this.forms.sitems = this.port.sitems.info
     this.forms.repairs = this.port.sitems.repairs
     this.forms.checks = this.port.checks.forms
@@ -122,14 +123,19 @@ export class ServiceTicket{
   }
 
   set ticket(tick={}){
-    if (this.forms[f].form) {
-      for(let x=0; x<this.forms[f].length;x++) {
-        this.forms[f][x].form = tick[f];
+    console.log(tick);
+    for(let f in tick){
+      if(this.forms[f]){
+        if(!this.forms[f].length){
+          
+          this.forms[f].form=tick[f];
+        }else{
+          for(let x=0;x<tick[f].length;x++){
+            this.forms[f][x].form=tick[f][x];
+          }
+        }
       }
-    } else {
-      this.forms[f].form = tick[f];
     }
-    console.log("From set ticket: ", this.forms);
     this.data=tick;
   }
 

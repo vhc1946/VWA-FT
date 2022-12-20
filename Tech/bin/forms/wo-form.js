@@ -18,7 +18,7 @@ export class WOform extends VHCform{
         unit: 'wo-info-unit',
         cityzip: 'wo-info-city',
         state: 'wo-info-state',
-        
+
         salesrep: 'wo-info-salesrep',
         takenby:'wo-info-takenby',
         dept: 'wo-info-dept',
@@ -44,7 +44,7 @@ export class WOform extends VHCform{
         unit: 'wo-label-unit',
         cityzip: 'wo-label-city',
         state: 'wo-label-state',
-        
+
         salesrep: 'wo-label-salesrep',
         takenby:'wo-label-takenby',
         dept: 'wo-label-dept',
@@ -65,7 +65,7 @@ export class WOform extends VHCform{
   <div id="${this.dom.cont}" class="wo-info-cont">
       <div class="${this.dom.info.id}"></div>
       <div class="${this.dom.info.custcode}"></div>
-      
+
       <div class="wo-contact-cont">
         <div class="${this.dom.info.contactname}"></div>
         <div class="${this.dom.info.contactphone}"></div>
@@ -86,7 +86,7 @@ export class WOform extends VHCform{
       </div>
       <div class="wo-pricing-cont">
         <div class="${this.dom.label.pricebook}">Price Book:</div><div class="${this.dom.info.pricebook}"></div>
-        <div class="${this.dom.label.pricelevel}">Price Level:</div><input class="${this.dom.info.pricelevel}" type="search" list='price-levels'/>
+        <div class="${this.dom.label.pricelevel}">Price Level:</div><input class="${this.dom.info.pricelevel}" list="price-levels"/>
       </div>
       <textarea class="${this.dom.info.descr}"></textarea>
   </div>
@@ -96,7 +96,7 @@ export class WOform extends VHCform{
     <option value='CLA'>
     <option value='PRE'>
     <option value='ULT'>
-    
+
   </datalist>
   `
   submit(){}

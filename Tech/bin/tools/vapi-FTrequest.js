@@ -36,12 +36,13 @@ var STARTticket=(wonum)=>{
   });
 }
 
-var SYNCticket=(wonum,ticket)=>{
+var SYNCticket=(wonum)=>{
   return new Promise((resolve,reject)=>{
     let ticket = {};
     japi.GETwo(wonum).then(
         wo=>{
-            if(!wo){ticket.wo = wo;console.log('WO request fail');}
+            if(!wo){console.log('WO request fail');}
+            ticket.wo=wo;
             return resolve(ticket);
         }
     )
