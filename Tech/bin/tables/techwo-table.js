@@ -3,6 +3,7 @@ import {GETrowTOobject,SETrowFROMobject} from '../repo/modules/vg-tables.js';
 import {FINDparentele} from '../repo/tools/vg-displaytools.js';
 import {TechLocalWos} from '../store/techwo-store.js';
 import {DropNote} from '../repo/modules/vg-dropnote.js';
+import {FormList} from '../repo/tools/vhc-formlist.js';
 
 var molist = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
 
@@ -30,6 +31,7 @@ const wrdom ={
     id:'techwo-row-id',
     contactname:'tech-row-contact',
     contactphone:'tech-row-phone',
+    contactemail:'tech-row-email',
     descr:'techwo-row-descr',
     datescheduled:'techwo-row-date',
 
@@ -43,6 +45,7 @@ const wotablerow=`
       <div class="${wrdom.values.id}" style="display:none"></div>
       <div class="${wrdom.values.contactname}"></div>
       <div class="${wrdom.values.contactphone}"></div>
+      <div class="${wrdom.values.contactemail}"></div>
     </div>
     <div class="${wrdom.values.descr}"></div>
     <div class="techwo-row-actions">
@@ -74,7 +77,10 @@ export var twolist = new TechLocalWos();
 
 ///////////////
 
-export var SETUProw=(item={})=>{
+export var twdashlist = new FormList({
+  cont:document.getElementById('vg-wo-dash')
+});
+twdashlist.srow=(item={})=>{
   let row = document.createElement('div');
   row.classList.add(wrdom.cont);
   row.innerHTML=wotablerow;
@@ -98,12 +104,13 @@ export var SETUProw=(item={})=>{
           datespot.appendChild(document.createElement('div'));
           datespot.lastChild.innerText = date.getFullYear();
         }
-        
+
       }catch{}
     }
   }
   row.getElementsByClassName(wrdom.actions.delete)[0].addEventListener('dblclick',(ele)=>{
-    console.log()
+    twolist.REMOVEitem(item.wo.id);
+    twdashlist.form=twolist.list;
   });
   row.getElementsByClassName(wrdom.actions.open)[0].addEventListener('dblclick',OPENwo);
 

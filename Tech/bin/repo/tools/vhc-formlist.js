@@ -39,7 +39,6 @@ export class FormList extends VHCform{
         if(this.cont.children[x].classList.contains(this.dom.part[p])){set=true;break;}
       }
       if(!set){
-        console.log(p)
         this[p]=document.createElement('div');
         this[p].classList.add(this.dom.part[p]);
         this.cont.appendChild(this[p]);
@@ -63,7 +62,6 @@ export class FormList extends VHCform{
 
   get form(){
     let rlist = [];
-    console.log(this.list.children)
     for(let x=0;x<this.list.children.length;x++){
       rlist.push(this.GETitem(this.list.children[x]));
     }
@@ -71,15 +69,12 @@ export class FormList extends VHCform{
   }
   set form(rlist=[]){
     this.list.innerHTML='';
-    console.log(rlist[1]);
     for(let x=0;x<rlist.length;x++){
-      console.log(rlist[x])
       this.ADDitem(rlist[x]);
     }
   }
 
   ADDitem(item={}){
-    console.log(item)
     item=this.rmap(item);
     let row = this.srow?this.srow(item):SETrowFROMobject(item);
     if(row){this.list.appendChild(row);}

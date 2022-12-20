@@ -20,38 +20,50 @@ export class TechLocalWos extends ObjList{
   }
   UPDATEstore(item){
     return new Promise((resolve,reject)=>{
-      if(this.TRIMlist({id:item.id}).length==0){
-          SENDrequestapi({
-            collect:'apps',
-            store:'VFT',
-            db:'techwos',
-            method:'insert',
-            options:{
-              docs:item
-            }
-          }).then(answr=>{
-            let success=false;
-            if(!answr.body.result.err){this.list.push(item);success=true;}
-            return resolve(success);
-          })
-      }else{
-        SENDrequestapi({
-          collect:'apps',
-          store:'VFT',
-          db:'techwos',
-          method:'update',
-          options:{
-            query:{id:item.id},
-            update:{$set:item},
-            options:{}
+      SENDrequestapi({
+        collect:'apps',
+        store:'VFT',
+        db:'techwos',
+        method:'query',
+        options:{query:{id:item.id}}
+      }).then(
+        found=>{
+          if(found.success&&found.body.result.length===1){
+            SENDrequestapi({
+              collect:'apps',
+              store:'VFT',
+              db:'techwos',
+              method:'update',
+              options:{
+                query:{id:item.id},
+                update:{$set:item},
+                options:{}
+              }
+            }).then(answr=>{
+              let success=false;
+              if(!answr.body.result.err){success=true;}
+              return resolve(success);
+            })
           }
-        }).then(answr=>{
-          let success=false;
-          if(!answr.body.result.err){this.UPDATEitem(item);success=true;}
-          if(!answr.body.result.err){this.list.push(item);success=true;}
-          return resolve(success);
-        })
-      }
+          else{
+            SENDrequestapi({
+              collect:'apps',
+              store:'VFT',
+              db:'techwos',
+              method:'insert',
+              options:{
+                docs:item
+              }
+            }).then(answr=>{
+              let success=false;
+              if(!answr.body.result.err){success=true;}
+              return resolve(success);
+            })
+          }
+        }
+      );
+      if(this.TRIMlist({id:item.id}).length==0){this.list.unshift(item);}
+      else{this.UPDATEitem(item);}
     });
   }
   UPDATEitem(item){
@@ -77,7 +89,7 @@ export class TechLocalWos extends ObjList{
         store:'VFT',
         db:'techwos',
         method:'query',
-        options:{query:{tech:tech}}
+        options:{query:{tech:tech,mobile:true}}
       }).then(
         answr=>{
           let success=false;
@@ -86,5 +98,48 @@ export class TechLocalWos extends ObjList{
         }
       );
     });
+  }
+  REMOVEitem(id){
+    let found = false;
+    let tlist = [];
+    for(let x=0;x<this.list.length;x++){
+      if(this.list[x].id===id){
+        this.list[x].mobile=false;
+        SENDrequestapi({
+            collect:'apps',
+            store:'VFT',
+            db:'techwos',
+            method:'update',
+            options:{
+              query:{id:this.list[x].id},
+              update:{$set:this.list[x]},
+              options:{}
+            }
+        }).then(
+          answr=>{
+          }
+        )
+        found=true;
+      }else{tlist.push(this.list[x])}
+    }
+    this.list=tlist;
+    return found;
+  }
+  CHECKmart(id){
+    return new Promise((resolve,reject)=>{
+      SENDrequestapi({
+        collect:'apps',
+        store:'VFT',
+        db:'techwos',
+        method:'query',
+        options:{query:{id:id}}
+      }).then(
+        result=>{
+          if(result.success && result.body.result.length===1){
+            return resolve(result.body.result[0])
+          }else{return resolve(false);}
+        }
+      )
+    })
   }
 }

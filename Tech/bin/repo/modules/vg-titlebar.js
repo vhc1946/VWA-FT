@@ -52,7 +52,9 @@ var tbdom={ // Titlebar
 var tdom = (rroot='')=>{
   return{
     [`#${tbdom.cont}.div`]:{
-      attributes:{},
+      attributes:{
+        class:'titlebar'
+      },
       children:{
         [`#${tbdom.utils.groups.left}.div`]:{
           attributes:{},
@@ -179,9 +181,19 @@ var SETUPtitlebar=(RROOT='',qacts={},macts={},login=true,logieve=()=>{},logoeve=
     let moreele = document.getElementById(tbdom.more.actions);
     $(moreele).toggle();
   });
+  document.body.addEventListener('click',(ele)=>{
+    let isinbar = (target,stop)=>{
+      if(target.classList.contains(stop)||target==document.body){
+        if(target!=document.body){return target}
+        else{return null}
+      }else{return isinbar(target.parentNode,stop);}
+    }
+    if(!isinbar(ele.target,'titlebar')){
+      document.getElementById(tbdom.more.actions).style.display="none";
+    }
+  });
 
   if(login){
-
     document.getElementById(tbdom.page.user).addEventListener('click',(ele)=>{
       if($(document.getElementById(tbdom.login.cont)).is(":visible")){
         $(document.getElementById(tbdom.login.cont)).hide();
