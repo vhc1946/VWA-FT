@@ -16,7 +16,7 @@
     height: 125px;
     margin: auto;
     border-radius: 10px;
-    filter: drop-shadow(3px 3px 5px black);
+    filter: var(--drop-shadow);
 }
 .vhc-app>img{
     width: 65%;

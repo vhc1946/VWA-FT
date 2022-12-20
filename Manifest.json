@@ -1,0 +1,9 @@
+{
+    "name": "Work Order",
+    "short_name": "Work Order",
+    "start_url": "index.html",
+    "display": "standalone",
+    "background_color": "#fdfdfd",
+    "theme_color": "#062A49",
+    "orientation": "portrait-primary"
+  }
