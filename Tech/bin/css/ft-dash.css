@@ -10,7 +10,6 @@
 }
 .vhc-app{
     background-color: var(--background-base);
-    border: 2px solid black;
     text-align: center;
     font-weight: bold;
     min-width: 125px;
@@ -32,11 +31,11 @@
     background-color: var(--BEE-blue);
     color: var(--text-light);
     width:100%;
-    /*height: 2em;
+    height: 2em;
     text-align:center;
     line-height: 2em;
     border-top-left-radius: 10px;
-    border-top-right-radius: 10px;*/
+    border-top-right-radius: 10px;
 }
 [class*='openwo-area-']{
     display: grid;
@@ -50,14 +49,13 @@
     justify-content: flex-end;
 }
 
-/*#submit-search {
+#submit-search {
     border-radius: 5px;
     filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.5));
     width: 5em;
     height: 2em;
     line-height: 1.7em;
 }
-*/
 #search-wo {
     display:none;
 }

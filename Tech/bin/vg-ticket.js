@@ -65,11 +65,6 @@ var mactions = {
       //});
     }
   },
-  delete:{
-    id:'wo-delete-button',
-    src:'../bin/repo/assets/icons/trash.png',
-    title:'Delete WO'
-  },
   refresh:{
     id:'wo-refresh-button',
     src:'../bin/repo/assets/icons/refresh.png',
@@ -92,8 +87,32 @@ document.getElementById(titlebar.tbdom.utils.buttons.home).addEventListener('cli
 $(document.getElementById(titlebar.tbdom.page.settings)).hide();   //hide the settings section of title bar
 ////////////////////////////////////////////////////
 
-document.getElementsByClassName('min-page-hide-button')[0].addEventListener('click', (ele)=>{   // Home Button
+/*Event listener which resets and closes repair table pop-up.*/
+document.getElementsByClassName('min-page-hide-button')[0].addEventListener('click', (ele)=>{
+  document.getElementsByClassName('min-page-minimize-button')[0].innerText = "-";
+  document.getElementsByClassName('frbook-list')[0].style.display = "";
   $(document.getElementsByClassName('min-page-cont')[0]).toggle();
+  document.getElementsByClassName('min-page-cont')[0].id = "min-page-show"
+  $(document.getElementById('loginout-block')).hide();
+});
+
+/*Event listener to minimize repair list pop-up.*/
+document.getElementsByClassName('min-page-minimize-button')[0].addEventListener('click', (ele)=>{
+  let style = window.getComputedStyle(document.getElementById('loginout-block'));
+
+  //SHOW
+  if (style.display == 'none') {
+    $(document.getElementById('loginout-block')).show();
+    document.getElementsByClassName('min-page-cont')[0].id = "min-page-show"
+    document.getElementsByClassName('frbook-list')[0].style.display = "";
+    document.getElementsByClassName('min-page-minimize-button')[0].innerText = "-";
+  } else {
+  //HIDE
+    $(document.getElementById('loginout-block')).hide();
+    document.getElementsByClassName('min-page-cont')[0].id = "min-page-hide"
+    document.getElementsByClassName('frbook-list')[0].style.display = "none";
+    document.getElementsByClassName('min-page-minimize-button')[0].innerText = "+";
+  }
 });
 
 

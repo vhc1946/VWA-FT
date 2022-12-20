@@ -78,8 +78,6 @@
     filter: invert();
 }
 
-
-
 /* Login Box */
 #loginout-block{
     position: fixed;
@@ -92,15 +90,18 @@
 }
 #login-box{
     position: absolute;
-    top:40px;
-    right:0px;
+    top:60px;
+    right:20px;
+    padding: 10px;
     background-color: var(--background-base);
-    border: 2px solid black;
+    filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.5));
+    border-radius: 10px;
 }
 #login-info{
     padding: 5px;
     display: grid;
-    grid-template-columns: repeat(2, 100px);
+    grid-template-columns: repeat(2, 120px);
+    row-gap: 10px;
 }
 #login-info>div{
     grid-column: 1 / 3;
@@ -123,6 +124,19 @@
 #titlebar-page-user:hover+#titlebar-username{
     display: block;
 }
+.login-action-button {
+    border-radius: 5px;
+    filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.5));
+    width: 5em;
+    height: 2em;
+    line-height: 2em;
+}
+
+.action-buttons-div {
+    display: flex;
+    column-gap: 5%;
+}
+
 @media print{
     #titlebar-cont{display:none;}
 }

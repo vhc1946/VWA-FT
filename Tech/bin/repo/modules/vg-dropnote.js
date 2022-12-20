@@ -33,7 +33,10 @@ export var DropNote = (cont,message='',level='green',timeout=true)=>{
   note.appendChild(document.createElement('div')).innerText = 'X';
   note.lastChild.setAttribute('id',notedom.button);
   note.lastChild.addEventListener('click',(ele)=>{nlist.removeChild(note)});
-  note.appendChild(document.createElement('div')).innerText = message;
+  let text = document.createElement('div');
+  text.innerText = message;
+  text.id = "note-text";
+  note.appendChild(text);
 
   nlist.appendChild(note);
 

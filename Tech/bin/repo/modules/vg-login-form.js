@@ -77,9 +77,9 @@ class LoginForm extends VHCform{
         <div id=${this.dom.info}>
             <label>User</label><input id=${this.dom.inputs.user} type="text"/>
             <label>Password</label><input id=${this.dom.inputs.pswrd} type="password"/>
-            <div>
-              <div id=${this.dom.actions.submit} class="flat-action-button">SUBMIT</div>
-              <div id=${this.dom.actions.logout} class="flat-action-button">LOGOUT</div>
+            <div class = "action-buttons-div">
+              <div class = "login-action-button" id=${this.dom.actions.submit} class="flat-action-button">SUBMIT</div>
+              <div class = "login-action-button" id=${this.dom.actions.logout} class="flat-action-button">LOGOUT</div>
             </div>
         </div>
         </div>

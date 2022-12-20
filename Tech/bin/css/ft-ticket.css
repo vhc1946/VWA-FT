@@ -233,37 +233,71 @@
 .si-repair-table{
     padding-top: 10px;
     width: 100%;
-    height: 100%;
+    height: 36em;
     overflow-y: auto;
-    overflow-x: auto;
 }
-.si-repair-table>div{
+.si-repair-table>div {
+    display:grid;
+    grid-template-columns: 5% 15.5% 37.5% 10% 10% 5% 12%;
+    column-gap: 1.5%;
+    width:fit-content;
+    padding: 5px;
+    border-bottom: 1px solid var(--background-dark);
+    min-width: 100%;
+    align-items: center;
+}
+.si-repair-table>div:hover{
+    background-color: var(--background-base-hover);
+}
+/*.si-repair-table>div{
     display:flex;
-    min-width:100%;
     width:fit-content;
     padding: 3px;
     border-bottom: 1px solid var(--background-dark);
     align-items: center;
     justify-content: space-between;
+    min-width: 100%;
 }
-.si-repair-table>div>div,
+.sr-qty{
+    width:10%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+}
+.checkbox-cont {
+    width: 5%;
+}
+.sr-task {
+    width: 20%;
+    margin-right: 2.5%;
+}
+.sr-desc {
+    width: 30%;
+}
+.sr-pl {
+    width: 10%;
+    text-align: center;
+}*/
+/*.si-repair-table>div>div,
 .si-repair-table>div>input{
     flex-grow:0;
     flex-shrink:1;
-    width:75px;
+    width:50px;
 }
-.si-repair-table>div:nth-child(even){
+/*.si-repair-table>div:nth-child(even){
     background-color: var(--background-light);
 }
 .si-repair-table>div:nth-child(odd){
     background-color: var(--background-base);
 }
+.si-repair-table>div:hover{
+    background-color: var(--background-base-hover);
+}
 .si-repair-table>div>div:nth-child(1){
-    width: 150px;
+    width: 50px;
 }
 .si-repair-table>div>div:nth-child(2){
-    width: 400px;
-}
+    width: 200px;
+}*/
 .si-repair-table>div>img:hover{
     cursor: pointer;
 }
@@ -279,23 +313,40 @@
     justify-content: flex-end;
 }
 .delete-repair-item{
-    width: 35px;
+    width: 25px;
+    margin-left: 20%;
 }
 
 /*-- Min Tab --------------*/
 [class*="min-page-cont"]{
     position: fixed;
-    bottom: 30px;
+    bottom: 60px;
     left: 5%;
     width: 90%;
     max-height: 500px;
     border: 2px solid var(--vogel-blue);
     background-color: var(--background-base);
-    filter: drop-shadow(3px 3px 5px black);
+    filter: var(--drop-shadow);
+    border-radius: 10px;
+    z-index: 50;
+}
+#min-page-hide {
+    max-height: 100px;
+}
+#min-page-show {
+    max-height: 500px;
 }
 .min-page-hide-button{
     float: right;
     margin: 0;
+    border-top-right-radius: 5px;
+    z-index: 30;
+}
+.min-page-minimize-button{
+    float: right;
+    margin: 0;
+    border-bottom-left-radius: 10px;
+    z-index: 30;
 }
 .min-page-view{
     padding: 0px 20px 20px 20px;
@@ -304,7 +355,9 @@
     padding: 20px 0px 0px 20px;
 }
 .wo-filter-row>input{
-    width: 100px;
+    width: 160px;
+    margin-right: 10px;
+    margin-bottom: 10px;
 }
 .frbook-list{
     max-height:400px;
@@ -347,15 +400,48 @@
     padding-top: 5px;
 }
 
+.ft-form{
+    height: 38.5em;
+    max-width: 100%;
+    overflow: auto;
+}
+
 @media only screen and (min-width: 768px) {
     .ft-form{
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        height: 22.5em;
+        max-width: 100%;
+        overflow: auto;
+    }
+    .si-repair-table>div {
+        grid-template-columns: 5% 17.5% 37.5% 10% 7.5% 6.5% 20%;
+    }
+    .si-repair-table {
+        height: 20.5em;
+    }
+    .delete-repair-item{
+        margin-left: 2.5%;
     }
     .si-materials{
         border-top: 1px solid black;
     }
     .section-cont>div>.section-cont>div>.section-cont{
         grid-template-columns: repeat(1, 1fr);
+    }
+    .min-page-cont {
+        max-height: 400px;
+    }
+    #min-page-hide {
+        max-height: 100px;
+    }
+    #min-page-show {
+        max-height: 400px;
+    }
+    .frbook-list{
+        max-height:325px;
+    }
+    .si-repair-table>div {
+        column-gap: 2%;
     }
 }
 @media only screen and (min-width: 1024px) {
@@ -368,4 +454,16 @@
     .section-cont>div>.section-cont>div>.section-cont{
         grid-template-columns: repeat(2, 1fr);
     }
+}
+
+/*Hide cost in repair table*/
+.sr-cost {
+    display: none;
+}
+
+.si-repair-table::-webkit-scrollbar {
+    display: none;
+}
+.ft-form::-webkit-scrollbar {
+    display: none;
 }
