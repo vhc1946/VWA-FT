@@ -77,6 +77,8 @@ export class ServiceTicket{
     this.view.ADDview('Information',this.port.info.cont);
     this.view.ADDview('Service Items',this.port.sitems.view.cont);
     this.view.ADDview('Check Lists',this.port.checks.view.cont);
+    
+    this.port.info.cont.id = "info-cont";
 
     this.port.info.ADDview('WO',this.forms.wo.cont);
     this.port.info.ADDview('Contract',this.forms.contract.cont);
