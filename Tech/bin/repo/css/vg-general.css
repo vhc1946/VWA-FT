@@ -15,7 +15,7 @@
   --background-med: rgb(196, 209, 253);
   --background-dark:rgb(112, 128, 157);
 
-  --titlebar-bg: darkgray;
+  --titlebar-bg: rgb(6, 42, 73);
 
   --highlight-color: rgb(196, 209, 253);
 
@@ -39,6 +39,16 @@
   --included-background:rgb(110, 180, 110);
 
   --drop-shadow: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.5));
+
+  --button-hover: rgb(84, 95, 116);
+
+  --information-tab: rgb(110, 180, 174);
+  --information-tab-selected: rgb(65, 105, 102);
+  --information-tab-hover: rgb(87, 145, 140);
+
+  --checklist-tab: rgb(125, 60, 60);
+  --checklist-tab-selected: rgb(92, 29, 29);
+  --checklist-tab-hover: rgb(110, 40, 40);
 
 }
 *{

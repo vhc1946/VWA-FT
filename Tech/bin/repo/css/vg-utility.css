@@ -31,7 +31,7 @@
   
 }
 [class*="-action-button"]:hover{
-  background-color: gray;
+  background-color: var(--button-hover);
   cursor:pointer;
 }
 .flat-action-button{

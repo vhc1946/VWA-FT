@@ -41,7 +41,7 @@ Must select proper classes for the menu and container. Select based on the orien
   position: relative;
 }
 .viewcontrol-menu-item:hover{
-  background-color: grey;
+  background-color: var(--button-hover);
   cursor:pointer;
 }
 .viewcontrol-port{
