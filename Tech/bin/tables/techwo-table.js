@@ -30,6 +30,7 @@ const wrdom ={
     id:'techwo-row-id',
     contactname:'tech-row-contact',
     contactphone:'tech-row-phone',
+    contactemail:'tech-row-email',
     descr:'techwo-row-descr',
     datescheduled:'techwo-row-date',
 
@@ -43,6 +44,7 @@ const wotablerow=`
       <div class="${wrdom.values.id}" style="display:none"></div>
       <div class="${wrdom.values.contactname}"></div>
       <div class="${wrdom.values.contactphone}"></div>
+      <div class="${wrdom.values.contactemail}"></div>
     </div>
     <div class="${wrdom.values.descr}"></div>
     <div class="techwo-row-actions">
@@ -98,7 +100,7 @@ export var SETUProw=(item={})=>{
           datespot.appendChild(document.createElement('div'));
           datespot.lastChild.innerText = date.getFullYear();
         }
-        
+
       }catch{}
     }
   }
