@@ -21,6 +21,7 @@ export class SIrepairform extends FormList{
       let customprc = this.cont.getElementsByClassName(this.dom.addform.price)[0].value;
       if(customdesc === '' || customprc === ''){
         $(document.getElementsByClassName('min-page-cont')[0]).toggle();
+        $(document.getElementById('loginout-block')).show();
       }else{
         this.ADDrepair({
           task: customdesc.substring(0,4),
@@ -68,15 +69,16 @@ export class SIrepairform extends FormList{
   </div>
   `
 
-  row=`<div class="sr-task"></div>
+  row=`
+    <div class = "checkbox-cont">
+      <div class="sr-appr vg-checkbox"></div>
+    </div>
+    <div class="sr-task"></div>
     <div class="sr-descr"></div>
     <div class="sr-pl"></div>
     <div class="sr-price"></div>
     <input class="sr-qty"></div>
     <div class="sr-cost"></div>
-    <div>
-      <div class="sr-appr vg-checkbox"></div>
-    </div>
     <img class="delete-repair-item" src="../../images/icons/trash.png">
   `
   get addform(){

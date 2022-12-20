@@ -10,16 +10,18 @@
   --BCE-green: rgb(107, 164, 58);
 
   --background-base: white;
+  --background-base-hover: rgb(240,240,240);
   --background-light: rgb(229,229,253);
   --background-med: rgb(196, 209, 253);
   --background-dark:rgb(112, 128, 157);
 
   --titlebar-bg: darkgray;
 
-  --highlight-color:rgb(196, 209, 253);
+  --highlight-color: rgb(196, 209, 253);
 
   --text-light: white;
-  --text-dark: rgb(73,73,73);
+  --text-dark: rgb(100,100,100);
+  --text-dark-hover: rgb(20, 20, 20);
 
   --border-color-1:rgb(126, 126, 126);
 
@@ -35,6 +37,8 @@
   --excluded-background:rgb(180, 110, 110);
   --included-border:rgb(40, 125, 40);
   --included-background:rgb(110, 180, 110);
+
+  --drop-shadow: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.5));
 
 }
 *{
