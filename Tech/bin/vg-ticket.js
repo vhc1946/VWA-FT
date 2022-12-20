@@ -20,6 +20,11 @@ if(currticket){
   localStorage.setItem(wolstore.toloadwo,null);//clear temp storage
   localStorage.setItem(wolstore.lastwo,JSON.stringify(currticket));//save as last open
   DropNote('tr','WO found','green');
+  //GETcustomer(currticket.wo.custcode).then(
+  //  answr=>{
+  //    console.log(answr);
+  //  }
+  //)
 }else{DropNote('tr','WO not found','red');}
 window.addEventListener('beforeunload',(ele)=>{ //here for page refresh
   localStorage.setItem(wolstore.toloadwo,JSON.stringify(currticket));

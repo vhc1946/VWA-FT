@@ -189,6 +189,7 @@ var SETUPtitlebar=(RROOT='',qacts={},macts={},login=true,logieve=()=>{},logoeve=
       }else{return isinbar(target.parentNode,stop);}
     }
     if(!isinbar(ele.target,'titlebar')){
+      console.log('not')
       document.getElementById(tbdom.more.actions).style.display="none";
     }
   });
