@@ -54,7 +54,7 @@ var checklists = {
 export class ServiceChecks{
   constructor(checks={}){
     let cont = document.createElement('div');
-    //cont.id='check-cont';
+    cont.id='check-cont';
     this.view = new ViewGroup({
       cont:cont,
       type:'mtr',

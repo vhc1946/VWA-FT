@@ -15,7 +15,24 @@
     background-color: grey;
 }
 
+#check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item,
+.checklists-menu>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item,
+.checklists-menu>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox{
+    background-color: var(--excluded-background);
+}
+#check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item.viewcontrol-menu-selected,
+.checklists-menu>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item.viewcontrol-menu-selected,
+#checklists-menu-buttons>.si-add-inputs>div,
+#checklists-add-button{
+    background-color: var(--excluded-border);
+}
 
+#info-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item{
+    background-color: var(--included-background);
+}
+#info-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item.viewcontrol-menu-selected{
+    background-color: var(--included-border);
+}
 
 
 
@@ -325,7 +342,7 @@
 .checklist-cont{
     margin: 5px;
     padding: 5px;
-    border: 2px solid red;
+    border: 2px solid var(--excluded-border);
 }
 
 .checklist-item{
