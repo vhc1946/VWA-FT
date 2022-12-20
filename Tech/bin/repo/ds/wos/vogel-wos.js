@@ -11,6 +11,7 @@ var awo = (w)=>{
         custcode:w.custcode||'', //CustomerCode
         contactname:w.contactname||'',
         contactphone:w.contactphone||'',
+        contactemail:w.contactemail||'',
 
         descr:w.descr||'',
         street:w.street||'',
@@ -30,7 +31,7 @@ var awo = (w)=>{
 
         pricebook:w.pricebook||'', //FlatRateBook
         pricelevel:w.pricelevel||'', //PriceLevel
-        
+
         salesrep:w.salesrep||'', //TerritorySalespersonCode
         tech:w.tech||'', //TechnicianID
 

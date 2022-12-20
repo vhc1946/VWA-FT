@@ -13,6 +13,7 @@ export class WOform extends VHCform{
         custcode: 'wo-info-custcode',
         contactname: 'wo-info-name',
         contactphone: 'wo-info-phone',
+        contactemail: 'wo-info-email',
 
         street: 'wo-info-street',
         unit: 'wo-info-unit',
@@ -39,6 +40,7 @@ export class WOform extends VHCform{
         custcode: 'wo-label-custcode',
         contactname: 'wo-label-name',
         contactphone: 'wo-label-phone',
+        contactemail: 'wo-label-email',
 
         street: 'wo-label-street',
         unit: 'wo-label-unit',
@@ -69,6 +71,7 @@ export class WOform extends VHCform{
       <div class="wo-contact-cont">
         <div class="${this.dom.info.contactname}"></div>
         <div class="${this.dom.info.contactphone}"></div>
+        <div class="${this.dom.info.contactemail}"></div>
         <div class="${this.dom.info.street}"></div>
         <div class="${this.dom.info.unit}"></div>
         <div class="${this.dom.info.cityzip}"></div>

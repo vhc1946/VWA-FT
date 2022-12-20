@@ -20,12 +20,16 @@ export var GETjapitest=()=>{
       var wopull = {
           table:'custom',
           option:'download',
-          template:'WO_FlatRateBookHeader_tbl',
-          where:[{OP:'=',TaskID:'T600616'}]
+          template:'AR_CustomerPreferences_tbl',
+          where:[{OP:'=',CustomerCode:'PUFR02'}]
       };
       return res(SENDrequestapi(wopull,'japi'));
   });
 }
+GETjapitest().then(
+  answr=>{console.log(answr);}
+)
+
 
 export var GETflbook=(book='RES',table='flatratebook')=>{
     return new Promise((res,rej)=>{
@@ -60,7 +64,7 @@ export var GETscontract=(custcode,table='contracttable')=>{
   })
 }
 export var GETwo=(wonum,table='wonumber')=>{
-    return new Promise((res,rej)=>{
+    return new Promise((resolve,reject)=>{
         let opts = {
             table:table,
             wonum:wonum,//'00024530'
@@ -71,13 +75,14 @@ export var GETwo=(wonum,table='wonumber')=>{
             answr=>{
               if(answr.body.success&&answr.body.table.length==1){
                 wo = awo(answr.body.table[0]);
-                let opts2 = {
-                    table:'test',
+                let havedescr=false;
+                let haveemail=false;
+                SENDrequestapi({
+                    table:'custom',
                     option:'download',
                     template:'WO_DescriptionOfWork_tbl',
                     where:[{OP:'=',WorkOrderNumber:wonum}]
-                };
-                SENDrequestapi(opts2,'japi').then( //bring in descriptions
+                },'japi').then( //bring in descriptions
                   answr=>{
                     if(answr.body.success){
                       wo.descr=''
@@ -85,13 +90,31 @@ export var GETwo=(wonum,table='wonumber')=>{
                         wo.descr+=answr.body.table[x].WorkDescription+'\n';
                       }
                     }
-                    return res(wo);
+                    havedescr=true;
+                    if(haveemail){
+                      return resolve(wo)
+                    }
                   }
                 );
-              }else{return res(wo);}
+
+                SENDrequestapi({
+                    table:'custom',
+                    option:'download',
+                    template:'AR_CustomerPreferences_tbl',
+                    where:[{OP:'=',CustomerCode:wo.custcode}]
+                },'japi').then(
+                  answr=>{
+                    if(answr.body.success){
+                      wo.contactemail=answr.body.table[0]?answr.body.table[0].EmailAddress:'';
+                    }
+                    haveemail = true;
+                    if(havedescr){return resolve(wo);}
+                  }
+                )
+              }else{return resolve(wo);}
             }
           );
-        }else{return res(wo);}
+        }else{return resolve(wo);}
     })
 }
 export var GETcustomer=(custcode,table='customertable')=>{
