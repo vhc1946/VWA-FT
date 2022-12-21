@@ -10,6 +10,7 @@
   --BCE-green: rgb(107, 164, 58);
 
   --background-base: white;
+  --background-light: rgb(225, 241, 255);
   --background-base-hover: rgb(240,240,240);
   --background-light: rgb(229,229,253);
   --background-med: rgb(196, 209, 253);
@@ -46,7 +47,7 @@
   --information-tab-selected: rgb(65, 105, 102);
   --information-tab-hover: rgb(87, 145, 140);
 
-  --checklist-tab: rgb(125, 60, 60);
+  --checklist-tab: rgb(180, 110, 110);
   --checklist-tab-selected: rgb(92, 29, 29);
   --checklist-tab-hover: rgb(110, 40, 40);
 
