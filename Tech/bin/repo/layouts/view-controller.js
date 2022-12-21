@@ -78,7 +78,6 @@ var vdom = (rroot='')=>{
   }
 }
 
-
 var vcgroup={//STYLE GROUPS
   mtr:{ //menu top right
     cont:'viewcontrol-cont-vt',
