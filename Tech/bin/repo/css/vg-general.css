@@ -10,11 +10,13 @@
   --BCE-green: rgb(107, 164, 58);
 
   --background-base: white;
-  --background-light: rgb(225, 241, 255);
   --background-base-hover: rgb(240,240,240);
   --background-light: rgb(229,229,253);
   --background-med: rgb(196, 209, 253);
   --background-dark:rgb(112, 128, 157);
+
+  --background-ticket-light: rgb(225 241 255);
+  --background-ticket-hover: rgb(239, 247, 255);
 
   --titlebar-bg: rgb(6, 42, 73);
 

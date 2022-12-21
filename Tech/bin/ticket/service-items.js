@@ -220,7 +220,9 @@ export class TicketServiceItems{
 
       let button = this.view.FINDbutton(item.tagid);
       console.log(button);
-      if (button) {
+      if (button) { 
+
+        
         button.title = new_input;
         button.innerText = new_input;
       }

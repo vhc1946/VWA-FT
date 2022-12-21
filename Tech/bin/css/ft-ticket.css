@@ -1,6 +1,6 @@
 
 body{
-  background-color: rgb(225 241 255);
+  background-color: var(--background-ticket-light);/*rgb(225 241 255);*/
 }
 
 /* Layout Colors */
@@ -253,7 +253,7 @@ Checklists
 }
 .wo-reference-cont{
     display:grid;
-    grid-template-columns: repeat(4, 24%);
+    grid-template-columns: repeat(2, 48%);
     column-gap: 1%;
 }
 .wo-pricing-cont{
@@ -276,19 +276,25 @@ Checklists
 .wo-info-name,
 .wo-info-street{
     grid-column: 1 / 5;
+    min-height: 2vh;
 }
 .wo-info-city,
 .wo-info-email{
     grid-column: 1 / 4;
+    min-height: 2vh;
 }
 .wo-info-phone{
     grid-column: 1 / 3;
+    min-height: 2vh;
+    min-width: 14ch;
 }
 .wo-label-salesrep{
     grid-column: 1;
+    min-height: 2vh;
 }
 .wo-info-state{
     display: none;
+    min-height: 2vh;
 }
 .wo-info-descr{
     grid-column: 1 / 3;
@@ -354,7 +360,7 @@ Checklists
     align-items: center;
 }
 .si-repair-table>div:hover{
-    background-color: var(--background-base-hover);
+    background-color: var(--background-ticket-hover);
 }
 .si-repair-table>div>img:hover{
     cursor: pointer;
@@ -465,6 +471,13 @@ Checklists
 }
 
 @media only screen and (min-width: 768px) {
+    /*Work order info customizations*/
+    .wo-reference-cont{
+        display:grid;
+        grid-template-columns: repeat(4, 24%);
+        column-gap: 1%;
+    }
+    
     /*Scroll overlap fix: set height and overflow of container with elements.*/
     .ft-form{
         grid-template-columns: repeat(2, 1fr);
