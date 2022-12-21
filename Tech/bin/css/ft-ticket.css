@@ -1,6 +1,6 @@
 
 body{
-  background-color: rgb(225 241 255);
+  background-color: var(--background-ticket-light);/*rgb(225 241 255);*/
 }
 
 /* Layout Colors */
@@ -37,17 +37,25 @@ body{
 #ticket-build-container>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item:nth-child(3):hover{
     background-color: var(--checklist-tab-selected);
 }
-
+/*checklist top tab + menu bar base colors*/
 #check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item,
 .checklists-menu>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item,
 .checklists-menu>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox{
-    background-color: var(--excluded-background);
+    background-color: var(--checklist-tab);
+    z-index: 4;
 }
+/*checklist top tab + menu bar hovers*/
+#check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item:hover,
+.checklists-menu>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item:hover,
+.checklists-menu>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox:hover{
+    background-color: var(--checklist-tab-hover);
+}
+/*checklist top tab + menu bar selected colors*/
 #check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item.viewcontrol-menu-selected,
 .checklists-menu>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item.viewcontrol-menu-selected,
 #checklists-menu-buttons>.si-add-inputs>div,
 #checklists-add-button{
-    background-color: var(--excluded-border);
+    background-color: var(--checklist-tab-selected);
 }
 
 #info-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item{
@@ -121,9 +129,16 @@ body{
 }
 .currsi{
     margin: 0;
+    width: 80px;
+    height:32px;
+    overflow: hidden;
+    font-size: medium;
 }
 .viewcontrol-menu-vmt>div>.viewcontrol-menu-item{
     min-width: unset;
+    max-width: 81px;
+    height: fit-content;
+    font-size: 1.75vh;
 }
 
 /* Display Forms */
@@ -148,19 +163,71 @@ body{
     font-weight: bold;
     font-size: 1.2em;
     flex-grow: 1;
-    text-align: center;
-
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+    max-width: 12ch;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    left: 85px;
 }
 .viewcontrol-menu{
     transition: bottom 0.3s;
 }
 
+/*
+Checklists
+*/
 #checklists-menu-buttons {
     width: 80px;
 }
 
 #checklists-add-button {
     width: 100%;
+}
+.checklists-menu {
+    width: 100px;
+}
+#check-cont>.viewcontrol-cont>.viewcontrol-menu{
+    position: fixed;
+    left: 0px;
+    transition: left 0.25s;
+}
+#check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox{
+    position: relative;
+    height: 0px;
+    left: 0px;
+    transition: left 0.25s;
+}
+#check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-selected{
+    display: none;
+}
+/*Header for checklist tab container*/
+#check-cont>[class='viewcontrol-cont viewcontrol-cont-hl']>.viewcontrol-port>[class='checklists-menu viewcontrol-port-item viewcontrol-port-selected']>[class = 'viewcontrol-cont viewcontrol-cont-vt']>[class='viewcontrol-menu viewcontrol-menu-hmr']>.viewcontrol-quick-actions>.item-header{
+    position: relative;
+    text-align: left;
+    left: 100px;
+    width: 200px;
+    max-width: 400ch;
+    color: rgba(0, 0, 0, 0)
+}
+/*Currsi for checklist side*/
+#check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-quick-actions>div>.currsi{
+    background-color: var(--checklist-tab);
+}
+#check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-quick-actions>div>.currsi:hover{
+    background-color: var(--checklist-tab-hover);
+}
+/*Colors for add/remove buttons*/
+#check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-quick-actions>div>.si-menu-buttons{
+    background-color: var(--checklist-tab);
+}
+#check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-quick-actions>div>.si-menu-buttons>.icon-action-button{
+    background-color: var(--checklist-tab);
+}
+#check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-quick-actions>div>.si-menu-buttons>.icon-action-button:hover{
+    background-color: var(--checklist-tab-hover);
 }
 
 
@@ -186,7 +253,7 @@ body{
 }
 .wo-reference-cont{
     display:grid;
-    grid-template-columns: repeat(4, 24%);
+    grid-template-columns: repeat(2, 48%);
     column-gap: 1%;
 }
 .wo-pricing-cont{
@@ -209,19 +276,25 @@ body{
 .wo-info-name,
 .wo-info-street{
     grid-column: 1 / 5;
+    min-height: 2vh;
 }
 .wo-info-city,
 .wo-info-email{
     grid-column: 1 / 4;
+    min-height: 2vh;
 }
 .wo-info-phone{
     grid-column: 1 / 3;
+    min-height: 2vh;
+    min-width: 14ch;
 }
 .wo-label-salesrep{
     grid-column: 1;
+    min-height: 2vh;
 }
 .wo-info-state{
     display: none;
+    min-height: 2vh;
 }
 .wo-info-descr{
     grid-column: 1 / 3;
@@ -287,7 +360,7 @@ body{
     align-items: center;
 }
 .si-repair-table>div:hover{
-    background-color: var(--background-base-hover);
+    background-color: var(--background-ticket-hover);
 }
 .si-repair-table>div>img:hover{
     cursor: pointer;
@@ -398,6 +471,13 @@ body{
 }
 
 @media only screen and (min-width: 768px) {
+    /*Work order info customizations*/
+    .wo-reference-cont{
+        display:grid;
+        grid-template-columns: repeat(4, 24%);
+        column-gap: 1%;
+    }
+    
     /*Scroll overlap fix: set height and overflow of container with elements.*/
     .ft-form{
         grid-template-columns: repeat(2, 1fr);
@@ -435,6 +515,26 @@ body{
     }
     .si-repair-table>div {
         column-gap: 2%;
+    }
+    /*Repair table Item header text length*/
+    .item-header {
+        max-width: 12ch;
+    }
+
+    /*Header for checklist tab container*/
+    #check-cont>[class='viewcontrol-cont viewcontrol-cont-hl']>.viewcontrol-port>[class='checklists-menu viewcontrol-port-item viewcontrol-port-selected']>[class = 'viewcontrol-cont viewcontrol-cont-vt']>[class='viewcontrol-menu viewcontrol-menu-hmr']>.viewcontrol-quick-actions>.item-header{
+        position: relative;
+        text-align: left;
+        left: 100px;
+        width: 400px;
+        max-width: 400ch;
+        color: rgba(0, 0, 0, 0)
+    }
+    #check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-quick-actions>div>.currsi{
+        font-size: 3vh;
+    }
+    .viewcontrol-menu-vmt>div>.viewcontrol-menu-item{
+        font-size: 2.75vh;
     }
 }
 @media only screen and (min-width: 1024px) {

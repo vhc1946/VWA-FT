@@ -121,7 +121,7 @@ export class TicketServiceItems{
 
     this.SETcurrtab(this.currsi.innerText);//shouldnt need
 
-    console.log('First run',this.currtab,this.currsi.innerText);
+    //console.log('First run',this.currtab,this.currsi.innerText);
     this.view.cont.getElementsByClassName('si-delete')[0].addEventListener('click',(ele)=>{DropNote('tr','Delete Service Item','yellow');});
     this.view.cont.getElementsByClassName('si-add')[0].addEventListener('click',(ele)=>{this.TOGGLEaddinput();});
     this.view.cont.getElementsByClassName('si-add-button')[0].addEventListener('click',(ele)=>{
@@ -143,11 +143,29 @@ export class TicketServiceItems{
 
       }
     });
+
     //setup flatrate add event
     pricebook.cont.addEventListener('click',(ele)=>{
       let row  = FINDparentele(ele.target,'wo-item-row');
       this.repairs[this.currtab].ADDitem(gendis.GETrowTOobject(row));
     });
+
+    /*Change event for tag number and description.*/
+    /*document.addEventListener("DOMContentLoaded", function(e) {
+      let tag_input = document.getElementsByClassName('si-tagnum');
+      for (let i = 0; i < tag_input.length; i++) {
+        tag_input[i].addEventListener('change',(eve)=>{
+          let new_input = tag_input[i].value;
+        });
+      }
+      
+      let descr_input = document.getElementsByClassName('si-descr');
+      for (let i = 0; i < descr_input.length; i++) {
+        descr_input[i].addEventListener('change',(eve)=>{
+          let new_input = descr_input[i].value;
+        });
+      }
+    })*/
   }
 
   /*
@@ -155,7 +173,7 @@ export class TicketServiceItems{
     Returns true if the item doesn't exist, null otherwise
   */
   ADDserviceitem(item, repairs=[]) {
-    console.log("Item: ", item)
+    //console.log("Item: ", item)
 
     let sitemview = new ViewGroup({
       type:'mtr',
@@ -167,7 +185,7 @@ export class TicketServiceItems{
     var index = this.info.length-1
     sitemview.ADDview('Info',this.info[index].cont);
     this.info[index].form = item; //load info
-    console.log(this.repairs)
+    //console.log(this.repairs)
     //add/init service repairs
     this.repairs.push(new SIrepairform(document.createElement('div'),this.pricebook));
     sitemview.ADDview('Repairs',this.repairs[index].cont);
@@ -178,6 +196,40 @@ export class TicketServiceItems{
     if (added) {
       $(sitemview.buttons.children[0]).click();
     }
+
+    /*Event listener for updating description.*/
+    let descr_input = this.info[index].inputs.descr;
+    descr_input.addEventListener('change',(ele)=>{
+      let new_input = descr_input.value;
+
+      //Refresh the title
+      document.getElementsByClassName("item-header")[index].innerText = new_input;
+
+      //Call global save function
+
+    });
+
+    /*Event listener for updating tag number.*/
+    let tag_input = this.info[index].inputs.tagid;
+    console.log(tag_input);
+    tag_input.addEventListener('change',(ele)=>{
+      let new_input = tag_input.value;
+      //Refresh the currsi and menu button
+      this.currsi.innerText = new_input;
+
+      let button = this.view.FINDbutton(item.tagid);
+      console.log(button);
+      if (button) { 
+
+        
+        button.title = new_input;
+        button.innerText = new_input;
+      }
+
+      //Call global save function
+
+    });
+
     return added;
   }
   //remove item
@@ -193,8 +245,8 @@ export class TicketServiceItems{
     let box = this.view.buttons;
     let exbuttons = this.view.cont.getElementsByClassName('si-menu-buttons')[0];
     if(box.style.left=='-250px'&&!hide){
-      box.style.left='0px';
-      exbuttons.style.left='0px';
+      box.style.left='-1px';
+      exbuttons.style.left='-1px';
     }else{
       box.style.left='-250px';
       exbuttons.style.left='-250px';

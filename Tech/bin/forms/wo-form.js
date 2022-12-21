@@ -71,7 +71,7 @@ export class WOform extends VHCform{
       <div class="wo-contact-cont">
         <div class="${this.dom.info.contactname}"></div>
         <div class="${this.dom.info.contactphone}"></div>
-        <div class="${this.dom.info.contactemail}"></div>
+        <input class="${this.dom.info.contactemail}"></input>
         <div class="${this.dom.info.street}"></div>
         <div class="${this.dom.info.unit}"></div>
         <div class="${this.dom.info.cityzip}"></div>
@@ -84,8 +84,8 @@ export class WOform extends VHCform{
         <div class="${this.dom.label.cat}">Category:</div><div class="${this.dom.info.cat}"></div>
         <div class="${this.dom.label.ref}">Reference:</div><div class="${this.dom.info.ref}"></div>
         <div class="${this.dom.label.status}">Status:</div><div class="${this.dom.info.status}"></div>
-        <div class="${this.dom.label.jobref}">Job Ref.:</div><input class="${this.dom.info.jobref}" type="text" />
-        <div class="${this.dom.label.conref}">Contract:</div><input class="${this.dom.info.conref}" type="text" />
+        <div class="${this.dom.label.jobref}">Job Ref.:</div><div class="${this.dom.info.jobref}">${this.dom.info.jobref}</div>
+        <div class="${this.dom.label.conref}">Contract:</div><div class="${this.dom.info.conref}">${this.dom.info.conref}</div>
       </div>
       <div class="wo-pricing-cont">
         <div class="${this.dom.label.pricebook}">Price Book:</div><div class="${this.dom.info.pricebook}"></div>
