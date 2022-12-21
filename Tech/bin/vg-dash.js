@@ -13,7 +13,8 @@ import {SENDrequestapi,SENDrequestadmin} from './repo/apis/vapi/vapicore.js';
 import {twdashlist,twolist}from './tables/techwo-table.js';
 
 import { aserviceticket } from './repo/ds/tickets/vogel-serviceticket.js';
-
+window.name="ftdash";
+window.gohome=function(win){win.open('',window.name);}//window.loaction.reload();
 
 /*  Tech Dash
 
@@ -72,22 +73,23 @@ var mactions = {
     ondblclick:(ele)=>{manlist.REFRESHmanagelist()}
   }
 };
-var login = titlebar.SETUPtitlebar(
-  './bin/repo/',
-  qactions,
-  mactions,
-  true,
-  (creds)=>{ //on login
+var login = titlebar.SETUPtitlebar({
+  RROOT:'./bin/repo/',
+  qacts:qactions,
+  macts:mactions,
+  login:true,
+  logieve:(creds)=>{ //on login
     twolist.REFRESHstore(creds.user).then(res=>{if(res){twdashlist.LOADlist(twolist.list);}})
   },
-  ()=>{// on logout
+  logoeve:()=>{// on logout
     DropNote('tr','Logging Out','green');window.location.replace('../index.html')
+  },
+  home:(ele)=>{
+      $(document.getElementById('vhc-app-dock')).show();
+      $(document.getElementById('vg-wo-dash')).hide();
   }
-);//returns login Form
-document.getElementById(titlebar.tbdom.utils.buttons.home).addEventListener('click', (ele)=>{
-    $(document.getElementById('vhc-app-dock')).show();
-    $(document.getElementById('vg-wo-dash')).hide();
 });
+//returns login Form
 if(login.storecreds.user!=''){
   //console.log('LOGIN');
   //console.log(login.storecreds);

@@ -89,7 +89,13 @@ var mactions = {
   }
 };
 
-titlebar.SETUPtitlebar('../bin/repo/',qactions,mactions,false); //login disabled
+titlebar.SETUPtitlebar({
+  RROOT:'../bin/repo/',
+  qacts:qactions,
+  macts:mactions,
+  login:false,
+  home:()=>{window.opener.gohome(window);}
+}); //login disabled
 
 document.getElementById(titlebar.tbdom.utils.buttons.home).addEventListener('click', (ele)=>{   // Home Button
   DropNote('tr','Going home','yellow');

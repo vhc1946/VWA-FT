@@ -59,15 +59,15 @@ var tdom = (rroot='')=>{
         [`#${tbdom.utils.groups.left}.div`]:{
           attributes:{},
           children:{
-          [`#${tbdom.utils.buttons.home}.img`]:{
-            attributes:{
-              class: "titlebar-button-action",
-              src: rroot + "assets/icons/V-Mark-red.png",
-              alt: "HOME",
-              title: "Home"
+            [`#${tbdom.utils.buttons.home}.img`]:{
+              attributes:{
+                class: "titlebar-button-action",
+                src: rroot + "assets/icons/V-Mark-red.png",
+                alt: "HOME",
+                title: "Home"
+              },
+              children: null
             },
-            children: null
-          },
             [`#${tbdom.more.cont}.img`]:{
               attributes:{
                 class: "titlebar-button-action",
@@ -93,28 +93,28 @@ var tdom = (rroot='')=>{
         [`#${tbdom.utils.groups.right}.div`]:{
           attributes:{},
           children:{
-          [`#${tbdom.info.cont}.span`]:{
-            attributes:{},
-            children:{
-              [`#${tbdom.page.user}.img`]:{
-                attributes:{
-                  class: "titlebar-button-action",
-                  src: rroot + "assets/icons/user.png",
-                  alt: "USER",
-                  title: "Log Out"
+            [`#${tbdom.info.cont}.span`]:{
+              attributes:{},
+              children:{
+                [`#${tbdom.page.user}.img`]:{
+                  attributes:{
+                    class: "titlebar-button-action",
+                    src: rroot + "assets/icons/user.png",
+                    alt: "USER",
+                    title: "Log Out"
+                  },
+                  children: null
                 },
-                children: null
-              },
-              [`#${tbdom.info.username}.span`]:{
-                attributes:{},
-                children:null
+                [`#${tbdom.info.username}.span`]:{
+                  attributes:{},
+                  children:null
+                }
               }
-            }
-          },
-          [`#${tbdom.login.cont}.div`]:{
-            attributes:{},
-            children:null
-          },
+            },
+            [`#${tbdom.login.cont}.div`]:{
+              attributes:{},
+              children:null
+            },
             [`#${tbdom.utils.buttons.help}.img`]:{
               attributes:{
                 class: "titlebar-button-action",
@@ -165,7 +165,7 @@ var CREATEactionbuttons=(acts)=>{
   return alist;
 }
 
-var SETUPtitlebar=(RROOT='',qacts={},macts={},login=true,logieve=()=>{},logoeve=()=>{})=>{
+var SETUPtitlebar=({RROOT='',qacts={},macts={},login=true,logieve=()=>{},logoeve=()=>{},home=(ele)=>{}})=>{
   document.body.prepend(CreateComponent(tdom(RROOT))); //add titlebar to the body
   for(let x=0,l=stylesheets.length;x<l;x++){
     let viewstyles = document.createElement('link');
@@ -181,6 +181,7 @@ var SETUPtitlebar=(RROOT='',qacts={},macts={},login=true,logieve=()=>{},logoeve=
     let moreele = document.getElementById(tbdom.more.actions);
     $(moreele).toggle();
   });
+  document.getElementById(tbdom.utils.buttons.home).addEventListener('click',home);
   document.body.addEventListener('click',(ele)=>{
     let isinbar = (target,stop)=>{
       if(target.classList.contains(stop)||target==document.body){
