@@ -103,7 +103,7 @@ export class ServiceTicket{
 
   }
 
-  get ticket(){
+  get ticket(){ //updates this.data and returns it
     let ttick={};
     console.log("From get ticket: ", this.forms);
     for(let f in this.forms){
@@ -123,15 +123,16 @@ export class ServiceTicket{
     return this.data
   }
 
-  set ticket(tick={}){
+  set ticket(tick={}){//loads forms and updates this.data
     for(let f in tick){
       if(this.forms[f]){
         if(!this.forms[f].length){
-
           this.forms[f].form=tick[f];
+          this.data=tick[f];
         }else{
           for(let x=0;x<tick[f].length;x++){
             this.forms[f][x].form=tick[f][x];
+            this.data=tick[f][x];
           }
         }
       }
