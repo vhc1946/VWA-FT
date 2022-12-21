@@ -70,7 +70,15 @@ var mactions = {
   datalist:{
     id:'refresh-datalist',
     src:'./bin/repo/assets/icons/datastores.png',
-    ondblclick:(ele)=>{manlist.REFRESHmanagelist()}
+    ondblclick:(ele)=>{
+      DropNote('tr','Syncing Data','green')
+      manlist.REFRESHmanagelist().then(
+        list=>{
+          console.log(list);
+          DropNote('tr','Syncing has Finished','green');
+        }
+      )
+    }
   }
 };
 var login = titlebar.SETUPtitlebar({
