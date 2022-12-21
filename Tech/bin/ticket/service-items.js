@@ -149,23 +149,6 @@ export class TicketServiceItems{
       let row  = FINDparentele(ele.target,'wo-item-row');
       this.repairs[this.currtab].ADDitem(gendis.GETrowTOobject(row));
     });
-
-    /*Change event for tag number and description.*/
-    /*document.addEventListener("DOMContentLoaded", function(e) {
-      let tag_input = document.getElementsByClassName('si-tagnum');
-      for (let i = 0; i < tag_input.length; i++) {
-        tag_input[i].addEventListener('change',(eve)=>{
-          let new_input = tag_input[i].value;
-        });
-      }
-      
-      let descr_input = document.getElementsByClassName('si-descr');
-      for (let i = 0; i < descr_input.length; i++) {
-        descr_input[i].addEventListener('change',(eve)=>{
-          let new_input = descr_input[i].value;
-        });
-      }
-    })*/
   }
 
   /*
@@ -206,28 +189,30 @@ export class TicketServiceItems{
       document.getElementsByClassName("item-header")[index].innerText = new_input;
 
       //Call global save function
-
+      window.SAVEticket();
     });
 
     /*Event listener for updating tag number.*/
     let tag_input = this.info[index].inputs.tagid;
-    console.log(tag_input);
     tag_input.addEventListener('change',(ele)=>{
       let new_input = tag_input.value;
       //Refresh the currsi and menu button
       this.currsi.innerText = new_input;
 
+      //Must update button and view for currsi to refresh
       let button = this.view.FINDbutton(item.tagid);
-      console.log(button);
       if (button) { 
-
-        
         button.title = new_input;
         button.innerText = new_input;
       }
 
-      //Call global save function
+      let view = this.view.FINDview(item.tagid);
+      if (view) { 
+        view.title = new_input;
+      }
 
+      //Call global save function
+      window.SAVEticket();
     });
 
     return added;
@@ -237,7 +222,10 @@ export class TicketServiceItems{
   //get currtab as index
   SETcurrtab(tagid){
     for(let x=0;x<this.info.length;x++){
-      if(this.info[x].form.tagid===tagid){this.currtab=x;break;}
+      if(this.info[x].form.tagid===tagid){
+        this.currtab=x;
+        break;
+      }
     }
   }
 
