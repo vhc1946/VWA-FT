@@ -43,10 +43,13 @@ var qactions = {
       let box = document.getElementsByClassName('present-full-cont')[0];
       if(box.style.left == "0px"){
         box.style.left = "-5000px";
+        ticket.view.buttons.style.display="flex";
       }
       else{
         presentation.SETpresent(ticket.ticket);  //pass to ticket
-        box.style.left = "0px";}
+        box.style.left = "0px";
+        ticket.view.buttons.style.display='none';
+      }
     }
   }
 };

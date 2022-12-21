@@ -7,7 +7,10 @@ export class SIform extends VHCform{
     super(cont);
     this.cont.innerHTML=this.content;
     this.setinputs(this.dom.info);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 32e208048d8e32603abf072a0a102df135c34ca5
   }
   dom={
     cont: 'si-form',

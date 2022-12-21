@@ -14,8 +14,8 @@ let dom = {
             in_airf_filtercond: 'filtercond',
             in_airf_evapcond: 'evapcond',
             in_airf_belttight: 'belttight',
-            in_cool_drainclear: 'drainclear',
-            in_heat_drainclear: 'drainclear',
+            in_cool_drainclear: 'cooldrainclear',
+            in_heat_drainclear: 'heatdrainclear',
             in_heat_hplockout: 'hplockout',
             in_heat_statprog: 'statprog',
             in_acce_humdop: 'humdop',
@@ -69,10 +69,16 @@ let contents = `
                           <div class="section-header">--Airflow</div>
                           <div class="section-cont">
                               <div class="checklist-item">
+                                  <div>Supply Air Static</div><input class="${dom.inputs.ou_airf_supplystatic}" type="number">
+                              </div>
+                              <div class="checklist-item">
                                   <div>Return Air Static</div><input class="${dom.inputs.in_airf_returnstatic}" type="number">
                               </div>
                               <div class="checklist-item">
                                   <div>Rated CFM</div><input class="${dom.inputs.in_airf_ratedcfm}" type='search' placeholder="Choose One" list='CFM-rating'>
+                              </div>
+                              <div class="checklist-item">
+                                  <div>Actual CFM</div><input class="${dom.inputs.ou_airf_actualcfm}">
                               </div>
                               <div class="checklist-item">
                                   <div>Building Pressure</div><input class="${dom.inputs.in_airf_buildpress}" type="number">
@@ -164,12 +170,7 @@ let contents = `
                       <div class="checklist-airflow">
                           <div class="section-header">--Airflow</div>
                           <div class="section-cont">
-                              <div class="checklist-item">
-                                  <div>Supply Air Static</div><input class="${dom.inputs.ou_airf_supplystatic}" type="number">
-                              </div>
-                              <div class="checklist-item">
-                                  <div>Actual CFM</div><input class="${dom.inputs.ou_airf_actualcfm}">
-                              </div>
+                              
                           </div>
                       </div>
                       <div class="checklist-access">

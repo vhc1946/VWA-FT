@@ -1,15 +1,22 @@
 body{
     font-size: .75em;
 }
+.summary-header{
+    text-align: center;
+}
+.wo_street,
+.wo_cityzip{
+    font-weight: bold;
+    font-size: 1.5em;
+}
 #header-logo{
     width: 100%;
     padding: 20px
 }
-.title-header{
-    font-size: 3em;
+#title-header{
     font-weight: bold;
+    font-size: 3em;
     color: var(--vogel-blue);
-    text-align: center;
 }
 .summary-body{
     display: grid;
@@ -37,6 +44,9 @@ body{
 .section-header-access{
     background-color: goldenrod;
 }
+.section-header-descr{
+    background-color: black;
+}
 .part-header{
     font-weight: bold;
     padding: 3px;
@@ -47,4 +57,14 @@ body{
 .checklist-item{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+}
+
+@media print{
+    #header-logo{
+        page-break-after: always;
+        page-break-before: avoid;
+    }
+    @page{
+        size: 8.5in 11in;
+    }
 }

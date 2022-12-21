@@ -23,7 +23,6 @@ export var cntrctform = {
 
 export class RewardsMembership{
   constructor(form=null){
-
     this.pricing = {
         CLASSIC: {
             pl: 'CLA',
