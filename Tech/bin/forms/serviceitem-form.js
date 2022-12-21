@@ -7,8 +7,6 @@ export class SIform extends VHCform{
     super(cont);
     this.cont.innerHTML=this.content;
     this.setinputs(this.dom.info);
-
-
   }
   dom={
     cont: 'si-form',
