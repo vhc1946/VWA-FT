@@ -38,7 +38,7 @@ export var DropNote = (cont,message='',level='green',timeout=true)=>{
   text.id = "note-text";
   note.appendChild(text);
 
-  nlist.appendChild(note);
+  nlist.prepend(note);
 
   if(timeout){
     setTimeout(()=>{
