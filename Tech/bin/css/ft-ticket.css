@@ -163,8 +163,14 @@ body{
     font-weight: bold;
     font-size: 1.2em;
     flex-grow: 1;
-    text-align: center;
-
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+    max-width: 12ch;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    left: 85px;
 }
 .viewcontrol-menu{
     transition: bottom 0.3s;
@@ -203,6 +209,7 @@ Checklists
     text-align: left;
     left: 100px;
     width: 200px;
+    max-width: 400ch;
     color: rgba(0, 0, 0, 0)
 }
 /*Currsi for checklist side*/
@@ -496,12 +503,18 @@ Checklists
     .si-repair-table>div {
         column-gap: 2%;
     }
+    /*Repair table Item header text length*/
+    .item-header {
+        max-width: 12ch;
+    }
+
     /*Header for checklist tab container*/
     #check-cont>[class='viewcontrol-cont viewcontrol-cont-hl']>.viewcontrol-port>[class='checklists-menu viewcontrol-port-item viewcontrol-port-selected']>[class = 'viewcontrol-cont viewcontrol-cont-vt']>[class='viewcontrol-menu viewcontrol-menu-hmr']>.viewcontrol-quick-actions>.item-header{
         position: relative;
         text-align: left;
         left: 100px;
-        width: 300px;
+        width: 400px;
+        max-width: 400ch;
         color: rgba(0, 0, 0, 0)
     }
     #check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-quick-actions>div>.currsi{
