@@ -138,7 +138,7 @@ body{
     min-width: unset;
     max-width: 81px;
     height: fit-content;
-    font-size: 2.75vh;
+    font-size: 1.75vh;
 }
 
 /* Display Forms */
@@ -207,7 +207,6 @@ Checklists
 }
 /*Currsi for checklist side*/
 #check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-quick-actions>div>.currsi{
-    font-size: 1.75vh;
     background-color: var(--checklist-tab);
 }
 #check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-quick-actions>div>.currsi:hover{
@@ -507,6 +506,9 @@ Checklists
     }
     #check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-quick-actions>div>.currsi{
         font-size: 3vh;
+    }
+    .viewcontrol-menu-vmt>div>.viewcontrol-menu-item{
+        font-size: 2.75vh;
     }
 }
 @media only screen and (min-width: 1024px) {
