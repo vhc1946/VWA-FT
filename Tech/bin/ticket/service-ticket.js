@@ -40,7 +40,7 @@ var fbtable = document.getElementsByClassName('frbook-list')[0];
 export class ServiceTicket{
   constructor(ticket=null,pricing){
     this.data = aserviceticket(ticket);
-
+    console.log('INIT Ticket',this.data);
     // Setup Price Book
     this.pricing = new FlatRateTable(pricing.TRIMlist({book:this.data.wo.pricebook}),fbtable);
     this.pricing.fltrs.pl=this.data.wo.pricelevel;
@@ -109,23 +109,21 @@ export class ServiceTicket{
     for(let f in this.forms){
       //try{
         if(this.forms[f].form){
-          ttick[f]=this.forms[f].form; //load ticket part from form
+          this.data[f]=this.forms[f].form; //load ticket part from form
         }
         else{
-          ttick[f]=[];
+          this.data[f]=[];
           for(let x=0;x<this.forms[f].length;x++){
-            ttick[f].push(this.forms[f][x].form)
+            this.data[f].push(this.forms[f][x].form)
           }
         }
       //}
       //catch{}
     }
-    this.data=ttick;
-    return ttick
+    return this.data
   }
 
   set ticket(tick={}){
-    console.log(tick);
     for(let f in tick){
       if(this.forms[f]){
         if(!this.forms[f].length){
@@ -138,7 +136,6 @@ export class ServiceTicket{
         }
       }
     }
-    this.data=tick;
   }
 
 }

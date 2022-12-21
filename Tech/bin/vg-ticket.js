@@ -63,11 +63,11 @@ var mactions = {
     ondblclick:(ele)=>{
       currticket = ticket.ticket;
       console.log(currticket)
-      //window.opener.techwos.UPDATEstore(currticket).then(answr=>{
-      //  console.log(answr)
-      //  if(answr){DropNote('tr','Ticket WAS Saved','green');}
-      //  else{DropNote('tr','Ticket was NOTSaved','yellow');}
-      //});
+      window.opener.techwos.UPDATEstore(currticket).then(answr=>{
+        console.log(answr)
+        if(answr){DropNote('tr','Ticket WAS Saved','green');}
+        else{DropNote('tr','Ticket was NOTSaved','yellow');}
+      });
     }
   },
   refresh:{
