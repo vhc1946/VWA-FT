@@ -37,17 +37,25 @@ body{
 #ticket-build-container>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item:nth-child(3):hover{
     background-color: var(--checklist-tab-selected);
 }
-
+/*checklist top tab + menu bar base colors*/
 #check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item,
 .checklists-menu>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item,
 .checklists-menu>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox{
-    background-color: var(--excluded-background);
+    background-color: var(--checklist-tab);
+    z-index: 4;
 }
+/*checklist top tab + menu bar hovers*/
+#check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item:hover,
+.checklists-menu>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item:hover,
+.checklists-menu>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox:hover{
+    background-color: var(--checklist-tab-hover);
+}
+/*checklist top tab + menu bar selected colors*/
 #check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item.viewcontrol-menu-selected,
 .checklists-menu>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item.viewcontrol-menu-selected,
 #checklists-menu-buttons>.si-add-inputs>div,
 #checklists-add-button{
-    background-color: var(--excluded-border);
+    background-color: var(--checklist-tab-selected);
 }
 
 #info-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item{
@@ -121,9 +129,16 @@ body{
 }
 .currsi{
     margin: 0;
+    width: 80px;
+    height:32px;
+    overflow: hidden;
+    font-size: medium;
 }
 .viewcontrol-menu-vmt>div>.viewcontrol-menu-item{
     min-width: unset;
+    max-width: 81px;
+    height: fit-content;
+    font-size: 2.75vh;
 }
 
 /* Display Forms */
@@ -155,12 +170,58 @@ body{
     transition: bottom 0.3s;
 }
 
+/*
+Checklists
+*/
 #checklists-menu-buttons {
     width: 80px;
 }
 
 #checklists-add-button {
     width: 100%;
+}
+.checklists-menu {
+    width: 100px;
+}
+#check-cont>.viewcontrol-cont>.viewcontrol-menu{
+    position: fixed;
+    left: 0px;
+    transition: left 0.25s;
+}
+#check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox{
+    position: relative;
+    height: 0px;
+    left: 0px;
+    transition: left 0.25s;
+}
+#check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-selected{
+    display: none;
+}
+/*Header for checklist tab container*/
+#check-cont>[class='viewcontrol-cont viewcontrol-cont-hl']>.viewcontrol-port>[class='checklists-menu viewcontrol-port-item viewcontrol-port-selected']>[class = 'viewcontrol-cont viewcontrol-cont-vt']>[class='viewcontrol-menu viewcontrol-menu-hmr']>.viewcontrol-quick-actions>.item-header{
+    position: relative;
+    text-align: left;
+    left: 100px;
+    width: 200px;
+    color: rgba(0, 0, 0, 0)
+}
+/*Currsi for checklist side*/
+#check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-quick-actions>div>.currsi{
+    font-size: 1.75vh;
+    background-color: var(--checklist-tab);
+}
+#check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-quick-actions>div>.currsi:hover{
+    background-color: var(--checklist-tab-hover);
+}
+/*Colors for add/remove buttons*/
+#check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-quick-actions>div>.si-menu-buttons{
+    background-color: var(--checklist-tab);
+}
+#check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-quick-actions>div>.si-menu-buttons>.icon-action-button{
+    background-color: var(--checklist-tab);
+}
+#check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-quick-actions>div>.si-menu-buttons>.icon-action-button:hover{
+    background-color: var(--checklist-tab-hover);
 }
 
 
@@ -435,6 +496,17 @@ body{
     }
     .si-repair-table>div {
         column-gap: 2%;
+    }
+    /*Header for checklist tab container*/
+    #check-cont>[class='viewcontrol-cont viewcontrol-cont-hl']>.viewcontrol-port>[class='checklists-menu viewcontrol-port-item viewcontrol-port-selected']>[class = 'viewcontrol-cont viewcontrol-cont-vt']>[class='viewcontrol-menu viewcontrol-menu-hmr']>.viewcontrol-quick-actions>.item-header{
+        position: relative;
+        text-align: left;
+        left: 100px;
+        width: 300px;
+        color: rgba(0, 0, 0, 0)
+    }
+    #check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-quick-actions>div>.currsi{
+        font-size: 3vh;
     }
 }
 @media only screen and (min-width: 1024px) {

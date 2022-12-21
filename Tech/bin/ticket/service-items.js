@@ -185,6 +185,7 @@ export class TicketServiceItems{
 
   //get currtab as index
   SETcurrtab(tagid){
+    console.log("this", this);
     for(let x=0;x<this.info.length;x++){
       if(this.info[x].form.tagid===tagid){this.currtab=x;break;}
     }
@@ -194,8 +195,8 @@ export class TicketServiceItems{
     let box = this.view.buttons;
     let exbuttons = this.view.cont.getElementsByClassName('si-menu-buttons')[0];
     if(box.style.left=='-250px'&&!hide){
-      box.style.left='0px';
-      exbuttons.style.left='0px';
+      box.style.left='-1px';
+      exbuttons.style.left='-1px';
     }else{
       box.style.left='-250px';
       exbuttons.style.left='-250px';

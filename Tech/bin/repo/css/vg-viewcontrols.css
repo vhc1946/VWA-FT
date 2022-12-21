@@ -31,6 +31,7 @@ Must select proper classes for the menu and container. Select based on the orien
   display: flex;
   flex-grow:1;
   height:max-content;
+  filter: var(--drop-shadow);
 }
 .viewcontrol-menu-item{
   flex-grow:1;
