@@ -1,3 +1,8 @@
+
+body{
+  background-color: rgb(225 241 255);
+}
+
 /* Layout Colors */
 /*Information*/
 #ticket-build-container>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item:nth-child(1){
@@ -251,7 +256,7 @@
     left:-200px;
     display:flex;
     transition: left 0.25s;
-    z-index: -1;   
+    z-index: -1;
 }
 .si-add-input{
     width: 100px;
