@@ -11,6 +11,31 @@
     <link rel="manifest" href="manifest.json" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+    #vg-navbar{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      padding: 50px 0px;
+      background-color: var(--back-color);
+      border-radius: 10px;
+      border: 2px solid black;
+      font-size: 4em;
+      font-weight: bold;
+      place-items: center center;
+    }
+    a{
+      display: grid;
+      grid-template-columns: 1fr;
+      justify-content: center;
+      place-items: center center;
+    }
+    #clientid:hover, #tikid:hover{
+      color:var(--vogel-red);
+    }
+    #clientid, #tikid{
+      color:var(--vogel-blue);
+    }
+    </style>
 </head>
 
 <body>
