@@ -19,6 +19,7 @@ for(let i in checksum.dom.info){
 }
 
 var invoice = new CollateralForm(document.createElement('div'),basicinvoice);
+
 document.body.appendChild(invoice.cont);
 for(let i in invoice.dom.info){
     if(ticket.wo[i]){

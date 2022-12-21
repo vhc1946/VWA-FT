@@ -21,7 +21,7 @@ export class ServicePresentation{
 
     document.getElementById(this.dom.buttons.appreg).addEventListener('click',this.SHOWsignature);
     document.getElementById(this.dom.buttons.appmem).addEventListener('click',(ele)=>{
-      window.data = data;
+      window.data = this.data;
       window.open("../bin/collateral/collateral.html");
     });
   }
@@ -220,7 +220,7 @@ export class ServicePresentation{
       //document.getElementById(this.dom.invest.conmonth).innerText = this.rewardform.GETformprice();
     }
   }
-  
+
   SHOWsignature=()=>{
     let box = document.getElementsByClassName(this.dom.sig)[0];
     if(box.style.left == "0px"){

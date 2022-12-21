@@ -95,7 +95,6 @@ export class TicketServiceItems{
         }
       }
     });
-
     this.currsi=this.view.cont.getElementsByClassName('currsi')[0];
     this.currtab=0;
     //attach price book, want to move

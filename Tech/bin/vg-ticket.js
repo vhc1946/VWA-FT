@@ -25,6 +25,17 @@ window.addEventListener('beforeunload',(ele)=>{ //here for page refresh
   localStorage.setItem(wolstore.toloadwo,JSON.stringify(currticket));
 });
 
+window.SAVEticket = ()=>{
+  currticket = ticket.ticket;
+  console.log(currticket);
+  DropNote('tr','Ticket is Saving...','green');
+  window.opener.techwos.UPDATEstore(currticket).then(answr=>{
+    if(answr){DropNote('tr','Ticket WAS Saved','green');}
+    else{DropNote('tr','Ticket was NOTSaved','yellow');}
+  });
+}
+
+
 // Setup ticket view groups ////////////////////////////////////////////////////
 var ticket = new ServiceTicket(currticket,fbstore.list);
 var presentation = new ServicePresentation(document.createElement('div'),currticket,fbstore.list.TRIMlist({book:'RES'}));
@@ -59,12 +70,7 @@ var mactions = {
     src:'../bin/repo/assets/icons/disk.png',
     title:'Save WO',
     ondblclick:(ele)=>{
-      currticket = ticket.ticket;
-      DropNote('tr','Ticket is Saving...','green');
-      window.opener.techwos.UPDATEstore(currticket).then(answr=>{
-        if(answr){DropNote('tr','Ticket WAS Saved','green');}
-        else{DropNote('tr','Ticket was NOTSaved','yellow');}
-      });
+      window.SAVEticket();
     }
   },
   refresh:{

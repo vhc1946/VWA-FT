@@ -8,6 +8,6 @@ export class CollateralForm extends VHCform{
         this.cont.innerHTML = info.contents;
         this.dom = info.dom;
         this.setinputs(info.dom.info||{});
+        //loop through info.dom.info
       }
 }
-

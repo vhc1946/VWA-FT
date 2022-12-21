@@ -20,10 +20,8 @@ let dom = {
         description: 'invoice-info-description'
     }
 }
-
-
 let contents = `
-    <img id='invoice-header-logo'src="../repo/assets/images/Header.jpg"/>  
+    <img id='invoice-header-logo'src="../repo/assets/images/Header.jpg"/>
     <div class="invoice-top">
         <div class="invoice-section-client">
             <div class="invoice-sectionhead">SOLD TO:</div>
