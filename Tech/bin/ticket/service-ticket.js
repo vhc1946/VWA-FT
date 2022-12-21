@@ -61,7 +61,7 @@ export class ServiceTicket{
 
     this.port={
       info:new vcontrol.ViewGroup({
-        type:'mtl'
+        type:'mtr'
       }),
       sitems:new TicketServiceItems(this.data.sitems,this.data.repairs,this.pricing),
       checks:new ServiceChecks(this.data.checks)
@@ -77,7 +77,7 @@ export class ServiceTicket{
     this.view.ADDview('Information',this.port.info.cont);
     this.view.ADDview('Service Items',this.port.sitems.view.cont);
     this.view.ADDview('Check Lists',this.port.checks.view.cont);
-    
+
     this.port.info.cont.id = "info-cont";
 
     this.port.info.ADDview('WO',this.forms.wo.cont);
@@ -129,7 +129,7 @@ export class ServiceTicket{
     for(let f in tick){
       if(this.forms[f]){
         if(!this.forms[f].length){
-          
+
           this.forms[f].form=tick[f];
         }else{
           for(let x=0;x<tick[f].length;x++){

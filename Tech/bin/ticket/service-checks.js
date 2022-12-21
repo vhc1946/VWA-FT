@@ -157,7 +157,7 @@ export class ServiceChecks{
       type:'mlt'
     });
     cview.cont.classList.add('checklists-menu');
-    if(this.view.ADDview(name,cview.cont, true)){
+    if(this.view.ADDview(name,cview.cont,true)){
       console.log('not added')
       this.forms = [];
       for(let c in group){

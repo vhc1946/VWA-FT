@@ -18,7 +18,9 @@
 }
 #titlebar-moretools-quick{
     position: absolute;
-    left:50px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    width:100px;
     top:40px;
     background-color: var(--titlebar-bg);
 }
