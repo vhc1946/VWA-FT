@@ -57,10 +57,84 @@ export class ServiceChecks{
     cont.id='check-cont';
     this.view = new ViewGroup({
       cont:cont,
-      type:'mtr',
+      type:'mlt',
+      swtchEve:(cont,view,button)=>{
+        cont.getElementsByClassName('currsi')[0].innerText = view.title;
+        $(cont.getElementsByClassName('currsi')[0]).click();
+      },
       qactions:{
         'div':{
           children:{
+            '.currsi.div':{
+              attributes:{
+                class:'flat-action-button'
+              },
+              children:{},
+              value:'-  -'
+            },
+            '.si-menu-buttons.div':{
+              attributes:{},
+              children:{
+                '.si-delete.div':{
+                  attributes:{
+                    class:'icon-action-button'
+                  },
+                  children:{
+                    '.delete-button.img':{
+                      attributes:{
+                        src:'../bin/repo/assets/icons/trash.png'
+                      }
+                    }
+                  }
+                },
+                '.si-add.div':{
+                  attributes:{
+                    class:'icon-action-button'
+                  },
+                  children:{
+                    '.add-button.img':{
+                      attributes:{
+                        src:'../bin/repo/assets/icons/add.png'
+                      }
+                    }
+                  }
+                },
+                '.si-add-inputs.div':{
+                      attributes:{},
+                      children:{
+                        '.si-add-input.input':{
+                          attributes:{},
+                          children:{}
+                        },
+                        '.si-add-button.div':{
+                          attributes:{
+                            class:'icon-action-button'
+                          },
+                          children:{
+                            '.add-button.img':{
+                              attributes:{
+                                src:'../bin/repo/assets/icons/add.png'
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+              }
+            }
+          }
+        }
+      }
+      /*qactions:{
+        'div':{
+          children:{
+            '.currsi.div':{
+              attributes:{
+                class:'flat-action-button'
+              },
+              children:{},
+              value:'-  -'
+            },
             '.si-menu-buttons.div':{
               attributes:{
                 id:'checklists-menu-buttons'
@@ -104,26 +178,38 @@ export class ServiceChecks{
             }
           }
         }
-      }
-
+      }*/
     });
+
+    this.currsi=this.view.cont.getElementsByClassName('currsi')[0];
+    this.currtab=0;
+
+    this.view.port.addEventListener('click',(ele)=>{this.TOGGLEitemlist(true);});
+
+    this.currsi.addEventListener('click',(ele)=>{this.TOGGLEitemlist();});
+
+    this.info = [];
+
     this.forms = [];
-    console.log(Object.keys(checks).length)
-    if(checks===undefined||Object.keys(checks).length===0){//default if no checks
+    console.log("# of Checks ", Object.keys(checks).length)
+    /*Initialize first group - creates default group if no checklists are given to constructor. */
+    if(checks===undefined||Object.keys(checks).length===0){
       console.log('No Checks')
-      this.ADDgroup('System 1');
+      this.info.push(["System 1", this.ADDgroup('System 1')]);
     }else{
-      for(let c in checks){ //INIT checks
+      for(let c in checks){
         let agroup = {}; //to pull from pool
         for(let cl in checks[c]){
           if(checklists.contents[cl]){
             agroup[cl]=checks[c][cl];
           }else{console.log('bad list')}
         }
-        this.ADDgroup(c,agroup);
+        this.info.push([c, this.ADDgroup(c,agroup)]);
       }
     }
-
+    console.log("This", this);
+    this.currsi.innerText = this.info[0][0];
+    this.TOGGLEitemlist();
     /*
     Menu quick action to open input box
     */
@@ -131,18 +217,19 @@ export class ServiceChecks{
       this.TOGGLEaddinput();
     });
     /*
-    Menu quick action for input box
+    Listener event for adding a new system.
     */
     this.view.cont.getElementsByClassName('si-add-button')[0].addEventListener('click',(ele)=>{
       let name = this.view.cont.getElementsByClassName('si-add-input')[0];
       if(name.value != ''){
         let retval = this.ADDgroup(name.value);
-        if (!retval) {
+        if (retval == false) {
             DropNote('tr',`${name.value} Already Added`,'yellow');
         } else {
             DropNote('tr',`Adding ${name.value}`);
+            this.info.push([name, retval]);
         }
-
+        this.currsi.innerText = name.value;
         name.value = '';
         this.TOGGLEaddinput();
       }
@@ -151,13 +238,18 @@ export class ServiceChecks{
     //Clicktoclose(cont);
   }
 
+  /*
+    Function for adding a new group of checklists
+    Returns the newly created system view or false if system already exists.
+  */
   ADDgroup(name,group={system:null,cooling:null,heating:null}){
     let cview = new ViewGroup({
       cont:document.createElement('div'),
-      type:'mlt'
+      type:'mtr',
+      qactions:{['.item-header.div']:{value:"Text to push buttons over"}}
     });
     cview.cont.classList.add('checklists-menu');
-    if(this.view.ADDview(name,cview.cont,true)){
+    if(this.view.ADDview(name,cview.cont,false)){
       console.log('not added')
       this.forms = [];
       for(let c in group){
@@ -166,10 +258,23 @@ export class ServiceChecks{
 
         this.forms[this.forms.length-1].form=group[c];
       }
-      return true
+      return cview;
     } else {return false}
   }
   //REMOVEgroup(){}
+
+  TOGGLEitemlist(hide=false){
+    let box = this.view.buttons;
+    let exbuttons = this.view.cont.getElementsByClassName('si-menu-buttons')[0];
+    if(box.style.left=='-250px'&&!hide){
+      box.style.left='-1px';
+      exbuttons.style.left='-1px';
+    }else{
+      box.style.left='-250px';
+      exbuttons.style.left='-250px';
+    }
+  }
+
 
   /*
   Change visibity of input box
