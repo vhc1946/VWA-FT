@@ -6,7 +6,7 @@
 }
 .techwo-row{
   display:grid;
-  grid-template-columns:15% 22% 40% 22%;
+  grid-template-columns:18% 22% 36% 22%;
   border-bottom: 1px solid black;
   height: 125px;
   align-items: center;
@@ -21,6 +21,7 @@
   font-weight: 700;
   font-size: xx-large;
   padding: 10px;
+  overflow: hidden;
 }
 .techwo-row-contact{
   text-align: center;
@@ -40,12 +41,12 @@
 .techwo-row-descr{
   overflow: hidden;
   overflow-wrap: break-word;
-  font-size: xx-small;
+  font-size: small;
   text-align: left;
    text-overflow: ellipsis;
    display: -webkit-box;
-   -webkit-line-clamp: 8; /* number of lines to show */
-           line-clamp: 8;
+   -webkit-line-clamp: 6; /* number of lines to show */
+           line-clamp: 6;
    -webkit-box-orient: vertical;
 }
 
@@ -78,7 +79,7 @@
 }
 .action-button{
   height: 50%;
-  width: 30%;
+  width: 45%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -108,4 +109,11 @@
 .techwo-row-deletes {
   height: 75%;
   filter: invert();
+}
+
+
+@media only screen and (min-width: 768px) {
+  .action-button{
+    width: 30%;
+  }
 }
