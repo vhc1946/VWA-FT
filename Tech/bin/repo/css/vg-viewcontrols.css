@@ -1,3 +1,4 @@
+
 /*
 Must select proper classes for the menu and container. Select based on the orientation of the items:
  horizontal menu, top, evenly-spaced        -> .viewcontrol-menu-hmc  +  .viewcontrol-cont-vt
@@ -16,8 +17,6 @@ Must select proper classes for the menu and container. Select based on the orien
   height: calc(100vh - 34px);
  }
 */
-
-
 /*  Tab menu standard top */
 .viewcontrol-cont{
   display:flex;
@@ -31,6 +30,7 @@ Must select proper classes for the menu and container. Select based on the orien
 .viewcontrol-menubox{
   display: flex;
   flex-grow:1;
+  height:max-content;
 }
 .viewcontrol-menu-item{
   flex-grow:1;
@@ -86,7 +86,7 @@ Must select proper classes for the menu and container. Select based on the orien
 
 
 /* MENUS */
-[class*='viewcontrol-menu-vm']>.viewcontrol-menubox{
+[class*=' viewcontrol-menu-vm']>.viewcontrol-menubox{
   flex-direction:column;
   flex-grow: 1;
   background-color: var(--background-dark);
@@ -110,9 +110,11 @@ Must select proper classes for the menu and container. Select based on the orien
 }
 .viewcontrol-menu-vmt{
   flex-direction: column-reverse;
+  height:max-content;
 }
 .viewcontrol-menu-vmt>.viewcontrol-menubox{
   justify-content:flex-start;
+  height:max-content;
 }
 .viewcontrol-menu-vmb>div{
   justify-content:flex-end;
