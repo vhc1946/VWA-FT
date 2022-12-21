@@ -20,11 +20,6 @@ if(currticket){
   localStorage.setItem(wolstore.toloadwo,null);//clear temp storage
   localStorage.setItem(wolstore.lastwo,JSON.stringify(currticket));//save as last open
   DropNote('tr','WO found','green');
-  //GETcustomer(currticket.wo.custcode).then(
-  //  answr=>{
-  //    console.log(answr);
-  //  }
-  //)
 }else{DropNote('tr','WO not found','red');}
 window.addEventListener('beforeunload',(ele)=>{ //here for page refresh
   localStorage.setItem(wolstore.toloadwo,JSON.stringify(currticket));
@@ -62,9 +57,8 @@ var mactions = {
     title:'Save WO',
     ondblclick:(ele)=>{
       currticket = ticket.ticket;
-      console.log(currticket)
+      DropNote('tr','Ticket is Saving...','green');
       window.opener.techwos.UPDATEstore(currticket).then(answr=>{
-        console.log(answr)
         if(answr){DropNote('tr','Ticket WAS Saved','green');}
         else{DropNote('tr','Ticket was NOTSaved','yellow');}
       });
@@ -74,10 +68,10 @@ var mactions = {
     id:'wo-refresh-button',
     src:'../bin/repo/assets/icons/refresh.png',
     title:'Refresh WO',
-    onclick:(ele)=>{   // Refresh info
+    ondblclick:(ele)=>{   // Refresh info
+      DropNote('tr','Ticket is Refreshing','green');
       SYNCticket(currticket.wo.id).then(
         sync=>{
-          console.log(sync);
           if(sync.wo){
             currticket.wo=sync.wo;
             ticket.ticket={wo:currticket.wo};

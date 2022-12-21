@@ -12,7 +12,7 @@ export class FlatRateTable{
     this.miscreps={//Misc Repairs
       'CLNCHK-AC':{
         'title':'Condensor C&C',
-        'desc':'Condensor Clean and Check',
+        'descr':'Condensor Clean and Check',
         'STA':149,
         'AHR':149,
         'CLA':0,
@@ -21,7 +21,7 @@ export class FlatRateTable{
       },
       'CLNCHK-FURN':{
         'title':'Furnace C&C',
-        'desc':'Furnace Clean and Check',
+        'descr':'Furnace Clean and Check',
         'STA':149,
         'AHR':149,
         'CLA':0,
@@ -30,7 +30,7 @@ export class FlatRateTable{
       },
       'DIAG':{
         'title':'Diagnostic',
-        'desc':'Diagnostic',
+        'descr':'Diagnostic',
         'STA':119,
         'AHR':149,
         'CLA':119,
@@ -84,7 +84,7 @@ export class FlatRateTable{
     let repair={};
     if(this.fltrs.pl){
       repair.task = name;
-      repair.descr = this.miscreps[name].desc;
+      repair.descr = this.miscreps[name].descr;
       repair.pl=this.fltrs.pl;
       repair.book=this.fltrs.book;
       repair.price = this.miscreps[name][this.fltrs.pl];

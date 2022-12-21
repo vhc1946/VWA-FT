@@ -17,22 +17,44 @@ export class SIrepairform extends FormList{
     this.grow = this.GETrepair;//morph this.grow
 
     this.cont.getElementsByClassName(this.dom.actions.add)[0].addEventListener('click',(ele)=>{
-      let customdesc = this.cont.getElementsByClassName(this.dom.addform.desc)[0].value;
-      let customprc = this.cont.getElementsByClassName(this.dom.addform.price)[0].value;
-      if(customdesc === '' || customprc === ''){
+      let toadd = this.addform;
+      let addrow = null;
+      if(toadd.desc !== ''){
+        let misc = false;
+        let rtask = {
+          task:'OTH',
+          descr:toadd.desc,
+          price:Number(toadd.price)
+        }
+        for(let mr in pricebook.miscreps){
+          if(toadd.desc===mr){
+            rtask.task=toadd.desc;
+            rtask.descr=pricebook.miscreps[mr].descr;
+            rtask.price=pricebook.miscreps[mr][pricebook.fltrs.pl?pricebook.fltrs.pl:'STA'];
+            addrow = this.ADDrepair(rtask);
+            this.addform=undefined;
+            misc=true;
+          }
+        }
+        if(!misc){
+          if(toadd.price===''&&!isNaN(toadd.price)){
+            pricebook.fltrs.descr=toadd.desc;
+            pricebook.SETrepairlist();
+            $(document.getElementsByClassName('min-page-cont')[0]).toggle();
+            $(document.getElementById('loginout-block')).show();
+          }else{
+            console.log('adding', rtask)
+            addrow=this.ADDrepair(rtask,true);
+            this.addform=undefined;
+          }
+        }
+      }else{
         $(document.getElementsByClassName('min-page-cont')[0]).toggle();
         $(document.getElementById('loginout-block')).show();
-      }else{
-        this.ADDrepair({
-          task: customdesc.substring(0,4),
-          descr: customdesc,
-          price: Number(customprc)
-        });
       }
-
+      if(addrow){this.list.prepend(addrow);}
     });
 
-    this.cont.getElementsByClassName(this.dom.table.actions)[0].appendChild(this.pricebook.CREATEmiscinputs(this));
     this.cont.addEventListener('mouseover',(ele)=>{
       if(this.cont.children.length==0){this.DisplayNone();}
     })
@@ -60,12 +82,17 @@ export class SIrepairform extends FormList{
   content=`
   <div class="${this.dom.cont}">
     <div class="${this.dom.table.actions}">
-      <input class="${this.dom.addform.desc}" placeholder="Add description"/>
+      <input class="${this.dom.addform.desc}" placeholder="Add description" type="search" list="misc-rep-list"/>
       <input class="${this.dom.addform.price}" placeholder="Price"/>
       <div class="icon-action-button ${this.dom.actions.add} "><img src="../../images/icons/plus-icon.png"/></div></div>
       <div class="${this.dom.table.heads}"></div>
       <div class="${this.dom.table.cont}">
     </div>
+    <datalist id="misc-rep-list">
+      <option>CLNCHK-AC</option>
+      <option>CLNCHK-FURN</option>
+      <option>DIAG</option>
+    </datalist>
   </div>
   `
 
@@ -88,12 +115,11 @@ export class SIrepairform extends FormList{
     }
     return form;
   }
-  set addform(af){
-
+  set addform(af={desc:'',price:''}){
+    for(let i in af){this.cont.getElementsByClassName(this.dom.addform[i])[0].value=af[i];}
   }
 
-  ADDrepair(item=null){
-    console.log(item);
+  ADDrepair(item=null,skipdup=false){
     if(item){
       item = aflatrepair(item);
 
@@ -117,14 +143,14 @@ export class SIrepairform extends FormList{
         ele.target.parentNode.remove();
       });
 
-      if(this.Dupcheck(row)){
-        return row;
-      }else{
+      if(skipdup||this.Dupcheck(row)){return row;}
+      else{
         DropNote('tr','Already on List','yellow');
         return null;
       }
     }
   }
+
   GETrepair(row){
     let item={};
     item.task=row.getElementsByClassName('sr-task')[0].innerText||'-';
@@ -137,9 +163,9 @@ export class SIrepairform extends FormList{
   }
 
   Dupcheck(lrow){ //Checks for duplicates in table before adding
-    let cont = this.list;
-    for(let x=0;x<cont.children.length;x++){
-      if(cont.children[x].children[0].innerText == lrow.children[0].innerText){
+    let list = this.list.children;
+    for(let x=0;x<list.length;x++){
+      if(list[x].children[1].innerText == lrow.children[1].innerText){
         return false;
       }
     }
