@@ -1,16 +1,16 @@
 let dom = {
     info:{
-        client: 'invoice-info-client',
+        contact: 'invoice-info-client',
         street: 'invoice-info-street',
-        city: 'invoice-info-city',
-        lstreet: 'invoice-info-lstreet',
-        lcity: 'invoice-info-lcity',
+        cityzip: 'invoice-info-city',
+        jstreet: 'invoice-info-lstreet',
+        jcity: 'invoice-info-lcity',
         invnum: 'invoice-info-invnum',
         invdate: 'invoice-info-invdate',
         terms: 'invoice-info-terms',
         custcode: 'invoice-info-custcode',
         reference: 'invoice-info-reference',
-        wonum: 'invoice-info-wonum',
+        id: 'invoice-info-wonum',
         wotype: 'invoice-info-wotype',
         location: 'invoice-info-location',
         strtdate: 'invoice-info-strtdate',
@@ -23,21 +23,21 @@ let dom = {
 
 
 let contents = `
-    <img id='header-logo'src="../repo/assets/images/Header.jpg"/>  
+    <img id='invoice-header-logo'src="../repo/assets/images/Header.jpg"/>  
     <div class="invoice-top">
         <div class="invoice-section-client">
             <div class="invoice-sectionhead">SOLD TO:</div>
             <div>
-                <div class="${dom.info.client}">Client Name</div>
+                <div class="${dom.info.contact}">Client Name</div>
                 <div class="${dom.info.street}">1234 Street Dr</div>
-                <div class="${dom.info.city}">Anyplace, MO 60000</div>
+                <div class="${dom.info.cityzip}">Anyplace, MO 60000</div>
             </div>
         </div>
         <div class="invoice-section-location">
             <div class="invoice-sectionhead">JOB LOCATION:</div>
             <div>
-                <div class="${dom.info.lstreet}">1234 Street Dr</div>
-                <div class="${dom.info.lcity}">Anyplace, MO 60000</div>
+                <div class="${dom.info.jstreet}">1234 Street Dr</div>
+                <div class="${dom.info.jcity}">Anyplace, MO 60000</div>
             </div>
         </div>
         <div class="invoice-section-info">
@@ -46,7 +46,7 @@ let contents = `
             <label class="invoice-sectionlabel">Terms:</label><div class="${dom.info.terms}">Test</div>
             <label class="invoice-sectionlabel">Customer Code:</label><div class="${dom.info.custcode}">Test</div>
             <label class="invoice-sectionlabel">Reference:</label><div class="${dom.info.reference}">Test</div>
-            <label class="invoice-sectionlabel">Work Order #:</label><div class="${dom.info.wonum}">Test</div>
+            <label class="invoice-sectionlabel">Work Order #:</label><div class="${dom.info.id}">Test</div>
             <label class="invoice-sectionlabel">Work Order Type:</label><div class="${dom.info.wotype}">Test</div>
             <label class="invoice-sectionlabel">Job Location:</label><div class="${dom.info.location}">Test</div>
             <label class="invoice-sectionlabel">Starting Date:</label><div class="${dom.info.strtdate}">Test</div>
