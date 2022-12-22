@@ -51,7 +51,9 @@ class LoginForm extends VHCform{
           this.storecreds = this.form;
           logoeve();//do passed down event
         });
-
+        document.getElementById(this.dom.actions.gotovapi).addEventListener('click',(ele)=>{
+          window.open('https://18.191.134.244:5000/');
+        });
         for(let i in this.inputs){
         this.inputs[i].addEventListener('keypress',(eve)=>{
             if(eve.key == 'Enter'){document.getElementById(this.dom.actions.submit).click();};
@@ -68,7 +70,8 @@ class LoginForm extends VHCform{
         },
         actions:{
           submit:'login-submit',
-          logout:'logiout-button'
+          logout:'logiout-button',
+          gotovapi:'gotovapi-button'
         }
     }
 
@@ -80,6 +83,7 @@ class LoginForm extends VHCform{
             <div class = "action-buttons-div">
               <div class = "login-action-button" id=${this.dom.actions.submit} class="flat-action-button">SUBMIT</div>
               <div class = "login-action-button" id=${this.dom.actions.logout} class="flat-action-button">LOGOUT</div>
+              <img id="${this.dom.actions.gotovapi}" src="bin/repo/assets/icons/badge.png" />
             </div>
         </div>
         </div>

@@ -149,7 +149,7 @@ var ADDqactions=(acts)=>{
   }
 }
 
-var CREATEactionbuttons=(acts)=>{
+let CREATEactionbuttons=(acts)=>{
   let alist = [];
   for(let ma in acts){
     alist.push(document.createElement('img'));
@@ -164,8 +164,7 @@ var CREATEactionbuttons=(acts)=>{
   }
   return alist;
 }
-
-var SETUPtitlebar=({RROOT='',qacts={},macts={},login=true,logieve=()=>{},logoeve=()=>{},home=(ele)=>{}})=>{
+let SETUPtitlebar=({RROOT='',qacts={},macts={},login=true,logieve=()=>{},logoeve=()=>{},home=(ele)=>{}})=>{
   document.body.prepend(CreateComponent(tdom(RROOT))); //add titlebar to the body
   for(let x=0,l=stylesheets.length;x<l;x++){
     let viewstyles = document.createElement('link');

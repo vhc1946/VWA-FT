@@ -114,10 +114,10 @@
 }
 
 #login-info>input{
-    border: 0; 
-    padding: 7px 15px; 
-    border: 1px solid #ccc; 
-    position: relative; 
+    border: 0;
+    padding: 7px 15px;
+    border: 1px solid #ccc;
+    position: relative;
     background: transparent;
     border-radius: 5px;
 }
@@ -148,7 +148,9 @@
     height: 2em;
     line-height: 2em;
 }
-
+#gotovapi-button{
+  width:40px;
+}
 .action-buttons-div {
     display: flex;
     column-gap: 5%;
