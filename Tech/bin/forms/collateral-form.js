@@ -4,10 +4,14 @@ import { VHCform } from "../repo/tools/vhc-forms.js";
 
 export class CollateralForm extends VHCform{
     constructor(cont,info){
-        super(cont);
-        this.cont.innerHTML = info.contents;
+        super({
+          cont:cont,
+          content:info.contents,
+          fields:info.dom.info,
+        });
+        
         this.dom = info.dom;
-        this.setinputs(info.dom.info||{});
+
         //loop through info.dom.info
       }
 }

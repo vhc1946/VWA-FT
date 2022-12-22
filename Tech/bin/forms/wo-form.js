@@ -2,9 +2,11 @@
 import {VHCform} from '../repo/tools/vhc-forms.js';
 export class WOform extends VHCform{
   constructor(cont){
-    super(cont);
-    this.cont.innerHTML=this.content;
-    this.setinputs(this.dom.info);
+    super({
+      cont:cont,
+      content:this.content,
+      fields:this.dom.info
+    });
   }
   dom={  // was wodom
     cont: 'wo-cont',

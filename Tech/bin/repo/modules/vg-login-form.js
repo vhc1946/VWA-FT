@@ -4,11 +4,23 @@ import {DropNote} from '../../repo/modules/vg-dropnote.js';
 var logurl = 'https://18.191.134.244:5000/login';//'https://localHost:5000/login'; //
 class LoginForm extends VHCform{
     constructor(cont,logieve=()=>{},logoeve=()=>{}){
-        super(cont);
-        this.cont.innerHTML=this.content;
-
-        this.inputs.user=document.getElementById(this.dom.inputs.user);
-        this.inputs.pswrd=document.getElementById(this.dom.inputs.pswrd);
+        super({
+          cont:cont,
+          content:`
+              <div id=${this.dom.cont}>
+              <div id=${this.dom.info}>
+                  <label>User</label><input id=${this.dom.inputs.user} type="text"/>
+                  <label>Password</label><input id=${this.dom.inputs.pswrd} type="password"/>
+                  <div class = "action-buttons-div">
+                    <div class = "login-action-button" id=${this.dom.actions.submit} class="flat-action-button">SUBMIT</div>
+                    <div class = "login-action-button" id=${this.dom.actions.logout} class="flat-action-button">LOGOUT</div>
+                    <img id="${this.dom.actions.gotovapi}" src="bin/repo/assets/icons/badge.png" />
+                  </div>
+              </div>
+              </div>
+          `,
+          fields:this.dom.inputs
+        });
 
         this.permission=false;
 

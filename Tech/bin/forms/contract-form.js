@@ -1,10 +1,13 @@
 import {VHCform} from '../repo/tools/vhc-forms.js';
 export class Contform extends VHCform{
   constructor(cont){
-    super(cont);
-    this.cont.innerHTML=this.content;
-    this.setinputs(this.dom.disp);
+    super({
+      cont:cont,
+      content:this.content,
+      fields:this.dom.disp
+    });
   }
+  
   dom={  // was cntrctform
     cont: 'contract-cont',
     disp:{
