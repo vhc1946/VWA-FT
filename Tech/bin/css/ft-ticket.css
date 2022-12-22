@@ -40,14 +40,18 @@ body{
 /*checklist top tab + menu bar base colors*/
 #check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item,
 .checklists-menu>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item,
-.checklists-menu>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox{
+.checklists-menu>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox,
+#check-cont>[class="viewcontrol-cont viewcontrol-cont-hl"]>.viewcontrol-menu.viewcontrol-menu-vmt>.viewcontrol-quick-actions>div>.si-menu-buttons>.si-add-inputs>[class="si-add-button icon-action-button"]
+{
     background-color: var(--checklist-tab);
     z-index: 4;
 }
 /*checklist top tab + menu bar hovers*/
 #check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item:hover,
 .checklists-menu>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item:hover,
-.checklists-menu>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox:hover{
+.checklists-menu>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox:hover,
+#check-cont>[class="viewcontrol-cont viewcontrol-cont-hl"]>.viewcontrol-menu.viewcontrol-menu-vmt>.viewcontrol-quick-actions>div>.si-menu-buttons>.si-add-inputs>[class="si-add-button icon-action-button"]:hover
+{
     background-color: var(--checklist-tab-hover);
 }
 /*checklist top tab + menu bar selected colors*/
@@ -59,10 +63,13 @@ body{
 }
 
 #info-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item{
-    background-color: var(--included-background);
+    background-color: var(--information-tab);
+}
+#info-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item:hover{
+    background-color: var(--information-tab-hover);
 }
 #info-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item.viewcontrol-menu-selected{
-    background-color: var(--included-border);
+    background-color: var(--information-tab-selected);
 }
 
 
@@ -313,6 +320,17 @@ Checklists
 .wo-info-descr{
     grid-column: 1 / 3;
     height: 100px;
+    border: 0;
+    border: 1px solid rgb(235, 235, 235); 
+    position: relative; 
+    background-color: var(--card-base-light);
+    border-radius: 5px;
+    color: rgb(50,50,50);
+}
+.wo-info-descr:focus{
+    outline: none;
+    background-color: rgb(235, 235, 235);
+    color: rgb(25,25,25);
 }
 /* Contract Tab */
 .contract-opt {
@@ -349,8 +367,9 @@ Checklists
 }
 
 .si-delete,.si-add{
-    width:50%;
+    width:50% !important;
     margin:0;
+    height: 30px;
 }
 .si-menu-buttons>div>img{
   width:17px;

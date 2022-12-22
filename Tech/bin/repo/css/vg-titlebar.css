@@ -24,6 +24,7 @@
     width:100px;
     top:40px;
     background-color: var(--titlebar-bg);
+    border-bottom-right-radius: 5px;
 }
 #titlebar-title{
     color: white;
