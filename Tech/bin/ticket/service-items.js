@@ -195,6 +195,9 @@ export class TicketServiceItems{
     /*Event listener for updating tag number.*/
     let tag_input = this.info[index].inputs.tagid;
     tag_input.addEventListener('change',(ele)=>{
+      //Call global save function
+      window.SAVEticket();
+      console.log("Tagid: ", item.tagid);
       let new_input = tag_input.value;
       //Refresh the currsi and menu button
       this.currsi.innerText = new_input;
@@ -210,9 +213,7 @@ export class TicketServiceItems{
       if (view) { 
         view.title = new_input;
       }
-
-      //Call global save function
-      window.SAVEticket();
+      item.tagid = new_input;
     });
 
     return added;
