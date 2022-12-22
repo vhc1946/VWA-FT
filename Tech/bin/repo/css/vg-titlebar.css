@@ -9,6 +9,7 @@
     height: 40px;
     z-index: 50;
     transition: top 0.3s;
+    filter: var(--drop-shadow);
 }
 #titlebar-cont-left{
     position: relative;
@@ -95,7 +96,7 @@
     top:60px;
     right:20px;
     padding: 10px;
-    background-color: var(--background-base);
+    background-color: var(--card-base-light);
     filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.5));
     border-radius: 10px;
 }
@@ -110,6 +111,20 @@
     display: flex;
     justify-content: flex-end;
     padding-top: 5px;
+}
+
+#login-info>input{
+    border: 0; 
+    padding: 7px 15px; 
+    border: 1px solid #ccc; 
+    position: relative; 
+    background: transparent;
+    border-radius: 5px;
+}
+
+#login-info>input:focus{
+    outline: none;
+    background-color: #ccc;
 }
 
 /* User Name */

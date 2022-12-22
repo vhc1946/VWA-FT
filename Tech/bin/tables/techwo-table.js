@@ -53,25 +53,6 @@ const wotablerow=`
       <div class = "action-button" id = "button-open" ><img class="${wrdom.actions.open}" src="./bin/repo/assets/icons/edit.png"/></div>
     </div>
 `
-
-const wotablerow_old=`
-  <div class="${wrdom.values.datescheduled}"></div>
-  <div class="${wrdom.contact}">
-    <div class="${wrdom.values.id}" style="display:none"></div>
-    <div class="${wrdom.values.contactname}"></div>
-    <div class="${wrdom.values.contactphone}"></div>
-  </div>
-  <div class="${wrdom.values.descr}"></div>
-  <div class="${wrdom.address}">
-    <div class="${wrdom.values.street}"></div>
-    <div class="${wrdom.values.cityzip}"></div>
-  </div>
-  <div class="techwo-row-actions">
-    <div><img class="${wrdom.actions.delete} src="./bin/repo/assets/icons/cross.png"/></div>
-    <div><img class="${wrdom.actions.open} src="./bin/repo/assets/icons/edit.png"/></div>
-  </div>
-`
-
 // DATA //
 export var twolist = new TechLocalWos();
 
@@ -112,7 +93,13 @@ twdashlist.srow=(item={})=>{
     twolist.REMOVEitem(item.wo.id);
     twdashlist.form=twolist.list;
   });
+  row.getElementsByClassName('action-button')[0].addEventListener('dblclick',(ele)=>{
+    twolist.REMOVEitem(item.wo.id);
+    twdashlist.form=twolist.list;
+  });
   row.getElementsByClassName(wrdom.actions.open)[0].addEventListener('dblclick',OPENwo);
+  row.getElementsByClassName('action-button')[1].addEventListener('dblclick',OPENwo);
+  //
 
   return row;
 }

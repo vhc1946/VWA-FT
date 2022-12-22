@@ -9,7 +9,7 @@
     display: grid;
 }
 .vhc-app{
-    background-color: var(--background-base);
+    background-color: var(--card-base-light);
     text-align: center;
     font-weight: bold;
     min-width: 125px;
