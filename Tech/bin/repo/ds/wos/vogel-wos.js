@@ -41,8 +41,8 @@ var awo = (w)=>{
         dateorder:w.dateorder||'',
         timeorder:w.timeorder||'',
 
-        datescheduled:w.dateschedule||'',
-        timescheduled:w.timeschedule||'',
+        dateschedule:w.dateschedule||'',
+        timeschedule:w.timeschedule||'',
 
         datestart:w.datestart||'',
         timestart:w.timestart||'',

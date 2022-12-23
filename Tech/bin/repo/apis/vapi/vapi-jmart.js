@@ -70,6 +70,7 @@ export var GETwo=(wonum,table='wonumber')=>{
           SENDrequestapi(opts,'japi').then(
             answr=>{
               if(answr.body.success&&answr.body.table.length==1){
+                console.log("WO from JMart:::::::::::",answr.body.table[0])
                 wo = awo(answr.body.table[0]);
                 let havedescr=false;
                 let haveemail=false;
