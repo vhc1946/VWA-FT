@@ -10,8 +10,10 @@ import {TicketServiceItems} from './service-items.js';
 import {ServiceChecks} from './service-checks.js';
 import {FlatRateTable} from '../tables/fbook-table.js';
 
-import {WOform} from '../forms/wo-form.js';
-import {Contform} from '../forms/contract-form.js';
+import {VHCform} from '../repo/tools/vhc-forms.js';
+
+import {woform} from '../forms/wo-form.js';
+import {conform} from '../forms/contract-form.js';
 
 /* A Residential Ticket
 
@@ -39,8 +41,8 @@ var fbtable = document.getElementsByClassName('frbook-list')[0];
 
 export class ServiceTicket{
   constructor(ticket=null,pricing){
+    console.log('INIT Ticket',ticket);
     this.data = aserviceticket(ticket);
-    console.log('INIT Ticket',this.data);
     // Setup Price Book
     this.pricing = new FlatRateTable(pricing.TRIMlist({book:this.data.wo.pricebook}),fbtable);
     this.pricing.fltrs.pl=this.data.wo.pricelevel;
@@ -68,8 +70,16 @@ export class ServiceTicket{
     };
 
     this.forms={//hold the list of children data forms
-      wo:new WOform(document.createElement('div')),
-      contract:new Contform(document.createElement('div')),
+      wo:new VHCform({
+        dom:woform.dom,
+        content:woform.content,
+        data:this.data.wo
+      }),//WOform(document.createElement('div')),
+      contract:new VHCform({
+        dom:conform.dom,
+        content:conform.content,
+        data:this.data.contract
+      }),//Contform(document.createElement('div')),
       sitems:[],
       checks:[]
     };
@@ -105,7 +115,7 @@ export class ServiceTicket{
 
   get ticket(){ //updates this.data and returns it
     let ttick={};
-    console.log("From get ticket: ", this.forms);
+    console.log("From get ticket: ", this.data);
     for(let f in this.forms){
       //try{
         if(this.forms[f].form){
@@ -128,11 +138,11 @@ export class ServiceTicket{
       if(this.forms[f]){
         if(!this.forms[f].length){
           this.forms[f].form=tick[f];
-          this.data=tick[f];
+          this.data[f]=tick[f];
         }else{
           for(let x=0;x<tick[f].length;x++){
             this.forms[f][x].form=tick[f][x];
-            this.data=tick[f][x];
+            this.data[f]=tick[f];
           }
         }
       }

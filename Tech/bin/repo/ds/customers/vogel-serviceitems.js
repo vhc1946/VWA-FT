@@ -1,6 +1,7 @@
 import {ExcelDateToJSDate} from '../../tools/xltools.js';
 
 var aserviceitem = (si)=>{
+  console.log('SI',si);
     if(!si || si==undefined){
         si = {};
     }

@@ -15,10 +15,7 @@ export class AppDock{
             appbox.appendChild(document.createElement('div'));
             appbox.lastChild.innerText = app;
             let func = apps[app];
-            appbox.addEventListener('click', (ele)=>{
-                func();
-            });
-
+            appbox.addEventListener('click', (ele)=>{func();});
             appdock.appendChild(appbox);
         }
         return appdock;
