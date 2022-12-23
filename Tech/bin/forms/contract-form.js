@@ -1,16 +1,8 @@
 import {VHCform} from '../repo/tools/vhc-forms.js';
-export class Contform extends VHCform{
-  constructor(cont){
-    super({
-      cont:cont,
-      content:this.content,
-      fields:this.dom.disp
-    });
-  }
-  
-  dom={  // was cntrctform
+
+const dom = {// was cntrctform
     cont: 'contract-cont',
-    disp:{
+    fields:{
       id: 'contract-id',
       origid: 'contract-origid',
       renewid: 'contract-renewid',
@@ -23,66 +15,64 @@ export class Contform extends VHCform{
       billings: 'contract-billings',
       visits: 'contract-visits',
       value: 'contract-value'
-    },
-    form: {
-        cont: 'present-contract-opts',
-        memappr: 'wo-contract-appr',
-        desc: 'present-contract-opt-desc',
-        quantity: 'present-contract-opt-quantity',
-        appr: 'present-contract-opt-appr',
-        name: 'present-contract-name',
-        month: 'present-contract-monthly',
-
-        inputs: {
-            sys: 'present-contract-addsys',
-            comp: 'present-contract-addcomp',
-            stdfltr: 'present-contract-addstdflt',
-            spcfltr: 'present-contract-addspcflt',
-            humpad: 'present-contract-addhumpad',
-            timesave: 'present-contract-addtimesave'
-        }
     }
   }
-  content=`
-    <div id=${this.dom.cont} class='ft-form'>
-        <div class="contract-opt">
-            <div>Contract ID</div><input class=${this.dom.disp.id} placeholder="id">
-        </div>
-        <div class="contract-opt">
-            <div>Original ID</div><input class=${this.dom.disp.origid} placeholder="origid">
-        </div>
-        <div class="contract-opt">
-            <div>Renewal ID</div><input class=${this.dom.disp.renewid} placeholder="renewid">
-        </div>
-        <div class="contract-opt">
-            <div>Date From</div><input class=${this.dom.disp.datefrom} placeholder="datefrom">
-        </div>
-        <div class="contract-opt">
-            <div>Date To</div><input class=${this.dom.disp.dateto} placeholder="dateto">
-        </div>
-        <div class="contract-opt">
-            <div>Date Signed</div><input class=${this.dom.disp.datesign} placeholder="datesign">
-        </div>
-        <div class="contract-opt">
-            <div>Member Since</div><input class=${this.dom.disp.datestart} placeholder="datestart">
-        </div>
 
-        <div class="contract-opt">
-            <div>Contact Type</div><input class=${this.dom.disp.type} placeholder="type">
-        </div>
-        <div class="contract-opt">
-            <div>Contract Status</div><input class=${this.dom.disp.status} placeholder="status">
-        </div>
-        <div class="contract-opt">
-            <div>Num of Billings</div><input class=${this.dom.disp.billings} placeholder="billings">
-        </div>
-        <div class="contract-opt">
-            <div>Num of Visits</div><input class=${this.dom.disp.visits} placeholder="visits">
-        </div>
-        <div class="contract-opt">
-            <div>Contract Value</div><input class=${this.dom.disp.value} placeholder="value">
-        </div>
-    </div>
-    `
+const content=`
+  <div id=${dom.cont} class='ft-form'>
+      <div class="contract-opt">
+          <div>Contract ID</div><input class=${dom.fields.id} placeholder="id">
+      </div>
+      <div class="contract-opt">
+          <div>Original ID</div><input class=${dom.fields.origid} placeholder="origid">
+      </div>
+      <div class="contract-opt">
+          <div>Renewal ID</div><input class=${dom.fields.renewid} placeholder="renewid">
+      </div>
+      <div class="contract-opt">
+          <div>Date From</div><input class=${dom.fields.datefrom} placeholder="datefrom">
+      </div>
+      <div class="contract-opt">
+          <div>Date To</div><input class=${dom.fields.dateto} placeholder="dateto">
+      </div>
+      <div class="contract-opt">
+          <div>Date Signed</div><input class=${dom.fields.datesign} placeholder="datesign">
+      </div>
+      <div class="contract-opt">
+          <div>Member Since</div><input class=${dom.fields.datestart} placeholder="datestart">
+      </div>
+
+      <div class="contract-opt">
+          <div>Contact Type</div><input class=${dom.fields.type} placeholder="type">
+      </div>
+      <div class="contract-opt">
+          <div>Contract Status</div><input class=${dom.fields.status} placeholder="status">
+      </div>
+      <div class="contract-opt">
+          <div>Num of Billings</div><input class=${dom.fields.billings} placeholder="billings">
+      </div>
+      <div class="contract-opt">
+          <div>Num of Visits</div><input class=${dom.fields.visits} placeholder="visits">
+      </div>
+      <div class="contract-opt">
+          <div>Contract Value</div><input class=${dom.fields.value} placeholder="value">
+      </div>
+  </div>
+  `
+
+export let conform = {
+  dom:dom,
+  content:content
+}
+
+export class Contform extends VHCform{
+  constructor(cont){
+    super({
+      cont:cont,
+      dom:dom,
+      content:content
+    });
+  }
+
   submit(){}
 }

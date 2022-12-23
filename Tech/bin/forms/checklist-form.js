@@ -5,7 +5,7 @@ export class CheckListForm extends VHCform{
     super({
       cont:cont,
       content:content,
-      fields:config.inputs;
+      dom:config
     });
     console.log(config);
 

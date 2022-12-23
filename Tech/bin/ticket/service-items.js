@@ -9,8 +9,9 @@ import { DropNote } from '../repo/modules/vg-dropnote.js';
 import {FINDparentele} from '../repo/tools/vg-displaytools.js';
 
 import {ViewGroup} from '../repo/layouts/view-controller.js';
+import {VHCform} from '../repo/tools/vhc-forms.js';
 
-import {SIform} from '../forms/serviceitem-form.js';
+import {SIform,siform} from '../forms/serviceitem-form.js';
 import {SIrepairform} from '../forms/servicerepairs-form.js';
 
 
@@ -95,6 +96,7 @@ export class TicketServiceItems{
         }
       }
     });
+
     this.currsi=this.view.cont.getElementsByClassName('currsi')[0];
     this.currtab=0;
     //attach price book, want to move
@@ -181,7 +183,7 @@ export class TicketServiceItems{
     }
 
     /*Event listener for updating description.*/
-    let descr_input = this.info[index].inputs.descr;
+    let descr_input = this.info[index].fields.descr;
     descr_input.addEventListener('change',(ele)=>{
       let new_input = descr_input.value;
 
@@ -193,7 +195,7 @@ export class TicketServiceItems{
     });
 
     /*Event listener for updating tag number.*/
-    let tag_input = this.info[index].inputs.tagid;
+    let tag_input = this.info[index].fields.tagid;
     tag_input.addEventListener('change',(ele)=>{
       //Call global save function
       window.SAVEticket();
@@ -204,13 +206,13 @@ export class TicketServiceItems{
 
       //Must update button and view for currsi to refresh
       let button = this.view.FINDbutton(item.tagid);
-      if (button) { 
+      if (button) {
         button.title = new_input;
         button.innerText = new_input;
       }
 
       let view = this.view.FINDview(item.tagid);
-      if (view) { 
+      if (view) {
         view.title = new_input;
       }
       item.tagid = new_input;

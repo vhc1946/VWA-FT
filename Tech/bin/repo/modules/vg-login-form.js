@@ -1,33 +1,55 @@
 import {VHCform} from '../../repo/tools/vhc-forms.js';
 import {DropNote} from '../../repo/modules/vg-dropnote.js';
 
-var logurl = 'https://18.191.134.244:5000/login';//'https://localHost:5000/login'; //
-class LoginForm extends VHCform{
+const logurl = 'https://18.191.134.244:5000/login';//'https://localHost:5000/login'; //
+
+let dom ={
+  cont:'login-box',
+  info:'login-info',
+  fields:{
+    user:'login-username',
+    pswrd:'login-password'
+  },
+  actions:{
+    submit:'login-submit',
+    logout:'logiout-button',
+    gotovapi:'gotovapi-button'
+  }
+}
+const content =`
+    <div id=${dom.cont}>
+    <div id=${dom.info}>
+        <label>User</label><input class=${dom.fields.user} type="text"/>
+        <label>Password</label><input class=${dom.fields.pswrd} type="password"/>
+        <div class = "action-buttons-div">
+          <div class = "login-action-button" id=${dom.actions.submit} class="flat-action-button">SUBMIT</div>
+          <div class = "login-action-button" id=${dom.actions.logout} class="flat-action-button">LOGOUT</div>
+          <img id="${dom.actions.gotovapi}" src="bin/repo/assets/icons/badge.png" />
+        </div>
+    </div>
+    </div>
+`
+const datamap = (u)=>{
+  if(!u){u={}}
+  return{
+    user:u.user||'',
+    pswrd:u.pswrd||'',
+  }
+}
+export class LoginForm extends VHCform{
     constructor(cont,logieve=()=>{},logoeve=()=>{}){
         super({
           cont:cont,
-          content:`
-              <div id=${this.dom.cont}>
-              <div id=${this.dom.info}>
-                  <label>User</label><input id=${this.dom.inputs.user} type="text"/>
-                  <label>Password</label><input id=${this.dom.inputs.pswrd} type="password"/>
-                  <div class = "action-buttons-div">
-                    <div class = "login-action-button" id=${this.dom.actions.submit} class="flat-action-button">SUBMIT</div>
-                    <div class = "login-action-button" id=${this.dom.actions.logout} class="flat-action-button">LOGOUT</div>
-                    <img id="${this.dom.actions.gotovapi}" src="bin/repo/assets/icons/badge.png" />
-                  </div>
-              </div>
-              </div>
-          `,
-          fields:this.dom.inputs
+          dom:dom,
+          content:content,
+          data:datamap(),
+          datamap:datamap
         });
-
         this.permission=false;
 
-        let creds=this.storecreds;
-        if(creds && creds.user!=''||creds.pswrd!=''){
-        console.log(creds);
-          this.form=creds;
+        this.data = this.storecreds;
+        if(this.data && this.data.user!=''||this.data.pswrd!=''){
+          this.form=this.data;
           this.submit().then(
             result=>{
             if(result.success){
@@ -73,42 +95,14 @@ class LoginForm extends VHCform{
         }
     }
 
-    dom={
-        cont:'login-box',
-        info:'login-info',
-        inputs:{
-          user:'login-username',
-          pswrd:'login-password'
-        },
-        actions:{
-          submit:'login-submit',
-          logout:'logiout-button',
-          gotovapi:'gotovapi-button'
-        }
-    }
-
-    content=`
-        <div id=${this.dom.cont}>
-        <div id=${this.dom.info}>
-            <label>User</label><input id=${this.dom.inputs.user} type="text"/>
-            <label>Password</label><input id=${this.dom.inputs.pswrd} type="password"/>
-            <div class = "action-buttons-div">
-              <div class = "login-action-button" id=${this.dom.actions.submit} class="flat-action-button">SUBMIT</div>
-              <div class = "login-action-button" id=${this.dom.actions.logout} class="flat-action-button">LOGOUT</div>
-              <img id="${this.dom.actions.gotovapi}" src="bin/repo/assets/icons/badge.png" />
-            </div>
-        </div>
-        </div>
-    `
-
     get storecreds(){
         try{
           let creds=JSON.parse(localStorage.getItem('vapi-user'));
           if(creds){return creds;}
-          else{return {user:'',pswrd:''};}
-        }catch{return {user:'',pswrd:''};}
+          else{return this.datamap();}
+        }catch{return this.datamap();}
     }
-    set storecreds(creds={user:'',pswrd:''}){localStorage.setItem('vapi-user',JSON.stringify(creds))}
+    set storecreds(creds=this.datamap()){localStorage.setItem('vapi-user',JSON.stringify(creds))}
 
     validate(){
         let frm = this.form;
@@ -136,5 +130,3 @@ class LoginForm extends VHCform{
       });
     }
 }
-
-export {LoginForm}

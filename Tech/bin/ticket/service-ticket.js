@@ -10,8 +10,11 @@ import {TicketServiceItems} from './service-items.js';
 import {ServiceChecks} from './service-checks.js';
 import {FlatRateTable} from '../tables/fbook-table.js';
 
-import {WOform} from '../forms/wo-form.js';
-import {Contform} from '../forms/contract-form.js';
+import {VHCform} from '../repo/tools/vhc-forms.js';
+
+import {woform,WOform} from '../forms/wo-form.js';
+
+import {conform,Contform} from '../forms/contract-form.js';
 
 /* A Residential Ticket
 
@@ -68,8 +71,16 @@ export class ServiceTicket{
     };
 
     this.forms={//hold the list of children data forms
-      wo:new WOform(document.createElement('div')),
-      contract:new Contform(document.createElement('div')),
+      wo:new VHCform({
+        dom:woform.dom,
+        content:woform.content,
+        data:this.data.wo
+      }),//WOform(document.createElement('div')),
+      contract:new VHCform({
+        dom:conform.dom,
+        content:conform.content,
+        data:this.data.contract
+      }),//Contform(document.createElement('div')),
       sitems:[],
       checks:[]
     };

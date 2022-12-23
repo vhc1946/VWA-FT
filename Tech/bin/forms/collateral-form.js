@@ -7,11 +7,8 @@ export class CollateralForm extends VHCform{
         super({
           cont:cont,
           content:info.contents,
-          fields:info.dom.info,
+          dom:info.dom
         });
-        
-        this.dom = info.dom;
-
         //loop through info.dom.info
       }
 }

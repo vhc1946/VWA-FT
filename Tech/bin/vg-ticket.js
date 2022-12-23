@@ -35,7 +35,6 @@ window.SAVEticket = ()=>{
   });
 }
 
-
 // Setup ticket view groups ////////////////////////////////////////////////////
 var ticket = new ServiceTicket(currticket,fbstore.list);
 var presentation = new ServicePresentation(document.createElement('div'),currticket,fbstore.list.TRIMlist({book:'RES'}));
