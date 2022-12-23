@@ -12,9 +12,8 @@ import {FlatRateTable} from '../tables/fbook-table.js';
 
 import {VHCform} from '../repo/tools/vhc-forms.js';
 
-import {woform,WOform} from '../forms/wo-form.js';
-
-import {conform,Contform} from '../forms/contract-form.js';
+import {woform} from '../forms/wo-form.js';
+import {conform} from '../forms/contract-form.js';
 
 /* A Residential Ticket
 
@@ -42,8 +41,8 @@ var fbtable = document.getElementsByClassName('frbook-list')[0];
 
 export class ServiceTicket{
   constructor(ticket=null,pricing){
+    console.log('INIT Ticket',ticket);
     this.data = aserviceticket(ticket);
-    console.log('INIT Ticket',this.data);
     // Setup Price Book
     this.pricing = new FlatRateTable(pricing.TRIMlist({book:this.data.wo.pricebook}),fbtable);
     this.pricing.fltrs.pl=this.data.wo.pricelevel;

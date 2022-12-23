@@ -64,15 +64,3 @@ export let conform = {
   dom:dom,
   content:content
 }
-
-export class Contform extends VHCform{
-  constructor(cont){
-    super({
-      cont:cont,
-      dom:dom,
-      content:content
-    });
-  }
-
-  submit(){}
-}

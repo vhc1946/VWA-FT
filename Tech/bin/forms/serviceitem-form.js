@@ -1,6 +1,3 @@
-import {VHCform} from '../repo/tools/vhc-forms.js';
-import * as ttools from '../repo/modules/vg-tables.js';
-
 // service item information
 
 const dom={
@@ -119,13 +116,4 @@ const content=`
 export let siform = {
   dom:dom,
   content:content
-}
-export class SIform extends VHCform{
-  constructor(cont,seletable=()=>{}){
-    super({
-      cont:cont,
-      dom:dom,
-      content:content
-    });
-  }
 }

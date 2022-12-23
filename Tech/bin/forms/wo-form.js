@@ -102,13 +102,3 @@ export let woform = {
   dom:dom,
   content:content
 }
-
-export class WOform extends VHCform{
-  constructor(cont){
-    super({
-      cont:cont,
-      dom:dom,
-      content:content
-    });
-  }
-}

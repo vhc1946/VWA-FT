@@ -11,7 +11,7 @@ import {FINDparentele} from '../repo/tools/vg-displaytools.js';
 import {ViewGroup} from '../repo/layouts/view-controller.js';
 import {VHCform} from '../repo/tools/vhc-forms.js';
 
-import {SIform,siform} from '../forms/serviceitem-form.js';
+import {siform} from '../forms/serviceitem-form.js';
 import {SIrepairform} from '../forms/servicerepairs-form.js';
 
 
@@ -21,6 +21,7 @@ import {SIrepairform} from '../forms/servicerepairs-form.js';
 export class TicketServiceItems{
   // Inserts Add and Delete buttons into Items Menu
   constructor(items,repairs,pricebook){
+    console.log('Service Items',items)
     let cont = document.createElement('div');
     cont.id='si-cont';
 
@@ -99,6 +100,7 @@ export class TicketServiceItems{
 
     this.currsi=this.view.cont.getElementsByClassName('currsi')[0];
     this.currtab=0;
+
     //attach price book, want to move
     this.pricebook = pricebook; // FlatRateTable passed from parent
 
@@ -109,10 +111,9 @@ export class TicketServiceItems{
 
     for(let i=0;i<items.length;i++){//Loop ticket.serviceitems
       if(repairs[i]==undefined){
-        console.log("Correcting empty repairs for index ", i)
         repairs.push([]);
       }
-      this.ADDserviceitem(items[i], repairs[i])
+      this.ADDserviceitem(items[i], repairs[i]);
     }
 
     this.view.port.addEventListener('click',(ele)=>{this.TOGGLEitemlist(true);});
@@ -159,17 +160,21 @@ export class TicketServiceItems{
   */
   ADDserviceitem(item, repairs=[]) {
     //console.log("Item: ", item)
-
     let sitemview = new ViewGroup({
       type:'mtr',
       qactions:{['.item-header.div']:{value:item.descr}}
     });
 
+    let index = this.info.length;
+
     //add/init service info form
-    this.info.push(new SIform(document.createElement('div')));
-    var index = this.info.length-1
+    this.info.push(new VHCform({
+      dom:siform.dom,
+      content:siform.content,
+      data:JSON.parse(JSON.stringify(item))
+    }));
+
     sitemview.ADDview('Info',this.info[index].cont);
-    this.info[index].form = item; //load info
     //console.log(this.repairs)
     //add/init service repairs
     this.repairs.push(new SIrepairform(document.createElement('div'),this.pricebook));
@@ -199,7 +204,6 @@ export class TicketServiceItems{
     tag_input.addEventListener('change',(ele)=>{
       //Call global save function
       window.SAVEticket();
-      console.log("Tagid: ", item.tagid);
       let new_input = tag_input.value;
       //Refresh the currsi and menu button
       this.currsi.innerText = new_input;

@@ -26,10 +26,6 @@ export var GETjapitest=()=>{
       return res(SENDrequestapi(wopull,'japi'));
   });
 }
-GETjapitest().then(
-  answr=>{console.log(answr);}
-)
-
 
 export var GETflbook=(book='RES',table='flatratebook')=>{
     return new Promise((res,rej)=>{

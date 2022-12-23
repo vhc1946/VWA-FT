@@ -7,15 +7,16 @@ import {ServiceTicket} from './ticket/service-ticket.js';
 import {ServicePresentation} from './ticket/service-presentation.js';
 import { DrawingPad } from './tools/drawing-pad.js';
 
-var publicfolder = '/Tech/bin/css'; //not sure we need
+let publicfolder = '/Tech/bin/css'; //not sure we need
 // Load Data //
 
-var fbstore = window.opener.datamart.fbstore;//fbstore holds connections to indexdb and an instance of ObjList
+let fbstore = window.opener.datamart.fbstore;//fbstore holds connections to indexdb and an instance of ObjList
 
 console.log('FLATRATE BOOK >',fbstore.list.list);
 
 // LOAD Ticket //
-var currticket = JSON.parse(localStorage.getItem(wolstore.toloadwo));
+let currticket = JSON.parse(localStorage.getItem(wolstore.toloadwo));
+console.log('Currticket',currticket);
 if(currticket){
   localStorage.setItem(wolstore.toloadwo,null);//clear temp storage
   localStorage.setItem(wolstore.lastwo,JSON.stringify(currticket));//save as last open
@@ -36,8 +37,9 @@ window.SAVEticket = ()=>{
 }
 
 // Setup ticket view groups ////////////////////////////////////////////////////
-var ticket = new ServiceTicket(currticket,fbstore.list);
-var presentation = new ServicePresentation(document.createElement('div'),currticket,fbstore.list.TRIMlist({book:'RES'}));
+console.log(currticket);
+let ticket = new ServiceTicket(currticket,fbstore.list);
+let  presentation = new ServicePresentation(document.createElement('div'),currticket,fbstore.list.TRIMlist({book:'RES'}));
 
 // final summary
 // Setup Page //

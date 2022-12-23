@@ -10,7 +10,8 @@
     field property, this.fields will initialize in the constructorotherwise it
     is up to the user to set it after.
 
-  - content (this.content)
+  - content (this.content):
+    Needs to be legal html and ready to be inserted into a div in the constructor
 
   - data (this.data):
     Structure passed to maintain an uptodated version of what the form is
@@ -43,6 +44,8 @@ export class VHCform{
 
     this.datamap=datamap;
     this.data=this.datamap(data);
+    try{this.form=this.data;}
+    catch{console.log('Form not INIT')}
 
   }
   set form(updates={}){
