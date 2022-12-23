@@ -124,9 +124,7 @@ document.getElementById('submit-search').addEventListener('click', (ele)=>{
       window.open('controllers/ticket.html');
     }
     let wonum = document.getElementById('openwo-number').value;
-    while(wonum.length < 8){
-        wonum = '0' + wonum;
-    }
+    while(wonum.length < 8){wonum = '0' + wonum;}
     let woitem = twolist.GETitem(wonum);
     if(woitem){
       savenload(woitem);
@@ -134,6 +132,7 @@ document.getElementById('submit-search').addEventListener('click', (ele)=>{
       //search vapi mart
       twolist.CHECKmart(wonum).then(
         found=>{
+          console.log('TICKET >',found);
           if(found){found.mobile=true;savenload(found);}
           else{
             STARTticket(wonum).then(  //'00025796'

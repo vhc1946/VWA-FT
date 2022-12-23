@@ -26,10 +26,6 @@ export var GETjapitest=()=>{
       return res(SENDrequestapi(wopull,'japi'));
   });
 }
-GETjapitest().then(
-  answr=>{console.log(answr);}
-)
-
 
 export var GETflbook=(book='RES',table='flatratebook')=>{
     return new Promise((res,rej)=>{
@@ -74,6 +70,7 @@ export var GETwo=(wonum,table='wonumber')=>{
           SENDrequestapi(opts,'japi').then(
             answr=>{
               if(answr.body.success&&answr.body.table.length==1){
+                console.log("WO from JMart:::::::::::",answr.body.table[0])
                 wo = awo(answr.body.table[0]);
                 let havedescr=false;
                 let haveemail=false;

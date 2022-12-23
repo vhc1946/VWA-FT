@@ -19,7 +19,9 @@ export class FormList extends VHCform{
     grow= null,
     list=[]
   }){
-    super(cont);
+    super({
+      cont:cont
+    });
     this.sleeve=seleeve;//select event
     this.rmap=rmap;
 

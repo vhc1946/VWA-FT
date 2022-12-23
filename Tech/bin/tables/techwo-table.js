@@ -14,7 +14,7 @@ const wrmap = (w)=>{
     contactname:w.contactname||'',
     contactphone:w.contactphone||'',
     descr:w.descr||'',
-    datescheduled:w.datescheduled||'',
+    dateschedule:w.dateschedule||'',
     street:w.street||'',
     cityzip:w.cityzip||''
   }
@@ -33,14 +33,14 @@ const wrdom ={
     contactphone:'tech-row-phone',
     contactemail:'tech-row-email',
     descr:'techwo-row-descr',
-    datescheduled:'techwo-row-date',
+    dateschedule:'techwo-row-date',
 
     street:'techwo-row-street',
     cityzip:'techwo-row-cityzip',
   }
 }
 const wotablerow=`
-  <div class="${wrdom.values.datescheduled}"></div>
+  <div class="${wrdom.values.dateschedule}"></div>
     <div class="${wrdom.contact}">
       <div class="${wrdom.values.id}" style="display:none"></div>
       <div class="${wrdom.values.contactname}"></div>
@@ -66,13 +66,13 @@ twdashlist.srow=(item={})=>{
   row.classList.add(wrdom.cont);
   row.innerHTML=wotablerow;
   for(let v in wrdom.values){
-    if(v != "datescheduled"){
+    if(v != "dateschedule"){
       let elem = row.getElementsByClassName(wrdom.values[v])[0]; //Check if element exists in the table
       if (elem) {
         elem.innerText = item.wo[v];
       }
     }else{
-      try{
+        console.log(v, item.wo[v]);
         if (item.wo[v] == undefined) {
           let datespot = row.getElementsByClassName(wrdom.values[v])[0]
           datespot.appendChild(document.createElement('div'));
@@ -85,10 +85,8 @@ twdashlist.srow=(item={})=>{
           datespot.appendChild(document.createElement('div'));
           datespot.lastChild.innerText = date.getFullYear();
         }
-
-      }catch{}
+      }
     }
-  }
   row.getElementsByClassName(wrdom.actions.delete)[0].addEventListener('dblclick',(ele)=>{
     twolist.REMOVEitem(item.wo.id);
     twdashlist.form=twolist.list;
