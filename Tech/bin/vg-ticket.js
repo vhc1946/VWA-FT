@@ -53,14 +53,17 @@ var qactions = {
     title:'Presentation',
     onclick:(ele)=>{  // Presentation show/hide
       let box = document.getElementsByClassName('present-full-cont')[0];
+      let tickcont = document.getElementById('ticket-build-container');
       if(box.style.left == "0px"){
         box.style.left = "-5000px";
         ticket.view.buttons.style.display="flex";
+        tickcont.style.display = 'initial';
       }
       else{
         presentation.SETpresent(ticket.ticket);  //pass to ticket
         box.style.left = "0px";
         ticket.view.buttons.style.display='none';
+        tickcont.style.display = 'none';
       }
     }
   }

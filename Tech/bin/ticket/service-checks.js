@@ -6,6 +6,8 @@ import {ViewGroup} from '../repo/layouts/view-controller.js';
 import { coolingchecks } from '../collateral/checklists/cooling-checklist.js';
 import { heatingchecks } from '../collateral/checklists/heating-checklist.js';
 import { systemchecks } from '../collateral/checklists/system-checklist.js';
+import { summarychecks } from '../collateral/checklists/summary-checklist.js';
+import { SummaryCheckList } from '../collateral/checklists/summary-checklist.js';
 
 var toggledom = {
     cont: 'checklist-cont',
@@ -45,9 +47,9 @@ var checklists = {
     heating:heatingchecks.dom
   },
   contents:{
-    system:systemchecks.contents,
-    cooling:coolingchecks.contents,
-    heating:heatingchecks.contents
+    system:systemchecks.content,
+    cooling:coolingchecks.content,
+    heating:heatingchecks.content
   }
 }
 
@@ -125,60 +127,6 @@ export class ServiceChecks{
           }
         }
       }
-      /*qactions:{
-        'div':{
-          children:{
-            '.currsi.div':{
-              attributes:{
-                class:'flat-action-button'
-              },
-              children:{},
-              value:'-  -'
-            },
-            '.si-menu-buttons.div':{
-              attributes:{
-                id:'checklists-menu-buttons'
-              },
-              children:{
-                '.si-add.div':{
-                  attributes:{
-                    class:'icon-action-button',
-                    id:'checklists-add-button'
-                  },
-                  children:{
-                    '.add-button.img':{
-                      attributes:{
-                        src:'../bin/repo/assets/icons/add.png'
-                      }
-                    }
-                  }
-                },
-                '.si-add-inputs.div':{
-                      attributes:{},
-                      children:{
-                        '.si-add-input.input':{
-                          attributes:{},
-                          children:{}
-                        },
-                        '.si-add-button.div':{
-                          attributes:{
-                            class:'icon-action-button'
-                          },
-                          children:{
-                            '.add-button.img':{
-                              attributes:{
-                                src:'../bin/repo/assets/icons/add.png'
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-              }
-            }
-          }
-        }
-      }*/
     });
 
     this.currsi=this.view.cont.getElementsByClassName('currsi')[0];
@@ -234,10 +182,43 @@ export class ServiceChecks{
         this.TOGGLEaddinput();
       }
     });
+
+    /*Test listener event for organizing summary.*/
+    this.view.cont.getElementsByClassName('si-delete')[0].addEventListener('click', (eve)=>{
+      let Summary = this.ORGANIZEsummary();
+    })
     //HideAll(cont);
-    //Clicktoclose(cont);
+    Clicktoclose(cont);
   }
 
+  /*
+    Function for organizing the information on the document in order to print out the summary.
+    Returns a CheckListSummary object
+  */
+  ORGANIZEsummary(){
+    let summary = {
+      dom: summarychecks.dom,
+      current: summarychecks.innertext
+    };
+
+    //Loop through and update current with the info from the document
+    for (let input in summary.dom.info) {
+      var key = summary.dom.info[input];
+      //Get the values from the document itself
+      let docvalue = document.getElementsByClassName(key)[0]
+      if (docvalue) {
+        //Ignore blank text for now
+        if (docvalue.value != "") {
+          //Update the current value
+          summary.current[key] = docvalue.value;
+        }
+      }
+    }
+
+    let Sumcheck = new SummaryCheckList(summary.current);
+
+    return Sumcheck
+  }
   /*
     Function for adding a new group of checklists
     Returns the newly created system view or false if system already exists.
@@ -253,7 +234,14 @@ export class ServiceChecks{
       console.log('not added')
       this.forms = [];
       for(let c in group){
-        this.forms.push(new CheckListForm(document.createElement('div'),checklists.contents[c],checklists.doms[c]));
+        let dom = checklists.doms[c];
+        let contents = checklists.contents[c]
+        console.log("Creating checklist form:")
+        this.forms.push(new VHCform({
+          cont:document.createElement('div'),
+          dom:checklists.doms[c],
+          content:checklists.contents[c]
+        }));
         let nview = cview.ADDview(c,this.forms[this.forms.length-1].cont);
 
         this.forms[this.forms.length-1].form=group[c];

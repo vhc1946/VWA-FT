@@ -1,6 +1,6 @@
-let dom = {
+const dom = {
         cont: 'system-info',
-        inputs: {
+        fields: {
             in_info_indes: 'indes',
             in_info_heatage: 'heatage',
             in_info_heatratedcap: 'heatratedcap',
@@ -35,7 +35,7 @@ let dom = {
         },
         valids: {}
     }
-let contents = `
+const content = `
       <div class="checklist-cont" class="system-info">
           <div class="section-header">System Info</div>
           <div class="section-cont">
@@ -46,22 +46,22 @@ let contents = `
                           <div class="section-header">--Info</div>
                           <div class="section-cont">
                               <div class="checklist-item">
-                                  <div>System Designation</div><input class="${dom.inputs.in_info_indes}">
+                                  <div>System Designation</div><input class="${dom.fields.in_info_indes}">
                               </div>
                               <div class="checklist-item">
-                                  <div>Heating System Age</div><input class="${dom.inputs.in_info_heatage}" type="number">
+                                  <div>Heating System Age</div><input class="${dom.fields.in_info_heatage}" type="number">
                               </div>
                               <div class="checklist-item">
-                                  <div>Rated Capacity</div><input class="${dom.inputs.in_info_heatratedcap}" type="number">
+                                  <div>Rated Capacity</div><input class="${dom.fields.in_info_heatratedcap}" type="number">
                               </div>
                               <div class="checklist-item">
-                                  <div>Actual Capacity</div><input class="${dom.inputs.in_info_heatactualcap}" type="number">
+                                  <div>Actual Capacity</div><input class="${dom.fields.in_info_heatactualcap}" type="number">
                               </div>
                               <div class="checklist-item">
-                                  <div>Lost Efficiency</div><input class="${dom.inputs.in_info_heatlosteffic}" type="number">
+                                  <div>Lost Efficiency</div><input class="${dom.fields.in_info_heatlosteffic}" type="number">
                               </div>
                               <div class="checklist-item">
-                                  <div>System Condition</div><input class="${dom.inputs.in_info_incondition}" type='search' placeholder="Choose One" list='sys-condition'>
+                                  <div>System Condition</div><input class="${dom.fields.in_info_incondition}" type='search' placeholder="Choose One" list='sys-condition'>
                               </div>
                           </div>
                       </div>
@@ -69,31 +69,31 @@ let contents = `
                           <div class="section-header">--Airflow</div>
                           <div class="section-cont">
                               <div class="checklist-item">
-                                  <div>Supply Air Static</div><input class="${dom.inputs.ou_airf_supplystatic}" type="number">
+                                  <div>Supply Air Static</div><input class="${dom.fields.ou_airf_supplystatic}" type="number">
                               </div>
                               <div class="checklist-item">
-                                  <div>Return Air Static</div><input class="${dom.inputs.in_airf_returnstatic}" type="number">
+                                  <div>Return Air Static</div><input class="${dom.fields.in_airf_returnstatic}" type="number">
                               </div>
                               <div class="checklist-item">
-                                  <div>Rated CFM</div><input class="${dom.inputs.in_airf_ratedcfm}" type='search' placeholder="Choose One" list='CFM-rating'>
+                                  <div>Rated CFM</div><input class="${dom.fields.in_airf_ratedcfm}" type='search' placeholder="Choose One" list='CFM-rating'>
                               </div>
                               <div class="checklist-item">
-                                  <div>Actual CFM</div><input class="${dom.inputs.ou_airf_actualcfm}">
+                                  <div>Actual CFM</div><input class="${dom.fields.ou_airf_actualcfm}">
                               </div>
                               <div class="checklist-item">
-                                  <div>Building Pressure</div><input class="${dom.inputs.in_airf_buildpress}" type="number">
+                                  <div>Building Pressure</div><input class="${dom.fields.in_airf_buildpress}" type="number">
                               </div>
                               <div class="checklist-item">
-                                  <div>Particle Count</div><input class="${dom.inputs.in_airf_partcount}" type="number">
+                                  <div>Particle Count</div><input class="${dom.fields.in_airf_partcount}" type="number">
                               </div>
                               <div class="checklist-item">
-                                  <div>Filters Condition</div><input class="${dom.inputs.in_airf_filtercond}" type='search' placeholder="Choose One" list='filter-condition'>
+                                  <div>Filters Condition</div><input class="${dom.fields.in_airf_filtercond}" type='search' placeholder="Choose One" list='filter-condition'>
                               </div>
                               <div class="checklist-item">
-                                  <div>Evaporator Coil Condition</div><input class="${dom.inputs.in_airf_evapcond}" type='search' placeholder="Choose One" list='cond-condition'>
+                                  <div>Evaporator Coil Condition</div><input class="${dom.fields.in_airf_evapcond}" type='search' placeholder="Choose One" list='cond-condition'>
                               </div>
                               <div class="checklist-item">
-                                  <div>Belt Tight</div><input class="${dom.inputs.in_airf_belttight}" type='search' placeholder="Choose One" list='belt-condition'>
+                                  <div>Belt Tight</div><input class="${dom.fields.in_airf_belttight}" type='search' placeholder="Choose One" list='belt-condition'>
                               </div>
                           </div>
                       </div>
@@ -101,7 +101,7 @@ let contents = `
                           <div class="section-header">--Cooling</div>
                           <div class="section-cont">
                               <div class="checklist-item">
-                                  <div>Drain Clear & Secure</div><input class="${dom.inputs.in_cool_drainclear}" type='search' placeholder="Choose One" list='cond-condition'>
+                                  <div>Drain Clear & Secure</div><input class="${dom.fields.in_cool_drainclear}" type='search' placeholder="Choose One" list='cond-condition'>
                               </div>
                           </div>
                       </div>
@@ -109,13 +109,13 @@ let contents = `
                           <div class="section-header">--Heating</div>
                           <div class="section-cont">
                               <div class="checklist-item">
-                                  <div>Drain Clear & Secure</div><input class="${dom.inputs.in_heat_drainclear}" type='search' placeholder="Choose One" list='cond-condition'>
+                                  <div>Drain Clear & Secure</div><input class="${dom.fields.in_heat_drainclear}" type='search' placeholder="Choose One" list='cond-condition'>
                               </div>
                               <div class="checklist-item">
-                                  <div>Heat Pump Lockout Temperature</div><input class="${dom.inputs.in_heat_hplockout}" type="number">
+                                  <div>Heat Pump Lockout Temperature</div><input class="${dom.fields.in_heat_hplockout}" type="number">
                               </div>
                               <div class="checklist-item">
-                                  <div>Thermostat Programmed</div><input class="${dom.inputs.in_heat_statprog}" type='search' placeholder="Choose One" list='stat-condition'>
+                                  <div>Thermostat Programmed</div><input class="${dom.fields.in_heat_statprog}" type='search' placeholder="Choose One" list='stat-condition'>
                               </div>
                           </div>
                       </div>
@@ -123,19 +123,19 @@ let contents = `
                           <div class="section-header">--Accessories</div>
                           <div class="section-cont">
                               <div class="checklist-item">
-                                  <div>Humidifier Operations</div><input class="${dom.inputs.in_acce_humdop}" type='search' placeholder="Choose One" list='wear-tear'>
+                                  <div>Humidifier Operations</div><input class="${dom.fields.in_acce_humdop}" type='search' placeholder="Choose One" list='wear-tear'>
                               </div>
                               <div class="checklist-item">
-                                  <div>Whole Home Air Cleaner</div><input class="${dom.inputs.in_acce_eacop}" type='search' placeholder="Choose One" list='wear-tear'>
+                                  <div>Whole Home Air Cleaner</div><input class="${dom.fields.in_acce_eacop}" type='search' placeholder="Choose One" list='wear-tear'>
                               </div>
                               <div class="checklist-item">
-                                  <div>Energy Recovery Ventilator</div><input class="${dom.inputs.in_acce_ervop}" type='search' placeholder="Choose One" list='wear-tear'>
+                                  <div>Energy Recovery Ventilator</div><input class="${dom.fields.in_acce_ervop}" type='search' placeholder="Choose One" list='wear-tear'>
                               </div>
                               <div class="checklist-item">
-                                  <div>Anti Microbial Lamp System</div><input class="${dom.inputs.in_acce_uvop}" type='search' placeholder="Choose One" list='wear-tear'>
+                                  <div>Anti Microbial Lamp System</div><input class="${dom.fields.in_acce_uvop}" type='search' placeholder="Choose One" list='wear-tear'>
                               </div>
                               <div class="checklist-item">
-                                  <div>CO Sensor </div><input class="${dom.inputs.in_acce_coop}" type='search' placeholder="Choose One" list='wear-tear'>
+                                  <div>CO Sensor </div><input class="${dom.fields.in_acce_coop}" type='search' placeholder="Choose One" list='wear-tear'>
                               </div>
                           </div>
                       </div>
@@ -148,22 +148,22 @@ let contents = `
                           <div class="section-header">--Info</div>
                           <div class="section-cont">
                               <div class="checklist-item">
-                                  <div>System Designation</div><input class="${dom.inputs.ou_info_outdes}">
+                                  <div>System Designation</div><input class="${dom.fields.ou_info_outdes}">
                               </div>
                               <div class="checklist-item">
-                                  <div>Cooling System Age</div><input class="${dom.inputs.ou_info_coolage}" type="number">
+                                  <div>Cooling System Age</div><input class="${dom.fields.ou_info_coolage}" type="number">
                               </div>
                               <div class="checklist-item">
-                                  <div>Rated Capacity</div><input class="${dom.inputs.ou_info_coolratedcap}" type="number">
+                                  <div>Rated Capacity</div><input class="${dom.fields.ou_info_coolratedcap}" type="number">
                               </div>
                               <div class="checklist-item">
-                                  <div>Actual Capacity</div><input class="${dom.inputs.ou_info_coolactualcap}" type="number">
+                                  <div>Actual Capacity</div><input class="${dom.fields.ou_info_coolactualcap}" type="number">
                               </div>
                               <div class="checklist-item">
-                                  <div>Lost Efficiency</div><input class="${dom.inputs.ou_info_coollosteffic}" type="number">
+                                  <div>Lost Efficiency</div><input class="${dom.fields.ou_info_coollosteffic}" type="number">
                               </div>
                               <div class="checklist-item">
-                                  <div>System Condition</div><input class="${dom.inputs.ou_info_outcondition}" type='search' placeholder="Choose One" list='sys-condition'>
+                                  <div>System Condition</div><input class="${dom.fields.ou_info_outcondition}" type='search' placeholder="Choose One" list='sys-condition'>
                               </div>
                           </div>
                       </div>
@@ -177,7 +177,7 @@ let contents = `
                           <div class="section-header">--Accessories</div>
                           <div class="section-cont">
                               <div class="checklist-item">
-                                  <div>Economizer</div><input class="${dom.inputs.ou_acce_econ}" type='search' placeholder="Choose One" list='wear-tear'>
+                                  <div>Economizer</div><input class="${dom.fields.ou_acce_econ}" type='search' placeholder="Choose One" list='wear-tear'>
                               </div>
                           </div>
                       </div>
@@ -238,5 +238,5 @@ let contents = `
 
   export var systemchecks ={
     dom:dom,
-    contents:contents
+    content:content
 }

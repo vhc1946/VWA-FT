@@ -44,7 +44,6 @@ body{
 #check-cont>[class="viewcontrol-cont viewcontrol-cont-hl"]>.viewcontrol-menu.viewcontrol-menu-vmt>.viewcontrol-quick-actions>div>.si-menu-buttons>.si-add-inputs>[class="si-add-button icon-action-button"]
 {
     background-color: var(--checklist-tab);
-    z-index: 4;
 }
 /*checklist top tab + menu bar hovers*/
 #check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item:hover,
@@ -363,6 +362,7 @@ Checklists
     display: flex;
     text-align: center;
     transition: left 0.25s;
+    z-index: 2;
     background-color: var(--BEE-blue);
 }
 
@@ -515,13 +515,46 @@ Checklists
 }
 .checklist-cont{
     margin: 5px;
+    margin-top: 10px;
     padding: 5px;
-    border: 2px solid var(--excluded-border);
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: var(--card-base-light);
+    filter: var(--drop-shadow);
+    height: 84.5vh;
+    max-width: 100%;
+    overflow: auto;
+    border-radius: 10px;
+    /*background-color: rgb(255, 207, 207);
+    border: 1px solid rgb(219, 165, 165);
+    color: rgb(119, 66, 66);  */
 }
 
 .checklist-item{
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 40% 60%;
+    font-size: medium;
+    align-items: center; /* Vertical center alignment */
+}
+.checklist-item>input::placeholder {
+    /*color: rgb(138, 76, 76);*/
+}
+.checklist-item>input{
+    border: 0; 
+    padding: 5px 10px;
+    margin: 1px;
+    position: relative;
+    border: 1px solid #ccc;
+    background-color: var(--card-base-light);
+    /*border: 1px solid rgb(250, 188, 188);
+    background-color: rgb(218, 165, 165);
+    color: rgb(119, 66, 66); */
+    border-radius: 5px;
+}
+.checklist-item>input:focus{
+    outline: none;
+    background-color: #ccc;
+    /*background-color: rgb(250, 188, 188);*/
 }
 .section-header{
     font-weight: bold;
@@ -607,6 +640,15 @@ Checklists
     #check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-quick-actions>div>.currsi{
         font-size: 3vh;
     }
+    .checklist-cont {
+        height: 75.5vh;
+    }
+    .checklist-item {
+        grid-template-columns: 45% 55%;
+    }
+    .viewcontrol-menu-vmt{
+        z-index: 1;
+    }
     .viewcontrol-menu-vmt>div>.viewcontrol-menu-item{
         font-size: 2.75vh;
     }
@@ -633,5 +675,8 @@ Checklists
     display: none;
 }
 .ft-form::-webkit-scrollbar {
+    display: none;
+}
+.checklist-cont::-webkit-scrollbar {
     display: none;
 }

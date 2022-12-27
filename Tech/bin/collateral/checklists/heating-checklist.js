@@ -1,6 +1,6 @@
-let dom = {
+const dom = {
     cont: 'heating-rewards',
-    inputs: {
+    fields: {
         in_heat_hriserated: 'hriserated',
         in_heat_hriseactual: 'hriseactual',
         in_heat_gpin: 'gpin',
@@ -26,7 +26,7 @@ let dom = {
     valids: {}
 }
 
-let contents = `
+const content = `
       <div class="checklist-cont" class="heating-rewards">
           <div class="section-header">Heating Rewards</div>
           <div class="section-cont">
@@ -37,61 +37,61 @@ let contents = `
                           <div class="section-header">--Heating</div>
                           <div class="section-cont">
                               <div class="checklist-item">
-                                  <div>Heat Rise - Rated</div><input class="${dom.inputs.in_heat_hriserated}" type="number">
+                                  <div>Heat Rise - Rated</div><input class="${dom.fields.in_heat_hriserated}" type="number">
                               </div>
                               <div class="checklist-item">
-                                  <div>Heat Rise - Actual</div><input class="${dom.inputs.in_heat_hriseactual}" type="number">
+                                  <div>Heat Rise - Actual</div><input class="${dom.fields.in_heat_hriseactual}" type="number">
                               </div>
                               <div class="checklist-item">
-                                  <div>Gas Pressure - Inlet</div><input class="${dom.inputs.in_heat_gpin}" type="number">
+                                  <div>Gas Pressure - Inlet</div><input class="${dom.fields.in_heat_gpin}" type="number">
                               </div>
                               <div class="checklist-item">
-                                  <div>Gas Pressure - Outlet High Stage</div><input class="${dom.inputs.in_heat_gpouthigh}" type="number">
+                                  <div>Gas Pressure - Outlet High Stage</div><input class="${dom.fields.in_heat_gpouthigh}" type="number">
                               </div>
                               <div class="checklist-item">
-                                  <div>Gas Pressure - Outlet Low Stage</div><input class="${dom.inputs.in_heat_gpoutlow}" type="number">
+                                  <div>Gas Pressure - Outlet Low Stage</div><input class="${dom.fields.in_heat_gpoutlow}" type="number">
                               </div>
                               <div class="checklist-item">
-                                  <div>Flame Sensor Current</div><input class="${dom.inputs.in_heat_flmsensor}" type="number">
+                                  <div>Flame Sensor Current</div><input class="${dom.fields.in_heat_flmsensor}" type="number">
                               </div>
                               <div class="checklist-item">
-                                  <div>Blower Amp Rated</div><input class="${dom.inputs.in_heat_blowerrated}" type="number">
+                                  <div>Blower Amp Rated</div><input class="${dom.fields.in_heat_blowerrated}" type="number">
                               </div>
                               <div class="checklist-item">
-                                  <div>Blower Amp Actual</div><input class="${dom.inputs.in_heat_bloweractual}" type="number">
+                                  <div>Blower Amp Actual</div><input class="${dom.fields.in_heat_bloweractual}" type="number">
                               </div>
                               <div class="checklist-item">
-                                  <div>Ignition Operation</div><input class="${dom.inputs.in_heat_ignitionop}" type='search' placeholder="Choose One" list='wear-tear'>
+                                  <div>Ignition Operation</div><input class="${dom.fields.in_heat_ignitionop}" type='search' placeholder="Choose One" list='wear-tear'>
                               </div>
                               <div class="checklist-item">
-                                  <div>Combustion Operation</div><input class="${dom.inputs.in_heat_combustop}" type='search' placeholder="Choose One" list='wear-tear'>
+                                  <div>Combustion Operation</div><input class="${dom.fields.in_heat_combustop}" type='search' placeholder="Choose One" list='wear-tear'>
                               </div>
                               <div class="checklist-item">
-                                  <div>Flue Safety</div><input class="${dom.inputs.in_heat_fluesafety}" type='search' placeholder="Choose One" list='wear-tear'>
+                                  <div>Flue Safety</div><input class="${dom.fields.in_heat_fluesafety}" type='search' placeholder="Choose One" list='wear-tear'>
                               </div>
                               <div class="checklist-item">
-                                  <div>Heat Exchanger</div><input class="${dom.inputs.in_heat_heatex}" type='search' placeholder="Choose One" list='wear-tear'>
+                                  <div>Heat Exchanger</div><input class="${dom.fields.in_heat_heatex}" type='search' placeholder="Choose One" list='wear-tear'>
                               </div>
                               <div class="checklist-item">
-                                  <div>Inducer Motor Operations</div><input class="${dom.inputs.in_heat_inducerops}" type='search' placeholder="Choose One" list='wear-tear'>
+                                  <div>Inducer Motor Operations</div><input class="${dom.fields.in_heat_inducerops}" type='search' placeholder="Choose One" list='wear-tear'>
                               </div>
                               <div class="checklist-item">
-                                  <div>Combustion Test O2</div><input class="${dom.inputs.in_heat_testO2}" type="number">
+                                  <div>Combustion Test O2</div><input class="${dom.fields.in_heat_testO2}" type="number">
                               </div>
                               <div class="checklist-item">
-                                  <div>Combustion Test CO</div><input class="${dom.inputs.in_heat_testCO}" type="number">
+                                  <div>Combustion Test CO</div><input class="${dom.fields.in_heat_testCO}" type="number">
                               </div>
                               <div class="checklist-item">
-                                  <div>Combustion Test Efficiency</div><input class="${dom.inputs.in_heat_testeffic}" type="number">
+                                  <div>Combustion Test Efficiency</div><input class="${dom.fields.in_heat_testeffic}" type="number">
                               </div>
                               <div class="checklist-item">
-                                  <div>Combustion Test CO2</div><input class="${dom.inputs.in_heat_testCO2}" type="number">
+                                  <div>Combustion Test CO2</div><input class="${dom.fields.in_heat_testCO2}" type="number">
                               </div>
                               <div class="checklist-item">
-                                  <div>Combustion Test Stack Temp</div><input class="${dom.inputs.in_heat_stacktemp}" type="number">
+                                  <div>Combustion Test Stack Temp</div><input class="${dom.fields.in_heat_stacktemp}" type="number">
                               </div>
                               <div class="checklist-item">
-                                  <div>Electrical Connections Secured</div><input class="${dom.inputs.in_heat_elecin}" type='search' placeholder="Choose One" list='needs-repairs'>
+                                  <div>Electrical Connections Secured</div><input class="${dom.fields.in_heat_elecin}" type='search' placeholder="Choose One" list='needs-repairs'>
                               </div>
                           </div>
                       </div>
@@ -100,10 +100,10 @@ let contents = `
                       <div class="section-header">-Airflow</div>
                       <div class="section-cont">
                           <div class="checklist-item">
-                              <div>Blower Amp Rated</div><input class="${dom.inputs.ai_heat_blowerrated}" type="number">
+                              <div>Blower Amp Rated</div><input class="${dom.fields.ai_heat_blowerrated}" type="number">
                           </div>
                           <div class="checklist-item">
-                              <div>Blower Amp Actual</div><input class="${dom.inputs.ai_heat_bloweractual}" type="number">
+                              <div>Blower Amp Actual</div><input class="${dom.fields.ai_heat_bloweractual}" type="number">
                           </div>
                       </div>
                   </div>
@@ -130,5 +130,5 @@ let contents = `
   `
 export var heatingchecks ={
     dom:dom,
-    contents:contents
+    content:content
 }
