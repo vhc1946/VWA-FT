@@ -22,6 +22,7 @@ const dom={
         ou_cool_elecout: 'elecout'
     },
     valids: {}
+
 }
 
 const content=`
@@ -131,4 +132,3 @@ export var coolingchecks ={
     dom:dom,
     content:content
 }
-  
