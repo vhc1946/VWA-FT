@@ -8,6 +8,7 @@ import { heatingchecks } from '../collateral/checklists/heating-checklist.js';
 import { systemchecks } from '../collateral/checklists/system-checklist.js';
 import { summarychecks } from '../collateral/checklists/summary-checklist.js';
 import { SummaryCheckList } from '../collateral/checklists/summary-checklist.js';
+import { Calculations } from '../repo/tools/vg-calculations.js';
 
 var toggledom = {
     cont: 'checklist-cont',
@@ -52,7 +53,7 @@ var checklists = {
     heating:heatingchecks.content
   },
   titles:{
-    system:"Information",
+    system:"System Information",
     cooling:"Cooling Rewards",
     heating:"Heating Rewards"
   }
@@ -270,6 +271,40 @@ export class ServiceChecks{
         let nview = cview.ADDview(checklists.titles[c],this.forms[this.forms.length - 1].checks[c].cont);
         this.forms[this.forms.length - 1].checks[c].form=group[c];
       }
+
+      /*Listener event for change of CFM*/
+      let cfm_input = this.forms[this.forms.length-1].checks.system.fields.ou_airf_actualcfm;
+      let coolactcap = this.forms[this.forms.length-1].checks.system.fields.ou_info_coolactualcap; //MUST BE OUTSIDE or inputs won't set properly
+      let heatactcap = this.forms[this.forms.length-1].checks.system.fields.in_info_heatactualcap;
+      let temperature = this.forms[this.forms.length-1].checks.system.fields.ou_info_temp;
+      temperature.addEventListener('change',(ele)=>{
+        if (cfm_input.value != "" && temperature.value != "") {
+          let heat_retval = Calculations.HeatingBTU(cfm_input.value, temperature.value);
+          if (heatactcap) {heatactcap.value = heat_retval};
+        }
+      })
+      cfm_input.addEventListener('change',(ele)=>{
+        let new_input = cfm_input.value;
+        //Validate input
+        if (new_input != "") {
+          //Calculate BTU values
+          let cool_retval = Calculations.CoolingBTU(new_input);
+          //Check for a temperature
+          let heat_retval = null;
+          if (temperature.value != "") {
+            heat_retval = Calculations.HeatingBTU(new_input, temperature.value);
+          } else {
+            heat_retval = Calculations.HeatingBTU(new_input);
+          }
+
+          //Assign BTU values
+          if (coolactcap) {coolactcap.value = cool_retval};
+          if (heatactcap) {heatactcap.value = heat_retval};
+        } else {
+          DropNote('tr',`Invalid Input: ${new_input.value}`,'yellow')
+        }
+      });
+
       return cview;
     } else {return false}
   }

@@ -33,10 +33,7 @@ body{
 #ticket-build-container>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item:nth-child(3):hover{
     background-color: var(--checklist-tab-hover);
 }
-/*Checklists selected hover*/
-#ticket-build-container>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item:nth-child(3):hover{
-    background-color: var(--checklist-tab-selected);
-}
+
 /*checklist top tab + menu bar base colors*/
 #check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item,
 .checklists-menu>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item,
@@ -150,6 +147,10 @@ body{
     font-size: 1.75vh;
 }
 
+.viewcontrol-menu-hmr>.viewcontrol-menubox>:first-child {
+    border-bottom-left-radius: 10px;
+}
+
 /* Display Forms */
 .ft-form{
     margin: 5px;
@@ -180,6 +181,7 @@ body{
     white-space: nowrap;
     overflow: hidden;
     left: 85px;
+    z-index: 0;
 }
 .viewcontrol-menu{
     transition: bottom 0.3s;
@@ -285,7 +287,18 @@ Checklists
     grid-template-columns: repeat(8, 12.5%);
 }
 .wo-pricing-cont>input{
-    width: 100px;
+    border: 0; 
+    padding: 2px 5px; 
+    border: 1px solid #ccc; 
+    position: relative; 
+    background-color: var(--card-base-light);
+    border-radius: 5px;
+    color: rgb(50,50,50);
+}
+.wo-pricing-cont>input:focus{
+    outline: none;
+    background-color: #ccc;
+    color: rgb(25,25,25);
 }
 .wo-info-id,
 .wo-info-custcode{
@@ -420,6 +433,23 @@ Checklists
 .si-repair-actions{
     display: flex;
 }
+.si-repair-actions>input {
+    border: 0; 
+    padding: 3px 5px;
+    margin-right: 5px;
+    border: 1px solid #ccc; 
+    position: relative; 
+    background-color: var(--card-base-light);
+    border-radius: 5px;
+    color: rgb(50,50,50);
+}
+.si-repair-actions>input:focus{
+    outline: none;
+    background-color: #ccc;
+}
+.si-repair-add {
+    border-radius: 5px;
+}
 .si-repair-table{ /*Scroll overlap fix: set height and overflow of container with elements.*/
     padding-top: 10px;
     width: 100%;
@@ -482,13 +512,13 @@ Checklists
 }
 .min-page-hide-button{
     float: right;
-    margin: 0;
+    margin: 0 !important;
     border-top-right-radius: 5px;
     z-index: 30;
 }
 .min-page-minimize-button{
     float: right;
-    margin: 0;
+    margin: 0 !important;
     border-bottom-left-radius: 10px;
     z-index: 30;
 }
@@ -517,7 +547,7 @@ Checklists
     flex-grow: 0;
 }
 .checklist-cont{
-    margin: 5px;
+    /*margin: 5px;
     margin-top: 10px;
     padding: 5px;
     padding-left: 15px;
@@ -528,7 +558,7 @@ Checklists
     max-width: 100%;
     overflow: auto;
     border-radius: 10px;
-    /*background-color: rgb(255, 207, 207);
+    background-color: rgb(255, 207, 207);
     border: 1px solid rgb(219, 165, 165);
     color: rgb(119, 66, 66);  */
 }
@@ -559,7 +589,7 @@ Checklists
     background-color: #ccc;
     /*background-color: rgb(250, 188, 188);*/
 }
-.section-header{
+/*.section-header{
     font-weight: bold;
     border-bottom: 1px solid black;
     cursor: pointer;
@@ -574,7 +604,7 @@ Checklists
     row-gap: 5px;
     column-gap: 20px;
     padding-top: 5px;
-}
+}*/
 
 .ft-form{
     height: 85vh;

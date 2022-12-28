@@ -31,13 +31,14 @@ const dom = {
             ou_info_outcondition: 'outcondition',
             ou_airf_supplystatic: 'supplystatic',
             ou_airf_actualcfm: 'actualcfm',
-            ou_acce_econ: 'econ'
+            ou_acce_econ: 'econ',
+            ou_info_temp: 'temp'
         },
         valids: {}
     }
 const content = `
       <div class="checklist-cont" class="system-info">
-          <div class="section-cont">
+          <div class="outer-section-cont">
               <div class="checklist-indoor">
                   <div class="section-header">-Indoor</div>
                   <div class="section-cont">
@@ -146,6 +147,9 @@ const content = `
                       <div class="checklist-info">
                           <div class="section-header">--Info</div>
                           <div class="section-cont">
+                            <div class="checklist-item">
+                                  <div>Temperature</div><input class="${dom.fields.ou_info_temp}">
+                              </div>
                               <div class="checklist-item">
                                   <div>System Designation</div><input class="${dom.fields.ou_info_outdes}">
                               </div>
@@ -232,8 +236,7 @@ const content = `
         <option value='1400 - 1600 ( 4 Ton)'>
         <option value='1750 - 2000 (5 Ton)'>
     </datalist>
-
-  `
+`
 
   export var systemchecks ={
     dom:dom,

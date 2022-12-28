@@ -28,7 +28,7 @@ const dom = {
 
 const content = `
       <div class="checklist-cont" class="heating-rewards">
-          <div class="section-cont">
+          <div class="outer-section-cont">
               <div class="checklist-indoor">
                   <div class="section-header">-Indoor</div>
                   <div class="section-cont">
