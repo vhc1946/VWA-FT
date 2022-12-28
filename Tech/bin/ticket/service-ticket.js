@@ -115,7 +115,7 @@ export class ServiceTicket{
 
   get ticket(){ //updates this.data and returns it
     let ttick={};
-    console.log("From get ticket: ", this.data);
+    //console.log("From get ticket: ", this.data);
     for(let f in this.forms){
       //try{
         if(this.forms[f].form){
@@ -124,7 +124,24 @@ export class ServiceTicket{
         else{
           this.data[f]=[];
           for(let x=0;x<this.forms[f].length;x++){
-            this.data[f].push(this.forms[f][x].form)
+            //Check if forms[f][x] is a dictionary - if so, save in a dictionary structure
+            if (this.forms[f][x].constructor == Object) {
+              this.data[f].push({})
+              for (let key in this.forms[f][x]) {
+                //Check if key or name
+                if (key == "name") {
+                  this.data[f][this.data[f].length-1][key] = this.forms[f][x][key];
+                } else if (key == "checks") {
+                  //Loop through each checklist
+                  this.data[f][this.data[f].length-1].checks = {};
+                  for (let cl in this.forms[f][x].checks) {
+                    this.data[f][this.data[f].length-1].checks[cl] = this.forms[f][x].checks[cl].form;
+                  }
+                }
+              }
+            } else {
+              this.data[f].push(this.forms[f][x].form)
+            }
           }
         }
       //}
@@ -141,8 +158,22 @@ export class ServiceTicket{
           this.data[f]=tick[f];
         }else{
           for(let x=0;x<tick[f].length;x++){
-            this.forms[f][x].form=tick[f][x];
-            this.data[f]=tick[f];
+            //Check if dictionary or array
+            if (this.tick[f][x].constructor == Object) {
+              for (let key in this.tick[f][x]) {
+                //Load basic data if name, otherwise load form of each checklist
+                if (key == "name") {
+                  this.forms[f][x][key] = tick[f][tick[f].length-1][key];
+                }else if (key == "checks") {
+                  for (let cl in this.tick[f][x].checks) {
+                    this.forms[f][x].checks[cl].form = tick[f][tick[f].length-1].checks[cl]
+                  }
+                }
+              }
+            } else {
+              this.forms[f][x].form=tick[f][x];
+              this.data[f]=tick[f];
+            }
           }
         }
       }

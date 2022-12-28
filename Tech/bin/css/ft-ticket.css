@@ -140,6 +140,9 @@ body{
     overflow: hidden;
     font-size: medium;
 }
+.viewcontrol-menu-vmt{
+    z-index: 1;
+}
 .viewcontrol-menu-vmt>div>.viewcontrol-menu-item{
     min-width: unset;
     max-width: 81px;
@@ -560,6 +563,8 @@ Checklists
     font-weight: bold;
     border-bottom: 1px solid black;
     cursor: pointer;
+    padding-top: 2.5px;
+    padding-bottom: 2.5px;
 }
 .section-cont{
     margin-left: 10px;
@@ -645,9 +650,6 @@ Checklists
     }
     .checklist-item {
         grid-template-columns: 45% 55%;
-    }
-    .viewcontrol-menu-vmt{
-        z-index: 1;
     }
     .viewcontrol-menu-vmt>div>.viewcontrol-menu-item{
         font-size: 2.75vh;
