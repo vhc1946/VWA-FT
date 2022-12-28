@@ -37,7 +37,6 @@ const dom = {
     }
 const content = `
       <div class="checklist-cont" class="system-info">
-          <div class="section-header">System Info</div>
           <div class="section-cont">
               <div class="checklist-indoor">
                   <div class="section-header">-Indoor</div>

@@ -28,7 +28,6 @@ const dom = {
 
 const content = `
       <div class="checklist-cont" class="heating-rewards">
-          <div class="section-header">Heating Rewards</div>
           <div class="section-cont">
               <div class="checklist-indoor">
                   <div class="section-header">-Indoor</div>

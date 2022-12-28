@@ -50,6 +50,11 @@ var checklists = {
     system:systemchecks.content,
     cooling:coolingchecks.content,
     heating:heatingchecks.content
+  },
+  titles:{
+    system:"Information",
+    cooling:"Cooling Rewards",
+    heating:"Heating Rewards"
   }
 }
 
@@ -145,17 +150,23 @@ export class ServiceChecks{
       console.log('No Checks')
       this.info.push(["System 1", this.ADDgroup('System 1')]);
     }else{
-      for(let c in checks){
+      console.log("Checks exist! Loading data probably")
+      //Loop through each system
+      for (let i = 0; i < checks.length; i++) {
+        console.log(checks[i]);
+        this.info.push([checks[i].name, this.ADDgroup(checks[i].name,checks[i].checks)]);
+      }
+      /*for(let c in checks){
         let agroup = {}; //to pull from pool
+        console.log("group:", c)
         for(let cl in checks[c]){
           if(checklists.contents[cl]){
             agroup[cl]=checks[c][cl];
           }else{console.log('bad list')}
         }
         this.info.push([c, this.ADDgroup(c,agroup)]);
-      }
+    }*/
     }
-    console.log("This", this);
     this.currsi.innerText = this.info[0][0];
     this.TOGGLEitemlist();
     /*
@@ -171,6 +182,7 @@ export class ServiceChecks{
       let name = this.view.cont.getElementsByClassName('si-add-input')[0];
       if(name.value != ''){
         let retval = this.ADDgroup(name.value);
+        console.log(this.forms)
         if (retval == false) {
             DropNote('tr',`${name.value} Already Added`,'yellow');
         } else {
@@ -231,20 +243,32 @@ export class ServiceChecks{
     });
     cview.cont.classList.add('checklists-menu');
     if(this.view.ADDview(name,cview.cont,false)){
-      console.log('not added')
-      this.forms = [];
+      console.log('System not already added.')
+      if (this.forms == undefined) {
+        this.forms = [];
+      }
+
+      //Push dictionary with desired structure to this.forms
+      this.forms.push({
+        name: name,
+        checks: {}
+      })
       for(let c in group){
-        let dom = checklists.doms[c];
-        let contents = checklists.contents[c]
-        console.log("Creating checklist form:")
-        this.forms.push(new VHCform({
+        this.forms[this.forms.length - 1].checks[c] = (new VHCform({
           cont:document.createElement('div'),
           dom:checklists.doms[c],
           content:checklists.contents[c]
         }));
-        let nview = cview.ADDview(c,this.forms[this.forms.length-1].cont);
-
-        this.forms[this.forms.length-1].form=group[c];
+        
+        //Load existing data when not creating a new system
+        if (group[c] != null) {
+          this.forms[this.forms.length - 1].checks[c].data = group[c];
+        }
+        //I don't know if this is necessary but it was in the checklist form
+        this.forms[this.forms.length - 1].checks[c].include = true;
+        this.forms[this.forms.length - 1].checks[c].valids = checklists.doms[c].valids || {}; //describe any input validation rules
+        let nview = cview.ADDview(checklists.titles[c],this.forms[this.forms.length - 1].checks[c].cont);
+        this.forms[this.forms.length - 1].checks[c].form=group[c];
       }
       return cview;
     } else {return false}
