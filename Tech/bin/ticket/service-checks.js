@@ -267,8 +267,7 @@ export class ServiceChecks{
         //I don't know if this is necessary but it was in the checklist form
         this.forms[this.forms.length - 1].checks[c].include = true;
         this.forms[this.forms.length - 1].checks[c].valids = checklists.doms[c].valids || {}; //describe any input validation rules
-
-        let nview = cview.ADDview(c,this.forms[this.forms.length - 1].checks[c].cont);
+        let nview = cview.ADDview(checklists.titles[c],this.forms[this.forms.length - 1].checks[c].cont);
         this.forms[this.forms.length - 1].checks[c].form=group[c];
       }
       return cview;
