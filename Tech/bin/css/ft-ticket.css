@@ -602,6 +602,19 @@ Checklists
     .si-repair-table>div {
         grid-template-columns: 5% 17.5% 37.5% 10% 7.5% 6.5% 20%;
     }
+    .sr-qty {
+        border: 0; 
+        padding: 2px 5px;
+        border: 1px solid #ccc; 
+        position: relative; 
+        background-color: var(--card-base-light);
+        border-radius: 5px;
+        color: rgb(50,50,50);
+    }
+    .sr-qty:focus {
+        outline: none;
+        background-color: #ccc;
+    }
     /*Scroll overlap fix: set height and overflow of container with elements.*/
     .si-repair-table {
         height: 18.5em;

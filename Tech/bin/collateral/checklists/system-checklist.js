@@ -42,7 +42,7 @@ const content = `
               <div class="checklist-section" id = "in-sys">
                   <div class="main-section-header">Indoor</div>
                   <div class="section-cont">
-                      <div class="checklist-card id="in-sys-info">
+                      <div class="checklist-card" id="in-sys-info">
                           <div class="section-header">Info</div>
                           <div class="section-cont">
                               <div class="checklist-item">
@@ -65,7 +65,7 @@ const content = `
                               </div>
                           </div>
                       </div>
-                      <div class="checklist-card id="in-sys-airflow">
+                      <div class="checklist-card" id="in-sys-airflow">
                           <div class="section-header">Airflow</div>
                           <div class="section-cont">
                               <div class="checklist-item">
@@ -97,7 +97,7 @@ const content = `
                               </div>
                           </div>
                       </div>
-                      <div class="checklist-card id="in-sys-cooling">
+                      <div class="checklist-card" id="in-sys-cooling">
                           <div class="section-header">Cooling</div>
                           <div class="section-cont">
                               <div class="checklist-item">
@@ -105,7 +105,7 @@ const content = `
                               </div>
                           </div>
                       </div>
-                      <div class="checklist-card id="in-sys-heating">
+                      <div class="checklist-card" id="in-sys-heating">
                           <div class="section-header">Heating</div>
                           <div class="section-cont">
                               <div class="checklist-item">
@@ -119,7 +119,7 @@ const content = `
                               </div>
                           </div>
                       </div>
-                      <div class="checklist-card id="in-sys-access">
+                      <div class="checklist-card" id="in-sys-access">
                           <div class="section-header">Accessories</div>
                           <div class="section-cont">
                               <div class="checklist-item">
@@ -144,7 +144,7 @@ const content = `
               <div class="checklist-section" id = "ou-sys">
                   <div class="main-section-header">Outdoor</div>
                   <div class="section-cont">
-                      <div class="checklist-card id="ou-sys-info">
+                      <div class="checklist-card" id="ou-sys-info">
                           <div class="section-header">Info</div>
                           <div class="section-cont">
                             <div class="checklist-item">
@@ -170,13 +170,13 @@ const content = `
                               </div>
                           </div>
                       </div>
-                      <div class="checklist-card id="ou-sys-airflow" style="display:none">
+                      <div class="checklist-card" id="ou-sys-airflow" style="display:none">
                           <div class="section-header">Airflow</div>
                           <div class="section-cont">
                               
                           </div>
                       </div>
-                      <div class="checklist-card id="ou-sys-access">
+                      <div class="checklist-card" id="ou-sys-access">
                           <div class="section-header">Accessories</div>
                           <div class="section-cont">
                               <div class="checklist-item">

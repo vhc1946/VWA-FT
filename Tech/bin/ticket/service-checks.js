@@ -21,21 +21,34 @@ var toggledom = {
     outdoor: 'checklist-outdoor'
 }
 
-var HideAll=(cont)=>{
-    let hide = cont.getElementsByClassName('section-cont');
-    for (let i=0;i<hide.length;i++){
-        $(hide[i]).hide();
-    }
+/*Closes an individual container, using show and hide bools to selectively show or hide.*/
+var Clicktoclose=(cont, hide=false, show=false)=>{
+  let section_cont = cont.getElementsByClassName('section-cont')[0];
+  //Hide the section container
+  if (hide && !show) {
+    $(cont.getElementsByClassName('section-cont')[0]).hide();
+  } else if (show) {
+    $(cont.getElementsByClassName('section-cont')[0]).show();
+  } else {
+    $(cont.getElementsByClassName('section-cont')[0]).toggle();
+  }
+  
+  //Adjust border-radius of section header
+  if (section_cont.style.display == "none") {
+    cont.getElementsByClassName('section-header')[0].style.borderBottomLeftRadius = "10px";
+    cont.getElementsByClassName('section-header')[0].style.borderBottomRightRadius = "10px";
+  } else {
+    cont.getElementsByClassName('section-header')[0].style.borderBottomLeftRadius = "0px";
+    cont.getElementsByClassName('section-header')[0].style.borderBottomRightRadius = "0px";
+  }
 }
-var Clicktoclose=(cont)=>{
-    for (let ea in toggledom){
-        let box = cont.getElementsByClassName(toggledom[ea]);
-        for (let i=0;i<box.length;i++){
-            box[i].getElementsByClassName('section-header')[0].addEventListener('click', (ele)=>{
-                $(box[i].getElementsByClassName('section-cont')[0]).toggle();
-            });
-        }
-    }
+
+/*Hides all checklist-cards in a section.*/
+var HideAll=(cont, showall)=>{
+  let section_conts = cont.getElementsByClassName('checklist-card');
+  for (let i = 0; i < section_conts.length; i++) {
+    Clicktoclose(section_conts[i], true, showall);
+  }
 }
 
 // First two characters = in / ou / ai / ac
@@ -202,6 +215,29 @@ export class ServiceChecks{
     })
     //HideAll(cont);
     //Clicktoclose(cont);
+    /*Click to close functionality on each section header*/
+    let checklistcards = this.view.cont.getElementsByClassName('checklist-card');
+    for (let i = 0; i<checklistcards.length; i++) {
+      let header = checklistcards[i].firstElementChild;
+      header.addEventListener('click', (eve)=>{
+        Clicktoclose(checklistcards[i]);
+      })
+    }
+
+    /*Hide all functionality for main section headers */
+    let checklistsections = this.view.cont.getElementsByClassName('checklist-section');
+    for (let i = 0; i<checklistsections.length; i++) {
+      let mainheader = checklistsections[i].firstElementChild;
+      mainheader.addEventListener('click', (eve)=>{
+        if (mainheader.id == "shown") {
+          HideAll(checklistsections[i], true);
+          mainheader.id = "hidden"
+        } else {
+          HideAll(checklistsections[i], false);
+          mainheader.id = "shown";
+        }
+      })
+    }
   }
 
   /*

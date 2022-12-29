@@ -11,14 +11,14 @@
 
   --background-base: rgb(245,245,245);
   --background-base-hover: rgb(173, 172, 172);
-  --background-light: rgb(229,229,253);
+  --background-light: rgb(200,200,200);
   --background-med: rgb(196, 209, 253);
   --background-dark:rgb(112, 128, 157);
 
   --card-base-light: rgb(255,255,255);
 
   --background-ticket-light: rgb(245,245,245);
-  --background-ticket-hover: rgb(231, 240, 249);
+  --background-ticket-hover: rgb(225,225,225);
 
   --titlebar-bg: rgb(6, 42, 73);
 

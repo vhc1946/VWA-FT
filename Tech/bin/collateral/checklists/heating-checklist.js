@@ -32,7 +32,7 @@ const content = `
               <div class="checklist-section" id = "in-heat">
                   <div class="main-section-header">Indoor</div>
                   <div class="section-cont">
-                      <div class="checklist-card id="in-heat-heating">
+                      <div class="checklist-card" id="in-heat-heating">
                           <div class="section-header">Heating</div>
                           <div class="section-cont">
                               <div class="checklist-item">
@@ -95,7 +95,7 @@ const content = `
                           </div>
                       </div>
                   </div>
-                  <div class="checklist-card id="in-heat-airflow">
+                  <div class="checklist-card" id="in-heat-airflow">
                       <div class="section-header">Airflow</div>
                       <div class="section-cont">
                           <div class="checklist-item">
