@@ -87,16 +87,11 @@ twdashlist.srow=(item={})=>{
         }
       }
     }
-  row.getElementsByClassName(wrdom.actions.delete)[0].addEventListener('dblclick',(ele)=>{
-    twolist.REMOVEitem(item.wo.id);
-    twdashlist.form=twolist.list;
-  });
   row.getElementsByClassName('action-button')[0].addEventListener('dblclick',(ele)=>{
     twolist.REMOVEitem(item.wo.id);
     twdashlist.form=twolist.list;
   });
-  row.getElementsByClassName(wrdom.actions.open)[0].addEventListener('dblclick',OPENwo);
-  row.getElementsByClassName('action-button')[1].addEventListener('dblclick',OPENwo);
+  row.getElementsByClassName('action-button')[1].addEventListener('click',OPENwo);
   //
 
   return row;
