@@ -201,7 +201,7 @@ export class ServiceChecks{
       let Summary = this.ORGANIZEsummary();
     })
     //HideAll(cont);
-    Clicktoclose(cont);
+    //Clicktoclose(cont);
   }
 
   /*
@@ -273,7 +273,7 @@ export class ServiceChecks{
       }
 
       /*Listener event for change of CFM*/
-      let cfm_input = this.forms[this.forms.length-1].checks.system.fields.ou_airf_actualcfm;
+      /*let cfm_input = this.forms[this.forms.length-1].checks.system.fields.ou_airf_actualcfm;
       let coolactcap = this.forms[this.forms.length-1].checks.system.fields.ou_info_coolactualcap; //MUST BE OUTSIDE or inputs won't set properly
       let heatactcap = this.forms[this.forms.length-1].checks.system.fields.in_info_heatactualcap;
       let temperature = this.forms[this.forms.length-1].checks.system.fields.ou_info_temp;
@@ -303,7 +303,7 @@ export class ServiceChecks{
         } else {
           DropNote('tr',`Invalid Input: ${new_input.value}`,'yellow')
         }
-      });
+      });*/
 
       return cview;
     } else {return false}
