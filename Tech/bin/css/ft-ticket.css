@@ -532,6 +532,17 @@ Checklists
     width: 160px;
     margin-right: 10px;
     margin-bottom: 10px;
+    border: 0; 
+    padding: 3px 5px;
+    border: 1px solid #ccc; 
+    position: relative; 
+    background-color: var(--card-base-light);
+    border-radius: 5px;
+    color: rgb(50,50,50);
+}
+.wo-filter-row>input:focus{
+    outline: none;
+    background-color: #ccc;
 }
 .frbook-list{
     max-height:400px;
