@@ -33,7 +33,11 @@ const dom={
   }
 }
 const content = `
-  <input class="${dom.form.name}" type="search" list="contract-name-list" placeholder="Select Plan Type"/>
+  <select class="${dom.form.name}" placeholder="Select Plan Type">
+    <option>CLASSIC</option>
+    <option>PREMIUM</option>
+    <option>ULTIMATE</option>
+  </select>
   <div class="${dom.form.cont}">
       <div class="${dom.form.option}">
           <div class="${dom.form.desc}" id="monthly-tag">Monthly Plan</div>

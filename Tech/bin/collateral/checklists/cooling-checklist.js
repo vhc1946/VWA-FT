@@ -22,17 +22,16 @@ const dom={
         ou_cool_elecout: 'elecout'
     },
     valids: {}
-
 }
 
 const content=`
   <div class="checklist-cont" class="cooling-rewards">
-      <div class="section-cont">
-          <div class="checklist-indoor">
-              <div class="section-header">-Indoor</div>
+      <div class="outer-section-cont">
+          <div class="checklist-section" id = "in-cool">
+              <div class="main-section-header">Indoor</div>
               <div class="section-cont">
-                  <div class="checklist-cooling">
-                      <div class="section-header">--Cooling</div>
+                  <div class="checklist-card" id = "in-cool-cooling">
+                      <div class="section-header">Cooling</div>
                       <div class="section-cont">
                           <div class="checklist-item">
                               <div>Density Altitude</div><input class="${dom.fields.in_cool_densityalt}" type="number" placeholder="HARDCODE">
@@ -56,11 +55,11 @@ const content=`
                   </div>
               </div>
           </div>
-          <div class="checklist-outdoor">
-              <div class="section-header">-Outdoor</div>
+          <div class="checklist-section" id = "ou-cool">
+              <div class="main-section-header">Outdoor</div>
               <div class="section-cont">
-                  <div class="checklist-cooling">
-                      <div class="section-header">--Cooling</div>
+                  <div class="checklist-card" id = "ou-cool-cooling">
+                      <div class="section-header">Cooling</div>
                       <div class="section-cont">
                           <div class="checklist-item">
                               <div>Suction Pressure</div><input class="${dom.fields.ou_cool_sucpress}" type="number">
@@ -131,3 +130,4 @@ export var coolingchecks ={
     dom:dom,
     content:content
 }
+  

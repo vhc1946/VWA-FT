@@ -28,12 +28,12 @@ const dom = {
 
 const content = `
       <div class="checklist-cont" class="heating-rewards">
-          <div class="section-cont">
-              <div class="checklist-indoor">
-                  <div class="section-header">-Indoor</div>
+          <div class="outer-section-cont">
+              <div class="checklist-section" id = "in-heat">
+                  <div class="main-section-header">Indoor</div>
                   <div class="section-cont">
-                      <div class="checklist-heating">
-                          <div class="section-header">--Heating</div>
+                      <div class="checklist-card id="in-heat-heating">
+                          <div class="section-header">Heating</div>
                           <div class="section-cont">
                               <div class="checklist-item">
                                   <div>Heat Rise - Rated</div><input class="${dom.fields.in_heat_hriserated}" type="number">
@@ -95,8 +95,8 @@ const content = `
                           </div>
                       </div>
                   </div>
-                  <div class="checklist-airflow">
-                      <div class="section-header">-Airflow</div>
+                  <div class="checklist-card id="in-heat-airflow">
+                      <div class="section-header">Airflow</div>
                       <div class="section-cont">
                           <div class="checklist-item">
                               <div>Blower Amp Rated</div><input class="${dom.fields.ai_heat_blowerrated}" type="number">
