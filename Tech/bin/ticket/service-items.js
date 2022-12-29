@@ -116,6 +116,18 @@ export class TicketServiceItems{
       this.ADDserviceitem(items[i], repairs[i]);
     }
 
+    /*Loop through each repair in saved ticket and add to the appropriate service item.*/
+    if (repairs.length > 0) {
+      for (let i = 0; i < this.repairs.length; i++) {
+        if (repairs[i].length > 0) {
+          for (let j = 0; j < repairs[i].length; j++) {
+            this.repairs[i].ADDitem(repairs[i][j]);
+          }
+        }
+        
+      }
+    }
+
     this.view.port.addEventListener('click',(ele)=>{this.TOGGLEitemlist(true);});
 
     this.currsi.addEventListener('click',(ele)=>{this.TOGGLEitemlist();});
@@ -142,8 +154,6 @@ export class TicketServiceItems{
         } else {
           DropNote('tr',`${name.value} Already Added`,'yellow');
         }
-
-
       }
     });
 
@@ -173,7 +183,6 @@ export class TicketServiceItems{
       content:siform.content,
       data:JSON.parse(JSON.stringify(item))
     }));
-
     sitemview.ADDview('Info',this.info[index].cont);
     //console.log(this.repairs)
     //add/init service repairs
