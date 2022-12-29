@@ -81,7 +81,7 @@ var mactions = {
     id:'wo-refresh-button',
     src:'../bin/repo/assets/icons/refresh.png',
     title:'Refresh WO',
-    ondblclick:(ele)=>{   // Refresh info
+    onclick:(ele)=>{   // Refresh info
       DropNote('tr','Ticket is Refreshing','green');
       SYNCticket(currticket.wo.id).then(
         sync=>{
@@ -108,6 +108,7 @@ document.getElementById(titlebar.tbdom.utils.buttons.home).addEventListener('cli
   DropNote('tr','Going home','yellow');
 });
 $(document.getElementById(titlebar.tbdom.page.settings)).hide();   //hide the settings section of title bar
+$(document.getElementById(titlebar.tbdom.page.user)).hide();       //hide the user section of the title bar
 ////////////////////////////////////////////////////
 
 /*Event listener which resets and closes repair table pop-up.*/
