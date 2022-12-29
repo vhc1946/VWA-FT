@@ -193,7 +193,14 @@ export class TicketServiceItems{
       let new_input = descr_input.value;
 
       //Refresh the title
-      document.getElementsByClassName("item-header")[index].innerText = new_input;
+      //Check for item header, if not, use last child of item headers parent element (fix for new items)
+      let headertext = document.getElementsByClassName("item-header")[index]
+      if (headertext) {
+        headertext.innerText = new_input;
+      } else {
+        document.getElementsByClassName("viewcontrol-quick-actions")[index].lastChild.innerText = new_input;
+      }
+      
 
       //Call global save function
       window.SAVEticket();
