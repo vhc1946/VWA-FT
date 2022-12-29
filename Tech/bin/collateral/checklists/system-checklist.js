@@ -39,11 +39,11 @@ const dom = {
 const content = `
       <div class="checklist-cont" class="system-info">
           <div class="outer-section-cont">
-              <div class="checklist-indoor">
-                  <div class="section-header">-Indoor</div>
+              <div class="checklist-section" id = "in-sys">
+                  <div class="main-section-header">Indoor</div>
                   <div class="section-cont">
-                      <div class="checklist-info">
-                          <div class="section-header">--Info</div>
+                      <div class="checklist-card id="in-sys-info">
+                          <div class="section-header">Info</div>
                           <div class="section-cont">
                               <div class="checklist-item">
                                   <div>System Designation</div><input class="${dom.fields.in_info_indes}">
@@ -65,8 +65,8 @@ const content = `
                               </div>
                           </div>
                       </div>
-                      <div class="checklist-airflow">
-                          <div class="section-header">--Airflow</div>
+                      <div class="checklist-card id="in-sys-airflow">
+                          <div class="section-header">Airflow</div>
                           <div class="section-cont">
                               <div class="checklist-item">
                                   <div>Supply Air Static</div><input class="${dom.fields.ou_airf_supplystatic}" type="number">
@@ -97,16 +97,16 @@ const content = `
                               </div>
                           </div>
                       </div>
-                      <div class="checklist-cooling">
-                          <div class="section-header">--Cooling</div>
+                      <div class="checklist-card id="in-sys-cooling">
+                          <div class="section-header">Cooling</div>
                           <div class="section-cont">
                               <div class="checklist-item">
                                   <div>Drain Clear & Secure</div><input class="${dom.fields.in_cool_drainclear}" type='search' placeholder="Choose One" list='cond-condition'>
                               </div>
                           </div>
                       </div>
-                      <div class="checklist-heating">
-                          <div class="section-header">--Heating</div>
+                      <div class="checklist-card id="in-sys-heating">
+                          <div class="section-header">Heating</div>
                           <div class="section-cont">
                               <div class="checklist-item">
                                   <div>Drain Clear & Secure</div><input class="${dom.fields.in_heat_drainclear}" type='search' placeholder="Choose One" list='cond-condition'>
@@ -119,8 +119,8 @@ const content = `
                               </div>
                           </div>
                       </div>
-                      <div class="checklist-access">
-                          <div class="section-header">--Accessories</div>
+                      <div class="checklist-card id="in-sys-access">
+                          <div class="section-header">Accessories</div>
                           <div class="section-cont">
                               <div class="checklist-item">
                                   <div>Humidifier Operations</div><input class="${dom.fields.in_acce_humdop}" type='search' placeholder="Choose One" list='wear-tear'>
@@ -141,11 +141,11 @@ const content = `
                       </div>
                   </div>
               </div>
-              <div class="checklist-outdoor">
-                  <div class="section-header">-Outdoor</div>
+              <div class="checklist-section" id = "ou-sys">
+                  <div class="main-section-header">Outdoor</div>
                   <div class="section-cont">
-                      <div class="checklist-info">
-                          <div class="section-header">--Info</div>
+                      <div class="checklist-card id="ou-sys-info">
+                          <div class="section-header">Info</div>
                           <div class="section-cont">
                             <div class="checklist-item">
                                   <div>Temperature</div><input class="${dom.fields.ou_info_temp}">
@@ -170,14 +170,14 @@ const content = `
                               </div>
                           </div>
                       </div>
-                      <div class="checklist-airflow">
-                          <div class="section-header">--Airflow</div>
+                      <div class="checklist-card id="ou-sys-airflow" style="display:none">
+                          <div class="section-header">Airflow</div>
                           <div class="section-cont">
                               
                           </div>
                       </div>
-                      <div class="checklist-access">
-                          <div class="section-header">--Accessories</div>
+                      <div class="checklist-card id="ou-sys-access">
+                          <div class="section-header">Accessories</div>
                           <div class="section-cont">
                               <div class="checklist-item">
                                   <div>Economizer</div><input class="${dom.fields.ou_acce_econ}" type='search' placeholder="Choose One" list='wear-tear'>

@@ -30,7 +30,8 @@ Must select proper classes for the menu and container. Select based on the orien
 .viewcontrol-menubox{
   display: flex;
   flex-grow:1;
-  height:max-content;
+  height:32px;
+  font-size: 2vh;
   filter: var(--drop-shadow);
 }
 .viewcontrol-menu-item{
@@ -166,3 +167,11 @@ Must select proper classes for the menu and container. Select based on the orien
 @media print{
 
 }
+
+@media only screen and (min-width: 768px) {
+  .viewcontrol-menubox{
+    font-size: large;
+  }
+}
+
+

@@ -27,10 +27,10 @@ const dom={
 const content=`
   <div class="checklist-cont" class="cooling-rewards">
       <div class="outer-section-cont">
-          <div class="checklist-indoor">
+          <div class="checklist-section" id = "in-cool">
               <div class="main-section-header">Indoor</div>
               <div class="section-cont">
-                  <div class="checklist-cooling">
+                  <div class="checklist-card" id = "in-cool-cooling">
                       <div class="section-header">Cooling</div>
                       <div class="section-cont">
                           <div class="checklist-item">
@@ -55,10 +55,10 @@ const content=`
                   </div>
               </div>
           </div>
-          <div class="checklist-outdoor">
+          <div class="checklist-section" id = "ou-cool">
               <div class="main-section-header">Outdoor</div>
               <div class="section-cont">
-                  <div class="checklist-cooling">
+                  <div class="checklist-card" id = "ou-cool-cooling">
                       <div class="section-header">Cooling</div>
                       <div class="section-cont">
                           <div class="checklist-item">
