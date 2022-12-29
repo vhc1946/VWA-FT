@@ -2,6 +2,7 @@
     position: fixed;
     top: 40px;
     height: calc(100vh - 40px);
+    overflow: auto;
     width: 100vw;
     left: -5000px;
     transition: left 0.5s;
@@ -71,7 +72,7 @@
     grid-column: 1;
 }
 .present-info-id{
-    grid-column: 5;
+    grid-column: 4;
 }
 .present-info-descr{
     grid-column: 1 / 3;
@@ -154,6 +155,11 @@
 .wo-present-repair-unapproved div:last-child{
     font-style: oblique;
 }
+/*Style for whole repair list container*/
+#wo-present-systems {
+    max-height: 200px;
+    overflow: auto;
+}
 .wo-present-system{
     margin-bottom: 10px;
     border-bottom: 1px solid black;
@@ -211,4 +217,14 @@
 .signature-buttons{
     display: flex;
     justify-content: space-around;
+}
+
+@media only screen and (min-width: 768px) {
+    .present-full-cont {
+        height: calc(100vh - 40px);
+    }
+}
+/*Hide scrollbars*/
+.present-full-cont::-webkit-scrollbar {
+    display: none;
 }
