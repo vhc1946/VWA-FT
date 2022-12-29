@@ -19,8 +19,16 @@ export class ServicePresentation{
     this.contract='PRE'
     this.SETpresent(data);
 
-    document.getElementById(this.dom.buttons.appreg).addEventListener('click',this.SHOWsignature);
-    document.getElementById(this.dom.buttons.appmem).addEventListener('click',(ele)=>{
+    /*Setup + listeners for approve buttons.*/
+    document.getElementsByClassName(this.dom.sig)[0].style.left = '-5000px'; //For first run
+    document.getElementById(this.dom.buttons.appreg).addEventListener('click',(eve)=>{
+      this.SHOWsignature(false);
+    });
+    document.getElementById(this.dom.buttons.appmem).addEventListener('click',(eve)=>{
+      this.SHOWsignature(true);
+    });
+    /*Open collateral on signature save.*/
+    document.getElementsByClassName('sig-save')[0].addEventListener('click', (ele)=>{
       window.data = this.data;
       window.open("../bin/collateral/collateral.html");
     });
@@ -218,13 +226,24 @@ export class ServicePresentation{
     }
   }
 
-  SHOWsignature=()=>{
+  SHOWsignature=(IsMember)=>{
     let box = document.getElementsByClassName(this.dom.sig)[0];
     if(box.style.left == "0px"){
       box.style.left = "-5000px";
+      document.getElementById(this.dom.buttons.appreg).style.backgroundColor = "var(--BCE-green)";
+      document.getElementById(this.dom.buttons.appreg).innerText = "Approve"
+      document.getElementById(this.dom.buttons.appmem).style.backgroundColor = "var(--BCE-green)";
+      document.getElementById(this.dom.buttons.appmem).innerText = "Approve"
     }
     else{
       box.style.left = "0px";
+      if (IsMember) {
+        document.getElementById(this.dom.buttons.appreg).style.backgroundColor = "var(--vogel-red)";
+        document.getElementById(this.dom.buttons.appreg).innerText = "Decline"
+      } else {
+        document.getElementById(this.dom.buttons.appmem).style.backgroundColor = "var(--vogel-red)";
+        document.getElementById(this.dom.buttons.appmem).innerText = "Decline"
+      }
     }
   }
 

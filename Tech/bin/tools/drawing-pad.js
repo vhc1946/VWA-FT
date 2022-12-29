@@ -10,7 +10,7 @@ export class DrawingPad {
     this.canvas.addEventListener('pointerdown', this.startPainting);
     this.canvas.addEventListener('pointerup', this.stopPainting);
     this.canvas.addEventListener('pointermove', this.sketch);
-    this.ctx.canvas.style.touchAction = "none";
+    this.ctx.canvas.style.touchAction = "none"; //Prevents stylus hover from drawing
     window.addEventListener('resize', this.resize);
 
     this.resize(); // Resizes the canvas once the window loads

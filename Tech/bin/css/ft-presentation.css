@@ -113,7 +113,7 @@
 }
 .present-contract-opt {
     display: grid;
-    grid-template-columns: 1fr 40px 40px;
+    grid-template-columns: 1fr 45px 40px;
     column-gap: 10px;
     text-align: right;
     padding: 2.5px 15px;
@@ -121,6 +121,24 @@
 .present-contract-opt>:nth-child(2){
     text-align: center;
     place-self: center stretch;
+}
+/*Contract input*/
+.present-contract-opts>div {
+    line-height: 1.5em;
+    font-size: medium;
+}
+.present-contract-opts>div>input {
+    border: 0; 
+    padding: 2px 5px;
+    border: 1px solid #ccc; 
+    position: relative; 
+    background-color: var(--card-base-light);
+    border-radius: 5px;
+    color: rgb(50,50,50);
+}
+.present-contract-opts>div>input:focus {
+    outline: none;
+    background-color: #ccc;
 }
 #wo-contract-appr{
     place-self: center center;
@@ -134,7 +152,7 @@
 .wo-present-repair,
 .button-row{
     display:grid;
-    grid-template-columns: 40% 15% 15% 15% 1fr;
+    grid-template-columns: 35% 15% 15% 15% 1fr;
     column-gap: 5px;
     padding:5px;
     justify-items: center;
@@ -159,10 +177,10 @@
 #wo-present-systems {
     max-height: 200px;
     overflow: auto;
+    border-bottom: 1px solid black;
 }
 .wo-present-system{
     margin-bottom: 10px;
-    border-bottom: 1px solid black;
 }
 .wo-present-system >:nth-child(1){
     font-weight:bold;
@@ -222,6 +240,12 @@
 @media only screen and (min-width: 768px) {
     .present-full-cont {
         height: calc(100vh - 40px);
+    }
+    .present-contract-opts>div {
+        font-size: large;
+    }
+    .present-contract-opts>div>input {
+        padding: 1px 5px;
     }
 }
 /*Hide scrollbars*/
