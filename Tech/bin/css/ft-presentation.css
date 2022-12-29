@@ -229,12 +229,17 @@
 .signature-pad{
     background-color: lightgrey;
     height: 100px;
-    width: 100%;
+    width: 150%;
     border-radius: 10px;
 }
 .signature-buttons{
     display: flex;
     justify-content: space-around;
+}
+
+/*Styling for save/clear buttons.*/
+.signature-buttons>div {
+    border-radius: 10px;
 }
 
 @media only screen and (min-width: 768px) {
@@ -246,6 +251,9 @@
     }
     .present-contract-opts>div>input {
         padding: 1px 5px;
+    }
+    .signature-pad {
+        width: 100%;
     }
 }
 /*Hide scrollbars*/
