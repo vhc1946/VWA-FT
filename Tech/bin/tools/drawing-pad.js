@@ -7,9 +7,10 @@ export class DrawingPad {
     this.coord = {x:0 , y:0};
     this.paint = false;
     
-    this.canvas.addEventListener('mousedown', this.startPainting);
-    this.canvas.addEventListener('mouseup', this.stopPainting);
-    this.canvas.addEventListener('mousemove', this.sketch);
+    this.canvas.addEventListener('pointerdown', this.startPainting);
+    this.canvas.addEventListener('pointerup', this.stopPainting);
+    this.canvas.addEventListener('pointermove', this.sketch);
+    this.ctx.canvas.style.touchAction = "none";
     window.addEventListener('resize', this.resize);
 
     this.resize(); // Resizes the canvas once the window loads
