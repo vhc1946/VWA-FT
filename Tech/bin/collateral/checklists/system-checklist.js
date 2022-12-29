@@ -148,7 +148,7 @@ const content = `
                           <div class="section-header">Info</div>
                           <div class="section-cont">
                             <div class="checklist-item">
-                                  <div>Temperature</div><input class="${dom.fields.ou_info_temp}">
+                                  <div>Temperature</div><input class="${dom.fields.ou_info_temp}" type="number" placeholder="Enter Current Temperature (F)">
                               </div>
                               <div class="checklist-item">
                                   <div>System Designation</div><input class="${dom.fields.ou_info_outdes}">

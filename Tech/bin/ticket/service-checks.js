@@ -309,14 +309,19 @@ export class ServiceChecks{
       }
 
       /*Listener event for change of CFM*/
-      /*let cfm_input = this.forms[this.forms.length-1].checks.system.fields.ou_airf_actualcfm;
+      let cfm_input = this.forms[this.forms.length-1].checks.system.fields.ou_airf_actualcfm;
       let coolactcap = this.forms[this.forms.length-1].checks.system.fields.ou_info_coolactualcap; //MUST BE OUTSIDE or inputs won't set properly
       let heatactcap = this.forms[this.forms.length-1].checks.system.fields.in_info_heatactualcap;
       let temperature = this.forms[this.forms.length-1].checks.system.fields.ou_info_temp;
       temperature.addEventListener('change',(ele)=>{
         if (cfm_input.value != "" && temperature.value != "") {
           let heat_retval = Calculations.HeatingBTU(cfm_input.value, temperature.value);
-          if (heatactcap) {heatactcap.value = heat_retval};
+          if (heatactcap) {
+            heatactcap.value = heat_retval
+            temperature.id = "temp-filled";
+          };
+        } else {
+          temperature.id = "temp-empty";
         }
       })
       cfm_input.addEventListener('change',(ele)=>{
@@ -328,9 +333,10 @@ export class ServiceChecks{
           //Check for a temperature
           let heat_retval = null;
           if (temperature.value != "") {
+            temperature.id = "temp-filled";
             heat_retval = Calculations.HeatingBTU(new_input, temperature.value);
           } else {
-            heat_retval = Calculations.HeatingBTU(new_input);
+            temperature.id = "temp-empty";
           }
 
           //Assign BTU values
@@ -339,7 +345,7 @@ export class ServiceChecks{
         } else {
           DropNote('tr',`Invalid Input: ${new_input.value}`,'yellow')
         }
-      });*/
+      });
 
       return cview;
     } else {return false}

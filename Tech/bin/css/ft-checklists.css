@@ -91,6 +91,30 @@
     background-color: #ccc;
     /*background-color: rgb(250, 188, 188);*/
 }
+
+#temp-empty {
+    background-color: rgb(180, 67, 67);
+    border: 1px solid rgb(114, 42, 42);
+    color: #ccc;
+}
+#temp-empty:focus {
+    outline: none;
+    background-color: rgb(114, 42, 42);
+    color: rgb(255, 255, 255);
+}
+#temp-empty::placeholder {
+    color: rgb(255, 255, 255);
+}
+
+#temp-filled {
+    border: 1px solid #ccc;
+    background-color: var(--card-base-light);
+}
+
+#temp-filled:focus {
+    outline: none;
+    background-color: #ccc;
+}
 /*Desktop/landscape sizing*/
 @media only screen and (min-width: 768px) {
     .checklist-cont {
