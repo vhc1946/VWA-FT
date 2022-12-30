@@ -102,7 +102,13 @@ export class ServicePresentation{
         <div class="${this.dom.body}">
             <div id="wo-present-repair-cont">
                 <div class="${this.dom.system.repair.cont}">
-                    <div id="${this.dom.memlevel}">Premium</div>
+                    <div id="price-label">Pricing</div>
+                    <select id = "price-select">
+                      <option value = "STA">STANDARD</option>
+                      <option value = "AHR">AFTER HOURS</option>
+                    </select>
+                    <div class="ignore">Premium</div>
+                    <div class = "memlevel-label" id="${this.dom.memlevel}"></div>
                     <a href="https://www.vogelhvac.co/" target="_blank" id="membership-link">Sign Up for Your Membership!</a>
                 </div>
                 <div class="wo-present-headers">
@@ -132,7 +138,7 @@ export class ServicePresentation{
             </div>
             <div class="${this.dom.system.repair.cont}">
                 <div>Monthly Membership</div>
-                <div id="${this.dom.invest.conmonth}"></div>
+                <div id="${this.dom.invest.conmonth}">0</div>
             </div>
             <div class="${this.dom.system.repair.cont}">
                 <div>Due Today</div>

@@ -158,6 +158,9 @@
     justify-items: center;
     text-align: center;
 }
+.wo-present-repair {
+    grid-template-columns: 35% 15% 15% 15% 1fr;
+}
 .wo-present-repair>:nth-child(-n+4)::before{
     content:"$";
 }
@@ -187,6 +190,27 @@
 }
 .wo-present-system-repairs>:nth-child(odd){
     background-color: var(--row-color);
+}
+
+.memlevel-label {
+    line-height: 2.75em;
+}
+
+#price-label {
+    border: 0; 
+    padding: 2px 5px;
+    border: 1px solid #ccc; 
+    position: absolute; 
+    background-color: var(--card-base-light);
+    border-radius: 5px;
+    color: rgb(50,50,50);
+    left: 55px;
+    width: 120px;
+    height: 50px;
+    line-height: 44px;
+}
+#price-select {
+    opacity: 0;
 }
 
 #wo-present-memprice-today{
@@ -265,8 +289,27 @@
     .signature-pad {
         width: 100%;
     }
+    .memlevel-label {
+        line-height: 1.5em;
+    }
+    #price-label {
+        left: 110px;
+        width: 120px;
+        height: 30px;
+        line-height: 24px;
+    }
 }
 /*Hide scrollbars*/
 .present-full-cont::-webkit-scrollbar {
     display: none;
+}
+
+/*Fix styling issues*/
+.ignore {
+    color: transparent;
+}
+
+/*Delete the $*/
+.memlevel-label::before {
+    content:"" !important;
 }
