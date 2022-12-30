@@ -181,7 +181,7 @@ export class ServiceChecks{
         this.info.push([c, this.ADDgroup(c,agroup)]);
     }*/
     }
-    this.currsi.innerText = this.info[0][0];
+    this.currsi.innerText = this.info[this.info.length - 1][0]; //Set tab title to last system
     this.TOGGLEitemlist();
     /*
     Menu quick action to open input box
@@ -238,6 +238,8 @@ export class ServiceChecks{
         }
       })
     }
+
+    console.log("This", this);
   }
 
   /*
