@@ -29,6 +29,21 @@
     background-color: var(--checklist-tab-selected);
 }
 
+/*Currsi menu*/
+#check-cont>div>div.viewcontrol-menu.viewcontrol-menu-vmt>div.viewcontrol-menubox>.viewcontrol-menu-item {
+    background-color: var(--checklist-tab);
+}
+#check-cont>div>div.viewcontrol-menu.viewcontrol-menu-vmt>div.viewcontrol-menubox>.viewcontrol-menu-item:hover {
+    background-color: var(--checklist-tab-hover);
+}
+/*Add button*/
+#check-cont>div>div.viewcontrol-menu.viewcontrol-menu-vmt>div.viewcontrol-quick-actions>div>div.si-menu-buttons>div.si-add-inputs>div {
+    background-color: var(--checklist-tab);
+}
+#check-cont>div>div.viewcontrol-menu.viewcontrol-menu-vmt>div.viewcontrol-quick-actions>div>div.si-menu-buttons>div.si-add-inputs>div:hover {
+    background-color: var(--checklist-tab-hover);
+}
+
 /*Size of whole container - adjust for scrolling.*/
 .checklist-cont {
     height: 87vh;
