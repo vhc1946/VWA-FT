@@ -1,3 +1,34 @@
+/*Bottom tab for checklist*/
+/*TODO: Need to add IDs to the ViewControllers - will clean up CSS and allow customization withotu modifying viewcontrol CSS*/
+/*So this below:*/
+.viewcontrol-menu-hm>.viewcontrol-menubox>:nth-child(3){
+    background-color: var(--checklist-tab);
+}
+.viewcontrol-menu-hm>.viewcontrol-menubox>:nth-child(3):hover{
+    background-color: var(--checklist-tab-hover);
+}
+.viewcontrol-menu-hm>.viewcontrol-menubox>.viewcontrol-menu-item.viewcontrol-menu-selected:nth-child(3){
+    background-color: var(--checklist-tab-selected);
+}
+/*Becomes this:*/
+#bottom-tab-checklists {
+    background-color: var(--checklist-tab);
+}
+#bottom-tab-checklists.viewcontrol-menu-selected {
+    background-color: var(--checklist-tab-selected);
+}
+
+/*Top tab bar*/
+#check-cont>div>div.viewcontrol-port>div.checklists-menu.viewcontrol-port-item.viewcontrol-port-selected>div>div.viewcontrol-menu.viewcontrol-menu-hmr>div.viewcontrol-menubox>.viewcontrol-menu-item {
+    background-color: var(--checklist-tab);
+}
+#check-cont>div>div.viewcontrol-port>div.checklists-menu.viewcontrol-port-item.viewcontrol-port-selected>div>div.viewcontrol-menu.viewcontrol-menu-hmr>div.viewcontrol-menubox>.viewcontrol-menu-item:hover {
+    background-color: var(--checklist-tab-hover);
+}
+#check-cont>div>div.viewcontrol-port>div.checklists-menu.viewcontrol-port-item.viewcontrol-port-selected>div>div.viewcontrol-menu.viewcontrol-menu-hmr>div.viewcontrol-menubox>.viewcontrol-menu-item.viewcontrol-menu-selected {
+    background-color: var(--checklist-tab-selected);
+}
+
 /*Size of whole container - adjust for scrolling.*/
 .checklist-cont {
     height: 87vh;

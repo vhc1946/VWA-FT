@@ -21,42 +21,6 @@ body{
     background-color: var(--information-tab-selected);
  }
 
-/*Checklists*/
-#ticket-build-container>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item:nth-child(3){
-    background-color: var(--checklist-tab);
-}
-/*Checklists selected*/
-#ticket-build-container>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item.viewcontrol-menu-selected:nth-child(3){
-    background-color: var(--checklist-tab-selected);
-}
-/*Checklists hover*/
-#ticket-build-container>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item:nth-child(3):hover{
-    background-color: var(--checklist-tab-hover);
-}
-
-/*checklist top tab + menu bar base colors*/
-#check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item,
-.checklists-menu>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item,
-.checklists-menu>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox,
-#check-cont>[class="viewcontrol-cont viewcontrol-cont-hl"]>.viewcontrol-menu.viewcontrol-menu-vmt>.viewcontrol-quick-actions>div>.si-menu-buttons>.si-add-inputs>[class="si-add-button icon-action-button"]
-{
-    background-color: var(--checklist-tab);
-}
-/*checklist top tab + menu bar hovers*/
-#check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item:hover,
-.checklists-menu>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item:hover,
-.checklists-menu>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox:hover,
-#check-cont>[class="viewcontrol-cont viewcontrol-cont-hl"]>.viewcontrol-menu.viewcontrol-menu-vmt>.viewcontrol-quick-actions>div>.si-menu-buttons>.si-add-inputs>[class="si-add-button icon-action-button"]:hover
-{
-    background-color: var(--checklist-tab-hover);
-}
-/*checklist top tab + menu bar selected colors*/
-#check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item.viewcontrol-menu-selected,
-.checklists-menu>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item.viewcontrol-menu-selected,
-#checklists-menu-buttons>.si-add-inputs>div,
-#checklists-add-button{
-    background-color: var(--checklist-tab-selected);
-}
 
 #info-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-menubox>.viewcontrol-menu-item{
     background-color: var(--information-tab);
