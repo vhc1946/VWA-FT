@@ -92,13 +92,33 @@ const content=`
                               <div>Compressor Amps Actual</div><input class="${dom.fields.ou_cool_actualamps}" type="number">
                           </div>
                           <div class="checklist-item">
-                              <div>Condenser Fan Operation</div><input class="${dom.fields.ou_cool_condfan}" type='search' placeholder="Choose One" list='wear-tear'>
+                              <div>Condenser Fan Operation</div>
+                              <select class="${dom.fields.ou_cool_condfan}">
+                                <option value="" disabled selected>Choose One</option>
+                                <option value="Operational">Operational</option>
+                                <option value="Worn & Doubtful">Worn & Doubtful</option>
+                                <option value="Failed">Failed</option>
+                                <option value="Failed - Furnace Tagged">Failed - Furnace Tagged</option>
+                                <option value="Recommended">Recommended</option>
+                              </select>
                           </div>
                           <div class="checklist-item">
-                              <div>Condenser Coil Condition</div><input class="${dom.fields.ou_cool_condcoil}" type='search' placeholder="Choose One" list='cond-condition'>
+                              <div>Condenser Coil Condition</div>
+                              <select class="${dom.fields.ou_cool_condcoil}">
+                                <option value="" disabled selected>Choose One</option>
+                                <option value="Clean">Clean</option>
+                                <option value="Needs Cleaning">Needs Cleaning</option>
+                                <option value="Leak Detected">Leak Detected</option>
+                                <option value="Damaged">Dammaged</option>
+                              </select>
                           </div>
                           <div class="checklist-item">
-                              <div>Electrical Connections Secured</div><input class="${dom.fields.ou_cool_elecout}" type='search' placeholder="Choose One" list='needs-repairs'>
+                              <div>Electrical Connections Secured</div>
+                              <select class="${dom.fields.ou_cool_elecout}">
+                                <option value="" disabled selected>Choose One</option>
+                                <option value="Yes">Yes</option>
+                                <option value="Repairs Needed">Repairs Needed</option>
+                              </select>
                           </div>
                       </div>
                   </div>

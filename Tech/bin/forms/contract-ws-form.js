@@ -33,11 +33,14 @@ const dom={
   }
 }
 const content = `
-  <select class="${dom.form.name}" placeholder="Select Plan Type">
-    <option>CLASSIC</option>
-    <option>PREMIUM</option>
-    <option>ULTIMATE</option>
-  </select>
+  <div class="select">
+    <select class="${dom.form.name}" placeholder="Select Plan Type">
+      <option>CLASSIC</option>
+      <option>PREMIUM</option>
+      <option>ULTIMATE</option>
+    </select>
+    <span class="focus"></span>
+  </div>
   <div class="${dom.form.cont}">
       <div class="${dom.form.option}">
           <div class="${dom.form.desc}" id="monthly-tag">Monthly Plan</div>

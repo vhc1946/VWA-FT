@@ -61,7 +61,15 @@ const content = `
                                   <div>Lost Efficiency</div><input class="${dom.fields.in_info_heatlosteffic}" type="number">
                               </div>
                               <div class="checklist-item">
-                                  <div>System Condition</div><input class="${dom.fields.in_info_incondition}" type='search' placeholder="Choose One" list='sys-condition'>
+                                  <div>System Condition</div>
+                                  <select class="${dom.fields.in_info_incondition}">
+                                    <option value="" disabled selected>Choose One</option>
+                                    <option value="Excellent">Excellent</option>
+                                    <option value="Good">Good</option>
+                                    <option value="Average">Average</option>
+                                    <option value="Consider Replacement">Consider Replacement</option>
+                                    <option value="Replacement Recommended">Replacement Recommended</option>
+                                </select>
                               </div>
                           </div>
                       </div>
@@ -75,7 +83,17 @@ const content = `
                                   <div>Return Air Static</div><input class="${dom.fields.in_airf_returnstatic}" type="number">
                               </div>
                               <div class="checklist-item">
-                                  <div>Rated CFM</div><input class="${dom.fields.in_airf_ratedcfm}" type='search' placeholder="Choose One" list='CFM-rating'>
+                                  <div>Rated CFM</div>
+                                  <select class="${dom.fields.in_airf_ratedcfm}">
+                                    <option value="" disabled selected>Choose One</option>
+                                    <option value="525 - 600 (1.5 Ton)">525 - 600 (1.5 Ton)</option>
+                                    <option value="700 - 800 (2 Ton)">700 - 800 (2 Ton)</option>
+                                    <option value="875 - 1000 (2.5 Ton)">875 - 1000 (2.5 Ton)</option>
+                                    <option value="1050 - 1200 (3 Ton)">1050 - 1200 (3 Ton)</option>
+                                    <option value="1225 - 1400 (3.5 Ton)">1225 - 1400 (3.5 Ton)</option>
+                                    <option value="1400 - 1600 ( 4 Ton)">1400 - 1600 ( 4 Ton)</option>
+                                    <option value="1750 - 2000 (5 Ton)">1750 - 2000 (5 Ton)</option>
+                                </select>
                               </div>
                               <div class="checklist-item">
                                   <div>Actual CFM</div><input class="${dom.fields.ou_airf_actualcfm}">
@@ -87,13 +105,31 @@ const content = `
                                   <div>Particle Count</div><input class="${dom.fields.in_airf_partcount}" type="number">
                               </div>
                               <div class="checklist-item">
-                                  <div>Filters Condition</div><input class="${dom.fields.in_airf_filtercond}" type='search' placeholder="Choose One" list='filter-condition'>
+                                  <div>Filters Condition</div>
+                                  <select class="${dom.fields.in_airf_filtercond}">
+                                    <option value="" disabled selected>Choose One</option>
+                                    <option value="Clean">Clean</option>
+                                    <option value="Replaced">Replaced</option>
+                                    <option value="Needs Replacement">Needs Replacement</option>
+                                </select>
                               </div>
                               <div class="checklist-item">
-                                  <div>Evaporator Coil Condition</div><input class="${dom.fields.in_airf_evapcond}" type='search' placeholder="Choose One" list='cond-condition'>
+                                  <div>Evaporator Coil Condition</div>
+                                  <select class="${dom.fields.in_airf_evapcond}">
+                                    <option value="" disabled selected>Choose One</option>
+                                    <option value="Clean">Clean</option>
+                                    <option value="Needs Cleaning">Needs Cleaning</option>
+                                    <option value="Leak Detected">Leak Detected</option>
+                                    <option value="Damaged">Dammaged</option>
+                                  </select>
                               </div>
                               <div class="checklist-item">
-                                  <div>Belt Tight</div><input class="${dom.fields.in_airf_belttight}" type='search' placeholder="Choose One" list='belt-condition'>
+                                  <div>Belt Tight</div>
+                                  <select class="${dom.fields.in_airf_belttight}">
+                                    <option value="N/A" selected>N/A</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="Needs Repair or Replacement">Needs Repair or Replacement</option>
+                                  </select>
                               </div>
                           </div>
                       </div>
@@ -101,7 +137,14 @@ const content = `
                           <div class="section-header">Cooling</div>
                           <div class="section-cont">
                               <div class="checklist-item">
-                                  <div>Drain Clear & Secure</div><input class="${dom.fields.in_cool_drainclear}" type='search' placeholder="Choose One" list='cond-condition'>
+                                  <div>Drain Clear & Secure</div>
+                                  <select class="${dom.fields.in_cool_drainclear}">
+                                    <option value="" disabled selected>Choose One</option>
+                                    <option value="Clean">Clean</option>
+                                    <option value="Needs Cleaning">Needs Cleaning</option>
+                                    <option value="Leak Detected">Leak Detected</option>
+                                    <option value="Damaged">Dammaged</option>
+                                  </select>
                               </div>
                           </div>
                       </div>
@@ -109,13 +152,26 @@ const content = `
                           <div class="section-header">Heating</div>
                           <div class="section-cont">
                               <div class="checklist-item">
-                                  <div>Drain Clear & Secure</div><input class="${dom.fields.in_heat_drainclear}" type='search' placeholder="Choose One" list='cond-condition'>
+                                  <div>Drain Clear & Secure</div>
+                                  <select class="${dom.fields.in_heat_drainclear}">
+                                    <option value="" disabled selected>Choose One</option>
+                                    <option value="Clean">Clean</option>
+                                    <option value="Needs Cleaning">Needs Cleaning</option>
+                                    <option value="Leak Detected">Leak Detected</option>
+                                    <option value="Damaged">Dammaged</option>
+                                  </select>
                               </div>
                               <div class="checklist-item">
                                   <div>Heat Pump Lockout Temperature</div><input class="${dom.fields.in_heat_hplockout}" type="number">
                               </div>
                               <div class="checklist-item">
-                                  <div>Thermostat Programmed</div><input class="${dom.fields.in_heat_statprog}" type='search' placeholder="Choose One" list='stat-condition'>
+                                  <div>Thermostat Programmed</div>
+                                  <select class="${dom.fields.in_heat_statprog}">
+                                    <option value="" disabled selected>Choose One</option>
+                                    <option value='Yes'>Yes</option>
+                                    <option value='Recommended'>Recommended</option>
+                                    <option value='No'>No</option>
+                                  </select>
                               </div>
                           </div>
                       </div>
@@ -123,19 +179,59 @@ const content = `
                           <div class="section-header">Accessories</div>
                           <div class="section-cont">
                               <div class="checklist-item">
-                                  <div>Humidifier Operations</div><input class="${dom.fields.in_acce_humdop}" type='search' placeholder="Choose One" list='wear-tear'>
+                                  <div>Humidifier Operations</div>
+                                  <select class="${dom.fields.in_acce_humdop}">
+                                    <option value="" disabled selected>Choose One</option>
+                                    <option value="Operational">Operational</option>
+                                    <option value="Worn & Doubtful">Worn & Doubtful</option>
+                                    <option value="Failed">Failed</option>
+                                    <option value="Failed - Furnace Tagged">Failed - Furnace Tagged</option>
+                                    <option value="Recommended">Recommended</option>
+                                </select>
                               </div>
                               <div class="checklist-item">
-                                  <div>Whole Home Air Cleaner</div><input class="${dom.fields.in_acce_eacop}" type='search' placeholder="Choose One" list='wear-tear'>
+                                  <div>Whole Home Air Cleaner</div>
+                                  <select class="${dom.fields.in_acce_eacop}">
+                                    <option value="" disabled selected>Choose One</option>
+                                    <option value="Operational">Operational</option>
+                                    <option value="Worn & Doubtful">Worn & Doubtful</option>
+                                    <option value="Failed">Failed</option>
+                                    <option value="Failed - Furnace Tagged">Failed - Furnace Tagged</option>
+                                    <option value="Recommended">Recommended</option>
+                                </select>
                               </div>
                               <div class="checklist-item">
-                                  <div>Energy Recovery Ventilator</div><input class="${dom.fields.in_acce_ervop}" type='search' placeholder="Choose One" list='wear-tear'>
+                                  <div>Energy Recovery Ventilator</div>
+                                  <select class="${dom.fields.in_acce_ervop}">
+                                    <option value="" disabled selected>Choose One</option>
+                                    <option value="Operational">Operational</option>
+                                    <option value="Worn & Doubtful">Worn & Doubtful</option>
+                                    <option value="Failed">Failed</option>
+                                    <option value="Failed - Furnace Tagged">Failed - Furnace Tagged</option>
+                                    <option value="Recommended">Recommended</option>
+                                </select>
                               </div>
                               <div class="checklist-item">
-                                  <div>Anti Microbial Lamp System</div><input class="${dom.fields.in_acce_uvop}" type='search' placeholder="Choose One" list='wear-tear'>
+                                  <div>Anti Microbial Lamp System</div>
+                                  <select class="${dom.fields.in_acce_uvop}">
+                                    <option value="" disabled selected>Choose One</option>
+                                    <option value="Operational">Operational</option>
+                                    <option value="Worn & Doubtful">Worn & Doubtful</option>
+                                    <option value="Failed">Failed</option>
+                                    <option value="Failed - Furnace Tagged">Failed - Furnace Tagged</option>
+                                    <option value="Recommended">Recommended</option>
+                                </select>
                               </div>
                               <div class="checklist-item">
-                                  <div>CO Sensor </div><input class="${dom.fields.in_acce_coop}" type='search' placeholder="Choose One" list='wear-tear'>
+                                  <div>CO Sensor </div>
+                                  <select class="${dom.fields.in_acce_coop}">
+                                    <option value="" disabled selected>Choose One</option>
+                                    <option value="Operational">Operational</option>
+                                    <option value="Worn & Doubtful">Worn & Doubtful</option>
+                                    <option value="Failed">Failed</option>
+                                    <option value="Failed - Furnace Tagged">Failed - Furnace Tagged</option>
+                                    <option value="Recommended">Recommended</option>
+                                </select>
                               </div>
                           </div>
                       </div>
@@ -166,7 +262,15 @@ const content = `
                                   <div>Lost Efficiency</div><input class="${dom.fields.ou_info_coollosteffic}" type="number">
                               </div>
                               <div class="checklist-item">
-                                  <div>System Condition</div><input class="${dom.fields.ou_info_outcondition}" type='search' placeholder="Choose One" list='sys-condition'>
+                                  <div>System Condition</div>
+                                  <select class="${dom.fields.ou_info_outcondition}">
+                                    <option value="" disabled selected>Choose One</option>
+                                    <option value="Excellent">Excellent</option>
+                                    <option value="Good">Good</option>
+                                    <option value="Average">Average</option>
+                                    <option value="Consider Replacement">Consider Replacement</option>
+                                    <option value="Replacement Recommended">Replacement Recommended</option>
+                                  </select>
                               </div>
                           </div>
                       </div>
@@ -180,7 +284,15 @@ const content = `
                           <div class="section-header">Accessories</div>
                           <div class="section-cont">
                               <div class="checklist-item">
-                                  <div>Economizer</div><input class="${dom.fields.ou_acce_econ}" type='search' placeholder="Choose One" list='wear-tear'>
+                                  <div>Economizer</div>
+                                  <select class="${dom.fields.ou_acce_econ}">
+                                    <option value="" disabled selected>Choose One</option>
+                                    <option value="Operational">Operational</option>
+                                    <option value="Worn & Doubtful">Worn & Doubtful</option>
+                                    <option value="Failed">Failed</option>
+                                    <option value="Failed - Furnace Tagged">Failed - Furnace Tagged</option>
+                                    <option value="Recommended">Recommended</option>
+                                </select>
                               </div>
                           </div>
                       </div>

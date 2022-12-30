@@ -60,19 +60,59 @@ const content = `
                                   <div>Blower Amp Actual</div><input class="${dom.fields.in_heat_bloweractual}" type="number">
                               </div>
                               <div class="checklist-item">
-                                  <div>Ignition Operation</div><input class="${dom.fields.in_heat_ignitionop}" type='search' placeholder="Choose One" list='wear-tear'>
+                                  <div>Ignition Operation</div>
+                                  <select class="${dom.fields.in_heat_ignitionop}">
+                                    <option value="" disabled selected>Choose One</option>
+                                    <option value="Operational">Operational</option>
+                                    <option value="Worn & Doubtful">Worn & Doubtful</option>
+                                    <option value="Failed">Failed</option>
+                                    <option value="Failed - Furnace Tagged">Failed - Furnace Tagged</option>
+                                    <option value="Recommended">Recommended</option>
+                                </select>
                               </div>
                               <div class="checklist-item">
-                                  <div>Combustion Operation</div><input class="${dom.fields.in_heat_combustop}" type='search' placeholder="Choose One" list='wear-tear'>
+                                  <div>Combustion Operation</div>
+                                  <select class="${dom.fields.in_heat_combustop}">
+                                    <option value="" disabled selected>Choose One</option>
+                                    <option value="Operational">Operational</option>
+                                    <option value="Worn & Doubtful">Worn & Doubtful</option>
+                                    <option value="Failed">Failed</option>
+                                    <option value="Failed - Furnace Tagged">Failed - Furnace Tagged</option>
+                                    <option value="Recommended">Recommended</option>
+                                </select>
                               </div>
                               <div class="checklist-item">
-                                  <div>Flue Safety</div><input class="${dom.fields.in_heat_fluesafety}" type='search' placeholder="Choose One" list='wear-tear'>
+                                  <div>Flue Safety</div>
+                                  <select class="${dom.fields.in_heat_fluesafety}">
+                                    <option value="" disabled selected>Choose One</option>
+                                    <option value="Operational">Operational</option>
+                                    <option value="Worn & Doubtful">Worn & Doubtful</option>
+                                    <option value="Failed">Failed</option>
+                                    <option value="Failed - Furnace Tagged">Failed - Furnace Tagged</option>
+                                    <option value="Recommended">Recommended</option>
+                                </select>
                               </div>
                               <div class="checklist-item">
-                                  <div>Heat Exchanger</div><input class="${dom.fields.in_heat_heatex}" type='search' placeholder="Choose One" list='wear-tear'>
+                                  <div>Heat Exchanger</div>
+                                  <select class="${dom.fields.in_heat_heatex}">
+                                    <option value="" disabled selected>Choose One</option>
+                                    <option value="Operational">Operational</option>
+                                    <option value="Worn & Doubtful">Worn & Doubtful</option>
+                                    <option value="Failed">Failed</option>
+                                    <option value="Failed - Furnace Tagged">Failed - Furnace Tagged</option>
+                                    <option value="Recommended">Recommended</option>
+                                </select>
                               </div>
                               <div class="checklist-item">
-                                  <div>Inducer Motor Operations</div><input class="${dom.fields.in_heat_inducerops}" type='search' placeholder="Choose One" list='wear-tear'>
+                                  <div>Inducer Motor Operations</div>
+                                  <select class="${dom.fields.in_heat_inducerops}">
+                                    <option value="" disabled selected>Choose One</option>
+                                    <option value="Operational">Operational</option>
+                                    <option value="Worn & Doubtful">Worn & Doubtful</option>
+                                    <option value="Failed">Failed</option>
+                                    <option value="Failed - Furnace Tagged">Failed - Furnace Tagged</option>
+                                    <option value="Recommended">Recommended</option>
+                                  </select>
                               </div>
                               <div class="checklist-item">
                                   <div>Combustion Test O2</div><input class="${dom.fields.in_heat_testO2}" type="number">
@@ -90,7 +130,12 @@ const content = `
                                   <div>Combustion Test Stack Temp</div><input class="${dom.fields.in_heat_stacktemp}" type="number">
                               </div>
                               <div class="checklist-item">
-                                  <div>Electrical Connections Secured</div><input class="${dom.fields.in_heat_elecin}" type='search' placeholder="Choose One" list='needs-repairs'>
+                                  <div>Electrical Connections Secured</div>
+                                  <select class="${dom.fields.in_heat_elecin}">
+                                    <option value="" disabled selected>Choose One</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="Repairs Needed">Repairs Needed</option>
+                                  </select>
                               </div>
                           </div>
                       </div>
@@ -110,12 +155,14 @@ const content = `
           </div>
       </div>
     <datalist id='cond-condition'>
+        <option value="" disabled selected>Choose One</option>
         <option value='Clean'>
         <option value='Needs Cleaning'>
         <option value='Leak Detected'>
         <option value='Damaged'>
     </datalist>
     <datalist id='wear-tear'>
+        <option value="" disabled selected>Choose One</option>
         <option value='Operational'>
         <option value='Worn & Doubtful'>
         <option value='Failed'>
@@ -123,6 +170,7 @@ const content = `
         <option value='Recommended'>
     </datalist>
     <datalist id='needs-repairs'>
+        <option value="" disabled selected>Choose One</option>
         <option value='Yes'>
         <option value='Repairs Needed'>
     </datalist>

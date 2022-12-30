@@ -163,6 +163,17 @@
     background-color: #ccc;
 }
 
+/*Checklist Item Select Box*/
+.checklist-item>select {
+    border: 0; 
+    padding: 5px 10px;
+    margin: 1px;
+    position: relative;
+    border: 1px solid #ccc;
+    background-color: var(--card-base-light);
+    border-radius: 5px;
+}
+
 /*Desktop/landscape sizing*/
 @media only screen and (min-width: 768px) {
     .checklist-cont {
