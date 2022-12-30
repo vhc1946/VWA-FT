@@ -58,9 +58,6 @@ export class VHCform{
             data[u]=update[u];
             try{
               if(fields[u]){
-                if (fields[u].tagName == 'SELECT') {
-                  console.log("set", fields[u], fields[u][fields[u].selectedIndex].value)
-                }
                 switch(fields[u].tagName){
                   case 'INPUT':{fields[u].value=update[u]?update[u]:'';break;}
                   case 'TEXTAREA':{fields[u].value=update[u]?update[u]:'';break;}
@@ -84,9 +81,6 @@ export class VHCform{
             if(fields[u].keys.length===0){return getformloop(data[u],fields[u]);}
           }else{
             try{
-              if (fields[u].tagName == 'SELECT') {
-                console.log("get", fields[u], fields[u][fields[u].selectedIndex].value)
-              }
               switch(fields[u].tagName){
                 case 'INPUT':{data[u]=fields[u].value;break;}
                 case 'TEXTAREA':{data[u]=fields[u].value;break;}
