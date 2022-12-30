@@ -182,10 +182,10 @@ Checklists
 #check-cont>[class='viewcontrol-cont viewcontrol-cont-hl']>.viewcontrol-port>[class='checklists-menu viewcontrol-port-item viewcontrol-port-selected']>[class = 'viewcontrol-cont viewcontrol-cont-vt']>[class='viewcontrol-menu viewcontrol-menu-hmr']>.viewcontrol-quick-actions>.item-header{
     position: relative;
     text-align: left;
-    left: 100px;
     width: 200px;
     max-width: 400ch;
-    color: rgba(0, 0, 0, 0)
+    left:0px;
+    color: rgba(0, 0, 0, 0);
 }
 /*Currsi for checklist side*/
 #check-cont>.viewcontrol-cont>.viewcontrol-menu>.viewcontrol-quick-actions>div>.currsi{
@@ -616,7 +616,7 @@ Checklists
     #check-cont>[class='viewcontrol-cont viewcontrol-cont-hl']>.viewcontrol-port>[class='checklists-menu viewcontrol-port-item viewcontrol-port-selected']>[class = 'viewcontrol-cont viewcontrol-cont-vt']>[class='viewcontrol-menu viewcontrol-menu-hmr']>.viewcontrol-quick-actions>.item-header{
         position: relative;
         text-align: left;
-        left: 100px;
+        left: 0px;
         width: 400px;
         max-width: 400ch;
         color: rgba(0, 0, 0, 0)
