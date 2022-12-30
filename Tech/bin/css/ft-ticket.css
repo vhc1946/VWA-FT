@@ -140,7 +140,7 @@ body{
     text-align: left;
     position: relative;
     overflow: hidden;
-    max-width: 20ch;
+    width: 20ch;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -609,7 +609,7 @@ Checklists
     }
     /*Repair table Item header text length*/
     .item-header {
-        max-width: 36ch;
+        width: 36ch;
     }
 
     /*Header for checklist tab container*/
