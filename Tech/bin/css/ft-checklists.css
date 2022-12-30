@@ -138,6 +138,7 @@
     /*background-color: rgb(250, 188, 188);*/
 }
 
+/*Temperature Checkbox customization*/
 #temp-empty {
     background-color: rgb(180, 67, 67);
     border: 1px solid rgb(114, 42, 42);
@@ -161,6 +162,7 @@
     outline: none;
     background-color: #ccc;
 }
+
 /*Desktop/landscape sizing*/
 @media only screen and (min-width: 768px) {
     .checklist-cont {
