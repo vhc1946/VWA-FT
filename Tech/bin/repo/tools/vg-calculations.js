@@ -18,6 +18,15 @@ function CalculateHeatingBTU(CFM, Temperature = null) {
     return CFM * Temperature * 1.055
 }
 
+/*Utility functions below*/
+function ConvertToCelsius(Fahrenheit) {
+    return ((Fahrenheit - 32) * .5556)
+}
+
+function ConvertToFahrenheit(Celsius) {
+    return ((Celsius * 1.8) + 32)
+}
+
 export var Calculations = {
     CoolingBTU: CalculateCoolingBTU,
     HeatingBTU: CalculateHeatingBTU
