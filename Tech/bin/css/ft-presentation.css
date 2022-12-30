@@ -199,11 +199,11 @@
 #price-label {
     border: 0; 
     padding: 2px 5px;
-    border: 1px solid #ccc; 
+    border: 1.5px solid rgb(136, 149, 153); 
     position: absolute; 
-    background-color: var(--card-base-light);
+    background-color: rgb(225, 248, 255);
     border-radius: 5px;
-    color: rgb(50,50,50);
+    color: rgb(44, 65, 71);
     left: 55px;
     width: 120px;
     height: 50px;
