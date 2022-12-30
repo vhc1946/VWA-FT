@@ -102,16 +102,6 @@ export class ContractWSform extends VHCform{
       this.cont.getElementsByTagName("select")[0].options[2].selected = true;
     }
 
-    this.cont.addEventListener('change',(ele)=>{
-      let price = this.GETformprice(1);
-
-      //Update price in paymeny form
-      document.getElementById('wo-present-contract-monthly').innerText = price;
-
-      //Update membership label
-      document.getElementsByClassName('memlevel-label')[0].innerText = this.pricelevel;
-    })
-
     //Update price level
     this.cont.getElementsByTagName('select')[0].addEventListener('change',(ele)=>{
       this.SETprices(this.GETprices(this.pricelevel));

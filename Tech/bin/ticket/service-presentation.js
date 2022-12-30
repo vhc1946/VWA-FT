@@ -14,6 +14,14 @@ export class ServicePresentation{
     this.cont.getElementsByClassName(this.dom.head)[0].appendChild(this.conform.cont);
     this.conform.cont.addEventListener('change',(ele)=>{
       console.log('update pricing on presentation');
+
+      let price = this.conform.GETformprice(1);
+
+      //Update price in paymeny form
+      document.getElementById('wo-present-contract-monthly').innerText = price;
+
+      //Update membership label
+      document.getElementsByClassName('memlevel-label')[0].innerText = this.conform.pricelevel;
     });
 
     this.contract='PRE'
@@ -102,11 +110,7 @@ export class ServicePresentation{
         <div class="${this.dom.body}">
             <div id="wo-present-repair-cont">
                 <div class="${this.dom.system.repair.cont}">
-                    <div id="price-label">Pricing</div>
-                    <select id = "price-select">
-                      <option value = "STA">STANDARD</option>
-                      <option value = "AHR">AFTER HOURS</option>
-                    </select>
+                    <div class="ignore">Pricing</div>
                     <div class="ignore">Premium</div>
                     <div class = "memlevel-label" id="${this.dom.memlevel}"></div>
                     <a href="https://www.vogelhvac.co/" target="_blank" id="membership-link">Sign Up for Your Membership!</a>
@@ -115,6 +119,10 @@ export class ServicePresentation{
                     <div>Services & Repairs</div>
                     <div>Regular</div>
                     <div>Member</div>
+                    <select id = "price-select">
+                      <option value = "STA">STANDARD</option>
+                      <option value = "AHR">AFTER HOURS</option>
+                    </select>
                     <div>Savings</div>
                     <div>Approval</div>
                 </div>
@@ -138,6 +146,7 @@ export class ServicePresentation{
             </div>
             <div class="${this.dom.system.repair.cont}">
                 <div>Monthly Membership</div>
+                <div class="ignore"></div>
                 <div id="${this.dom.invest.conmonth}">0</div>
             </div>
             <div class="${this.dom.system.repair.cont}">
