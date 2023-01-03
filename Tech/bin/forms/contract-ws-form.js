@@ -91,29 +91,19 @@ export class ContractWSform extends VHCform{
       content:content
     });
     this.cont.classList.add(this.dom.cont);
-
+    //Initialize the Contract Form
     this.pricelevel = this.GETmemhead('');
-    console.log(this.cont.getElementsByTagName("select"))
+    
     if (this.pricelevel == 'CLASSIC') {
       this.cont.getElementsByTagName("select")[0].options[0].selected = true;
     } else if (this.pricelevel == 'PREMIUM') {
       this.cont.getElementsByTagName("select")[0].options[1].selected = true;
-    } else {
+    } else if (this.pricelevel == 'ULTIMATE') {
       this.cont.getElementsByTagName("select")[0].options[2].selected = true;
+    } else {
+      //Default to classic
+      this.cont.getElementsByTagName("select")[0].options[0].selected = true;
     }
-
-    //Update price level
-    this.cont.getElementsByTagName('select')[0].addEventListener('change',(ele)=>{
-      this.SETprices(this.GETprices(this.pricelevel));
-    })
-
-    /*Must wait for DOM to fully load before updating prices.*/
-    window.addEventListener('DOMContentLoaded', (event) => {
-      this.SETprices(this.GETprices(this.pricelevel));
-
-      //Update membership label
-      document.getElementsByClassName('memlevel-label')[0].innerText = this.pricelevel;
-  });
   }
 
 
@@ -155,7 +145,7 @@ export class ContractWSform extends VHCform{
           case 'CLA':return 'CLASSIC'
           case 'PRE':return 'PREMIUM'
           case 'ULT':return 'ULTIMATE'
-          default: return 'DEFAULT'
+          default: return ''
         }
     }
   }
@@ -173,8 +163,8 @@ export class ContractWSform extends VHCform{
       case 'CLASSIC': pl=24;break;
       case 'PREMIUM': pl=33;break;
       case 'ULTIMATE': pl=44;break;
+      case '': pl==24;break;
     }
-    console.log(pl)
     document.getElementsByClassName('present-contract-monthly')[0].innerText = pl
   }
 
@@ -210,6 +200,17 @@ export class ContractWSform extends VHCform{
           stdfltr:0,
           humpad:0,
           spcfltr:7,
+          timesave:-4
+        };
+        break;
+      }
+      case '': {
+        prices = { //these should match that of the form dom element
+          sys:21,
+          comp:12,
+          stdfltr:5,
+          humpad:5,
+          spcfltr:12,
           timesave:-4
         };
         break;
