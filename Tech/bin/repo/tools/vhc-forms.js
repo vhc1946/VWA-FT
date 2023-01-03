@@ -61,7 +61,17 @@ export class VHCform{
                 switch(fields[u].tagName){
                   case 'INPUT':{fields[u].value=update[u]?update[u]:'';break;}
                   case 'TEXTAREA':{fields[u].value=update[u]?update[u]:'';break;}
-                  case 'SELECT':{fields[u][fields[u].selectedIndex].value=update[u]?update[u]:'';break;}
+                  case 'SELECT':{
+                    //Loop through options to find a match
+                    for (let i = 0; i < fields[u].options.length; i ++) {
+                      if (fields[u].options[i].value == update[u]) {
+                        fields[u].options[i].selected = true;
+                        break;
+                      }
+                    }
+                    break;
+                  
+                  }
                   default:{fields[u].innerText = update[u]?update[u]:'';}
                 }
               }
