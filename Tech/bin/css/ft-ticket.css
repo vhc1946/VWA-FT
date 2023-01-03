@@ -226,7 +226,7 @@ Checklists
     display:grid;
     grid-template-columns: repeat(5, 20%);
 }
-.wo-contact-cont>input{
+.wo-contact-cont>input, .wo-info-pricelevel{
     border: 0; 
     padding: 7px 15px; 
     border: 1px solid #ccc; 

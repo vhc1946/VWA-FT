@@ -84,7 +84,13 @@ const content=`
     </div>
     <div class="wo-pricing-cont">
       <div class="${dom.label.pricebook}">Price Book:</div><div class="${dom.fields.pricebook}"></div>
-      <div class="${dom.label.pricelevel}">Price Level:</div><input class="${dom.fields.pricelevel}" list="price-levels"/>
+      <div class="${dom.label.pricelevel}">Price Level:</div>
+      <select class="${dom.fields.pricelevel}"/>
+        <option value='STA'>STA</option>
+        <option value='CLA'>CLA</option>
+        <option value='PRE'>PRE</option>
+        <option value='ULT'>ULT</option>
+      <select>
     </div>
     <textarea class="${dom.fields.descr}"></textarea>
 </div>
