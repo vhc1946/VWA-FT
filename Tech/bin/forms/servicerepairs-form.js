@@ -98,7 +98,7 @@ export class SIrepairform extends FormList{
 
   row=`
     <div class = "checkbox-cont">
-      <div class="sr-appr vg-checkbox"></div>
+      <input class="sr-appr vg-checkbox" type = "checkbox"></input>
     </div>
     <div class="sr-task"></div>
     <div class="sr-descr"></div>
@@ -133,7 +133,11 @@ export class SIrepairform extends FormList{
       row.getElementsByClassName('sr-qty')[0].value = item.qty;
       row.getElementsByClassName('sr-price')[0].innerText = item.price;
       row.getElementsByClassName('sr-cost')[0].innerText = item.price * item.qty;
-      if(item.appr){row.getElementsByClassName('sr-appr')[0].classList.add('vg-checkbox-checked');}
+      //Check the item if it's been approved
+      if(item.appr){
+        row.getElementsByClassName('sr-appr')[0].classList.add('vg-checkbox-checked');
+        row.getElementsByClassName('sr-appr')[0].checked = true;
+      }
 
       row.getElementsByClassName('sr-appr')[0].addEventListener('click',(ele)=>{
         ele.target.classList.toggle('vg-checkbox-checked')

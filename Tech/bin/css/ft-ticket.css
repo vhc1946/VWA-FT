@@ -246,9 +246,12 @@ Checklists
     column-gap: 1%;
 }
 .wo-pricing-cont{
-    grid-column: 1/3;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    row-gap: 10px;
+    /*grid-column: 1/3;
     display:grid;
-    grid-template-columns: repeat(8, 12.5%);
+    grid-template-columns: repeat(8, 12.5%);*/
 }
 .wo-pricing-cont>input{
     border: 0; 
@@ -555,6 +558,11 @@ Checklists
     }
     .wo-info-descr{
         height: 150px;
+    }
+    .wo-pricing-cont {
+        grid-column: 1/3;
+        display:grid;
+        grid-template-columns: repeat(8, 12.5%);
     }
     /*Scroll overlap fix: set height and overflow of container with elements.*/
     .ft-form{

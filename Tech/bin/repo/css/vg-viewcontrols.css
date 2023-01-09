@@ -33,6 +33,7 @@ Must select proper classes for the menu and container. Select based on the orien
   height:32px;
   font-size: 2vh;
   filter: var(--drop-shadow);
+  z-index: 2;
 }
 .viewcontrol-menu-item{
   flex-grow:1;
