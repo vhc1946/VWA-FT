@@ -35,9 +35,9 @@ const dom={
 const content = `
   <div class="select">
     <select class="${dom.form.name}" placeholder="Select Plan Type">
-      <option value = "CLASSIC">CLASSIC</option>
-      <option value = "PREMIUM">PREMIUM</option>
-      <option value = "ULTIMATE">ULTIMATE</option>
+      <option value = "CLA">CLASSIC</option>
+      <option value = "PRE">PREMIUM</option>
+      <option value = "ULT">ULTIMATE</option>
     </select>
     <span class="focus"></span>
   </div>
@@ -104,6 +104,9 @@ export class ContractWSform extends VHCform{
       //Default to classic
       this.cont.getElementsByTagName("select")[0].options[0].selected = true;
     }
+    document.addEventListener('DOMContentLoaded', (eve)=>{
+      document.getElementById('wo-present-membership').innerText = this.pricelevel
+    })
   }
 
 
@@ -137,9 +140,9 @@ export class ContractWSform extends VHCform{
   //Either uses that OR the associated pl
   GETmemhead = (pname)=>{
     switch(pname){
-      case 'CLASSIC': return 'CLASSIC'
-      case 'PREMIUM': return 'PREMIUM'
-      case 'ULTIMATE': return 'ULTIMATE'
+      case 'CLA': return 'CLASSIC'
+      case 'PRE': return 'PREMIUM'
+      case 'ULT': return 'ULTIMATE'
       case '':
         switch(document.getElementsByClassName("wo-info-pricelevel")[0].value){
           case 'CLA':return 'CLASSIC'
