@@ -41,6 +41,14 @@ console.log(currticket);
 let ticket = new ServiceTicket(currticket,fbstore.list);
 let  presentation = new ServicePresentation(document.createElement('div'),currticket,fbstore.list.TRIMlist({book:'RES'}));
 
+//Event listener for bottom tab buttons to hide repair table
+ticket.view.buttons.children[0].addEventListener('click', (eve)=>{
+  TOGGLErepairtable(true)
+})
+ticket.view.buttons.children[2].addEventListener('click', (eve)=>{
+  TOGGLErepairtable(true)
+})
+
 // final summary
 // Setup Page //
 
@@ -113,11 +121,7 @@ $(document.getElementById(titlebar.tbdom.page.user)).hide();       //hide the us
 
 /*Event listener which resets and closes repair table pop-up.*/
 document.getElementsByClassName('min-page-hide-button')[0].addEventListener('click', (ele)=>{
-  document.getElementsByClassName('min-page-minimize-button')[0].innerText = "-";
-  document.getElementsByClassName('frbook-list')[0].style.display = "";
-  $(document.getElementsByClassName('min-page-cont')[0]).toggle();
-  document.getElementsByClassName('min-page-cont')[0].id = "min-page-show"
-  $(document.getElementById('loginout-block')).hide();
+  TOGGLErepairtable()
 });
 
 /*Event listener to minimize repair list pop-up.*/
@@ -138,6 +142,18 @@ document.getElementsByClassName('min-page-minimize-button')[0].addEventListener(
     document.getElementsByClassName('min-page-minimize-button')[0].innerText = "+";
   }
 });
+
+var TOGGLErepairtable = (hide=undefined) => {
+  document.getElementsByClassName('min-page-minimize-button')[0].innerText = "-";
+  document.getElementsByClassName('frbook-list')[0].style.display = "";
+  if (hide != undefined && hide == true) {
+    $(document.getElementsByClassName('min-page-cont')[0]).hide();
+  } else {
+    $(document.getElementsByClassName('min-page-cont')[0]).toggle();
+  }
+  document.getElementsByClassName('min-page-cont')[0].id = "min-page-show"
+  $(document.getElementById('loginout-block')).hide();
+}
 
 
 // Signature Pad ///////////////////////////////////

@@ -179,7 +179,6 @@ export class ServiceTicket{
 
   /**
    * Update the price level of the current ticket and reflect changes in ticket form
-   * TODO: Reflect changes in repairs
    */
   UPDATEpricing(plevel) {
     if(plevel&&plevel!=''){this.pricing.GETfilters({pl:plevel})}
