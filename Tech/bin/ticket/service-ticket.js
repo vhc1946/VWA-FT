@@ -107,22 +107,7 @@ export class ServiceTicket{
 
     this.port.info.cont.getElementsByClassName('wo-info-pricelevel')[0].addEventListener('change',(ele)=>{
       this.UPDATEpricing(ele.target.value);
-      
-      //Update presentation
-      if (ele.target.value != 'STA') {
-        document.getElementsByClassName('present-contract-name')[0].selectedIndex = ele.target.selectedIndex - 1;
-      }
     });
-
-    //Wait for document to load before setting listening on price level
-    //Could potentially move into service presentation
-    document.addEventListener('DOMContentLoaded', (eve)=>{
-        document.getElementsByClassName('present-contract-name')[0].addEventListener('change',(eve)=>{
-          this.UPDATEpricing(eve.target.value);
-          //Update WO form
-          this.port.info.cont.getElementsByClassName('wo-info-pricelevel')[0].selectedIndex = eve.target.selectedIndex + 1;
-        })
-    })
   }
 
   get ticket(){ //updates this.data and returns it

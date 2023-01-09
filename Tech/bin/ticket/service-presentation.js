@@ -173,11 +173,20 @@ export class ServicePresentation{
 
   SETpresent = (wodata) => {
     console.log('To Present > ',wodata);
+    //Update WO info
     for(let i in this.dom.info){
       this.cont.getElementsByClassName(this.dom.info[i])[0].innerText = wodata.wo[i];
     }
 
-
+    //Update price level
+    this.conform.pricelevel = this.conform.GETmemhead(wodata.wo.pricelevel);
+    //Check if document is loaded for first run of presentation generation
+    if (document.readyState == 'complete') {
+      this.conform.UPDATEselect(true);
+    } else {
+      this.conform.UPDATEselect(false);
+    }
+    //Update repair items
     if (wodata.sitems != null) {
       document.body.appendChild(this.cont);  // Creates presentation
       //document.getElementsByClassName(this.dom.head)[0].appendChild(document.createElement('div')).innerHTML = cfcontent; // Appends Contract Form within presentation

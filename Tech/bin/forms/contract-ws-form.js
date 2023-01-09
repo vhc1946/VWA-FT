@@ -94,6 +94,13 @@ export class ContractWSform extends VHCform{
     //Initialize the Contract Form
     this.pricelevel = this.GETmemhead('');
     
+    document.addEventListener('DOMContentLoaded', (eve)=>{
+      this.UPDATEselect(true);
+    })
+  }
+
+  UPDATEselect(documentLoaded = false) {
+    console.log("Updating SELECT", this.pricelevel)
     if (this.pricelevel == 'CLASSIC') {
       this.cont.getElementsByTagName("select")[0].options[0].selected = true;
     } else if (this.pricelevel == 'PREMIUM') {
@@ -104,11 +111,10 @@ export class ContractWSform extends VHCform{
       //Default to classic
       this.cont.getElementsByTagName("select")[0].options[0].selected = true;
     }
-    document.addEventListener('DOMContentLoaded', (eve)=>{
+    if (documentLoaded) {
       document.getElementById('wo-present-membership').innerText = this.pricelevel
-    })
+    }
   }
-
 
   //returns the contract price from form, multiplied by pmnts (pmnts=12 == annual payment)
   GETformprice = (pmnts = 1) => { //get price from form
