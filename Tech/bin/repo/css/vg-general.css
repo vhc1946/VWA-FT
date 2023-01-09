@@ -57,7 +57,8 @@
   --checklist-tab-selected: rgb(92, 29, 29);
   --checklist-tab-hover: rgb(110, 40, 40);
   --text-checklist-tab: rgb(56, 18, 18);
-
+  
+  --member-column-bg: rgb(255, 143, 143);
 }
 *{
   font-family: Oswald, Arial, Helvetica, sans-serif;

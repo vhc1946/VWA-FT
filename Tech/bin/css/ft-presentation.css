@@ -158,9 +158,6 @@
     justify-items: center;
     text-align: center;
 }
-.wo-present-repair {
-    grid-template-columns: 35% 15% 15% 15% 1fr;
-}
 .wo-present-repair>:nth-child(-n+4)::before{
     content:"$";
 }
@@ -192,16 +189,29 @@
     background-color: var(--row-color);
 }
 
-.memlevel-label {
-    line-height: 2.75em;
+/*Price Level popup*/
+#price-select:hover {
+    background-color: #ccc;
+    cursor: pointer;
 }
 
-#price-select {
-    opacity: 0;
+.mini-popup {
     position: absolute;
-    left: 230px;
-    width: 85px;
-    height: 25px;
+    display: none;
+    background-color: var(--card-base-light);
+    left: 38.25%;
+    width: 90px;
+    height: 40px;
+    align-items: center;
+    padding: 05px;
+    border-radius: 5px;
+    filter: var(--drop-shadow);
+    top: 0px;
+    grid-template-columns: 75% 25%;
+}
+
+.mini-popup>div {
+    font-size: 14px;
 }
 
 #wo-present-memprice-today{
@@ -267,6 +277,69 @@
     border-radius: 5px;
 }
 
+/*Member column colors*/
+@keyframes textshine {
+    0%   {color: rgb(255, 63, 63);}
+    25%  {color: rgb(47, 162, 255);}
+    50%  {color: rgb(255, 63, 63);}
+    100% {color: rgb(47, 162, 255);}
+}
+@keyframes bgshine {
+    0%   {background-color: rgb(255, 204, 63);}
+    25%  {background-color: rgb(47, 162, 255);}
+    50%  {background-color: rgb(255, 63, 63);}
+    100% {background-color: rgb(201, 255, 165);}
+}
+.member-savings,.member-month,.member-month,#member-item-label,#member-label,#member-blank-column, .member-price {
+    animation-name: bgshine;
+    animation-duration: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+}
+.memlevel-label {
+    line-height: 2.75em;
+    font-size: 20px;
+    font-weight: 700;
+    font-style: italic;
+    animation-name: textshine;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+}
+.member-savings,.member-month,.member-price,#member-item-label {
+    background-color: var(--member-column-bg);
+    width: 100%;
+    height: 200%;
+}
+#member-item-label {
+    margin-left: 3.15vw;
+    width: 103%
+}
+#member-label {
+    height: calc(100% + 5px);
+    width: 100%;
+    background-color: var(--member-column-bg);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.member-savings {
+    margin-top: -5px;
+}
+.member-price {
+    height: 100%;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+#system-label-group {
+    display: grid;
+    grid-template-columns: calc(50vw + 5px) 50%;
+}
+#member-blank-column {
+    background-color: var(--member-column-bg);
+    height: calc(100% + 5px);
+    width: 14.65vw;
+}
+
 @media only screen and (min-width: 768px) {
     .present-full-cont {
         height: calc(100vh - 40px);
@@ -283,10 +356,9 @@
     .memlevel-label {
         line-height: 1.5em;
     }
-    #price-select {
-        left: 365px;
-        width: 85px;
-        height: 25px;
+    #member-item-label {
+        margin-left: 2vw;
+        width: 101.5%
     }
 }
 /*Hide scrollbars*/
