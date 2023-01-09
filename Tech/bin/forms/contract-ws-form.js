@@ -99,7 +99,7 @@ export class ContractWSform extends VHCform{
     })
   }
 
-  UPDATEselect(documentLoaded = false) {
+  UPDATEselect() {
     console.log("Updating SELECT", this.pricelevel)
     if (this.pricelevel == 'CLASSIC') {
       this.cont.getElementsByTagName("select")[0].options[0].selected = true;
@@ -111,8 +111,9 @@ export class ContractWSform extends VHCform{
       //Default to classic
       this.cont.getElementsByTagName("select")[0].options[0].selected = true;
     }
-    if (documentLoaded) {
-      document.getElementById('wo-present-membership').innerText = this.pricelevel
+    if (document.readyState == 'complete') {
+      document.getElementById('wo-present-membership').innerText = this.pricelevel;
+      this.SETprices(this.GETprices(this.pricelevel))
     }
   }
 
@@ -149,6 +150,7 @@ export class ContractWSform extends VHCform{
       case 'CLA': return 'CLASSIC'
       case 'PRE': return 'PREMIUM'
       case 'ULT': return 'ULTIMATE'
+      case 'STA': return 'CLASSIC'
       case '':
         switch(document.getElementsByClassName("wo-info-pricelevel")[0].value){
           case 'CLA':return 'CLASSIC'
@@ -178,7 +180,7 @@ export class ContractWSform extends VHCform{
   }
 
   //Get price levels for form
-  GETprices=(pname)=>{
+  GETprices=(pname=this.pricelevel)=>{
     let prices = {};
     switch(pname){
       case 'CLASSIC':

@@ -12,6 +12,8 @@ export class ServicePresentation{
     this.pricebook = new ServicePricing(pricebook); //ticket book
     this.conform = new ContractWSform();
     this.cont.getElementsByClassName(this.dom.head)[0].appendChild(this.conform.cont);
+
+    //Event listener for change of contract form
     this.conform.cont.addEventListener('change',(ele)=>{
       console.log('update pricing on presentation');
 
@@ -21,11 +23,23 @@ export class ServicePresentation{
       document.getElementById('wo-present-contract-monthly').innerText = price;
 
       //Update membership label
-      document.getElementsByClassName('memlevel-label')[0].innerText = this.conform.pricelevel;
+      let oldLevel = document.getElementsByClassName('memlevel-label')[0].innerText;
+      let newLevel = this.conform.pricelevel;
+      if (oldLevel != newLevel) {
+        document.getElementsByClassName('memlevel-label')[0].innerText = this.conform.pricelevel;
+        this.contract = this.conform.pricelevel.slice(0, 3)
+        console.log(this.contract)
+        this.UPDATEsitems(this.data)
+      }
     });
 
-    this.contract='PRE'
+    this.contract=data.wo.pricelevel;
     this.SETpresent(data);
+
+    //Check AHR price box if set to After Hours
+    if (this.pricebook.pl == "AHR") {
+      document.getElementById('pl-check').checked = true;
+    }
 
     /*Setup + listeners for approve buttons.*/
     document.getElementsByClassName(this.dom.sig)[0].style.left = '-5000px'; //For first run
@@ -40,6 +54,26 @@ export class ServicePresentation{
       window.data = this.data;
       window.open("../bin/collateral/collateral.html");
     });
+
+    //Event listener for change of PL
+    document.getElementById('pl-check').addEventListener('change', (eve)=>{
+      if (eve.target.checked == true) {
+        this.pricebook.pl = "AHR";
+      } else {
+        this.pricebook.pl = "STA";
+      }
+      this.UPDATEsitems(this.data)
+    })
+
+    //Event listener for show/hide of PL popup
+    document.getElementById('price-select').addEventListener('click', (eve)=>{
+      let plcont = document.getElementById('pl-popup');
+      if (plcont.style.display == "grid") {
+        plcont.style.display = "none"
+      } else {
+        plcont.style.display = "grid"
+      }
+    })
   }
 
   dom = {
@@ -115,14 +149,14 @@ export class ServicePresentation{
                     <div class = "memlevel-label" id="${this.dom.memlevel}"></div>
                     <a href="https://www.vogelhvac.co/" target="_blank" id="membership-link">Sign Up for Your Membership!</a>
                 </div>
+                <div class = "mini-popup" id = "pl-popup">
+                    <div>After Hours</div>
+                    <input type = "checkbox" id = "pl-check"></input>
+                </div>
                 <div class="wo-present-headers">
                     <div>Services & Repairs</div>
-                    <div>Regular</div>
-                    <div>Member</div>
-                    <select id = "price-select">
-                      <option value = "STA">STANDARD</option>
-                      <option value = "AHR">AFTER HOURS</option>
-                    </select>
+                    <div id = "price-select">Regular</div>
+                    <div id = "member-label">Member</div>
                     <div>Savings</div>
                     <div>Approval</div>
                 </div>
@@ -142,17 +176,17 @@ export class ServicePresentation{
             <div class="${this.dom.system.repair.cont}">
                 <div>Savings Today</div>
                 <div>0</div>
-                <div id="${this.dom.invest.savings}"></div>
+                <div id="${this.dom.invest.savings}" class = "member-savings"></div>
             </div>
             <div class="${this.dom.system.repair.cont}">
                 <div>Monthly Membership</div>
                 <div class="ignore"></div>
-                <div id="${this.dom.invest.conmonth}">0</div>
+                <div id="${this.dom.invest.conmonth}" class = "member-month">0</div>
             </div>
             <div class="${this.dom.system.repair.cont}">
                 <div>Due Today</div>
                 <div id="${this.dom.invest.regprice}"></div>
-                <div id="${this.dom.invest.memprice}"></div>
+                <div id="${this.dom.invest.memprice}" class = "member-price"></div>
             </div>
             <div class="button-row">
                 <label></label>
@@ -173,6 +207,7 @@ export class ServicePresentation{
 
   SETpresent = (wodata) => {
     console.log('To Present > ',wodata);
+    this.data = wodata;
     //Update WO info
     for(let i in this.dom.info){
       this.cont.getElementsByClassName(this.dom.info[i])[0].innerText = wodata.wo[i];
@@ -181,12 +216,38 @@ export class ServicePresentation{
     //Update price level
     this.conform.pricelevel = this.conform.GETmemhead(wodata.wo.pricelevel);
     //Check if document is loaded for first run of presentation generation
-    if (document.readyState == 'complete') {
-      this.conform.UPDATEselect(true);
-    } else {
-      this.conform.UPDATEselect(false);
+    this.conform.UPDATEselect();
+    this.contract = wodata.wo.pricelevel;
+    if (this.contract == "STA") {
+      this.contract = "CLA"
     }
     //Update repair items
+    this.UPDATEsitems(wodata)
+  }
+
+  SHOWsignature=(IsMember)=>{
+    let box = document.getElementsByClassName(this.dom.sig)[0];
+    if(box.style.left == "0px"){
+      box.style.left = "-5000px";
+      document.getElementById(this.dom.buttons.appreg).style.backgroundColor = "var(--BCE-green)";
+      document.getElementById(this.dom.buttons.appreg).innerText = "Approve"
+      document.getElementById(this.dom.buttons.appmem).style.backgroundColor = "var(--BCE-green)";
+      document.getElementById(this.dom.buttons.appmem).innerText = "Approve"
+    }
+    else{
+      box.style.left = "0px";
+      if (IsMember) {
+        document.getElementById(this.dom.buttons.appreg).style.backgroundColor = "var(--vogel-red)";
+        document.getElementById(this.dom.buttons.appreg).innerText = "Decline"
+      } else {
+        document.getElementById(this.dom.buttons.appmem).style.backgroundColor = "var(--vogel-red)";
+        document.getElementById(this.dom.buttons.appmem).innerText = "Decline"
+      }
+    }
+  }
+
+  UPDATEsitems = (wodata) => {
+    console.log("WODATA:::::::::", wodata)
     if (wodata.sitems != null) {
       document.body.appendChild(this.cont);  // Creates presentation
       //document.getElementsByClassName(this.dom.head)[0].appendChild(document.createElement('div')).innerHTML = cfcontent; // Appends Contract Form within presentation
@@ -204,9 +265,22 @@ export class ServicePresentation{
 
       for (let x = 0; x < wodata.sitems.length; x++) {  // Sets each system
         if(wodata.repairs[x]!=undefined && wodata.repairs[x].length!==0){//only display if repairs
+          //Add system label div
+          let sysgroup = document.createElement('div');
+          sysgroup.id = "system-label-group";
+
           let s = slist.appendChild(document.createElement('div'));
           s.classList.add(this.dom.system.cont);
-          s.appendChild(document.createElement('div')).innerText = wodata.sitems[x].tagid;
+          sysgroup.appendChild(document.createElement('div')).innerText = wodata.sitems[x].tagid; //This creates the actual label
+          sysgroup.lastChild.className = "system-label"
+
+          //Add blank column div
+          let membgdiv = sysgroup.appendChild(document.createElement('div'));
+          membgdiv.id = "member-blank-column";
+
+          s.appendChild(sysgroup)
+
+          //Add repair list
           let rlist = s.appendChild(document.createElement('div'));
           rlist.classList.add(this.dom.system.repairs);
 
@@ -232,6 +306,7 @@ export class ServicePresentation{
 
             r.appendChild(document.createElement('div')).innerText = mprice;
             tmprice += (wodata.repairs[x][y].appr ? mprice : 0);
+            r.lastChild.id = "member-item-label";
             r.appendChild(document.createElement('div')).innerText = rprice - mprice;
             savings += (wodata.repairs[x][y].appr ? rprice - mprice :0);
 
@@ -249,26 +324,4 @@ export class ServicePresentation{
       //document.getElementById(this.dom.invest.conmonth).innerText = this.rewardform.GETformprice();
     }
   }
-
-  SHOWsignature=(IsMember)=>{
-    let box = document.getElementsByClassName(this.dom.sig)[0];
-    if(box.style.left == "0px"){
-      box.style.left = "-5000px";
-      document.getElementById(this.dom.buttons.appreg).style.backgroundColor = "var(--BCE-green)";
-      document.getElementById(this.dom.buttons.appreg).innerText = "Approve"
-      document.getElementById(this.dom.buttons.appmem).style.backgroundColor = "var(--BCE-green)";
-      document.getElementById(this.dom.buttons.appmem).innerText = "Approve"
-    }
-    else{
-      box.style.left = "0px";
-      if (IsMember) {
-        document.getElementById(this.dom.buttons.appreg).style.backgroundColor = "var(--vogel-red)";
-        document.getElementById(this.dom.buttons.appreg).innerText = "Decline"
-      } else {
-        document.getElementById(this.dom.buttons.appmem).style.backgroundColor = "var(--vogel-red)";
-        document.getElementById(this.dom.buttons.appmem).innerText = "Decline"
-      }
-    }
-  }
-
 }
