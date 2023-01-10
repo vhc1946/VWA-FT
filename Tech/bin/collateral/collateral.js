@@ -11,6 +11,7 @@ import { basicsummary } from "./presentationsummary/presentationsummary.js";
 //generate presentation printout
 
 var ticket = window.opener.data;
+var summary = window.opener.summary;
 console.log("Ticker from collateral::::", ticket)
 var summary = window.opener.summary;
 ticket.wo.location = ticket.wo.street;

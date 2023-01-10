@@ -153,7 +153,7 @@ export class ServiceChecks{
 
     this.view.port.addEventListener('click',(ele)=>{this.TOGGLEitemlist(true);});
 
-    this.currsi.addEventListener('click',(ele)=>{this.TOGGLEitemlist();this.ORGANIZEsummary()});
+    this.currsi.addEventListener('click',(ele)=>{this.TOGGLEitemlist();});
 
     this.info = [];
 
@@ -211,7 +211,8 @@ export class ServiceChecks{
 
     /*Test listener event for organizing summary.*/
     this.view.cont.getElementsByClassName('si-delete')[0].addEventListener('click', (eve)=>{
-      let Summary = this.ORGANIZEsummary();
+      this.ORGANIZEsummary();
+      console.log("SUMMARY ORGANIZED")
     })
     //HideAll(cont);
     //Clicktoclose(cont);
@@ -254,20 +255,24 @@ export class ServiceChecks{
       //Set up the total summary object
       total_summary.push({});
       total_summary[i].name = this.info[i][0];
+      console.log(this.info[i])
+      let sumchecks = summarychecks;
       total_summary[i].summary = {
-        dom: summarychecks.dom,
-        content: summarychecks.content
+        dom: sumchecks.dom,
+        content: {},
+        name: this.info[i][0]
       }
 
-      ///
+      //Loop through each input item
       for (let input in total_summary[i].summary.dom.info) {
-        var key = total_summary[i].summary.dom.info[input];
-        let docvalue = document.getElementsByClassName(key)[i]
-        if (docvalue && total_summary[i].summary.content[key]) {
+        //Find appropriate input item
+        let key = total_summary[i].summary.dom.info[input];
+        let docvalue = this.info[i][1].cont.getElementsByClassName(key)[0];
+
+        if (docvalue) {
           //Ignore blank text for now
           if (docvalue.value != "" && docvalue.value != key) {
-            //Update the current value
-            //console.log(summary.content[key], docvalue.value)
+            //Update the current value in total_summary[i] based on input type
             if (docvalue.tagName == 'SELECT') {
               total_summary[i].summary.content[key] = docvalue[docvalue.selectedIndex].value;
             } else {
@@ -278,10 +283,10 @@ export class ServiceChecks{
           }
         }
       }
-      //console.log("CURRENT:", summary.content)
     }
+
     window.summary = total_summary
-    console.log("SUMMARY::::::", window.summary)
+    console.log("SUMMARY::::::", total_summary)
   }
   /*
     Function for adding a new group of checklists
