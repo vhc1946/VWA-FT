@@ -69,6 +69,7 @@ var qactions = {
       }
       else{
         presentation.SETpresent(ticket.ticket);  //pass to ticket
+        ticket.port.checks.ORGANIZEsummary();
         box.style.left = "0px";
         ticket.view.buttons.style.display='none';
         tickcont.style.display = 'none';

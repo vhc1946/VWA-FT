@@ -153,7 +153,7 @@ export class ServiceChecks{
 
     this.view.port.addEventListener('click',(ele)=>{this.TOGGLEitemlist(true);});
 
-    this.currsi.addEventListener('click',(ele)=>{this.TOGGLEitemlist();});
+    this.currsi.addEventListener('click',(ele)=>{this.TOGGLEitemlist();this.ORGANIZEsummary()});
 
     this.info = [];
 
@@ -247,28 +247,41 @@ export class ServiceChecks{
     Returns a CheckListSummary object
   */
   ORGANIZEsummary(){
-    let summary = {
-      dom: summarychecks.dom,
-      current: summarychecks.innertext
-    };
+    let total_summary = []
+    console.log("ORGANIZING SUMMARY")
+    //Loop through each system to create the summary objects
+    for (let i = 0; i < this.info.length; i++) {
+      //Set up the total summary object
+      total_summary.push({});
+      total_summary[i].name = this.info[i][0];
+      total_summary[i].summary = {
+        dom: summarychecks.dom,
+        content: summarychecks.content
+      }
 
-    //Loop through and update current with the info from the document
-    for (let input in summary.dom.info) {
-      var key = summary.dom.info[input];
-      //Get the values from the document itself
-      let docvalue = document.getElementsByClassName(key)[0]
-      if (docvalue) {
-        //Ignore blank text for now
-        if (docvalue.value != "") {
-          //Update the current value
-          summary.current[key] = docvalue.value;
+      ///
+      for (let input in total_summary[i].summary.dom.info) {
+        var key = total_summary[i].summary.dom.info[input];
+        let docvalue = document.getElementsByClassName(key)[i]
+        if (docvalue && total_summary[i].summary.content[key]) {
+          //Ignore blank text for now
+          if (docvalue.value != "" && docvalue.value != key) {
+            //Update the current value
+            //console.log(summary.content[key], docvalue.value)
+            if (docvalue.tagName == 'SELECT') {
+              total_summary[i].summary.content[key] = docvalue[docvalue.selectedIndex].value;
+            } else {
+              total_summary[i].summary.content[key] = docvalue.value;
+            }
+          } else {
+            total_summary[i].summary.content[key] = " "
+          }
         }
       }
+      //console.log("CURRENT:", summary.content)
     }
-
-    let Sumcheck = new SummaryCheckList(summary.current);
-
-    return Sumcheck
+    window.summary = total_summary
+    console.log("SUMMARY::::::", window.summary)
   }
   /*
     Function for adding a new group of checklists
