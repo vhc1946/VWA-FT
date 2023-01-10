@@ -158,29 +158,21 @@ export class ServiceChecks{
     this.info = [];
 
     this.forms = [];
-    console.log("# of Checks ", Object.keys(checks).length)
+    //console.log("# of Checks ", Object.keys(checks).length)
     /*Initialize first group - creates default group if no checklists are given to constructor. */
     if(checks===undefined||Object.keys(checks).length===0){
-      console.log('No Checks')
+      //console.log('No Checks')
       this.info.push(["System 1", this.ADDgroup('System 1')]);
     }else{
-      console.log("Checks exist! Loading data probably")
+      //console.log("Checks exist! Loading data probably")
       //Loop through each system
       for (let i = 0; i < checks.length; i++) {
-        console.log(checks[i]);
+        //console.log(checks[i]);
         this.info.push([checks[i].name, this.ADDgroup(checks[i].name,checks[i].checks)]);
       }
-      /*for(let c in checks){
-        let agroup = {}; //to pull from pool
-        console.log("group:", c)
-        for(let cl in checks[c]){
-          if(checklists.contents[cl]){
-            agroup[cl]=checks[c][cl];
-          }else{console.log('bad list')}
-        }
-        this.info.push([c, this.ADDgroup(c,agroup)]);
-    }*/
     }
+
+
     this.currsi.innerText = this.info[this.info.length - 1][0]; //Set tab title to last system
     this.TOGGLEitemlist();
     /*
@@ -196,7 +188,6 @@ export class ServiceChecks{
       let name = this.view.cont.getElementsByClassName('si-add-input')[0];
       if(name.value != ''){
         let retval = this.ADDgroup(name.value);
-        console.log(this.forms)
         if (retval == false) {
             DropNote('tr',`${name.value} Already Added`,'yellow');
         } else {
@@ -212,7 +203,6 @@ export class ServiceChecks{
     /*Test listener event for organizing summary.*/
     this.view.cont.getElementsByClassName('si-delete')[0].addEventListener('click', (eve)=>{
       this.ORGANIZEsummary();
-      console.log("SUMMARY ORGANIZED")
     })
     //HideAll(cont);
     //Clicktoclose(cont);
@@ -239,8 +229,6 @@ export class ServiceChecks{
         }
       })
     }
-
-    console.log("This", this);
   }
 
   /*
@@ -249,13 +237,11 @@ export class ServiceChecks{
   */
   ORGANIZEsummary(){
     let total_summary = []
-    console.log("ORGANIZING SUMMARY")
     //Loop through each system to create the summary objects
     for (let i = 0; i < this.info.length; i++) {
       //Set up the total summary object
       total_summary.push({});
       total_summary[i].name = this.info[i][0];
-      console.log(this.info[i])
       let sumchecks = summarychecks;
       total_summary[i].summary = {
         dom: sumchecks.dom,
@@ -286,7 +272,7 @@ export class ServiceChecks{
     }
 
     window.summary = total_summary
-    console.log("SUMMARY::::::", total_summary)
+    //console.log("SUMMARY::::::", total_summary)
   }
   /*
     Function for adding a new group of checklists
@@ -300,7 +286,7 @@ export class ServiceChecks{
     });
     cview.cont.classList.add('checklists-menu');
     if(this.view.ADDview(name,cview.cont,false)){
-      console.log('System not already added.')
+      //console.log('System not already added.')
       if (this.forms == undefined) {
         this.forms = [];
       }
