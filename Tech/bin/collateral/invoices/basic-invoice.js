@@ -59,6 +59,13 @@ let content = `
     <div class="invoice-body">
         <div class="invoice-descbox">
             <div class="${dom.info.description}">Test Text</div>
+            <div class="wo-present-headers">
+                <div>Services & Repairs</div>
+                <div id = "price-select">Regular</div>
+                <div id = "member-label">Member</div>
+                <div>Savings</div>
+                <div>Approval</div>
+            </div>
             <div class = "${dom.repairs.repairtable}"></div>
         </div>
         <table class="invoice-totals">

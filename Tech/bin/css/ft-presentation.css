@@ -334,6 +334,9 @@
     display: grid;
     grid-template-columns: calc(50vw + 5px) 50%;
 }
+.system-label {
+    text-decoration: underline;
+}
 #member-blank-column {
     background-color: var(--member-column-bg);
     height: calc(100% + 5px);
