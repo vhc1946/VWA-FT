@@ -59,6 +59,12 @@ body{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 }
+.invoice-info-total::before {
+    content: '$';
+}
+.invoice-info-total::after {
+    content: '.00';
+}
 
 @media print{
     #header-logo{
@@ -112,7 +118,7 @@ body{
     }
     .checklist-item{
         display: grid;
-        grid-template-columns: 65% 30%;
+        grid-template-columns: 60% 35%;
     }
     .wo_desc {
         font-size: x-small;

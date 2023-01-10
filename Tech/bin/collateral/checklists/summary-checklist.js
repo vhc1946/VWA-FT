@@ -1,7 +1,7 @@
 let dom={
     info: {
-        wo_street: 'wo_street',
-        wo_cityzip: 'wo_cityzip',
+        street: 'street',
+        cityzip: 'cityzip',
         wo_desc: 'wo_desc',
         in_cool_densityalt: 'densityalt',
         in_cool_wbentering: 'wbentering',
@@ -79,8 +79,8 @@ let dom={
 let temptext = 'CLASSIC AC MAINTENANCE 2 SYSTEM SPRING ANNUAL RENEWALundefinedTUNED UP ACS PER CLASSIC REWARDS. CLEAN AND CHECKED COILSDRAINS CONTACTORS CAPACITORS MOTORS WHEELS WIRINGDISCONNECTS CHARGE TDREPLACED FILTERS.BLEW OUT DRAINLINESSHUT HUMIDIFIERS OFF FOR WINTERADDED 4#S R.22 SMALLER CARRIER FROM 2005.  NO LEAK SEARCHPERFORMEDCAPACITOR 30.5.  ACTUAL 30.5VIP CUSTOMERCLASSIC. 540.00R22. 285.00FILTER 16X25X4 27.0020X25X4. 29.00TOTAL. 881.00.    *****PLEASE BILL THRU OFFICE. ******GATE CODE. #5566'
 
 let tempdata = {
-    wo_street: 'wo_street',
-        wo_cityzip: 'wo_cityzip',
+        street: 'street',
+        cityzip: 'cityzip',
         wo_desc: 'wo_desc',
         densityalt: 'densityalt',
         wbentering: 'wbentering',
@@ -166,7 +166,7 @@ export class SummaryCheckList{
         this.content =`
         <div class="summary-header">
             <div id="title-header">${this.name} Summary</div>
-            <div><span class="${dom.info.wo_street}">1234 Street Dr</span> , <span class=${dom.info.wo_cityzip}>Fenton, MO 63026</span></div>
+            <div><span class="${dom.info.street}">1234 Street Dr</span> , <span class=${dom.info.cityzip}>Fenton, MO 63026</span></div>
         </div>  
         <div class="summary-body">
             <div class="summary-section-info">

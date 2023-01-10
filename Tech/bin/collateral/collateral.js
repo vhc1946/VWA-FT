@@ -15,57 +15,85 @@ var summary = window.opener.summary;
 var repairtable = window.opener.repairtable;
 const contractopts = window.opener.contractopt;
 repairtable.id = "wo-present-system-summary"
-console.log("Ticker from collateral::::", ticket)
+console.log("Ticket from collateral::::", ticket)
 var summary = window.opener.summary;
 ticket.wo.location = ticket.wo.street;
 ticket.wo.jstreet = ticket.wo.street;
 ticket.wo.jcity = ticket.wo.cityzip;
 ticket.wo.invdate = new Date().toLocaleDateString();
+var price = 0;
+if (ticket.wo.pricelevel == "STA") {
+    price = window.opener.regprice
+} else {
+    price = window.opener.memberprice
+}
 
+/**
+ * CREATE CHECKLIST FORM
+ */
 //Loop through each summary
 for (let i = 0; i < summary.length; i++){
     var checksum = new CollateralForm(document.createElement('div'),new SummaryCheckList(summary[i].summary.content, summary[i].name));
     document.body.appendChild(checksum.cont);
+    document.getElementsByClassName(checksum.dom.info.street)[i].innerText = ticket.wo.street;
+    document.getElementsByClassName(checksum.dom.info.cityzip)[i].innerText = ticket.wo.cityzip;
 }
 
+/**
+ * CREATE REWARD SUMMARY FORM
+ */
 var summaryform = new CollateralForm(document.createElement('div'), basicsummary);
 document.body.appendChild(summaryform.cont);
 
-//Loop through repair items
-//Add the header for the current service item
-console.log(summaryform.dom)
+//Append the repair table clone to the form
 document.getElementsByClassName(summaryform.dom.repairs.repairtable)[0].appendChild(repairtable)
-//Add rewards summary
+
+//Loop through each contract option and grab its value
 let options = contractopts.getElementsByClassName("present-contract-opt")
 let results = []
 for (let i = 0; i < options.length; i++){
     let children = options[i].children;
-    results.push(children[1].value)
-    console.log(children[1], children[1].value)
+    if (children[1].type == "checkbox") {
+        results.push(children[1].checked)
+    } else {
+        results.push(children[1].value)
+    }
 }
 
+//Loop through the labels on the the forms and assign contract values
 let rewardLabels = document.getElementById('summary-objects').getElementsByTagName('div');
 for (let i = 0; i < rewardLabels.length; i++){
-    if (results[i] == 'on'){
-        rewardLabels[i].innerText = ticket.wo.pricelevel;
-    } else if (results[i] == 'off') {
-        rewardLabels[i].innerText = "No Plan Selected"
+    //Check if true or false for checkbox tag
+    if (i == 0) {
+        if (results[i] == true){
+            rewardLabels[i].innerText = ticket.wo.pricelevel;
+        } else {
+            rewardLabels[i].innerText = "No Plan Selected"
+        }
     } else {
         rewardLabels[i].innerText = results[i]
     }
-    console.log(rewardLabels[i], results[i])
 }
 
 
-
+/**
+ * CREATE INVOICE FORM
+ */
 var invoice = new CollateralForm(document.createElement('div'),basicinvoice);
 console.log(invoice)
 document.body.appendChild(invoice.cont);
 for(let i in invoice.dom.info){
     if(ticket.wo[i]){
         document.getElementsByClassName(invoice.dom.info[i])[0].innerText = ticket.wo[i];
+        if (document.getElementsByClassName(summaryform.dom.info[i])[0]) {
+            document.getElementsByClassName(summaryform.dom.info[i])[0].innerText = ticket.wo[i];
+        }
     }else{
-        document.getElementsByClassName(invoice.dom.info[i])[0].innerText = '';
+        if (invoice.dom.info[i] == "invoice-info-total") {
+            document.getElementsByClassName(invoice.dom.info[i])[0].innerText = price;
+        } else {
+            document.getElementsByClassName(invoice.dom.info[i])[0].innerText = '';
+        }
     }
 }
 //Add repairs to invoice

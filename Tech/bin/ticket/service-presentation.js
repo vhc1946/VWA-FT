@@ -52,6 +52,8 @@ export class ServicePresentation{
     /*Open collateral on signature save.*/
     document.getElementsByClassName('sig-save')[0].addEventListener('click', (ele)=>{
       window.data = this.data;
+      window.memberprice = document.getElementById("wo-present-memprice-today").innerText;
+      window.regprice = document.getElementById("wo-present-regprice-today").innerText;
       window.open("../bin/collateral/collateral.html");
     });
 
