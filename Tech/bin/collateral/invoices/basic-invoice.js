@@ -20,7 +20,7 @@ let dom = {
         description: 'invoice-info-description'
     }
 }
-let contents = `
+let content = `
     <img id='invoice-header-logo'src="../repo/assets/images/Header.jpg"/>
     <div class="invoice-top">
         <div class="invoice-section-client">
@@ -74,9 +74,11 @@ let contents = `
             </tr>
         </table>
     </div>
+
+    <img id='header-logo'src="../../bin/repo/assets/images/Header_clean.png"/>
 `
 
 export var basicinvoice ={
     dom:dom,
-    contents:contents
+    content:content
 }
