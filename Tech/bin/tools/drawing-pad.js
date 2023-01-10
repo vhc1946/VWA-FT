@@ -48,4 +48,12 @@ export class DrawingPad {
     this.ctx.lineTo(this.coord.x , this.coord.y);
     this.ctx.stroke();
   }
+
+  getPainting=()=>{
+    this.ctx.putImageData(this.ctx.getImageData(0,0,this.ctx.canvas.width, this.ctx.canvas.height), 0, 0);
+
+    var image = new Image();
+    image.src = this.ctx.canvas.toDataURL();
+    return image;
+  }
 }

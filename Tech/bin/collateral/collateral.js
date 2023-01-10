@@ -100,3 +100,8 @@ for(let i in invoice.dom.info){
 var invrepairs = repairtable.cloneNode(true);
 invrepairs.id = "wo-present-system-invoice";
 document.getElementsByClassName(invoice.dom.repairs.repairtable)[0].appendChild(invrepairs)
+
+//TODO: Add a spot in Invoice dom for signature to go
+if (window.opener.signature) {
+    document.body.appendChild(window.opener.signature)
+}

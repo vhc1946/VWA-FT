@@ -163,4 +163,7 @@ const sigpad = new DrawingPad(document.getElementsByClassName('signature-pad')[0
 document.getElementsByClassName('sig-clear')[0].addEventListener('click', (ele)=>{
   sigpad.ctx.clearRect(0,0,sigpad.ctx.canvas.width,sigpad.ctx.canvas.height);
 });
+document.getElementsByClassName('sig-save')[0].addEventListener('click', (ele)=>{
+  window.signature = sigpad.getPainting();
+});
 ///////////////////////////////////////////////////
