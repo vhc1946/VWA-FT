@@ -222,7 +222,9 @@ export class ServicePresentation{
       this.contract = "CLA"
     }
     //Update repair items
-    this.UPDATEsitems(wodata)
+    this.UPDATEsitems(wodata);
+    window.repairtable = document.getElementById('wo-present-systems').cloneNode(true);
+    window.contractopt = document.getElementsByClassName('present-contract-opts')[0];
   }
 
   SHOWsignature=(IsMember)=>{
@@ -247,7 +249,7 @@ export class ServicePresentation{
   }
 
   UPDATEsitems = (wodata) => {
-    console.log("WODATA:::::::::", wodata)
+    //console.log("WODATA:::::::::", wodata)
     if (wodata.sitems != null) {
       document.body.appendChild(this.cont);  // Creates presentation
       //document.getElementsByClassName(this.dom.head)[0].appendChild(document.createElement('div')).innerHTML = cfcontent; // Appends Contract Form within presentation

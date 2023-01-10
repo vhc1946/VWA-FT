@@ -167,7 +167,6 @@ export class SummaryCheckList{
         <div class="summary-header">
             <div id="title-header">${this.name} Summary</div>
             <div><span class="${dom.info.wo_street}">1234 Street Dr</span> , <span class=${dom.info.wo_cityzip}>Fenton, MO 63026</span></div>
-            
         </div>  
         <div class="summary-body">
             <div class="summary-section-info">
@@ -420,6 +419,8 @@ export class SummaryCheckList{
         
         
         <img id='header-logo'src="../../bin/repo/assets/images/Header_clean.png"/>
+
+        <div class="pagebreak"> </div>
     `
     }
 

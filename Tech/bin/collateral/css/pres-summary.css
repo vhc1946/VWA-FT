@@ -1,0 +1,25 @@
+.wo-present-repair{
+    display:grid;
+    grid-template-columns: 35% 15% 15% 15% 1fr;
+    column-gap: 5px;
+    padding:5px;
+    justify-items: center;
+    text-align: center;
+}
+
+#wo-present-system-invoice>div>div>.wo-present-repair-unapproved {
+    display: none;
+}
+
+.wo-present-repair>:nth-child(-n+4)::before{
+    content:"$";
+}
+.wo-present-repair>:nth-child(1)::before{
+    content:"";
+}
+
+#rewards-header {
+    height: 10%;
+    width: 100%;
+    display: none;
+}

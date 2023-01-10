@@ -11,8 +11,4 @@ export class CollateralForm extends VHCform{
     });
     //loop through info.dom.info
   }
-
-  ADDrepairitem(item) {
-      
-  }
 }

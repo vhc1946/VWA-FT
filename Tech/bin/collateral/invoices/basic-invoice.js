@@ -18,10 +18,15 @@ let dom = {
         subtotal: 'invoice-info-subtotal',
         total: 'invoice-info-total',
         description: 'invoice-info-description'
+    },
+    repairs:{
+        repairtable:'invoice-repair-table'
     }
 }
 let content = `
-    <img id='invoice-header-logo'src="../repo/assets/images/Header.jpg"/>
+    <div class="summary-header">
+        <div id="title-header">Invoice Summary</div>
+    </div> 
     <div class="invoice-top">
         <div class="invoice-section-client">
             <div class="invoice-sectionhead">SOLD TO:</div>
@@ -54,6 +59,7 @@ let content = `
     <div class="invoice-body">
         <div class="invoice-descbox">
             <div class="${dom.info.description}">Test Text</div>
+            <div class = "${dom.repairs.repairtable}"></div>
         </div>
         <table class="invoice-totals">
             <tr>
@@ -76,6 +82,7 @@ let content = `
     </div>
 
     <img id='header-logo'src="../../bin/repo/assets/images/Header_clean.png"/>
+    <div class="pagebreak"> </div>
 `
 
 export var basicinvoice ={

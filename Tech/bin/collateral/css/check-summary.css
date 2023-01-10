@@ -61,8 +61,10 @@ body{
 
 @media print{
     #header-logo{
+        page-break-inside: avoid; page-break-before: always;
+    }
+    .pagebreak {
         page-break-after: always;
-        page-break-before: avoid;
     }
     @page{
         size: 8.5in 11in;

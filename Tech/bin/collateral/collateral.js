@@ -12,6 +12,9 @@ import { basicsummary } from "./presentationsummary/presentationsummary.js";
 
 var ticket = window.opener.data;
 var summary = window.opener.summary;
+var repairtable = window.opener.repairtable;
+const contractopts = window.opener.contractopt;
+repairtable.id = "wo-present-system-summary"
 console.log("Ticker from collateral::::", ticket)
 var summary = window.opener.summary;
 ticket.wo.location = ticket.wo.street;
@@ -25,6 +28,35 @@ for (let i = 0; i < summary.length; i++){
     document.body.appendChild(checksum.cont);
 }
 
+var summaryform = new CollateralForm(document.createElement('div'), basicsummary);
+document.body.appendChild(summaryform.cont);
+
+//Loop through repair items
+//Add the header for the current service item
+console.log(summaryform.dom)
+document.getElementsByClassName(summaryform.dom.repairs.repairtable)[0].appendChild(repairtable)
+//Add rewards summary
+let options = contractopts.getElementsByClassName("present-contract-opt")
+let results = []
+for (let i = 0; i < options.length; i++){
+    let children = options[i].children;
+    results.push(children[1].value)
+    console.log(children[1], children[1].value)
+}
+
+let rewardLabels = document.getElementById('summary-objects').getElementsByTagName('div');
+for (let i = 0; i < rewardLabels.length; i++){
+    if (results[i] == 'on'){
+        rewardLabels[i].innerText = ticket.wo.pricelevel;
+    } else if (results[i] == 'off') {
+        rewardLabels[i].innerText = "No Plan Selected"
+    } else {
+        rewardLabels[i].innerText = results[i]
+    }
+    console.log(rewardLabels[i], results[i])
+}
+
+
 
 var invoice = new CollateralForm(document.createElement('div'),basicinvoice);
 console.log(invoice)
@@ -36,3 +68,7 @@ for(let i in invoice.dom.info){
         document.getElementsByClassName(invoice.dom.info[i])[0].innerText = '';
     }
 }
+//Add repairs to invoice
+var invrepairs = repairtable.cloneNode(true);
+invrepairs.id = "wo-present-system-invoice";
+document.getElementsByClassName(invoice.dom.repairs.repairtable)[0].appendChild(invrepairs)
