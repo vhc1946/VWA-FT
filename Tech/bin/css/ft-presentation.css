@@ -342,6 +342,9 @@
     height: calc(100% + 5px);
     width: 14.65vw;
 }
+.present-contract-opt>:nth-child(3)::before {
+    content: "$";
+}
 
 @media only screen and (min-width: 768px) {
     .present-full-cont {
